@@ -107,6 +107,11 @@
           "url": "https://tabnine.com",
           "description": "AI code completion with free tier"
         }
+        {
+          "title": "Gemini",
+          "url": "https://gemini.google.com/app",
+          "description": "Gemini is a powerful AI assistant from Google for coding, learning, and more"
+        }
       ]
     },
     {
