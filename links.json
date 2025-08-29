@@ -23,6 +23,11 @@
           "title": "Notion AI",
           "url": "https://notion.so",
           "description": "AI-powered workspace with free trial"
+        },
+        {
+          "title": "Jasper AI",
+          "url": "https://jasper.ai",
+          "description": "AI content creation with free trial"
         }
       ]
     },
@@ -173,6 +178,17 @@
           "title": "Genspark AI",
           "url": "https://www.genspark.ai",
           "description": "AI-powered search and research assistant"
+        }
+      ]
+    },
+    {
+      "name": "Chrome Extensions",
+      "icon": "🌐",
+      "links": [
+        {
+          "title": "Cimple - Premium Browser Extentions",
+          "url": "https://cimple.dev",
+          "description": "Free Premium Backgrounds & Productivity widgets"
         }
       ]
     }

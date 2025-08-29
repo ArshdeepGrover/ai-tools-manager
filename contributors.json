@@ -18,6 +18,19 @@
       ],
       "website": "https://arshdeepsingh.info",
       "role": "Creator & Maintainer"
+    },
+    {
+      "name": "Nikhil Shukla",
+      "github": "nikhilsbuilds",
+      "avatar": "https://avatars.githubusercontent.com/u/100666084?v=4",
+      "linkedin": "nikhilsbuilds",
+      "tagline": "Building awesome stuff",
+      "contributions": [
+        "Added 1 new AI tool in the AI Writing & Content Creation category",
+        "Added a New Category - Chrome Extensions and added 1 tool in it"
+      ],
+      "website": "https://nikhilshukla.dev",
+      "role": "Contributor"
     }
   ]
 }
