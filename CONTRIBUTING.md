@@ -57,7 +57,8 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
    {
      "title": "Tool Name",
      "url": "https://example.com",
-     "description": "Clear, concise description (max 60 characters)"
+     "description": "Clear, concise description (max 60 characters)",
+     "logo": "Logo image URL link"
    }
    ```
 
