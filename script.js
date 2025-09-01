@@ -127,7 +127,7 @@ function renderLinks(categories) {
             <div class=" flex items-center justify-center flex-row gap-2">
              <img
              class="w-12 h-12 object-cover rounded-full"
-             src=${link.logo}
+             src="${link.logo}"
              alt="logo"
         />
             <h3 class="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">${
