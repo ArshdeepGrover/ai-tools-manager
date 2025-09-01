@@ -124,9 +124,16 @@ function renderLinks(categories) {
              class="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 hover:border-blue-300 card-hover group"
              onclick="trackToolClick('${link.title}', '${category.name}')">
             <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">${
-                link.title
-              }</h3>
+            <div class=" flex items-center justify-center flex-row gap-2">
+             <img
+             class="w-12 h-12 object-cover rounded-full"
+             src=${link.logo}
+             alt="logo"
+        />
+            <h3 class="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">${
+              link.title
+            }</h3>
+            </div>
               <i class="fas fa-external-link-alt text-gray-400 group-hover:text-blue-500 transition-colors"></i>
             </div>
             <p class="text-gray-600 mb-4 leading-relaxed">${
