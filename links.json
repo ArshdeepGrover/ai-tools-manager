@@ -14,13 +14,13 @@
           "title": "Claude",
           "url": "https://claude.ai",
           "description": "Free AI assistant with generous limits",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Anthropic_logo.svg"
+          "logo": "https://cdn.worldvectorlogo.com/logos/claude-logo.svg"
         },
         {
           "title": "Grammarly",
           "url": "https://grammarly.com",
           "description": "Free writing assistant & grammar checker",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Grammarly_logo.png"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcc-4w3ZxZ4GkRUL-ZZ5U3PxywWaao0RitWg&s"
         },
         {
           "title": "Notion AI",
@@ -33,36 +33,36 @@
     {
       "name": "AI Design & Images",
       "icon": "🎨",
-      "links": [
+     "links": [
         {
           "title": "Canva AI",
           "url": "https://canva.com",
           "description": "Free design tool with AI features",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Canva_logo.svg"
+          "logo": "https://www.canva.com/favicon.ico"
         },
         {
           "title": "DALL-E 2",
           "url": "https://openai.com/dall-e-2",
           "description": "AI image generator with free credits",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/5/57/OpenAI_Logo.svg"
+          "logo": "https://openai.com/favicon.ico"
         },
         {
           "title": "Midjourney",
           "url": "https://midjourney.com",
           "description": "AI art generator with free trial",
-          "logo": "https://seeklogo.com/images/M/midjourney-logo-77BDE2926A-seeklogo.com.png"
+          "logo": "https://photutorial.com/wp-content/uploads/2023/04/midjourney-logo.png"
         },
         {
           "title": "Remove.bg",
           "url": "https://remove.bg",
           "description": "Free AI background remover",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/8/89/Remove.bg_logo.png"
+          "logo": "https://www.remove.bg/favicon.ico"
         },
         {
           "title": "Banani.co",
           "url": "https://www.banani.co",
           "description": "Design stunning UIs and Turn ideas into UI prototypes with AI",
-          "logo": "https://www.banani.co/_next/image?url=%2Flogo.png&w=256&q=75"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDMP8DaRGydCKNZNaaWQydCK5sJJHe-qsMzQ&s"
         }
       ]
     },
@@ -80,13 +80,13 @@
           "title": "Beautiful.ai",
           "url": "https://beautiful.ai",
           "description": "Smart presentation design with free plan",
-          "logo": "https://assets-global.website-files.com/5b97d55e93f188d4e1c3da3e/5b97d55e93f18856fbc3db9a_favicon-32x32.png"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjvBEeojAwzw-kwThIvCDDIxNj1X7Rif1o5w&s"
         },
         {
           "title": "Tome",
           "url": "https://tome.app",
           "description": "AI storytelling & presentation tool",
-          "logo": "https://tome.app/favicon.ico"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5r4dpYsIj6UMxMKY4l4V-rLkboW48QYuPNQ&s"
         },
         {
           "title": "Slidesgo AI",
@@ -116,7 +116,7 @@
           "title": "Replit AI",
           "url": "https://replit.com",
           "description": "Free AI coding assistant",
-          "logo": "https://replit.com/public/icons/favicon-p-500.png"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHxDoTXMkYU19iZk_4os4y1QTYf5R7mgWM6Q&s"
         },
         {
           "title": "CodePen AI",
@@ -128,7 +128,7 @@
           "title": "Tabnine",
           "url": "https://tabnine.com",
           "description": "AI code completion with free tier",
-          "logo": "https://cdn.tabnine.com/tabnine-logo.png"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbhiAXKH3gO6AQT_CjP9Y17yb4TUbhwmmrbg&s"
         },
         {
           "title": "Amazon Q Developer",
@@ -146,25 +146,25 @@
           "title": "Loom AI",
           "url": "https://loom.com",
           "description": "Screen recording with AI summaries",
-          "logo": "https://cdn.loom.com/assets/loom_logo.png"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3bMKgh1IcxMtl2aMIpKiPub6H7esMQ6ThLg&s"
         },
         {
           "title": "Descript",
           "url": "https://descript.com",
           "description": "AI video editing with free plan",
-          "logo": "https://descript.com/favicon.ico"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrN9KphSpWBzCUCulJqLuLnqYatcP53JBZvA&s"
         },
         {
           "title": "ElevenLabs",
           "url": "https://elevenlabs.io",
           "description": "AI voice generator with free credits",
-          "logo": "https://elevenlabs.io/apple-touch-icon.png"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNJgl2OHUmnQbovM0eVDUW_S0vk2K6uAUb6w&s"
         },
         {
           "title": "Runway ML",
           "url": "https://runwayml.com",
           "description": "AI video tools with free trial",
-          "logo": "https://runwayml.com/favicon.ico"
+          "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGzWVkOGCG9B6WvxSoigJhJcJsP0lMC1Emng&s"
         }
       ]
     },
@@ -176,7 +176,7 @@
           "title": "Otter.ai",
           "url": "https://otter.ai",
           "description": "Free AI meeting transcription",
-          "logo": "https://otter.ai/apple-touch-icon.png"
+          "logo": "https://play-lh.googleusercontent.com/BrV1ZP-M05BdwSVugvOm-0OIjH54ZNGIrZrJe55SJlYwZwpIUVggcNQlCSwzHJQJhb4=w240-h480-rw"
         },
         {
           "title": "Calendly AI",
@@ -188,7 +188,7 @@
           "title": "Zapier AI",
           "url": "https://zapier.com",
           "description": "Workflow automation with free tier",
-          "logo": "https://cdn.zapier.com/zapier/images/favicon.png"
+          "logo": "https://www.cdnlogo.com/logos/z/75/zapier.svg"
         },
         {
           "title": "Perplexity AI",
@@ -224,7 +224,7 @@
           "title": "Google AI Studio",
           "url": "https://aistudio.google.com",
           "description": "Web-based IDE for prototyping with Gemini AI models",
-          "logo": "https://developers.google.com/static/ai/images/ai-studio-icon.png"
+          "logo": "https://timelines.ai/wp-content/uploads/2025/03/Google-AI.png"
         }
       ]
     },
@@ -236,7 +236,7 @@
           "title": "Chess Champ",
           "url": "https://gemini.google.com/gem/chess-champ",
           "description": "AI tool for playing and analyzing chess games",
-          "logo": "https://upload.wikimedia.org/wikipedia/commons/5/57/OpenAI_Logo.svg"
+          "logo": "https://mir-s3-cdn-cf.behance.net/project_modules/1400/7cf51e188450701.65b6d6991d38d.png"
         }
       ]
     }
