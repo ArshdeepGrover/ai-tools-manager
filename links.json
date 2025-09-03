@@ -23,7 +23,27 @@
           "title": "Notion AI",
           "url": "https://notion.so",
           "description": "AI-powered workspace with free trial"
-        }
+        },
+        {
+          "title": "QuillBot",
+          "url": "https://quillbot.com/",
+          "description": "Free paraphrasing, grammar checking, summarizer"
+        },
+        {
+          "title": "Scribbr Citation Generator",
+          "url": "https://scribbr.com/citation/generator/",
+          "description": "Free APA/MLA/Chicago/Harvard citations"
+        },
+        {
+          "title": "Hemingway App",
+          "url": "https://hemingwayapp.com/",
+          "description": "Writing clarity checker"
+        },
+        {
+          "title": "Elicit",
+          "url": "https://elicit.com/",
+          "description": "AI-powered research assistant"
+        }      
       ]
     },
     {
@@ -51,9 +71,34 @@
           "description": "Free AI background remover"
         },
         {
-          "title": "Pixlr",
+          "title": "Banani.co",
+          "url": "https://banani.co",
+          "description": "Design stunning UIs and Turn ideas into UI prototypes with AI"
+        },
+        {
+          "title": "KREA AI",
+          "url": "https://krea.ai/",
+          "description": "AI-powered avatar maker and design inspiration"
+        },
+        {
+          "title": "StockImg AI",
+          "url": "https://stockimg.ai/",
+          "description": "Free stock-style image generator with free trial"
+        },
+        {
+          "title": "Stable Diffusion",
+          "url": "https://stablediffusionweb.com/",
+          "description": "Web-based Stable Diffusion interface for photorealistic text-to-image generation"
+        },
+        {
+         "title": "Pixlr",
           "url": "https://pixlr.com/",
-          "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools."
+        "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools."
+        },
+        {
+          "title": "Nanobanana.ai",
+          "url": "https://nanobanana.ai/",
+          "description": "Transform any image with simple text prompts"
         }
       ]
     },
@@ -121,6 +166,11 @@
           "title": "Bolt.new",
           "url": "https://bolt.new/",
           "description": "Create stunning apps & websites by chatting with AI."
+        },
+        {
+          "title": "Blackbox",
+          "url": "https://blackbox.ai/",
+          "description": "Free code search & snippet extraction"
         }
       ]
     },
@@ -147,6 +197,21 @@
           "title": "Runway ML",
           "url": "https://runwayml.com",
           "description": "AI video tools with free trial"
+        },
+        {
+          "title": "Veed",
+          "url": "https://veed.io/",
+          "description": "AI-powered video creation for teams"
+        },
+        {
+          "title": "Pika",
+          "url": "https://pika.art/",
+          "description": "AI-powered idea-to-video platform with free credits"
+        },
+        {
+          "title": "Leonardo AI",
+          "url": "https://leonardo.ai/",
+          "description": "AI art and image generation platform"
         }
       ]
     },
@@ -186,8 +251,13 @@
         },
         {
           "title": "Genspark AI",
-          "url": "https://www.genspark.ai",
+          "url": "https://genspark.ai",
           "description": "AI-powered search and research assistant"
+        },
+        {
+          "title": "Taskade",
+          "url": "https://taskade.com/",
+          "description": "AI to-do lists, outlines, and workflows"
         }
       ]
     },
