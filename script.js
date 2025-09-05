@@ -283,3 +283,69 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLinks();
   loadContributors();
 });
+
+let feedbackStars = 0;
+const feedback = []
+
+window.addEventListener("load",()=>{
+  const ratingDiv = document.getElementById("feedback-stars");
+  for (let i = 1 ;i <= 5 ; i++){
+    const star = document.createElement("span");
+    star.innerHTML = "\u2605";
+    star.dataset.value = i;
+    star.addEventListener("click",() => {
+      feedbackStars = i;
+      HighlightFeedbackStars(i);
+    });
+    ratingDiv.appendChild(star);
+  }
+  loadFeedback();
+});
+
+function HighlightFeedbackStars(count){
+  const stars = document.querySelectorAll("#feedback-stars span");
+  stars.forEach((stars,index)=>{
+    if (index < count ){
+      stars.classList.add("active");
+    }
+    else{
+      stars.classList.remove("active")
+    }
+  })
+}
+
+function submitFeedback(){
+  const comment = document.getElementById("feedback-comment").value;
+  if (feedbackStars === 0 ){
+    alert("Please select a star rating ! ");
+    return;
+  }
+    feedback.push({stars:feedbackStars,comment});
+    saveFeedback()
+    displayFeedbak()
+    feedbackStars = 0;
+    HighlightFeedbackStars(0);
+    document.getElementById("feedback-comment").value = "";
+}
+function displayFeedbak(){
+  const list = document.getElementById("feedback-list");
+  list.innerHTML = "<h3> User Feedback : </h3>";
+}
+
+feedback.forEach(fb => {
+  const fbEl = document.createElement("div")
+  fbEl.innerHTML = "<strong>$ {"*".repeat(fb.stars)}</strong> -$ {fb.comment}";
+  list.appendChild(fbEl); 
+});
+
+function saveFeedback(){
+  localStorage.setItem("feedbacks",JSON.stringify(feedback));
+}
+
+function loadFeedback(){
+  const saved = localStorage.getItem("feedbacks");
+  if (saved){
+    feedback.push(...JSON.parse(saved));
+    displayFeedbak();
+  }
+}

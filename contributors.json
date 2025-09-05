@@ -59,7 +59,7 @@
       "github": "dipanshurdev",
       "avatar": "https://media.licdn.com/dms/image/v2/D4E03AQHhNFVZVuxgbw/profile-displayphoto-shrink_100_100/B4EZS86LOWHoAU-/0/1738336155295?e=1759363200&v=beta&t=SVcFQrHVYCaSDRVIAvuJhZQudKRUy6omy7H4v7ddLqk",
       "linkedin": "dipanshurdev",
-       "website": "https://dipanshurdev.netlify.app",
+      "website": "https://dipanshurdev.netlify.app",
       "tagline": "I write code",
       "contributions": [
         "Added new AI Tool 'Banani.co' for Designers"
@@ -70,7 +70,7 @@
       "name": "Lina Mariam",
       "github": "L-Mariam",
       "avatar": "https://avatars.githubusercontent.com/L-Mariam",
-      "linkedin": "linamariam", 
+      "linkedin": "linamariam",
       "tagline": "Software Engineer",
       "contributions": [
         "Added QuillBot, Scribbr Citation Generator, Hemingway App, Elicit under AI Writing & Content",
@@ -80,6 +80,16 @@
         "Added Taskade under AI Productivity"
       ],
       "role": "Contributor"
+    },
+    {
+        "name": "Gupta Khushbu",
+        "github": "khushu2106",
+        "avatar": "https://avatars.githubusercontent.com/khushu2106",
+        "contributions": [
+          "Implemented a star-based rating system with text feedback option ",
+          "Added feedback section with live star highlight effect"
+        ],
+        "role" : "Contributor"
     }
   ]
 }
