@@ -91,5 +91,16 @@
       "website": "https://bejawadasaimahendra.vercel.app",
       "role": "Contributor"
     }
+    {
+      "name": "Pritom Dey",
+      "github": "pritom-dey1",
+      "avatar": "https://avatars.githubusercontent.com/u/182709139?s=80&v=4",
+      "linkedin": "https://www.linkedin.com/in/pritom-dey1?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+      "tagline": "AI Research & Tools Contributor",
+      "contributions": [
+        "Added New Tools"
+      ],
+      "role": "Contributor"
+    }
   ]
 }
