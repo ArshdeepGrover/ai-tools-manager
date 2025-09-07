@@ -43,7 +43,7 @@
           "title": "Elicit",
           "url": "https://elicit.com/",
           "description": "AI-powered research assistant"
-        }      
+        }
       ]
     },
     {
@@ -90,16 +90,21 @@
           "url": "https://stablediffusionweb.com/",
           "description": "Web-based Stable Diffusion interface for photorealistic text-to-image generation"
         },
-{
+        {
           "title": "Nanobanana.ai",
           "url": "https://nanobanana.ai/",
           "description": "Transform any image with simple text prompts"
         },
-      {
-        "title": "Pixlr",
+        {
+          "title": "Pixlr",
           "url": "https://pixlr.com/",
           "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools."
-      }
+        },
+        {
+          "title": "Stich",
+          "url": "https://stich.design/",
+          "description": "AI-powered UI/UX design tool."
+        }
       ]
     },
     {
@@ -171,6 +176,46 @@
           "title": "Blackbox",
           "url": "https://blackbox.ai/",
           "description": "Free code search & snippet extraction"
+        },
+        {
+          "title": "Firebase Studio",
+          "url": "https://firebase.studio/",
+          "description": "AI-powered full-stack development environment by Google."
+        },
+        {
+          "title": "Jules",
+          "url": "https://jules.google.com/",
+          "description": "Google's asynchronous AI coding agent for GitHub repositories."
+        },
+        {
+          "title": "Kiro",
+          "url": "https://kiro.dev/",
+          "description": "AI IDE for prototype to production with spec-driven development."
+        },
+        {
+          "title": "Lovable",
+          "url": "https://lovable.dev/",
+          "description": "Create apps and websites by chatting with AI."
+        },
+        {
+          "title": "Coderabiit",
+          "url": "https://coderabbit.ai/",
+          "description": "AI code reviews directly in your code editor."
+        },
+        {
+          "title": "Trae",
+          "url": "https://www.trae.ai/",
+          "description": "AI engineer that can independently build software solutions."
+        },
+        {
+          "title": "Chef by Convex",
+          "url": "https://chef.convex.dev/",
+          "description": "Generate real-time full-stack apps with built-in backend functions."
+        },
+        {
+          "title": "Gemini",
+          "url": "https://gemini.google.com/",
+          "description": "Google's AI assistant for writing, planning, and brainstorming."
         }
       ]
     },
@@ -217,6 +262,11 @@
           "title": "Vmaker AI/",
           "url": "https://www.vmaker.com/",
           "description": "The fastest way to generate videos from text, voice, or documents and edit them to perfection with AI."
+        },
+        {
+          "title": "Flow",
+          "url": "https://flow.video/",
+          "description": "AI-powered video and audio editing platform."
         }
       ]
     },
@@ -263,6 +313,36 @@
           "title": "Taskade",
           "url": "https://taskade.com/",
           "description": "AI to-do lists, outlines, and workflows"
+        },
+        {
+          "title": "Tango",
+          "url": "https://tango.us/",
+          "description": "Create step-by-step guides and SOPs with AI."
+        },
+        {
+          "title": "Iorad",
+          "url": "https://www.iorad.com/",
+          "description": "Create interactive tutorials and guides."
+        },
+        {
+          "title": "Notion AI",
+          "url": "https://www.notion.so/product/ai",
+          "description": "AI-powered workspace with writing and planning tools."
+        },
+        {
+          "title": "Notion Snippo",
+          "url": "https://www.notion.so/product/ai",
+          "description": "Snippet management and AI-powered note-taking."
+        },
+        {
+          "title": "Askify",
+          "url": "https://askify.video/",
+          "description": "AI-powered Q&A and knowledge base tool."
+        },
+        {
+          "title": "Grok",
+          "url": "https://grok.com/",
+          "description": "AI assistant for research and summarization."
         }
       ]
     },
@@ -285,6 +365,17 @@
           "title": "Chess Champ",
           "url": "https://gemini.google.com/gem/chess-champ",
           "description": "AI tool for playing and analyzing chess games"
+        }
+      ]
+    },
+    {
+      "name": "AI Entertainment",
+      "icon": "🎉",
+      "links": [
+        {
+          "title": "Super Meme",
+          "url": "https://supermeme.ai/",
+          "description": "Generate memes using AI."
         }
       ]
     }

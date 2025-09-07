@@ -61,7 +61,9 @@
       "linkedin": "dipanshurdev",
       "website": "https://dipanshurdev.netlify.app",
       "tagline": "I write code",
-      "contributions": ["Added new AI Tool 'Banani.co' for Designers"],
+      "contributions": [
+        "Added new AI Tool 'Banani.co' for Designers"
+      ],
       "role": "Contributor"
     },
     {
@@ -89,6 +91,35 @@
         "Added New Feature - Searching and filtering functionality"
       ],
       "website": "https://bejawadasaimahendra.vercel.app",
+      "role": "Contributor"
+    },
+    {
+      "name": "Fleming John",
+      "github": "FlemingJohn",
+      "avatar": "https://github.com/FlemingJohn.png",
+      "linkedin": "fleming-john-0b4ab3263",
+      "tagline": "Software Engineer",
+      "contributions": [
+        "Added Firebase Studio under 'Coding & Development'",
+        "Added Jules under 'Coding & Development'",
+        "Added Kiro under 'Coding & Development'",
+        "Added Lovable under 'Coding & Development'",
+        "Added Coderabiit under 'Coding & Development'",
+        "Added Trae under 'Coding & Development'",
+        "Added Chef by Convex under 'Coding & Development'",
+        "Added Gemini under 'Coding & Development'",
+        "Added Stich under 'UI/UX Design'",
+        "Added Flow under 'Video & Audio'",
+        "Added Tango under 'Productivity'",
+        "Added Iorad under 'Productivity'",
+        "Added Notion AI under 'Productivity'",
+        "Added Notion Snippo under 'Productivity'",
+        "Added Askify under 'Productivity'",
+        "Added Grok under 'Productivity'",
+        "Added AI Meme Generator under 'Entertainment'",
+        "Included official website links and brief descriptions for all added tools",
+        "Structured tools into clear categories for easy reference and usage"
+      ],
       "role": "Contributor"
     }
   ]
