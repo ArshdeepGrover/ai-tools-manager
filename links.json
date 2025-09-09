@@ -5,6 +5,32 @@
       "icon": "✍️",
       "links": [
         {
+      "title": "Mindgrasp",
+      "url": "https://mindgrasp.ai",
+      "description": "Helps create study tools like flashcards, quizzes, and summaries from lectures, notes, and videos."
+    },
+    {
+      "title": "TheaAI",
+      "url": "https://theaai.com",
+      "description": "Generates smart study guides and practice tests by analyzing YouTube videos, text, and uploaded files."
+    },
+    {
+      "title": "StudentAI",
+      "url": "https://studentai.app",
+      "description": "Provides access to 200+ tools for homework, research, job applications, scholarships, and mock interviews."
+    },
+    {
+      "title": "Textero",
+      "url": "https://textero.ai",
+      "description": "Helps find reliable sources, generate ideas, and streamline the writing process."
+    },
+    {
+      "title": "SmartSparrow",
+      "url": "https://smartsparrow.com",
+      "description": "Offers personalized learning solutions for students."
+    },
+        
+        {
           "title": "ChatGPT",
           "url": "https://chat.openai.com",
           "description": "Free AI chat with daily limits"
@@ -52,61 +78,86 @@
       ]
     },
     {
-      "name": "AI Design & Images",
-      "icon": "🎨",
-      "links": [
-        {
-          "title": "Canva AI",
-          "url": "https://canva.com",
-          "description": "Free design tool with AI features"
-        },
-        {
-          "title": "DALL-E 2",
-          "url": "https://openai.com/dall-e-2",
-          "description": "AI image generator with free credits"
-        },
-        {
-          "title": "Midjourney",
-          "url": "https://midjourney.com",
-          "description": "AI art generator with free trial"
-        },
-        {
-          "title": "Remove.bg",
-          "url": "https://remove.bg",
-          "description": "Free AI background remover"
-        },
-        {
-          "title": "Banani.co",
-          "url": "https://banani.co",
-          "description": "Design stunning UIs and Turn ideas into UI prototypes with AI"
-        },
-        {
-          "title": "KREA AI",
-          "url": "https://krea.ai/",
-          "description": "AI-powered avatar maker and design inspiration"
-        },
-        {
-          "title": "StockImg AI",
-          "url": "https://stockimg.ai/",
-          "description": "Free stock-style image generator with free trial"
-        },
-        {
-          "title": "Stable Diffusion",
-          "url": "https://stablediffusionweb.com/",
-          "description": "Web-based Stable Diffusion interface for photorealistic text-to-image generation"
-        },
-{
-          "title": "Nanobanana.ai",
-          "url": "https://nanobanana.ai/",
-          "description": "Transform any image with simple text prompts"
-        },
-      {
-        "title": "Pixlr",
-          "url": "https://pixlr.com/",
-          "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools."
-      }
-      ]
+  "name": "AI Design & Images",
+  "icon": "🎨",
+  "links": [
+    {
+      "title": "Canva AI",
+      "url": "https://canva.com",
+      "description": "Free design tool with AI features"
     },
+    {
+      "title": "DALL-E 2",
+      "url": "https://openai.com/dall-e-2",
+      "description": "AI image generator with free credits"
+    },
+    {
+      "title": "Midjourney",
+      "url": "https://midjourney.com",
+      "description": "AI art generator with free trial"
+    },
+    {
+      "title": "Remove.bg",
+      "url": "https://remove.bg",
+      "description": "Free AI background remover"
+    },
+    {
+      "title": "Banani.co",
+      "url": "https://banani.co",
+      "description": "Design stunning UIs and turn ideas into UI prototypes with AI"
+    },
+    {
+      "title": "KREA AI",
+      "url": "https://krea.ai/",
+      "description": "AI-powered avatar maker and design inspiration"
+    },
+    {
+      "title": "StockImg AI",
+      "url": "https://stockimg.ai/",
+      "description": "Free stock-style image generator with free trial"
+    },
+    {
+      "title": "Stable Diffusion",
+      "url": "https://stablediffusionweb.com/",
+      "description": "Web-based Stable Diffusion interface for photorealistic text-to-image generation"
+    },
+    {
+      "title": "Nanobanana.ai",
+      "url": "https://nanobanana.ai/",
+      "description": "Transform any image with simple text prompts"
+    },
+    {
+      "title": "Pixlr",
+      "url": "https://pixlr.com/",
+      "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools"
+    },
+    {
+      "title": "Adobe Firefly",
+      "url": "https://www.adobe.com/sensei/firefly.html",
+      "description": "Generate images, edit typography, and apply color transformations using text prompts with Adobe's AI-powered Creative Cloud tools"
+    },
+    {
+      "title": "Lummi AI",
+      "url": "https://www.lummi.ai/",
+      "description": "AI assistant for generating design concepts, layout suggestions, and creative prompts efficiently"
+    },
+    {
+      "title": "Freepik AI Suite",
+      "url": "https://www.freepik.com/ai",
+      "description": "Comprehensive AI tools including image and video generators to enhance creative projects"
+    },
+    {
+      "title": "UX Pilot",
+      "url": "https://uxpilot.com/",
+      "description": "AI assistant for UX design with a Figma plugin, automating tasks and providing intelligent suggestions"
+    },
+    {
+      "title": "Looka",
+      "url": "https://looka.com/",
+      "description": "AI-powered logo design tool with customization options and preview features"
+    }
+  ]
+},
     {
       "name": "AI Presentations",
       "icon": "📊",
