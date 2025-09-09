@@ -198,7 +198,7 @@
           "description": "Create apps and websites by chatting with AI."
         },
         {
-          "title": "Coderabiit",
+          "title": "CodeRabiit",
           "url": "https://coderabbit.ai/",
           "description": "AI code reviews directly in your code editor."
         },
@@ -331,7 +331,7 @@
         },
         {
           "title": "Notion Snippo",
-          "url": "https://www.notion.so/product/ai",
+          "url": "https://snipo.io/",
           "description": "Snippet management and AI-powered note-taking."
         },
         {
@@ -341,7 +341,7 @@
         },
         {
           "title": "Grok",
-          "url": "https://grok.com/",
+          "url": "https://grok.x.ai/",
           "description": "AI assistant for research and summarization."
         }
       ]
