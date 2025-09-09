@@ -92,6 +92,7 @@
       "role": "Contributor"
     },
     {
+
       "name": "Pritom Dey",
       "github": "pritom-dey1",
       "avatar": "https://avatars.githubusercontent.com/u/182709139?s=80&v=4",
@@ -99,6 +100,14 @@
       "tagline": "AI Research & Tools Contributor",
       "contributions": [
         "Added New Tools"
+
+      "name": "Siddarthan N",
+      "github": "Siddarthan999",
+      "avatar": "https://avatars.githubusercontent.com/u/91734840?v=4", 
+      "linkedin": "siddarthan-n-118635224",
+      "tagline": "Software Engineer",
+      "contributions": [
+        "Added CodiumAI and V0 by Vercel under AI Coding & Development"
       ],
       "role": "Contributor"
     }
