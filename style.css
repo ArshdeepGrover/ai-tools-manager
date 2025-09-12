@@ -104,10 +104,10 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Image loading optimization */
-img {
+/* Image loading optimization */ 
+/* img {
   loading: lazy;
-}
+} */
 
 /* Print styles */
 @media print {

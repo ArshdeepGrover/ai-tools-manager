@@ -312,3 +312,102 @@ document.addEventListener("DOMContentLoaded", () => {
   loadLinks();
   loadContributors();
 });
+
+let feedbackStars = 0;
+
+window.addEventListener("load",()=>{
+  const ratingDiv = document.getElementById("feedback-stars");
+  for (let i = 1 ;i <= 5 ; i++){
+    const star = document.createElement("span");
+    star.innerHTML = "\u2605";
+    star.dataset.value = i;
+    star.addEventListener("click",() => {
+      feedbackStars = i;
+      HighlightFeedbackStars(i);
+    });
+    ratingDiv.appendChild(star);
+  }
+   loadFeedback();
+});
+
+function HighlightFeedbackStars(count){
+  const stars = document.querySelectorAll("#feedback-stars span");
+  stars.forEach((stars,index)=>{
+    if (index < count ){
+      stars.classList.add("active");
+    }
+    else{
+      stars.classList.remove("active")
+    }
+  });
+}
+
+function submitFeedback(){
+  const comment = document.getElementById("feedback-comment").value;
+  if (feedbackStars === 0 ){
+    alert("Please select a star rating ! ");
+    return;
+  }
+    saveFeedback(feedbackStars,comment)
+    feedbackStars = 0;
+    HighlightFeedbackStars(0);
+    document.getElementById("feedback-comment").value = "";
+}
+
+function saveFeedback(stars,comment){
+  fetch("http://localhost:5000/api/feedback",{
+   method : "POST",
+   headers : {"content-Type":"application/json"},
+   body : JSON.stringify({
+    tool : "GitHubCopilot",
+    stars,
+    comment
+   })
+  })
+    .then(res => {
+      if(!res.ok){
+        throw new Error("Network response was not ok ");
+      }
+      return res.json();
+    })
+    .then(data =>{
+      console.log("Feedback Saved : ",data);
+      loadFeedback();
+    })
+    .catch(err =>
+      console.error("Error saving feedback : ",err));
+}
+
+function loadFeedback(){
+  fetch("http://localhost:5000/feedback/GitHubCopilot")
+  .then(res => {
+    if(!res.ok){
+      throw new Error("Network response was not ok ")
+    }
+    return res.json();
+  })
+  .then(data => {
+    // console.log("Feedback fetched : ",data)
+    displayFeedback(data);
+  })
+  .catch(err => 
+    console.error("Error loading feedback : ",err)
+  );
+}
+
+ function displayFeedback(feedbackData){
+   const list = document.getElementById("feedback-list");
+   list.innerHTML = "<h3> User Reviews : </h3>";
+   if (feedbackData.length === 0 || !feedbackData){
+       const noFeedback = document.createElement("P");
+       noFeedback.textContent = "No feedback yet . ";
+       list.appendChild(noFeedback);
+       return;
+  }
+   feedbackData.forEach(fb => {
+      const fbEl = document.createElement("div")
+      fbEl.innerHTML = `${"Rating : "} - <strong>${"\u2605 ".repeat(fb.stars || 0)}</strong> - ${fb.comment || "No comment "} `; 
+      fbEl.querySelectorAll("strong").forEach(e1 => e1.style.color = "gold");
+      list.appendChild(fbEl); 
+  });
+}

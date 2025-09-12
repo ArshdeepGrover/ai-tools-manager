@@ -80,6 +80,17 @@
       "role": "Contributor"
     },
     {
+        "name": "Gupta Khushbu",
+        "github": "khushu2106",
+        "avatar": "https://avatars.githubusercontent.com/khushu2106",
+        "linkedin":"Khushbu Gupta",
+        "tagline":"Software Developer",
+        "contributions": [
+          "Implemented a rating system with text feedback option ",
+          "Added feedback section with live star highlight effect"
+        ],
+        "role" : "Contributor"
+    },
       "name": "B Sai Mahendra",
       "github": "saimahendra282",
       "avatar": "https://avatars.githubusercontent.com/u/118994059?v=4",

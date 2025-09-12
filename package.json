@@ -1,0 +1,26 @@
+{
+  "name": "ai-tools-manager",
+  "version": "1.0.0",
+  "description": "A curated collection of powerful AI tools, maintained by the community. This project welcomes contributions from developers worldwide to help build the most comprehensive AI tools directory.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khushu2106/ai-tools-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khushu2106/ai-tools-manager/issues"
+  },
+  "homepage": "https://github.com/khushu2106/ai-tools-manager#readme",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "mongoose": "^8.18.0"
+  }
+}
