@@ -1,6 +1,6 @@
-# 🎁 AI Tools Collection - Open Source
+# 🚀 AI Tools Hub - Professional Directory
 
-A curated collection of powerful AI tools, maintained by the community. This project welcomes contributions from developers worldwide to help build the most comprehensive AI tools directory.
+A curated collection of 100+ professional AI tools, maintained by the community. This project welcomes contributions from developers worldwide to help build the most comprehensive AI tools directory.
 
 ## 🌟 Features
 
@@ -16,8 +16,8 @@ Visit the live website: [AI Tools Collection](https://ai-tool-collection.vercel.
 
 ## 📊 Current Stats
 
-- **28+** Free AI Tools
-- **6** Categories
+- **100+** Free AI Tools
+- **10** Categories
 - **Open Source** & Community Maintained
 
 ## 🤝 How to Contribute
@@ -34,7 +34,7 @@ We welcome contributions from everyone! Here's how you can help improve this pro
    cd ai-tools-manager
    ```
 
-3. **Add your tool to `links.json`**
+3. **Add your tool to `src/data/links.json`**
    - Find the appropriate category or create a new one
    - Add your tool following this format:
 
@@ -49,7 +49,10 @@ We welcome contributions from everyone! Here's how you can help improve this pro
 4. **Add yourself as a contributor** (see below)
 
 5. **Test your changes**
-   - Open `index.html` in your browser
+   ```bash
+   npm run build
+   npm run dev
+   ```
    - Verify your tool appears correctly
    - Check that the link works
 
@@ -62,7 +65,7 @@ We welcome contributions from everyone! Here's how you can help improve this pro
 
 When you contribute, add yourself to the contributors list:
 
-1. **Add your information to `contributors.json`**:
+1. **Add your information to `src/data/contributors.json`**:
 
    ```json
    {
@@ -79,15 +82,21 @@ When you contribute, add yourself to the contributors list:
 ## 📁 Project Structure
 
 ```
-ai-tools-manager/
-├── index.html          # Main HTML file
-├── style.css           # Styling and animations
-├── script.js           # JavaScript functionality
-├── links.json          # AI tools database
-├── contributors.json   # Contributors database
-├── README.md           # This file
-└── assets/
-    └── images/         # Project images
+ai-tools-hub/
+├── 📁 src/                     # Source files
+│   ├── 📁 assets/              # Images, icons, fonts
+│   ├── 📁 styles/              # CSS files
+│   ├── 📁 scripts/             # JavaScript files
+│   ├── 📁 data/                # JSON data files
+│   └── 📁 templates/           # HTML templates
+├── 📁 public/                  # Build output
+│   └── index.html              # Main HTML file
+├── 📁 scripts/                 # Build/utility scripts
+├── 📁 tests/                   # Test files
+├── 📁 .github/                 # GitHub workflows & templates
+├── package.json
+├── README.md
+└── LICENSE
 ```
 
 ## 🛠️ Development Setup
@@ -99,25 +108,32 @@ ai-tools-manager/
    cd ai-tools-manager
    ```
 
-2. **Open in your browser**
+2. **Install dependencies**
 
    ```bash
-   # Simply open index.html in your preferred browser
-   # Or use a local development server:
-   
-   # Using Node.js (if installed):
-   npx serve .
-   
-   # Using PHP (if installed):
-   php -S localhost:8000
-   
-   # Or just double-click index.html to open in browser
+   npm install
    ```
 
-3. **Make your changes**
-   - Edit `links.json` to add/modify tools
-   - Update `contributors.json` to add yourself
-   - Modify CSS/JS as needed
+3. **Development workflow**
+
+   ```bash
+   # Build the project
+   npm run build
+   
+   # Start development server
+   npm run dev
+   
+   # Validate data files
+   npm run validate
+   
+   # Run tests
+   npm test
+   ```
+
+4. **Make your changes**
+   - Edit `src/data/links.json` to add/modify tools
+   - Update `src/data/contributors.json` to add yourself
+   - Modify files in `src/` directory as needed
 
 ## 📋 Contribution Guidelines
 
@@ -140,7 +156,7 @@ ai-tools-manager/
 
 If you want to add a new category:
 
-1. **Add to `links.json`**:
+1. **Add to `src/data/links.json`**:
 
    ```json
    {
@@ -187,6 +203,24 @@ This project is open source and available under the [MIT License](LICENSE).
 - **Original Creator**: [Arshdeep Singh](https://github.com/ArshdeepGrover)
 - **All Contributors**: Thank you for making this project better!
 - **AI Tool Creators**: Thanks to all the amazing AI tool developers
+
+## 📋 Issue Templates
+
+We have comprehensive issue templates for different types of contributions:
+
+- 🛠️ **Add New Tool** - Add AI tools to the collection
+- 🐛 **Bug Report** - Report bugs and issues
+- 🚀 **Feature Request** - Suggest new features
+- 🔧 **Improvement Request** - Enhance existing features
+- 📚 **Documentation Issue** - Fix/improve documentation
+- 🔍 **Data Quality Issue** - Fix tool info/broken links
+- 🎨 **Design/UI Issue** - Visual/UX improvements
+- ⚡ **Performance Issue** - Speed/optimization
+- 🏷️ **Category Request** - New tool categories
+- 🤝 **Collaboration Request** - Partnerships
+- 🔒 **Security Issue** - Security vulnerabilities
+- 📱 **Mobile Issue** - Mobile-specific problems
+- 🌐 **Accessibility Issue** - A11y improvements
 
 ## 📞 Contact & Support
 

@@ -30,12 +30,16 @@ Must be one of the following:
 The scope should be the name of the affected component:
 
 - **tools**: Changes to AI tools data or structure
+- **contributors**: Changes to contributors data
 - **ui**: User interface changes
 - **docs**: Documentation changes
 - **config**: Configuration files
 - **assets**: Images, icons, or other assets
 - **analytics**: Analytics or tracking related changes
 - **seo**: SEO optimization changes
+- **build**: Build system or dependencies
+- **ci**: Continuous integration changes
+- **templates**: Issue or PR templates
 
 ### Subject
 
@@ -120,11 +124,11 @@ Fixes #23
 ### Adding a new AI tool
 
 ```
-feat(tools): add [Tool Name] for [category]
+feat(tools): add [Tool Name] to [category]
 
-- Add [Tool Name] to [category] section
-- Include description, pricing, and key features
-- Update tools count in statistics
+- Add [Tool Name] to src/data/links.json
+- Include clear description and verified URL
+- Ensure tool has free tier or is completely free
 ```
 
 ### Fixing a bug
@@ -142,9 +146,9 @@ fix(ui): resolve [specific issue]
 ```
 docs: update [document name]
 
-- List specific changes made
-- Mention any new sections added
-- Note any deprecated information removed
+- Update file paths to reflect new src/ structure
+- Add information about new build process
+- Include new issue template documentation
 ```
 
 ### Performance improvements

@@ -1,10 +1,10 @@
 # Contributor Profile Example
 
-This document shows the complete structure for adding yourself as a contributor to the AI Tools Collection.
+This document shows the complete structure for adding yourself as a contributor to the AI Tools Hub.
 
 ## Complete JSON Structure
 
-When adding yourself to `contributors.json`, use this structure:
+When adding yourself to `src/data/contributors.json`, use this structure:
 
 ```json
 {
@@ -150,9 +150,13 @@ Here's a complete example of how Arshdeep Singh's profile is structured:
 ## Adding Your Profile
 
 1. **Fork the repository**
-2. **Edit `contributors.json`**
+2. **Edit `src/data/contributors.json`**
 3. **Add your profile** to the contributors array
 4. **Test locally** to ensure it displays correctly
+   ```bash
+   npm run build
+   npm run dev
+   ```
 5. **Submit a pull request** with your changes
 
 ## Tips for Great Contributions

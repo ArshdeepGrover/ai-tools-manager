@@ -1,6 +1,6 @@
-# Contributing to AI Tools Collection
+# Contributing to AI Tools Hub
 
-Thank you for your interest in contributing to the AI Tools Collection! This document provides detailed guidelines for contributors.
+Thank you for your interest in contributing to the AI Tools Hub! This document provides detailed guidelines for contributors.
 
 ## 🎯 Ways to Contribute
 
@@ -41,8 +41,8 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
 
    ```bash
    # Fork the repo on GitHub, then:
-   git clone https://github.com/YOUR_USERNAME/ai-tools-collection.git
-   cd ai-tools-collection
+   git clone https://github.com/YOUR_USERNAME/ai-tools-manager.git
+   cd ai-tools-manager
    ```
 
 3. **Create a Branch**
@@ -51,7 +51,7 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
    git checkout -b add-new-tool-name
    ```
 
-4. **Edit links.json**
+4. **Edit src/data/links.json**
 
    ```json
    {
@@ -62,7 +62,7 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
    ```
 
 5. **Add Yourself to Contributors**
-   Edit `contributors.json`:
+   Edit `src/data/contributors.json`:
 
    ```json
    {
@@ -75,7 +75,11 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
    ```
 
 6. **Test Your Changes**
-   - Open `index.html` in browser
+   ```bash
+   npm install
+   npm run build
+   npm run dev
+   ```
    - Verify tool appears correctly
    - Check link functionality
 
@@ -112,13 +116,24 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
 ## 📂 File Structure Guide
 
 ```
-├── index.html          # Main page structure
-├── style.css           # All styling and animations
-├── script.js           # JavaScript functionality
-├── links.json          # AI tools database
-├── contributors.json   # Contributors information
-├── README.md           # Main documentation
-└── CONTRIBUTING.md     # This file
+ai-tools-hub/
+├── 📁 src/                     # Source files
+│   ├── 📁 assets/              # Images, icons, fonts
+│   ├── 📁 styles/              # CSS files
+│   ├── 📁 scripts/             # JavaScript files
+│   ├── 📁 data/                # JSON data files
+│   │   ├── links.json          # AI tools database
+│   │   └── contributors.json   # Contributors information
+│   └── 📁 templates/           # HTML templates
+├── 📁 public/                  # Build output
+│   └── index.html              # Main HTML file
+├── 📁 scripts/                 # Build/utility scripts
+├── 📁 tests/                   # Test files
+├── 📁 .github/                 # GitHub workflows & templates
+│   └── 📁 ISSUE_TEMPLATE/      # 13 issue templates
+├── package.json
+├── README.md
+└── CONTRIBUTING.md             # This file
 ```
 
 ## 🏷️ Categories
@@ -131,6 +146,10 @@ Current categories and their criteria:
 - **AI Coding & Development** 💻: Code assistance, development tools
 - **AI Video & Audio** 🎬: Video editing, audio processing, multimedia
 - **AI Productivity** ⚡: Productivity tools, automation, research
+- **AI Entertainment** 😂: Fun AI tools and games
+- **AI Model Prototyping** 🧪: AI model development and testing
+- **AI Game & Strategy** 🎮: AI-powered games and strategy tools
+- **AI Local Models** 🖥️: Local AI model deployment tools
 
 ### Adding New Categories
 
@@ -202,10 +221,28 @@ Brief description of what you're adding/changing
 - **Be Patient**: Reviews take time, maintainers are volunteers
 - **Be Collaborative**: Work together to improve the project
 
+## 📋 Issue Templates
+
+We have 13 specialized issue templates to help you contribute:
+
+- 🛠️ **Add New Tool** - Add AI tools to the collection
+- 🐛 **Bug Report** - Report bugs and issues
+- 🚀 **Feature Request** - Suggest new features
+- 🔧 **Improvement Request** - Enhance existing features
+- 📚 **Documentation Issue** - Fix/improve documentation
+- 🔍 **Data Quality Issue** - Fix tool info/broken links
+- 🎨 **Design/UI Issue** - Visual/UX improvements
+- ⚡ **Performance Issue** - Speed/optimization
+- 🏷️ **Category Request** - New tool categories
+- 🤝 **Collaboration Request** - Partnerships
+- 🔒 **Security Issue** - Security vulnerabilities
+- 📱 **Mobile Issue** - Mobile-specific problems
+- 🌐 **Accessibility Issue** - A11y improvements
+
 ## 📞 Getting Help
 
-- **Questions**: Open a [GitHub Discussion](https://github.com/ArshdeepGrover/ai-tools-collection/discussions)
-- **Issues**: Report bugs via [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-collection/issues)
+- **Questions**: Open a [GitHub Discussion](https://github.com/ArshdeepGrover/ai-tools-manager/discussions)
+- **Issues**: Report bugs via [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-manager/issues)
 - **Direct Contact**: Reach out to [Arshdeep Singh](https://arshdeepsingh.info)
 
 ## 🎉 Thank You

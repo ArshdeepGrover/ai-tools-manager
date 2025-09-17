@@ -1,11 +1,23 @@
 {
   "name": "ai-tools-hub",
-  "version": "1.0.0",
-  "description": "AI Tools Directory",
+  "version": "2.0.0",
+  "description": "Professional AI Tools Directory",
   "scripts": {
-    "check-duplicates": "node validate-links.js --duplicates-only",
-    "validate": "node validate-links.js"
+    "dev": "npm run build && npx serve public",
+    "build": "node scripts/build.js",
+    "validate": "npm run validate:links && npm run validate:contributors",
+    "validate:links": "node scripts/validate-links.js",
+    "validate:contributors": "node scripts/validate-contributors.js",
+    "check-duplicates": "node scripts/check-duplicates.js",
+    "test": "jest tests/",
+    "clean": "rm -rf public/assets public/data public/scripts public/styles",
+    "lint": "echo 'Linting not configured yet'",
+    "format": "echo 'Formatting not configured yet'"
   },
   "author": "Arshdeep Singh",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "serve": "^14.0.0"
+  }
 }
