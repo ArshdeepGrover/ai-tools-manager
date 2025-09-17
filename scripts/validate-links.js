@@ -41,7 +41,7 @@ async function validateLinks() {
   console.log("🔍 AI Tools Links Validation");
   console.log("=".repeat(50));
 
-  const data = JSON.parse(fs.readFileSync("links.json", "utf8"));
+  const data = JSON.parse(fs.readFileSync("src/data/links.json", "utf8"));
   const allTitles = new Map();
   const allUrls = new Map();
   let hasError = false;
@@ -162,7 +162,7 @@ async function validateLinks() {
 function checkDuplicatesOnly() {
   console.log("🔍 Checking for duplicate links only...\n");
 
-  const data = JSON.parse(fs.readFileSync("links.json", "utf8"));
+  const data = JSON.parse(fs.readFileSync("src/data/links.json", "utf8"));
   const allTitles = new Map();
   const allUrls = new Map();
   let hasError = false;
