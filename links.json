@@ -370,6 +370,11 @@
       "icon": "⚡",
       "links": [
         {
+          "title": "Tiipe AI",
+          "url": "https://tiipe.ai/",
+          "description": "AI-driven content and workflow automation"
+        },
+        {
           "title": "Otter.ai",
           "url": "https://otter.ai",
           "description": "Free AI meeting transcription"
@@ -481,6 +486,29 @@
       "name": "AI Model Prototyping",
       "icon": "🧪",
       "links": [
+        {
+          "title": "RunDiffusion",
+          "url": "https://www.rundiffusion.com/",
+          "description": "AI image model prototyping"
+        },
+
+        {
+          "title": "Google Colab",
+          "url": "https://colab.research.google.com",
+          "description": "Free Jupyter notebooks with GPU support"
+        },
+
+        {
+          "title": "Kaggle Notebooks",
+          "url": "https://www.kaggle.com/code",
+          "description": "Free Jupyter notebooks with GPU support and datasets"
+        },
+        {
+          "title": "MagickPen",
+          "url": "https://magickpen.com/",
+          "description": "AI writing/code prototyping"
+        },
+        
         {
           "title": "Google AI Studio",
           "url": "https://aistudio.google.com",
