@@ -63,6 +63,21 @@
           "title": "Monica",
           "url": "https://monica.im/",
           "description": "All-in-one AI assistant. Personalized, fast and free."
+        },
+        {
+          "title": "Jasper",
+          "url": "https://www.jasper.ai/",
+          "description": "A powerful AI content platform for creating marketing copy, blog posts, and social media content."
+        },
+        {
+          "title": "DeepL Write",
+          "url": "https://www.deepl.com/write",
+          "description": "An AI writing assistant that improves text by fixing grammar and punctuation errors, and suggesting alternative phrasing for tone and style."
+        },
+        {
+          "title": "Wordtune",
+          "url": "https://www.wordtune.com/",
+          "description": "An AI-powered writing companion that helps rephrase sentences, adjust tone, and shorten or expand text."
         }
       ]
     },
@@ -124,6 +139,21 @@
           "title": "Stitch",
           "url": "https://stitch.withgoogle.com",
           "description": "AI-powered UI/UX design tool for creating intuitive interfaces"
+        },
+        {
+          "title": "Adobe Firefly",
+          "url": "https://www.adobe.com/sensei/generative-ai/firefly.html",
+          "description": "Adobe's family of creative generative AI models, integrated into Photoshop, Illustrator, and other apps for image generation and editing."
+        },
+        {
+          "title": "Magnific AI",
+          "url": "https://magnific.ai/",
+          "description": "An advanced AI image upscaler and enhancer that can add details and increase resolution significantly."
+        },
+        {
+          "title": "Looka",
+          "url": "https://looka.com/",
+          "description": "AI-powered platform for designing logos and building a brand identity."
         }
       ]
     },
@@ -167,7 +197,7 @@
           "url": "https://github.com/features/copilot",
           "description": "AI code assistant with free trial"
         },
-        {
+            {
   "title": "Qwen AI",
   "url": "https://chat.qwen.ai/",
   "description": "Free AI Assistant "
@@ -256,8 +286,12 @@
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
+        },
+        {
+          "title": "Sourcegraph Cody",
+          "url": "https://sourcegraph.com/cody",
+          "description": "An AI coding assistant that understands your entire codebase to help write, fix, and explain code."
         }
-
       ]
     },
     {
@@ -313,6 +347,26 @@
           "title": "Kapwing",
           "url": "https://www.kapwing.com/",
           "description": "AI-powered free video editor for creators"
+        },
+        {
+          "title": "Suno",
+          "url": "https://suno.ai/",
+          "description": "AI model that generates complete songs—lyrics, instrumentals, and vocals—from a simple text prompt."
+        },
+        {
+          "title": "HeyGen",
+          "url": "https://www.heygen.com/",
+          "description": "AI video platform for creating professional videos with generative avatars and voices."
+        },
+        {
+          "title": "Adobe Podcast",
+          "url": "https://podcast.adobe.com/enhance",
+          "description": "A free web-based tool that uses AI to remove noise and echo from voice recordings, making them sound studio-quality."
+        },
+        {
+          "title": "Synthesia",
+          "url": "https://www.synthesia.io/",
+          "description": "An AI video generation platform that creates videos with realistic AI avatars and voiceovers in minutes."
         }
       ]
     },
@@ -324,11 +378,6 @@
           "title": "Otter.ai",
           "url": "https://otter.ai",
           "description": "Free AI meeting transcription"
-        },
-         {
-          "title": "Lyzr.ai",
-          "url": "https://www.lyzr.ai/",
-          "description": "Build and deploy AI agents to automate workflows with free plan"
         },
         {
           "title": "Calendly AI",
@@ -394,6 +443,21 @@
           "title": "ChatPDF",
           "url": "https://www.chatpdf.com/",
           "description": "Chat with and summarize PDFs instantly."
+        },
+        {
+          "title": "Fireflies.ai",
+          "url": "https://fireflies.ai/",
+          "description": "An AI meeting assistant that joins your calls to record, transcribe, summarize, and analyze voice conversations."
+        },
+        {
+          "title": "Motion",
+          "url": "https://www.usemotion.com/",
+          "description": "An AI-powered calendar and project manager that automatically plans your day and schedules tasks."
+        },
+        {
+          "title": "Scribe",
+          "url": "https://scribehow.com/",
+          "description": "An AI tool that automatically creates step-by-step guides and tutorials for any process, simply by recording your screen."
         }
       ]
     },
@@ -405,6 +469,16 @@
           "title": "Super Meme",
           "url": "https://supermeme.ai/",
           "description": "Quickly create memes using AI-generated content"
+        },
+        {
+          "title": "Character.AI",
+          "url": "https://character.ai/",
+          "description": "A platform where you can create and chat with AI-powered characters, from historical figures to fictional personalities."
+        },
+        {
+          "title": "AI Dungeon",
+          "url": "https://aidungeon.com/",
+          "description": "An AI-generated text-based adventure game with endless possibilities and storylines."
         }
       ]
     },
@@ -416,6 +490,11 @@
           "title": "Google AI Studio",
           "url": "https://aistudio.google.com",
           "description": "Web-based IDE for prototyping with Gemini AI models"
+        },
+        {
+          "title": "Lyzr.ai",
+          "url": "https://www.lyzr.ai/",
+          "description": "Build and deploy AI agents to automate workflows with free plan"
         },
         {
           "title": "Hugging Face Spaces",
