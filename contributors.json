@@ -230,6 +230,15 @@
       "tagline": "Coding...",
       "contributions": ["Added Zoho Show's Zia AI in presentations category"],
       "role": "Contributor"
-    }
+    },
+    {
+      "name": "Kavya Trivedi",
+      "github": "trivedikavya",
+      "avatar": "https://avatars.githubusercontent.com/u/149308388?v=4",
+      "linkedin": "trivedikavya",
+      "contributions": ["Added Gemini and another AI tool to the collection"],
+      "website": "https://kavyatrivediterminalportfolio.netlify.app/",
+      "role": "Contributor"
+}
   ]
 }

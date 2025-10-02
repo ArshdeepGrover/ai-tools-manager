@@ -83,7 +83,17 @@
           "title": "Simplified AI Writer",
           "url": "https://simplified.com/ai-writer",
           "description": "Free AI writer for blogs, social media, emails, and marketing copy"
-        }
+        },
+        {
+      "title": "Gemini",
+      "url": "https://gemini.google.com/",
+      "description": "A powerful, multimodal AI model by Google."
+    },
+    {
+      "title": "Poe",
+      "url": "https://poe.com/",
+      "description": "An AI platform to chat with a variety of bots like ChatGPT, Claude, and more."
+    }
       ]
     },
     {
