@@ -33,17 +33,7 @@
       ],
       "role": "Contributor"
     },
-     {
-      "name": "Jagadeesh Kandepalli",
-      "github": "jagadeesh-debug",
-      "avatar": "https://github.com/jagadeesh-debug.png",
-      "linkedin": "jagadeeshkandepalli",
-      "tagline": "Stundent Flawing in MERN",
-      "contributions": [
-        "Added Qwen and Lyzr ai under AI Coding & Development and Productivity respectivily "
-      ],
-      "role": "Contributor"
-    },
+    
     {
       "name": "Prerna Rawal",
       "github": "Prerna290",
@@ -204,6 +194,16 @@
       "avatar": "https://avatars.githubusercontent.com/u/77303694?v=4",
       "tagline": "Its never too late",
       "contributions": ["Added 16 tools in different categories"],
+      "role": "Contributor"
+    }, {
+      "name": "Jagadeesh Kandepalli",
+      "github": "jagadeesh-debug",
+      "avatar": "https://github.com/jagadeesh-debug.png",
+      "linkedin": "jagadeeshkandepalli",
+      "tagline": "Stundent Flawing in MERN",
+      "contributions": [
+        "Added Qwen and Lyzr ai under AI Coding & Development and Productivity respectivily "
+      ],
       "role": "Contributor"
     }
   ]
