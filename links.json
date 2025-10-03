@@ -78,7 +78,34 @@
           "title": "Wordtune",
           "url": "https://www.wordtune.com/",
           "description": "An AI-powered writing companion that helps rephrase sentences, adjust tone, and shorten or expand text."
+        },
+        {
+          "title": "Simplified AI Writer",
+          "url": "https://simplified.com/ai-writer",
+          "description": "Free AI writer for blogs, social media, emails, and marketing copy"
+        },
+        {
+
+      "title": "Gemini",
+      "url": "https://gemini.google.com/",
+      "description": "A powerful, multimodal AI model by Google."
+    },
+    {
+      "title": "Poe",
+      "url": "https://poe.com/",
+      "description": "An AI platform to chat with a variety of bots like ChatGPT, Claude, and more."
+    }
+
+          "title": "Promptly AI",
+          "url": "https://chromewebstore.google.com/detail/promptly-ai/jjfoaldlbbcfgkhbfmadjjelphbgmngg?hl=en",
+          "description": "Promptly AI is a Chrome extension that helps you improve, manage, and reuse your prompts across AI chat interfaces (ChatGPT, Claude, Perplexity, etc.)"
+        },
+        {
+          "title": "Originality AI",
+          "url": "https://originality.ai/",
+          "description": "Originality.ai is a content quality tool that detects AI-generated text, checks plagiarism, and performs fact checking to ensure credible, original writing."
         }
+
       ]
     },
     {
@@ -185,6 +212,16 @@
           "title": "Napkin",
           "url": "https://napkin.ai",
           "description": "AI-powered visual storytelling and presentation tool"
+        },
+        {
+          "title": "GPTforSlides",
+          "url": "https://www.gptforslides.app/",
+          "description": "AI-powered tool that converts topics or text into professional Google Slides presentations"
+        },
+        {
+          "title": "Zoho Show Zia AI",
+          "url": "https://www.zoho.com/show/",
+          "description": "AI-integrated presentaton builder"
         }
       ]
     },
@@ -367,6 +404,16 @@
           "title": "Synthesia",
           "url": "https://www.synthesia.io/",
           "description": "An AI video generation platform that creates videos with realistic AI avatars and voiceovers in minutes."
+        },
+        {
+          "title": "15.ai",
+          "url": "https://15.dev/",
+          "description": "Generate character speech (TTS)"
+        },
+        {
+          "title": "Murf",
+          "url": "https://murf.ai/",
+          "description": "Realistic AI voice & TTS tool"
         }
       ]
     },
@@ -458,6 +505,11 @@
           "title": "Scribe",
           "url": "https://scribehow.com/",
           "description": "An AI tool that automatically creates step-by-step guides and tutorials for any process, simply by recording your screen."
+        },
+        {
+          "title": "Wobo AI",
+          "url": "https://www.wobo.ai/",
+          "description": "Wobo AI helps you land your dream job with AI-powered job search, ATS-friendly resumes, and smart cover letters."
         }
       ]
     },

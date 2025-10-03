@@ -41,7 +41,10 @@
       "linkedin": "prerna290",
       "tagline": "Software Developer",
       "contributions": [
-        "Added new AI Tool AWS Q Developer to the AI Tools Collection"
+        "Added new AI Tool AWS Q Developer to the AI Tools Collection",
+        "Added new AI Tool Promptly AI to the AI Tools Collection",
+        "Added new AI Tool Wobo AI to the AI Tools Collection for easy job search"
+        "Added new AI Tool Originality AI to the AI Tools Collection"
       ],
       "role": "Contributor"
     },
@@ -192,10 +195,58 @@
       "name": "Ahammad Abdullah",
       "github": "ahammadabdullah",
       "avatar": "https://avatars.githubusercontent.com/u/77303694?v=4",
+      "linkedin": "ahammad-abdullah",
+      "website": "https://ahammadabdullah.dev",
       "tagline": "Its never too late",
       "contributions": ["Added 16 tools in different categories"],
       "role": "Contributor"
-    }, {
+    }, 
+    {
+      "name": "Sidney Baraka",
+      "github": "mathncode-sid",
+      "avatar": "https://avatars.githubusercontent.com/u/168301526?v=4",
+      "tagline": "Veni, Codavi, Vici",
+      "contributions": ["Added GPTforSlides under AI Presentations"],
+      "role": "Contributor"
+    },
+    {
+      "name": "T Pavan Teja",
+      "github": "itspavant",
+      "avatar": "https://github.com/itspavant.png",
+      "contributions": ["Added Tools 15.ai, Murf in AI Video & Audio cateogry"],
+      "linkedin": "itspavant",
+      "tagline": "Keep Hustling",
+      "role": "Contributor"
+    },
+    {
+      "name": "Shivang Jaiswal",
+      "github": "JaiswalShivang",
+      "avatar": "https://github.com/JaiswalShivang.png",
+      "linkedin": "shivang-jaiswal-18809432b",
+      "tagline": "AI Tools Contributor",
+      "contributions": [
+        "Added Simplified AI Writer to AI Writing & Content category"
+      ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Utkarsh",
+      "github": "Utkarsh-username",
+      "avatar": "https://github.com/Utkarsh-username.png",
+      "tagline": "Coding...",
+      "contributions": ["Added Zoho Show's Zia AI in presentations category"],
+      "role": "Contributor"
+    },
+    {
+      "name": "Kavya Trivedi",
+      "github": "trivedikavya",
+      "avatar": "https://avatars.githubusercontent.com/u/149308388?v=4",
+      "linkedin": "trivedikavya",
+      "contributions": ["Added Gemini and another AI tool to the collection" , "added project goal section in readme file"],
+      "website": "https://kavyatrivediterminalportfolio.netlify.app/",
+      "role": "Contributor"
+    },
+    {
       "name": "Jagadeesh Kandepalli",
       "github": "jagadeesh-debug",
       "avatar": "https://github.com/jagadeesh-debug.png",
@@ -205,6 +256,6 @@
         "Added Qwen and Lyzr ai under AI Coding & Development and Productivity respectivily "
       ],
       "role": "Contributor"
-    }
+    },
   ]
 }

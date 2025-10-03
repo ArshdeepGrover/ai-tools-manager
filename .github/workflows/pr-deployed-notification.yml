@@ -1,0 +1,32 @@
+name: PR Deployed Notification
+
+on:
+  pull_request_target:
+    types: [labeled]
+
+permissions:
+  issues: write
+  pull-requests: write
+  contents: write
+
+jobs:
+  notify-deployment:
+    runs-on: ubuntu-latest
+    if: contains(github.event.label.name, 'deployed')
+    steps:
+      - name: Comment on PR deployment
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const prNumber = context.issue.number;
+            const commentBody = `### 🚀 Your PR has been deployed!
+            Your changes are now live on the website: [AI Tools Hub](https://ai-tool-collection.vercel.app/)
+            Thank you for your contribution! 🎉`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: commentBody
+            });
+
+            console.log('Deployment notification added successfully.');
