@@ -85,17 +85,16 @@
           "description": "Free AI writer for blogs, social media, emails, and marketing copy"
         },
         {
-
-      "title": "Gemini",
-      "url": "https://gemini.google.com/",
-      "description": "A powerful, multimodal AI model by Google."
-    },
-    {
-      "title": "Poe",
-      "url": "https://poe.com/",
-      "description": "An AI platform to chat with a variety of bots like ChatGPT, Claude, and more."
-    }
-
+          "title": "Gemini",
+          "url": "https://gemini.google.com/",
+          "description": "A powerful, multimodal AI model by Google."
+        },
+        {
+          "title": "Poe",
+          "url": "https://poe.com/",
+          "description": "An AI platform to chat with a variety of bots like ChatGPT, Claude, and more."
+        },
+        {
           "title": "Promptly AI",
           "url": "https://chromewebstore.google.com/detail/promptly-ai/jjfoaldlbbcfgkhbfmadjjelphbgmngg?hl=en",
           "description": "Promptly AI is a Chrome extension that helps you improve, manage, and reuse your prompts across AI chat interfaces (ChatGPT, Claude, Perplexity, etc.)"
@@ -105,7 +104,6 @@
           "url": "https://originality.ai/",
           "description": "Originality.ai is a content quality tool that detects AI-generated text, checks plagiarism, and performs fact checking to ensure credible, original writing."
         }
-
       ]
     },
     {
@@ -234,11 +232,11 @@
           "url": "https://github.com/features/copilot",
           "description": "AI code assistant with free trial"
         },
-            {
-  "title": "Qwen AI",
-  "url": "https://chat.qwen.ai/",
-  "description": "Free AI Assistant "
-},
+        {
+          "title": "Qwen AI",
+          "url": "https://chat.qwen.ai/",
+          "description": "Free AI Assistant "
+        },
         {
           "title": "Replit AI",
           "url": "https://replit.com",
