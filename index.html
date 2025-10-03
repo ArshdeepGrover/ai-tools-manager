@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
     <!-- Primary Meta Tags -->
     <title>AI Tools Hub - Professional AI Tools Directory</title>
     <meta
@@ -721,14 +721,15 @@
         #mobile-menu {
           transition: all 0.3s ease;
         }
-        
+
         #mobile-menu a:hover {
           background-color: var(--bg-tertiary) !important;
           color: #3b82f6 !important;
         }
 
         /* Form element focus states for dark mode */
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
           background-color: var(--card-bg) !important;
           color: var(--text-primary) !important;
           border-color: #3b82f6 !important;
@@ -760,16 +761,16 @@
       .contributor-card-modern {
         animation: fadeInUp 0.6s ease-out forwards;
       }
-      
+
       /* Mobile Menu Icon Animation */
       #menu-icon {
         transition: transform 0.3s ease;
       }
-      
+
       #menu-icon.rotate {
         transform: rotate(90deg);
       }
-      
+
       /* Back to Top Button */
       #backToTopBtn {
         position: fixed;
@@ -794,17 +795,17 @@
         backdrop-filter: blur(10px);
         z-index: 1000;
       }
-      
+
       #backToTopBtn i {
         text-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
       }
-      
+
       #backToTopBtn.show {
         opacity: 1;
         visibility: visible;
         transform: translateY(0) scale(1);
       }
-      
+
       #backToTopBtn:hover {
         background: var(--bg-tertiary);
         border-color: #3b82f6;
@@ -812,15 +813,15 @@
         transform: translateY(-4px) scale(1.05);
         box-shadow: 0 12px 35px rgba(59, 130, 246, 0.2);
       }
-      
+
       #backToTopBtn:hover i {
         text-shadow: 0 3px 6px rgba(59, 130, 246, 0.5);
       }
-      
+
       #backToTopBtn:active {
         transform: translateY(-2px) scale(0.95);
       }
-      
+
       @media (max-width: 640px) {
         #backToTopBtn {
           bottom: 20px;
@@ -831,19 +832,26 @@
         }
       }
     </style>
-    
+
     <!-- Early theme boot to avoid flash of wrong theme -->
     <script>
-      (function() {
+      (function () {
         try {
-          var stored = localStorage.getItem('theme');
-          var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-          var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
+          var stored = localStorage.getItem("theme");
+          var prefersDark =
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches;
+          var theme =
+            stored === "light" || stored === "dark"
+              ? stored
+              : prefersDark
+              ? "dark"
+              : "light";
           var root = document.documentElement;
-          if (theme === 'dark') {
-            root.setAttribute('data-theme', 'dark');
+          if (theme === "dark") {
+            root.setAttribute("data-theme", "dark");
           } else {
-            root.removeAttribute('data-theme');
+            root.removeAttribute("data-theme");
           }
         } catch (e) {
           // Safe no-op on errors
@@ -851,9 +859,22 @@
       })();
     </script>
   </head>
-  <body class="font-sans" style="background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.3s ease, color 0.3s ease;">
+  <body
+    class="font-sans"
+    style="
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    "
+  >
     <!-- Navigation -->
-    <nav class="shadow-lg sticky top-0 z-50" style="background-color: var(--nav-bg); box-shadow: 0 1px 3px 0 var(--nav-shadow);">
+    <nav
+      class="shadow-lg sticky top-0 z-50"
+      style="
+        background-color: var(--nav-bg);
+        box-shadow: 0 1px 3px 0 var(--nav-shadow);
+      "
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
@@ -864,8 +885,12 @@
               <i class="fas fa-robot text-white text-lg"></i>
             </div>
             <div>
-              <h1 class="text-xl font-bold" style="color: var(--text-primary);">AI Tools Hub</h1>
-              <p class="text-xs" style="color: var(--text-tertiary);">Professional Directory</p>
+              <h1 class="text-xl font-bold" style="color: var(--text-primary)">
+                AI Tools Hub
+              </h1>
+              <p class="text-xs" style="color: var(--text-tertiary)">
+                Professional Directory
+              </p>
             </div>
           </div>
 
@@ -874,25 +899,25 @@
             <a
               href="#tools"
               class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary);"
+              style="color: var(--text-secondary)"
               >Tools</a
             >
             <a
               href="#categories"
               class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary);"
+              style="color: var(--text-secondary)"
               >Categories</a
             >
             <a
               href="#contributors"
               class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary);"
+              style="color: var(--text-secondary)"
               >Contributors</a
             >
             <a
               href="#about"
               class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary);"
+              style="color: var(--text-secondary)"
               >About</a
             >
           </div>
@@ -900,18 +925,31 @@
           <!-- GitHub Button and Theme Toggle -->
           <div class="flex items-center space-x-4">
             <!-- Theme Toggle Switch -->
-            <div class="hidden sm:block toggle-switch" role="switch" aria-label="Toggle light/dark theme">
+            <div
+              class="hidden sm:block toggle-switch"
+              role="switch"
+              aria-label="Toggle light/dark theme"
+            >
               <label class="switch-label">
-                <input type="checkbox" class="checkbox" checked id="theme-toggle" aria-checked="true">
+                <input
+                  type="checkbox"
+                  class="checkbox"
+                  checked
+                  id="theme-toggle"
+                  aria-checked="true"
+                />
                 <span class="slider"></span>
               </label>
             </div>
-            
+
             <a
               href="https://github.com/ArshdeepGrover/ai-tools-manager"
               target="_blank"
               class="hidden sm:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
-              style="background-color: var(--button-bg); color: var(--button-text);"
+              style="
+                background-color: var(--button-bg);
+                color: var(--button-text);
+              "
               onmouseover="this.style.backgroundColor='var(--button-hover)'"
               onmouseout="this.style.backgroundColor='var(--button-bg)'"
               id="nav-github-button"
@@ -926,29 +964,76 @@
             </a>
 
             <!-- Mobile Menu Button -->
-            <button class="md:hidden p-2" onclick="toggleMobileMenu()" id="mobile-menu-btn" aria-label="Toggle mobile menu">
-              <i class="fas fa-bars text-lg" style="color: var(--text-secondary);" id="menu-icon"></i>
+            <button
+              class="md:hidden p-2"
+              onclick="toggleMobileMenu()"
+              id="mobile-menu-btn"
+              aria-label="Toggle mobile menu"
+            >
+              <i
+                class="fas fa-bars text-lg"
+                style="color: var(--text-secondary)"
+                id="menu-icon"
+              ></i>
             </button>
           </div>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden pb-4 border-t mt-4" style="background-color: var(--nav-bg); border-color: var(--border-color);">
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden pb-4 border-t mt-4"
+          style="
+            background-color: var(--nav-bg);
+            border-color: var(--border-color);
+          "
+        >
           <div class="px-4 py-4 space-y-3">
-            <a href="#tools" class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50" style="color: var(--text-secondary);" onclick="toggleMobileMenu()">
+            <a
+              href="#tools"
+              class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50"
+              style="color: var(--text-secondary)"
+              onclick="toggleMobileMenu()"
+            >
               <i class="fas fa-tools mr-3"></i>Tools
             </a>
-            <a href="#categories" class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50" style="color: var(--text-secondary);" onclick="toggleMobileMenu()">
+            <a
+              href="#categories"
+              class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50"
+              style="color: var(--text-secondary)"
+              onclick="toggleMobileMenu()"
+            >
               <i class="fas fa-th-large mr-3"></i>Categories
             </a>
-            <a href="#contributors" class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50" style="color: var(--text-secondary);" onclick="toggleMobileMenu()">
+            <a
+              href="#contributors"
+              class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50"
+              style="color: var(--text-secondary)"
+              onclick="toggleMobileMenu()"
+            >
               <i class="fas fa-users mr-3"></i>Contributors
             </a>
-            <a href="#about" class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50" style="color: var(--text-secondary);" onclick="toggleMobileMenu()">
+            <a
+              href="#about"
+              class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50"
+              style="color: var(--text-secondary)"
+              onclick="toggleMobileMenu()"
+            >
               <i class="fas fa-info-circle mr-3"></i>About
             </a>
-            <div class="pt-4 border-t" style="border-color: var(--border-color);">
-              <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg font-semibold transition-colors" style="background-color: var(--button-bg); color: var(--button-text);">
+            <div
+              class="pt-4 border-t"
+              style="border-color: var(--border-color)"
+            >
+              <a
+                href="https://github.com/ArshdeepGrover/ai-tools-manager"
+                target="_blank"
+                class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg font-semibold transition-colors"
+                style="
+                  background-color: var(--button-bg);
+                  color: var(--button-text);
+                "
+              >
                 <i class="fab fa-github"></i>
                 <span>Star on GitHub</span>
               </a>
@@ -1020,13 +1105,20 @@
     </section>
 
     <!-- Category Filter Section -->
-    <section id="categories" class="py-16" style="background-color: var(--bg-secondary);">
+    <section
+      id="categories"
+      class="py-16"
+      style="background-color: var(--bg-secondary)"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+          <h2
+            class="text-3xl font-bold mb-4"
+            style="color: var(--text-primary)"
+          >
             Browse by Category
           </h2>
-          <p class="max-w-2xl mx-auto" style="color: var(--text-secondary);">
+          <p class="max-w-2xl mx-auto" style="color: var(--text-secondary)">
             Find the perfect AI tools for your specific needs. Filter by
             category to discover tools tailored to your workflow.
           </p>
@@ -1043,7 +1135,11 @@
                 type="text"
                 placeholder="Search AI tools (title or description)..."
                 class="w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors"
-                style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);"
+                style="
+                  background-color: var(--card-bg);
+                  color: var(--text-primary);
+                  border-color: var(--border-color);
+                "
               />
             </div>
             <!-- Category Select -->
@@ -1054,7 +1150,11 @@
               <select
                 id="category-select"
                 class="w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors"
-                style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);"
+                style="
+                  background-color: var(--card-bg);
+                  color: var(--text-primary);
+                  border-color: var(--border-color);
+                "
               >
                 <option value="all">Loading categories...</option>
               </select>
@@ -1065,7 +1165,11 @@
     </section>
 
     <!-- Tools Section -->
-    <section id="tools" class="py-16" style="background-color: var(--bg-primary);">
+    <section
+      id="tools"
+      class="py-16"
+      style="background-color: var(--bg-primary)"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <main id="main-content">
           <!-- AI Tools will be loaded here -->
@@ -1074,14 +1178,21 @@
     </section>
 
     <!-- Contributors Section -->
-    <section id="contributors" class="py-16" style="background-color: var(--bg-secondary);">
+    <section
+      id="contributors"
+      class="py-16"
+      style="background-color: var(--bg-secondary)"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+          <h2
+            class="text-3xl font-bold mb-4"
+            style="color: var(--text-primary)"
+          >
             Our Contributors
           </h2>
-          <p class="max-w-2xl mx-auto" style="color: var(--text-secondary);">
+          <p class="max-w-2xl mx-auto" style="color: var(--text-secondary)">
             Meet the
             <span
               id="total-contributors-text"
@@ -1099,7 +1210,7 @@
         </div>
 
         <!-- Show All Contributors Button -->
-        <div id="show-all-contributors-container"></div>
+        <!-- <div id="show-all-contributors-container"></div> -->
 
         <!-- Contribute CTA -->
         <div
@@ -1130,20 +1241,37 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16" style="background-color: var(--bg-primary);">
+    <section
+      id="about"
+      class="py-16"
+      style="background-color: var(--bg-primary)"
+    >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">About</h2>
-          <p class="max-w-2xl mx-auto" style="color: var(--text-secondary);">
+          <h2
+            class="text-3xl font-bold mb-4"
+            style="color: var(--text-primary)"
+          >
+            About
+          </h2>
+          <p class="max-w-2xl mx-auto" style="color: var(--text-secondary)">
             Learn more about the creator and the community behind this project.
           </p>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <!-- Left Column - Created by -->
-          <div class="rounded-2xl shadow-lg p-8" style="background-color: var(--card-bg);">
+          <div
+            class="rounded-2xl shadow-lg p-8"
+            style="background-color: var(--card-bg)"
+          >
             <div class="text-center mb-6">
-              <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Created by</h3>
+              <h3
+                class="text-2xl font-bold mb-2"
+                style="color: var(--text-primary)"
+              >
+                Created by
+              </h3>
             </div>
             <div class="flex flex-col items-center space-y-6">
               <img
@@ -1152,10 +1280,13 @@
                 class="w-32 h-32 rounded-full object-cover"
               />
               <div class="text-center">
-                <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">
+                <h4
+                  class="text-xl font-bold mb-2"
+                  style="color: var(--text-primary)"
+                >
                   Arshdeep Singh
                 </h4>
-                <p class="mb-6" style="color: var(--text-secondary);">
+                <p class="mb-6" style="color: var(--text-secondary)">
                   Passionate about AI and helping developers discover the best
                   tools to accelerate their creative journey. This project is
                   now open source and community-driven.
@@ -1200,9 +1331,17 @@
           </div>
 
           <!-- Right Column - Community -->
-          <div class="rounded-2xl shadow-lg p-8" style="background-color: var(--card-bg);">
+          <div
+            class="rounded-2xl shadow-lg p-8"
+            style="background-color: var(--card-bg)"
+          >
             <div class="text-center mb-6">
-              <h3 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">Community</h3>
+              <h3
+                class="text-2xl font-bold mb-2"
+                style="color: var(--text-primary)"
+              >
+                Community
+              </h3>
             </div>
             <div class="flex flex-col items-center space-y-6">
               <img
@@ -1211,10 +1350,13 @@
                 class="w-32 h-32 rounded-full object-cover"
               />
               <div class="text-center">
-                <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">
+                <h4
+                  class="text-xl font-bold mb-2"
+                  style="color: var(--text-primary)"
+                >
                   Meerut Coders
                 </h4>
-                <p class="mb-6" style="color: var(--text-secondary);">
+                <p class="mb-6" style="color: var(--text-secondary)">
                   A vibrant community of developers, designers, and tech
                   enthusiasts from Meerut. Join us to learn, share, and grow
                   together in the world of technology and innovation.
@@ -1362,8 +1504,6 @@
       <button id="backToTopBtn" aria-label="Back to Top">
         <i class="fas fa-chevron-up"></i>
       </button>
-
-
     </footer>
     <script src="script.js"></script>
   </body>
