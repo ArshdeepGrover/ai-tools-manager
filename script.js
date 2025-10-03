@@ -1,6 +1,9 @@
 let allCategories = [];
 let currentFilter = "all";
 let searchTerm = ""; // current text search filter
+let showAllCategories = {}; // per category expansion state
+let showAllContributors = false;
+let allContributors = [];
 
 async function loadLinks() {
   try {
@@ -21,7 +24,8 @@ async function loadContributors() {
   try {
     const response = await fetch("contributors.json");
     const data = await response.json();
-    renderContributors(data.contributors);
+    allContributors = data.contributors;
+    renderContributors(allContributors);
     updateContributorStats(data.contributors.length);
   } catch (error) {
     console.error("Error loading contributors:", error);
@@ -142,16 +146,20 @@ function renderLinks(categories) {
     categoryDiv.className = "mb-16";
     categoryDiv.setAttribute("data-category", category.name);
 
+    // Check if category is expanded
+    const isExpanded = showAllCategories[category.name] || false;
+    const linksToShow = isExpanded ? category.links : category.links.slice(0, 6);
+
     categoryDiv.innerHTML = `
       <div class="flex items-center space-x-4 mb-8">
         <span class="text-4xl">${category.icon}</span>
         <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${category.name}</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        ${category.links
+        ${linksToShow
           .map(
             (link) => `
-          <a href="${link.url}" target="_blank" 
+          <a href="${link.url}" target="_blank"
              class="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-2 hover:border-blue-300 card-hover group"
              style="background-color: var(--card-bg); border-color: var(--card-border);"
              onclick="trackToolClick('${link.title}', '${category.name}')">
@@ -175,6 +183,13 @@ function renderLinks(categories) {
           )
           .join("")}
       </div>
+      ${category.links.length > 6 ? `
+        <div class="text-center mt-6">
+          <button class="show-more-btn" data-action="${isExpanded ? 'show-less' : 'show-more'}" onclick="toggleCategory('${category.name}')">
+            <span>${isExpanded ? 'Show Less' : 'Show More'}</span>
+          </button>
+        </div>
+      ` : ''}
     `;
 
     mainContent.appendChild(categoryDiv);
@@ -190,10 +205,13 @@ function renderContributors(contributors) {
     totalContributorsText.textContent = contributors.length;
   }
 
+  // Always show all contributors (pagination removed)
+  const contributorsToShow = contributors;
+
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
   if (modernGrid) {
-    modernGrid.innerHTML = contributors
+    modernGrid.innerHTML = contributorsToShow
       .map((contributor, index) => {
         const isCreator = contributor.role === "Creator & Maintainer";
         const contributionCount = contributor.contributions
@@ -201,11 +219,11 @@ function renderContributors(contributors) {
           : 0;
 
         return `
-          <div class="contributor-card-modern" 
+          <div class="contributor-card-modern"
                style="animation-delay: ${index * 0.1}s">
             <div>
               <div class="flex items-center space-x-3 mb-3">
-                <img src="${contributor.avatar}" alt="${contributor.name}" 
+                <img src="${contributor.avatar}" alt="${contributor.name}"
                      class="contributor-avatar-modern flex-shrink-0" />
                 <div class="contributor-info flex-1 min-w-0">
                   <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${
@@ -224,11 +242,11 @@ function renderContributors(contributors) {
                 </div>
               </div>
             </div>
-            
+
             <div class="contributor-social-modern">
               <a href="https://github.com/${
                 contributor.github
-              }" target="_blank" 
+              }" target="_blank"
                  class="social-link-modern" title="GitHub"
                  onclick="trackContributorClick('${contributor.name}')">
                 <i class="fab fa-github"></i>
@@ -236,7 +254,7 @@ function renderContributors(contributors) {
               ${
                 contributor.linkedin
                   ? `
-                <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" 
+                <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
                    class="social-link-modern" title="LinkedIn">
                   <i class="fab fa-linkedin"></i>
                 </a>
@@ -246,7 +264,7 @@ function renderContributors(contributors) {
               ${
                 contributor.website
                   ? `
-                <a href="${contributor.website}" target="_blank" 
+                <a href="${contributor.website}" target="_blank"
                    class="social-link-modern" title="Website">
                   <i class="fas fa-globe"></i>
                 </a>
@@ -258,6 +276,12 @@ function renderContributors(contributors) {
         `;
       })
       .join("");
+  }
+
+  // Pagination removed - no button needed
+  const showAllBtnContainer = document.getElementById("show-all-contributors-container");
+  if (showAllBtnContainer) {
+    showAllBtnContainer.innerHTML = "";
   }
 }
 
@@ -358,7 +382,7 @@ function trackCategoryFilter(categoryName) {
 function toggleMobileMenu() {
   const mobileMenu = document.getElementById("mobile-menu");
   const menuIcon = document.getElementById("menu-icon");
-  
+
   if (mobileMenu.classList.contains("hidden")) {
     // Show menu
     mobileMenu.classList.remove("hidden");
@@ -371,6 +395,25 @@ function toggleMobileMenu() {
     menuIcon.classList.remove("rotate");
     menuIcon.classList.remove("fa-times");
     menuIcon.classList.add("fa-bars");
+  }
+}
+
+function toggleCategory(categoryName) {
+  showAllCategories[categoryName] = !showAllCategories[categoryName];
+  applyFilters(); // Re-render with current filters
+}
+
+function toggleShowAllContributors() {
+  showAllContributors = !showAllContributors;
+  renderContributors(allContributors);
+  // Scroll to default parts when showing less
+  if (!showAllContributors) {
+    setTimeout(() => {
+      const contributorsSection = document.getElementById('contributors');
+      if (contributorsSection) {
+        contributorsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 0);
   }
 }
 

@@ -40,7 +40,10 @@
       "linkedin": "prerna290",
       "tagline": "Software Developer",
       "contributions": [
-        "Added new AI Tool AWS Q Developer to the AI Tools Collection"
+        "Added new AI Tool AWS Q Developer to the AI Tools Collection",
+        "Added new AI Tool Promptly AI to the AI Tools Collection",
+        "Added new AI Tool Wobo AI to the AI Tools Collection for easy job search"
+        "Added new AI Tool Originality AI to the AI Tools Collection"
       ],
       "role": "Contributor"
     },
@@ -202,7 +205,7 @@
       "github": "mathncode-sid",
       "avatar": "https://avatars.githubusercontent.com/u/168301526?v=4",
       "tagline": "Veni, Codavi, Vici",
-      "contributions": ["Added GPTforSlides under AI Presentations" ],
+      "contributions": ["Added GPTforSlides under AI Presentations"],
       "role": "Contributor"
     },
     {
@@ -220,7 +223,9 @@
       "avatar": "https://github.com/JaiswalShivang.png",
       "linkedin": "shivang-jaiswal-18809432b",
       "tagline": "AI Tools Contributor",
-      "contributions": ["Added Simplified AI Writer to AI Writing & Content category"],
+      "contributions": [
+        "Added Simplified AI Writer to AI Writing & Content category"
+      ],
       "role": "Contributor"
     },
     {

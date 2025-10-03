@@ -85,6 +85,7 @@
           "description": "Free AI writer for blogs, social media, emails, and marketing copy"
         },
         {
+
       "title": "Gemini",
       "url": "https://gemini.google.com/",
       "description": "A powerful, multimodal AI model by Google."
@@ -94,6 +95,17 @@
       "url": "https://poe.com/",
       "description": "An AI platform to chat with a variety of bots like ChatGPT, Claude, and more."
     }
+
+          "title": "Promptly AI",
+          "url": "https://chromewebstore.google.com/detail/promptly-ai/jjfoaldlbbcfgkhbfmadjjelphbgmngg?hl=en",
+          "description": "Promptly AI is a Chrome extension that helps you improve, manage, and reuse your prompts across AI chat interfaces (ChatGPT, Claude, Perplexity, etc.)"
+        },
+        {
+          "title": "Originality AI",
+          "url": "https://originality.ai/",
+          "description": "Originality.ai is a content quality tool that detects AI-generated text, checks plagiarism, and performs fact checking to ensure credible, original writing."
+        }
+
       ]
     },
     {
@@ -488,6 +500,11 @@
           "title": "Scribe",
           "url": "https://scribehow.com/",
           "description": "An AI tool that automatically creates step-by-step guides and tutorials for any process, simply by recording your screen."
+        },
+        {
+          "title": "Wobo AI",
+          "url": "https://www.wobo.ai/",
+          "description": "Wobo AI helps you land your dream job with AI-powered job search, ATS-friendly resumes, and smart cover letters."
         }
       ]
     },
