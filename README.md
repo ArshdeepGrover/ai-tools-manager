@@ -11,6 +11,12 @@ A curated collection of powerful AI tools, maintained by the community. This pro
 - **Search & Filter**: Find tools quickly with built-in search functionality
 - **Analytics Tracking**: Usage insights with Google Analytics
 
+## 🎯 Project Goals
+
+- To create the most comprehensive and high-quality directory of free AI tools.
+- To provide a platform for developers, designers, and creators to discover the best AI tools for their work.
+- To foster a community of contributors who are passionate about AI and open source.
+
 ## 🚀 Live Demo
 
 Visit the live website: [AI Tools Collection](https://ai-tool-collection.vercel.app/)
