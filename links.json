@@ -567,6 +567,16 @@
           "title": "Chess Champ",
           "url": "https://gemini.google.com/gem/chess-champ",
           "description": "AI tool for playing and analyzing chess games"
+        },
+        {
+          "title": "Ludo Ai Game",
+          "url" : "https://ludo.ai/",
+          "description" : "Idea generator for new game mechanics, storylines, and level design"
+        },
+        {
+          "title": "TACTIC BLITZ",
+          "url" : "https://www.yeschat.ai/gpts-9t557fXc0DB-TACTIC-BLITZ?utm_source=chatgpt.com",
+          "description" : "AI coach that gives move-by-move strategy advice for different genres"
         }
       ]
     },

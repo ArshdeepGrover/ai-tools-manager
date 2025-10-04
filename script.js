@@ -473,7 +473,7 @@ async function loadGitHubStars() {
     const forkCount = data.forks_count;
 
     // Update all GitHub star buttons
-    updateGitHubButtons(starCount);
+    updateGitHubButtons(starCount); 
 
     // Update footer stats
     updateFooterStats(starCount, forkCount);

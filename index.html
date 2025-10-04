@@ -1184,6 +1184,29 @@
       style="background-color: var(--bg-secondary)"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Repo states -->
+        <div class="flex justify-center items-center flex-col mb-6">
+          <div class="flex justify-center mb-2 px-2 ">
+            <h2
+              class="text-3xl font-bold"
+              style="color: var(--text-primary)"
+            >
+              Repository States
+            </h2>
+          </div>
+          <div class="flex space-x-2 p-4 justify-center item-center">
+            <div class="flex items-center space-x-2 text-gray-400">
+              <i class="fas fa-star text-yellow-400"></i>
+              <span class="text-lg">Stars:</span>
+              <span class="font-bold text-white" id="footer-star-count">-</span>
+            </div>
+            <div class="flex items-center space-x-2 text-gray-400">
+              <i class="fas fa-code-branch text-blue-400"></i>
+              <span class="text-lg">Forks:</span>
+              <span class="font-bold text-white" id="footer-fork-count">-</span>
+            </div>
+          </div>
+        </div>
         <!-- Header -->
         <div class="text-center mb-12">
           <h2
@@ -1478,20 +1501,8 @@
           </div>
         </div>
 
-        <!-- GitHub Stats -->
+        <!-- bottom footer -->
         <div class="border-t border-gray-800 mt-8 pt-8">
-          <div class="flex justify-center items-center space-x-8 mb-6">
-            <div class="flex items-center space-x-2 text-gray-400">
-              <i class="fas fa-star text-yellow-400"></i>
-              <span class="text-sm">Stars:</span>
-              <span class="font-bold text-white" id="footer-star-count">-</span>
-            </div>
-            <div class="flex items-center space-x-2 text-gray-400">
-              <i class="fas fa-code-branch text-blue-400"></i>
-              <span class="text-sm">Forks:</span>
-              <span class="font-bold text-white" id="footer-fork-count">-</span>
-            </div>
-          </div>
           <div class="text-center text-gray-400">
             <p>
               &copy; 2025 AI Tools Hub. Open source project by Arshdeep Singh.
