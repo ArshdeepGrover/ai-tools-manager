@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth h-full">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -860,13 +860,14 @@
     </script>
   </head>
   <body
-    class="font-sans"
+    class="font-sans flex flex-col min-h-screen"
     style="
       background-color: var(--bg-primary);
       color: var(--text-primary);
       transition: background-color 0.3s ease, color 0.3s ease;
     "
   >
+  <main class="flex-grow">
     <!-- Navigation -->
     <nav
       class="shadow-lg sticky top-0 z-50"
@@ -875,102 +876,56 @@
         box-shadow: 0 1px 3px 0 var(--nav-shadow);
       "
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <!-- Logo -->
-          <div class="flex items-center space-x-3">
-            <div
-              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
-            >
-              <i class="fas fa-robot text-white text-lg"></i>
-            </div>
-            <div>
-              <h1 class="text-xl font-bold" style="color: var(--text-primary)">
-                AI Tools Hub
-              </h1>
-              <p class="text-xs" style="color: var(--text-tertiary)">
-                Professional Directory
-              </p>
-            </div>
-          </div>
+      <!-- Header Container -->
+<header class="w-full border-b border-gray-200 dark:border-gray-800">
+  <div class="relative flex items-center h-16 px-4 sm:px-6 lg:px-8 justify-between">
 
-          <!-- Navigation Links -->
-          <div class="hidden lg:flex items-center space-x-8">
-            <a
-              href="#tools"
-              class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary)"
-              >Tools</a
-            >
-            <a
-              href="#categories"
-              class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary)"
-              >Categories</a
-            >
-            <a
-              href="#contributors"
-              class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary)"
-              >Contributors</a
-            >
-            <a
-              href="#about"
-              class="font-medium transition-colors hover:text-blue-600"
-              style="color: var(--text-secondary)"
-              >About</a
-            >
-          </div>
+    <!-- Logo (Left aligned) -->
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+        <i class="fas fa-robot text-lg" style="color: var(--text-primary)"></i>
+      </div>
+      <div>
+        <h1 class="text-xl font-bold" style="color: var(--text-primary)">AI Tools Hub</h1>
+        <p class="text-xs" style="color: var(--text-tertiary)">Professional Directory</p>
+      </div>
+    </div>
 
-          <!-- GitHub Button and Theme Toggle -->
-          <div class="flex items-center space-x-4">
-            <!-- Theme Toggle Switch -->
+    <!-- Centered Navigation Links -->
+    <nav class="hidden lg:flex flex-1 justify-center items-center gap-12">
+      <a href="#tools" class="font-medium transition-colors hover:text-blue-600 pl-8" style="color: var(--text-secondary)">Tools</a>
+      <a href="#categories" class="font-medium transition-colors hover:text-blue-600" style="color: var(--text-secondary)">Categories</a>
+      <a href="#contributors" class="font-medium transition-colors hover:text-blue-600" style="color: var(--text-secondary)">Contributors</a>
+      <a href="#about" class="font-medium transition-colors hover:text-blue-600" style="color: var(--text-secondary)">About</a>
+    </nav>
 
-            <div class="hidden:block toggle-switch" role="switch" aria-label="Toggle light/dark theme">
+    <!-- GitHub & Theme Toggle (Right aligned) -->
+    <div class="flex items-center space-x-4">
+      <!-- Theme Toggle -->
+      <div class="hidden sm:block toggle-switch" role="switch" aria-label="Toggle light/dark theme">
+        <label class="switch-label relative inline-flex items-center cursor-pointer">
+          <input type="checkbox" class="checkbox sr-only" id="theme-toggle" aria-checked="true"/>
+          <span class="slider w-11 h-6 bg-gray-300 dark:bg-gray-700 rounded-full transition-all"></span>
+        </label>
+      </div>
 
-            <div
-              class="hidden sm:block toggle-switch"
-              role="switch"
-              aria-label="Toggle light/dark theme"
-            >
+      <!-- GitHub Star Button -->
+      <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" 
+         class="hidden sm:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
+         style="background-color: var(--button-bg); color: var(--button-text);"
+         onmouseover="this.style.backgroundColor='var(--button-hover)'"
+         onmouseout="this.style.backgroundColor='var(--button-bg)'"
+         id="nav-github-button">
+        <i class="fab fa-github"></i>
+        <span class="hidden sm:inline">Star on GitHub</span>
+        <span class="star-count text-white px-3 py-1 rounded-full text-xs font-bold ml-2 hidden" id="nav-star-count">
+          <i class="fas fa-star mr-1"></i>0
+        </span>
+      </a>
+    </div>
 
-              <label class="switch-label">
-                <input
-                  type="checkbox"
-                  class="checkbox"
-                  checked
-                  id="theme-toggle"
-                  aria-checked="true"
-                />
-                <span class="slider"></span>
-              </label>
-            </div>
-
-            <a
-              href="https://github.com/ArshdeepGrover/ai-tools-manager"
-              target="_blank"
-
-              class="hidden lg:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
-              style="background-color: var(--button-bg); color: var(--button-text);"
-
-              class="hidden sm:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
-              style="
-                background-color: var(--button-bg);
-                color: var(--button-text);
-              "
-
-              onmouseover="this.style.backgroundColor='var(--button-hover)'"
-              onmouseout="this.style.backgroundColor='var(--button-bg)'"
-              id="nav-github-button"
-            >
-              <i class="fab fa-github"></i>
-              <span class="hidden sm:inline">Star on GitHub</span>
-              <span
-                class="star-count text-white px-3 py-1 rounded-full text-xs font-bold ml-2 hidden"
-                id="nav-star-count"
-                ><i class="fas fa-star mr-1"></i>0</span
-              >
-            </a>
+  </div>
+</header>
 
             <!-- Mobile Menu Button -->
 
@@ -1068,22 +1023,43 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="gradient-bg text-white py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="max-w-4xl mx-auto">
-          <h1 class="text-4xl md:text-6xl font-bold mb-6">
-            Discover the Best
-            <span
-              class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent"
-            >
-              AI Tools
-            </span>
-          </h1>
-          <p class="text-xl md:text-2xl mb-8 text-blue-100">
-            A curated collection of professional AI tools for developers,
-            designers, and creators. Open source and community-driven.
-          </p>
+   <!-- Hero Section -->
+<section class="gradient-bg text-white py-20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <!-- Main Heading -->
+    <h1 class="text-4xl md:text-6xl font-bold mb-6">
+  Discover the Best AI Tools
+</h1>
+
+
+    <!-- Subheading -->
+    <p class="text-xl md:text-2xl mb-8 text-blue-100">
+      A curated collection of professional AI tools for developers,
+      designers, and creators. Open source and community-driven.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <!-- Explore Tools (Outlined) -->
+      <a
+        href="#tools"
+        class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
+      >
+        Explore Tools
+      </a>
+
+      <!-- Contribute (Outlined) -->
+      <a
+        href="https://github.com/ArshdeepGrover/ai-tools-manager"
+        target="_blank"
+        class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center space-x-2"
+        id="hero-github-button"
+      >
+        Contribute
+      </a>
+    </div>
+  </div>
+</section>
 
           <!-- Stats -->
           <!-- <div class="grid grid-cols-3 gap-8 mb-12 max-w-2xl mx-auto">
@@ -1107,27 +1083,6 @@
               <div class="text-blue-200">Contributors</div>
             </div>
           </div> -->
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#tools"
-              class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
-            >
-              Explore Tools
-            </a>
-            <a
-              href="https://github.com/ArshdeepGrover/ai-tools-manager"
-              target="_blank"
-              class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors flex items-center justify-center space-x-2"
-              id="hero-github-button"
-            >
-              Contribute
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <!-- Category Filter Section -->
     <section
@@ -1196,9 +1151,9 @@
       style="background-color: var(--bg-primary)"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <main id="main-content">
+        <div id="main-content">
           <!-- AI Tools will be loaded here -->
-        </main>
+        </div>
       </div>
     </section>
 
@@ -1238,37 +1193,41 @@
         <!-- <div id="show-all-contributors-container"></div> -->
 
         <!-- Contribute CTA -->
-        <div
-          class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl p-8 text-center text-white"
-        >
-          <h3 class="text-2xl font-bold mb-4">Want to Contribute?</h3>
-          <p class="mb-6 text-blue-100">
-            Help us build the most comprehensive AI tools directory. Add your
-            favorite tools and join our community!
-          </p>
-          <a
-            href="https://github.com/ArshdeepGrover/ai-tools-manager"
-            target="_blank"
-            class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center space-x-2"
-            id="contributors-github-button"
-          >
-            <i class="fab fa-github"></i>
-            <span>Contribute on GitHub</span>
-            <span
-              class="star-count text-white px-2 py-1 rounded-full text-xs font-bold ml-2 hidden"
-              id="contributors-star-count"
-            >
-              <i class="fas fa-star mr-1"></i>0
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
+<div
+  class="rounded-2xl p-8 text-center"
+  style="background: linear-gradient(to right, var(--blue-500), var(--purple-600)); color: var(--text-primary)"
+>
+  <h3 class="text-2xl font-bold mb-4" style="color: var(--text-primary)">
+    Want to Contribute?
+  </h3>
+  <p class="mb-6" style="color: var(--text-secondary)">
+    Help us build the most comprehensive AI tools directory. Add your
+    favorite tools and join our community!
+  </p>
+  <a
+    href="https://github.com/ArshdeepGrover/ai-tools-manager"
+    target="_blank"
+    class="px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center space-x-2 shadow-md"
+    style="background-color: var(--button-bg, white); color: var(--button-text, var(--blue-600))"
+    id="contributors-github-button"
+  >
+    <i class="fab fa-github"></i>
+    <span>Contribute on GitHub</span>
+    <span
+      class="star-count px-2 py-1 rounded-full text-xs font-bold ml-2 inline-flex items-center"
+      id="contributors-star-count"
+      style="background-color: var(--button-text, var(--blue-600)); color: var(--button-bg, white)"
+    >
+      <i class="fas fa-star mr-1"></i>0
+    </span>
+  </a>
+</div>
+
 
     <!-- About Section -->
     <section
       id="about"
-      class="py-16"
+      class="py-16 mb-16"
       style="background-color: var(--bg-primary)"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1391,7 +1350,7 @@
                   <a
                     href="https://www.commudle.com/communities/meerut-coders"
                     target="_blank"
-                    class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all flex items-center space-x-2"
+                    class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center space-x-2"
                   >
                     <i class="fas fa-users"></i>
                     <span>Join Community</span>
@@ -1420,88 +1379,53 @@
         </div>
       </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div class="col-span-1 md:col-span-2">
-            <div class="flex items-center space-x-3 mb-4">
-              <div
-                class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
-              >
-                <i class="fas fa-robot text-white text-lg"></i>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold">AI Tools Hub</h3>
-                <p class="text-gray-400 text-sm">Professional Directory</p>
-              </div>
-            </div>
-            <p class="text-gray-400 mb-4">
-              Discover, explore, and contribute to the most comprehensive
-              collection of AI tools for professionals.
-            </p>
-            <div class="flex space-x-4">
-              <a
-                href="https://github.com/ArshdeepGrover/ai-tools-manager"
-                target="_blank"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
-                <i class="fab fa-github text-xl"></i>
-              </a>
-            </div>
+  </main>
+  <!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 mt-auto w-full">
+  <div class="max-w-[1400px] mx-auto px-8 sm:px-12 lg:px-16">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+      
+      <!-- Logo + Description -->
+      <div class="col-span-1 md:col-span-2">
+        <div class="flex items-center space-x-4 mb-6">
+          <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <i class="fas fa-robot text-white text-2xl"></i>
           </div>
-
           <div>
-            <h4 class="font-semibold mb-4">Quick Links</h4>
-            <ul class="space-y-2 text-gray-400">
-              <li>
-                <a href="#tools" class="hover:text-white transition-colors"
-                  >Browse Tools</a
-                >
-              </li>
-              <li>
-                <a href="#categories" class="hover:text-white transition-colors"
-                  >Categories</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#contributors"
-                  class="hover:text-white transition-colors"
-                  >Contributors</a
-                >
-              </li>
-              <li>
-                <a href="#about" class="hover:text-white transition-colors"
-                  >About</a
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 class="font-semibold mb-4">Community</h4>
-            <ul class="space-y-2 text-gray-400">
-              <li>
-                <a
-                  href="https://github.com/ArshdeepGrover/ai-tools-manager"
-                  target="_blank"
-                  class="hover:text-white transition-colors"
-                  >GitHub</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/ArshdeepGrover/ai-tools-manager/issues"
-                  target="_blank"
-                  class="hover:text-white transition-colors"
-                  >Report Issues</a
-                >
-              </li>
-            </ul>
+            <h3 class="text-2xl font-bold">AI Tools Hub</h3>
+            <p class="text-gray-400 text-sm">Professional Directory</p>
           </div>
         </div>
+        <p class="text-gray-400 mb-6">
+          Discover, explore, and contribute to the most comprehensive collection of AI tools for professionals.
+        </p>
+        <div class="flex space-x-4">
+          <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="text-gray-400 hover:text-white transition-colors text-2xl">
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Quick Links</h4>
+        <ul class="space-y-3 text-gray-400">
+          <li><a href="#tools" class="hover:text-white transition-colors">Browse Tools</a></li>
+          <li><a href="#categories" class="hover:text-white transition-colors">Categories</a></li>
+          <li><a href="#contributors" class="hover:text-white transition-colors">Contributors</a></li>
+          <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+        </ul>
+      </div>
+
+      <!-- Community -->
+      <div>
+        <h4 class="font-semibold text-lg mb-4">Community</h4>
+        <ul class="space-y-3 text-gray-400">
+          <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="hover:text-white transition-colors">GitHub</a></li>
+          <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager/issues" target="_blank" class="hover:text-white transition-colors">Report Issues</a></li>
+        </ul>
+      </div>
+    </div>
 
         <!-- GitHub Stats -->
         <div class="border-t border-gray-800 mt-8 pt-8">
