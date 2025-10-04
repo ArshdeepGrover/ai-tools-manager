@@ -66,6 +66,7 @@
       "website": "https://dipanshurdev.netlify.app",
       "tagline": "I write code",
       "contributions": [
+        "Added new AI Tool 'Banani.co' for Designers"
         "Added Banani.co AI design tool for designers",
         "Added Bolt.new AI development tool",
         "Added Pixlr and NanoBanana.ai to AI Design & Images",
@@ -90,6 +91,16 @@
       "role": "Contributor"
     },
     {
+        "name": "Gupta Khushbu",
+        "github": "khushu2106",
+        "avatar": "https://avatars.githubusercontent.com/khushu2106",
+        "linkedin":"Khushbu Gupta",
+        "tagline":"Software Developer",
+        "contributions": [
+          "Added signUp and login "
+        ],
+        "role" : "Contributor"
+    }, 
       "name": "B Sai Mahendra",
       "github": "saimahendra282",
       "avatar": "https://avatars.githubusercontent.com/u/118994059?v=4",

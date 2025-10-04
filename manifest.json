@@ -61,6 +61,18 @@
           "sizes": "any"
         }
       ]
+    },
+    {
+      "name": "Feedback & Ratings",
+      "short_name":"Feedback & Ratings",
+      "description":"Add Feedback & Rating system ",
+      "url":"/#Feedback",
+      "icons":[
+        {
+          "src":"/assets/apple-touch-icon.png",
+          "sizes":"180x180"
+        }
+      ]
     }
   ]
 }
