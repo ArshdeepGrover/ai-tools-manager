@@ -149,59 +149,65 @@ function renderLinks(categories) {
   });
 }
 
-function renderContributors(contributors) {
-  const contributorsGrid = document.getElementById("contributors-grid");
+let contributorsData = [];
+let currentIndex = 0;
+let marqueeInterval;
 
-  contributorsGrid.innerHTML = contributors
-    .map(
-      (contributor) => `
-    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 text-center card-hover">
+function renderContributors(contributors) {
+  contributorsData = contributors;
+  const marqueeContainer = document.getElementById("contributors-marquee");
+  marqueeContainer.innerHTML = "";
+
+  // Show first two contributors initially
+  showContributorsPair(currentIndex);
+
+  // Clear any existing interval
+  if (marqueeInterval) clearInterval(marqueeInterval);
+
+  // Set interval to rotate contributors every 5 seconds
+  marqueeInterval = setInterval(() => {
+    currentIndex = (currentIndex + 2) % contributorsData.length;
+    showContributorsPair(currentIndex);
+  }, 5000);
+}
+
+function showContributorsPair(startIndex) {
+  const marqueeContainer = document.getElementById("contributors-marquee");
+  marqueeContainer.innerHTML = "";
+
+  for (let i = 0; i < 2; i++) {
+    const contributor = contributorsData[(startIndex + i) % contributorsData.length];
+    const contributorCard = document.createElement("div");
+    contributorCard.className = "bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 text-center card-hover flex-shrink-0";
+    contributorCard.style.width = "220px";
+
+    contributorCard.innerHTML = `
       <img src="${contributor.avatar}" alt="${contributor.name}" 
            class="w-20 h-20 rounded-full mx-auto mb-4 object-cover border-4 border-gray-100" />
-      <h4 class="text-lg font-semibold text-gray-900 mb-1">${
-        contributor.name
-      }</h4>
-      ${
-        contributor.role
-          ? `<p class="text-blue-600 text-sm font-medium mb-2">${contributor.role}</p>`
-          : ""
-      }
-      ${
-        contributor.tagline
-          ? `<p class="text-gray-600 text-sm mb-4 italic">"${contributor.tagline}"</p>`
-          : ""
-      }
+      <h4 class="text-lg font-semibold text-gray-900 mb-1">${contributor.name}</h4>
+      ${contributor.role ? `<p class="text-blue-600 text-sm font-medium mb-2">${contributor.role}</p>` : ""}
+      ${contributor.tagline ? `<p class="text-gray-600 text-sm mb-4 italic">"${contributor.tagline}"</p>` : ""}
       <div class="flex justify-center space-x-2 mb-4">
         <a href="https://github.com/${contributor.github}" target="_blank" 
            class="w-9 h-9 bg-gray-900 text-white rounded-lg flex items-center justify-center hover:bg-gray-800 transition-colors text-sm"
            onclick="trackContributorClick('${contributor.name}')">
           <i class="fab fa-github"></i>
         </a>
-        ${
-          contributor.linkedin
-            ? `
+        ${contributor.linkedin ? `
           <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" 
              class="w-9 h-9 bg-blue-600 text-white rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors text-sm">
             <i class="fab fa-linkedin"></i>
-          </a>
-        `
-            : ""
-        }
-        ${
-          contributor.website
-            ? `
+          </a>` : ""}
+        ${contributor.website ? `
           <a href="${contributor.website}" target="_blank" 
              class="w-9 h-9 bg-purple-600 text-white rounded-lg flex items-center justify-center hover:bg-purple-700 transition-colors text-sm">
             <i class="fas fa-globe"></i>
-          </a>
-        `
-            : ""
-        }
+          </a>` : ""}
       </div>
-    </div>
-  `
-    )
-    .join("");
+    `;
+
+    marqueeContainer.appendChild(contributorCard);
+  }
 }
 
 function updateStats(categories) {

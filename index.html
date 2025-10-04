@@ -425,10 +425,48 @@
         </div>
 
         <div
-          id="contributors-grid"
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-12"
+          id="contributors-marquee-wrapper"
+          class="relative mx-auto mb-12"
+          style="width: 520px; border: 2px solid #3b82f6; border-radius: 12px; padding: 12px; overflow: hidden;"
         >
-          <!-- Contributors will be loaded here -->
+          <div
+            id="contributors-marquee"
+            class="flex space-x-6"
+            style="width: 480px; overflow: hidden;"
+          >
+            <!-- Contributors will be loaded here dynamically -->
+          </div>
+          <!-- Left and Right indicators -->
+          <div
+            id="left-indicator"
+            class="absolute top-0 left-0 h-full w-12 bg-gradient-to-r from-white to-transparent pointer-events-none"
+          ></div>
+          <div
+            id="right-indicator"
+            class="absolute top-0 right-0 h-full w-12 bg-gradient-to-l from-white to-transparent pointer-events-none"
+          ></div>
+          <!-- More contributors message -->
+          <div
+            id="more-contributors-msg"
+            class="absolute bottom-2 right-4 text-blue-600 text-sm font-semibold cursor-pointer underline hover:text-blue-800 select-none"
+            style="user-select: none;"
+            role="button"
+            tabindex="0"
+            aria-label="Show all contributors"
+          >
+            More contributors →
+          </div>
+
+          <!-- Modal for all contributors -->
+          <div id="contributors-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-lg max-w-4xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
+              <button id="modal-close-btn" class="absolute top-4 right-4 text-gray-600 hover:text-gray-900 text-xl font-bold" aria-label="Close contributors modal">&times;</button>
+              <h3 class="text-2xl font-bold mb-4 text-center">All Contributors</h3>
+              <div id="all-contributors-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- All contributors will be rendered here -->
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Contribute CTA -->
