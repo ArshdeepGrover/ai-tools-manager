@@ -493,18 +493,11 @@ async function loadGitHubStars() {
     const issuesData = await issuesRes.json();
     const issuesCount = issuesData.filter((item) => !item.pull_request).length; // exclude PRs 
 
-    // Get open pull requests
-    const prsRes = await fetch(
-      `https://api.github.com/repos/${owner}/${repo}/pulls?state=open`
-    );
-    const prsData = await prsRes.json();
-    const prsCount = prsData.length;
-
     // Update all GitHub star buttons
     updateGitHubButtons(starCount);
 
     // Update footer stats
-    updateFooterStats(starCount, forkCount , prsCount , issuesCount);
+    updateFooterStats(starCount, forkCount , issuesCount);
   } catch (error) {
     console.error("Error fetching GitHub stats:", error);
     // Fallback - just show the buttons without star count
@@ -547,7 +540,7 @@ function updateGitHubButtons(starCount) {
   }
 }
 
-function updateFooterStats(starCount, forkCount , prsCount , issuesCount) {
+function updateFooterStats(starCount, forkCount , issuesCount) {
   // Update footer star count
   const footerStarCount = document.getElementById("footer-star-count");
   if (footerStarCount) {
@@ -567,16 +560,7 @@ function updateFooterStats(starCount, forkCount , prsCount , issuesCount) {
       footerForkCount.classList.remove("animate-pulse");
     }, 1000);
   }
-
-  //update pr's count
-  const footerPrsCount = document.getElementById("footer-pr-count");
-  if (footerPrsCount) {
-    footerPrsCount.textContent = prsCount;
-    footerPrsCount.classList.add("animate-pulse");
-    setTimeout(() => {
-      footerPrsCount.classList.remove("animate-pulse");
-    }, 1000);
-  }
+ 
 
   //update issue's count
   const footerIssuesCount = document.getElementById("footer-issue-count");
