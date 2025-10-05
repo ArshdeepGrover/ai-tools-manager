@@ -519,6 +519,11 @@
         "title": "Pi (Inflection AI)",
         "url": "https://pi.ai",
         "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
+        },
+          {
+      "title": "Notion AI",
+      "url": "https://notion.so/product/ai",
+      "description": "AI-powered assistant inside Notion for notes, tasks, and workflows"
         }
       ]
     },
