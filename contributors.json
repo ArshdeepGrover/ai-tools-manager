@@ -260,5 +260,18 @@
       ],
       "role": "Contributor"
     }
+    ,
+    {
+      "name": "Saatvik Sawarn",
+      "github": "Saatvik-GT",
+      "avatar": "https://github.com/Saatvik-GT.png",
+      "linkedin": "saatviksawarn",
+      "tagline": "try hard",
+      "contributions": [
+        "Added DeepSeek open source local model",
+        "Removed duplicate Qwen entry"
+      ],
+      "role": "Contributor"
+    }
   ]
 }
