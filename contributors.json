@@ -264,7 +264,10 @@
      "name": "Jaswanth Kumar K",
      "github": "Jaswanth-Kumar-2007",
      "avatar": "https://github.com/Jaswanth-Kumar-2007.png",
-     "contributions": ["Added Pi (Inflection AI)", "Improved AI tool categorization logic"]
+     "tagline": "Aspiring Software Engineer & Open Source Contributor",
+     "contributions": [
+      "Added Pi (Inflection AI)", "Improved AI tool categorization logic"],
+     "role":"Contributor"
     }
   ]
 }
