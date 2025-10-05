@@ -259,6 +259,12 @@
         "Added Qwen and Lyzr ai under AI Coding & Development and Productivity respectivily "
       ],
       "role": "Contributor"
+    },
+    {
+     "name": "Jaswanth Kumar K",
+     "github": "Jaswanth-Kumar-2007",
+     "avatar": "https://github.com/Jaswanth-Kumar-2007.png",
+     "contributions": ["Added Pi (Inflection AI)", "Improved AI tool categorization logic"]
     }
   ]
 }

@@ -519,6 +519,11 @@
           "title": "Wobo AI",
           "url": "https://www.wobo.ai/",
           "description": "Wobo AI helps you land your dream job with AI-powered job search, ATS-friendly resumes, and smart cover letters."
+        },
+        {
+        "title": "Pi (Inflection AI)",
+        "url": "https://pi.ai",
+        "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
         }
       ]
     },
