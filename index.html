@@ -869,7 +869,7 @@
           </div>
 
           <!-- Navigation Links -->
-          <div class="hidden md:flex items-center space-x-8">
+          <div class="hidden lg:flex items-center space-x-8">
             <a
               href="#tools"
               class="font-medium transition-colors hover:text-blue-600"
@@ -896,43 +896,50 @@
             >
           </div>
 
-          <!-- GitHub Button and Theme Toggle -->
-          <div class="flex items-center space-x-4">
-            <!-- Theme Toggle Switch -->
-            <div class="hidden sm:block toggle-switch" role="switch" aria-label="Toggle light/dark theme">
-              <label class="switch-label">
-                <input type="checkbox" class="checkbox" checked id="theme-toggle" aria-checked="true">
-                <span class="slider"></span>
-              </label>
-            </div>
-            
-            <a
-              href="https://github.com/ArshdeepGrover/ai-tools-manager"
-              target="_blank"
-              class="hidden sm:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
-              style="background-color: var(--button-bg); color: var(--button-text);"
-              onmouseover="this.style.backgroundColor='var(--button-hover)'"
-              onmouseout="this.style.backgroundColor='var(--button-bg)'"
-              id="nav-github-button"
-            >
-              <i class="fab fa-github"></i>
-              <span class="hidden sm:inline">Star on GitHub</span>
-              <span
-                class="star-count text-white px-3 py-1 rounded-full text-xs font-bold ml-2 hidden"
-                id="nav-star-count"
-                ><i class="fas fa-star mr-1"></i>0</span
-              >
-            </a>
+      <!-- GitHub Star Button -->
+      <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" 
+         class="hidden sm:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
+         style="background-color: var(--button-bg); color: var(--button-text);"
+         onmouseover="this.style.backgroundColor='var(--button-hover)'"
+         onmouseout="this.style.backgroundColor='var(--button-bg)'"
+         id="nav-github-button">
+        <i class="fab fa-github"></i>
+        <span class="hidden sm:inline">Star on GitHub</span>
+        <span class="star-count text-white px-3 py-1 rounded-full text-xs font-bold ml-2 hidden" id="nav-star-count">
+          <i class="fas fa-star mr-1"></i>0
+        </span>
+      </a>
+    </div>
 
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden p-2" onclick="toggleMobileMenu()" id="mobile-menu-btn" aria-label="Toggle mobile menu">
-              <i class="fas fa-bars text-lg" style="color: var(--text-secondary);" id="menu-icon"></i>
-            </button>
-          </div>
-        </div>
+  </div>
+
+  <!-- Mobile Menu Button (moved inside header flex for alignment) -->
+  <button
+    class="block md:hidden p-2 absolute right-4 top-1/2 -translate-y-1/2 z-[1051]"
+    onclick="toggleMobileMenu()"
+    id="mobile-menu-btn"
+    aria-label="Toggle mobile menu"
+  >
+    <i
+      class="fas fa-bars text-lg"
+      style="color: var(--text-secondary)"
+      id="menu-icon"
+    ></i>
+  </button>
+</header>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden pb-4 border-t mt-4" style="background-color: var(--nav-bg); border-color: var(--border-color);">
+
+        <div
+          id="mobile-menu"
+          class="hidden md:hidden pb-4 border-t mt-4 absolute left-0 w-full z-[1050]"
+          style="
+            background-color: var(--nav-bg);
+            border-color: var(--border-color);
+            top:64px; /* height of header */
+          "
+        >
+
           <div class="px-4 py-4 space-y-3">
             <a href="#tools" class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50" style="color: var(--text-secondary);" onclick="toggleMobileMenu()">
               <i class="fas fa-tools mr-3"></i>Tools
@@ -946,12 +953,14 @@
             <a href="#about" class="block py-3 px-4 rounded-lg font-medium transition-colors hover:bg-blue-50" style="color: var(--text-secondary);" onclick="toggleMobileMenu()">
               <i class="fas fa-info-circle mr-3"></i>About
             </a>
+            
             <div class="pt-4 border-t" style="border-color: var(--border-color);">
               <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-lg font-semibold transition-colors" style="background-color: var(--button-bg); color: var(--button-text);">
                 <i class="fab fa-github"></i>
                 <span>Star on GitHub</span>
               </a>
             </div>
+            
           </div>
         </div>
       </div>
@@ -1075,6 +1084,41 @@
     <!-- Contributors Section -->
     <section id="contributors" class="py-16" style="background-color: var(--bg-secondary);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Repo states -->
+         
+        <div class="flex justify-center items-center flex-col mb-6">
+          <div class="flex justify-center mb-4 px-2 ">
+            <h2
+              class="text-3xl font-bold"
+              style="color: var(--text-primary)"
+            >
+              Repository States
+            </h2>
+          </div>
+          <div>
+            <div class="flex flex-col md:flex-row gap-8 p-4 justify-center item-center px-10 py-6 rounded-2xl shadow-lg border border-gray-700">
+              <!-- stars count -->
+              <div class="flex items-center space-x-2 text-gray-400 rounded-xl shadow-lg border border-yellow-700 p-2">
+                <i class="fas fa-star text-yellow-400"></i>
+                <span class="text-lg">Stars:</span>
+                <span class="font-bold text-white" id="footer-star-count">-</span>
+              </div>
+              <!-- forks count -->
+              <div class="flex items-center space-x-2 text-gray-400 rounded-xl shadow-lg border border-blue-700 p-2">
+                <i class="fas fa-code-branch text-blue-400"></i>
+                <span class="text-lg">Forks:</span>
+                <span class="font-bold text-white" id="footer-fork-count">-</span>
+              </div> 
+              <!-- issues -->
+              <div class="flex items-center space-x-2 text-gray-400 rounded-xl shadow-lg border border-blue-700 p-2">
+                <i class="fa-solid fa-circle-exclamation text-red-400 "></i>
+                <span class="text-lg">Issue's:</span>
+                <span class="font-bold text-white" id="footer-issue-count">-</span>
+              </div>
+            </div> 
+          </div>
+        </div>
+        
         <!-- Header -->
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
@@ -1096,6 +1140,9 @@
         <div id="contributors-modern-grid" class="contributors-grid mb-16">
           <!-- Contributors will be loaded here -->
         </div>
+
+        <!-- Show All Contributors Button -->
+        <div id="show-all-contributors-container"></div>
 
         <!-- Contribute CTA -->
         <div

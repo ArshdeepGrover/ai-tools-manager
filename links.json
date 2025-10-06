@@ -78,7 +78,63 @@
           "title": "Wordtune",
           "url": "https://www.wordtune.com/",
           "description": "An AI-powered writing companion that helps rephrase sentences, adjust tone, and shorten or expand text."
-        }
+        },
+        {
+          "title": "Simplified AI Writer",
+          "url": "https://simplified.com/ai-writer",
+          "description": "Free AI writer for blogs, social media, emails, and marketing copy"
+        },
+        {
+          "title": "Gemini",
+          "url": "https://gemini.google.com/",
+          "description": "A powerful, multimodal AI model by Google."
+        },
+        {
+          "title": "Poe",
+          "url": "https://poe.com/",
+          "description": "An AI platform to chat with a variety of bots like ChatGPT, Claude, and more."
+        },
+        {
+          "title": "Promptly AI",
+          "url": "https://chromewebstore.google.com/detail/promptly-ai/jjfoaldlbbcfgkhbfmadjjelphbgmngg?hl=en",
+          "description": "Promptly AI is a Chrome extension that helps you improve, manage, and reuse your prompts across AI chat interfaces (ChatGPT, Claude, Perplexity, etc.)"
+        },
+        {
+          "title": "Originality AI",
+          "url": "https://originality.ai/",
+          "description": "Originality.ai is a content quality tool that detects AI-generated text, checks plagiarism, and performs fact checking to ensure credible, original writing."
+        },
+        {
+          "title": "AISEO",
+           "url": "https://aiseo.ai/",
+          "description": "An AI-powered writing assistant for generating SEO-optimized content, including articles, blog posts, and marketing copy."
+},
+{
+    "title": "Writesonic",
+    "url": "https://writesonic.com/",
+    "description": "AI content generator for SEO-optimized blog posts, landing pages, and product descriptions. Free plan offers 10,000 words/month."
+  },
+  {
+    "title": "HyperWrite",
+    "url": "https://www.hyperwriteai.com/",
+    "description": "AI writing assistant for brainstorming, outlining, and drafting content, with unlimited basic generations on the free plan."
+  },
+  {
+    "title": "Yomu",
+    "url": "https://www.yomu.ai/",
+    "description": "AI writing assistant for academic writing, structuring essays and citations. Free for individuals with limits."
+  },
+  {
+    "title": "ContentBot",
+    "url": "https://www.contentbot.ai/",
+    "description": "Versatile AI content creator for eCommerce product descriptions and blog posts. Free plan includes 2,000 words/month."
+  },
+  {
+    "title": "Lately",
+    "url": "https://www.lately.ai/",
+    "description": "AI-powered social media post generator with scheduling and analytics. Offers a free trial."
+  }
+
       ]
     },
     {
@@ -185,6 +241,16 @@
           "title": "Napkin",
           "url": "https://napkin.ai",
           "description": "AI-powered visual storytelling and presentation tool"
+        },
+        {
+          "title": "GPTforSlides",
+          "url": "https://www.gptforslides.app/",
+          "description": "AI-powered tool that converts topics or text into professional Google Slides presentations"
+        },
+        {
+          "title": "Zoho Show Zia AI",
+          "url": "https://www.zoho.com/show/",
+          "description": "AI-integrated presentaton builder"
         }
       ]
     },
@@ -196,6 +262,11 @@
           "title": "GitHub Copilot",
           "url": "https://github.com/features/copilot",
           "description": "AI code assistant with free trial"
+        },
+        {
+          "title": "Qwen AI",
+          "url": "https://chat.qwen.ai/",
+          "description": "Free AI Assistant "
         },
         {
           "title": "Replit AI",
@@ -362,6 +433,16 @@
           "title": "Synthesia",
           "url": "https://www.synthesia.io/",
           "description": "An AI video generation platform that creates videos with realistic AI avatars and voiceovers in minutes."
+        },
+        {
+          "title": "15.ai",
+          "url": "https://15.dev/",
+          "description": "Generate character speech (TTS)"
+        },
+        {
+          "title": "Murf",
+          "url": "https://murf.ai/",
+          "description": "Realistic AI voice & TTS tool"
         }
       ]
     },
@@ -458,6 +539,16 @@
           "title": "Scribe",
           "url": "https://scribehow.com/",
           "description": "An AI tool that automatically creates step-by-step guides and tutorials for any process, simply by recording your screen."
+        },
+        {
+          "title": "Wobo AI",
+          "url": "https://www.wobo.ai/",
+          "description": "Wobo AI helps you land your dream job with AI-powered job search, ATS-friendly resumes, and smart cover letters."
+        },
+        {
+        "title": "Pi (Inflection AI)",
+        "url": "https://pi.ai",
+        "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
         }
       ]
     },
@@ -515,6 +606,11 @@
           "description": "Web-based IDE for prototyping with Gemini AI models"
         },
         {
+          "title": "Lyzr.ai",
+          "url": "https://www.lyzr.ai/",
+          "description": "Build and deploy AI agents to automate workflows with free plan"
+        },
+        {
           "title": "Hugging Face Spaces",
           "url": "https://huggingface.co/spaces",
           "description": "AI Model Prototyping"
@@ -529,6 +625,16 @@
           "title": "Chess Champ",
           "url": "https://gemini.google.com/gem/chess-champ",
           "description": "AI tool for playing and analyzing chess games"
+        },
+        {
+          "title": "Ludo Ai Game",
+          "url" : "https://ludo.ai/",
+          "description" : "Idea generator for new game mechanics, storylines, and level design"
+        },
+        {
+          "title": "TACTIC BLITZ",
+          "url" : "https://www.yeschat.ai/gpts-9t557fXc0DB-TACTIC-BLITZ?utm_source=chatgpt.com",
+          "description" : "AI coach that gives move-by-move strategy advice for different genres"
         }
       ]
     },
@@ -565,6 +671,11 @@
           "title": "Jan",
           "url": "https://jan.ai/",
           "description": "Open-source local ChatGPT alternative"
+        },
+        {
+          "title": "DeepSeek",
+          "url": "https://github.com/deepseek-ai",
+          "description": "Open-source DeepSeek models for local/edge AI"
         }
       ]
     }

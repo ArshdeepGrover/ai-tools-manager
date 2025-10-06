@@ -1,6 +1,9 @@
 let allCategories = [];
 let currentFilter = "all";
 let searchTerm = ""; // current text search filter
+let showAllCategories = {}; // per category expansion state
+let showAllContributors = false;
+let allContributors = [];
 
 async function loadLinks() {
   try {
@@ -21,7 +24,8 @@ async function loadContributors() {
   try {
     const response = await fetch("contributors.json");
     const data = await response.json();
-    renderContributors(data.contributors);
+    allContributors = data.contributors;
+    renderContributors(allContributors);
     updateContributorStats(data.contributors.length);
   } catch (error) {
     console.error("Error loading contributors:", error);
@@ -105,8 +109,7 @@ function filterByCategory(categoryName) {
       // Update count styling for inactive buttons
       const countSpan = btn.querySelector("span:last-child");
       if (countSpan) {
-        countSpan.className =
-          "px-2 py-1 rounded-full text-xs";
+        countSpan.className = "px-2 py-1 rounded-full text-xs";
         countSpan.style.cssText = `
           background-color: var(--bg-tertiary);
           color: var(--text-secondary);
@@ -142,16 +145,24 @@ function renderLinks(categories) {
     categoryDiv.className = "mb-16";
     categoryDiv.setAttribute("data-category", category.name);
 
+    // Check if category is expanded
+    const isExpanded = showAllCategories[category.name] || false;
+    const linksToShow = isExpanded
+      ? category.links
+      : category.links.slice(0, 6);
+
     categoryDiv.innerHTML = `
       <div class="flex items-center space-x-4 mb-8">
         <span class="text-4xl">${category.icon}</span>
-        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${category.name}</h2>
+        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${
+          category.name
+        }</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        ${category.links
+        ${linksToShow
           .map(
             (link) => `
-          <a href="${link.url}" target="_blank" 
+          <a href="${link.url}" target="_blank"
              class="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-2 hover:border-blue-300 card-hover group"
              style="background-color: var(--card-bg); border-color: var(--card-border);"
              onclick="trackToolClick('${link.title}', '${category.name}')">
@@ -175,6 +186,19 @@ function renderLinks(categories) {
           )
           .join("")}
       </div>
+      ${
+        category.links.length > 6
+          ? `
+        <div class="text-center mt-6">
+          <button class="show-more-btn" data-action="${
+            isExpanded ? "show-less" : "show-more"
+          }" onclick="toggleCategory('${category.name}')">
+            <span>${isExpanded ? "Show Less" : "Show More"}</span>
+          </button>
+        </div>
+      `
+          : ""
+      }
     `;
 
     mainContent.appendChild(categoryDiv);
@@ -190,10 +214,13 @@ function renderContributors(contributors) {
     totalContributorsText.textContent = contributors.length;
   }
 
+  // Always show all contributors (pagination removed)
+  const contributorsToShow = contributors;
+
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
   if (modernGrid) {
-    modernGrid.innerHTML = contributors
+    modernGrid.innerHTML = contributorsToShow
       .map((contributor, index) => {
         const isCreator = contributor.role === "Creator & Maintainer";
         const contributionCount = contributor.contributions
@@ -201,11 +228,11 @@ function renderContributors(contributors) {
           : 0;
 
         return `
-          <div class="contributor-card-modern" 
+          <div class="contributor-card-modern"
                style="animation-delay: ${index * 0.1}s">
             <div>
               <div class="flex items-center space-x-3 mb-3">
-                <img src="${contributor.avatar}" alt="${contributor.name}" 
+                <img src="${contributor.avatar}" alt="${contributor.name}"
                      class="contributor-avatar-modern flex-shrink-0" />
                 <div class="contributor-info flex-1 min-w-0">
                   <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${
@@ -224,11 +251,9 @@ function renderContributors(contributors) {
                 </div>
               </div>
             </div>
-            
+
             <div class="contributor-social-modern">
-              <a href="https://github.com/${
-                contributor.github
-              }" target="_blank" 
+              <a href="https://github.com/${contributor.github}" target="_blank"
                  class="social-link-modern" title="GitHub"
                  onclick="trackContributorClick('${contributor.name}')">
                 <i class="fab fa-github"></i>
@@ -236,7 +261,7 @@ function renderContributors(contributors) {
               ${
                 contributor.linkedin
                   ? `
-                <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" 
+                <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
                    class="social-link-modern" title="LinkedIn">
                   <i class="fab fa-linkedin"></i>
                 </a>
@@ -246,7 +271,7 @@ function renderContributors(contributors) {
               ${
                 contributor.website
                   ? `
-                <a href="${contributor.website}" target="_blank" 
+                <a href="${contributor.website}" target="_blank"
                    class="social-link-modern" title="Website">
                   <i class="fas fa-globe"></i>
                 </a>
@@ -258,6 +283,14 @@ function renderContributors(contributors) {
         `;
       })
       .join("");
+  }
+
+  // Pagination removed - no button needed
+  const showAllBtnContainer = document.getElementById(
+    "show-all-contributors-container"
+  );
+  if (showAllBtnContainer) {
+    showAllBtnContainer.innerHTML = "";
   }
 }
 
@@ -358,7 +391,7 @@ function trackCategoryFilter(categoryName) {
 function toggleMobileMenu() {
   const mobileMenu = document.getElementById("mobile-menu");
   const menuIcon = document.getElementById("menu-icon");
-  
+
   if (mobileMenu.classList.contains("hidden")) {
     // Show menu
     mobileMenu.classList.remove("hidden");
@@ -371,6 +404,28 @@ function toggleMobileMenu() {
     menuIcon.classList.remove("rotate");
     menuIcon.classList.remove("fa-times");
     menuIcon.classList.add("fa-bars");
+  }
+}
+
+function toggleCategory(categoryName) {
+  showAllCategories[categoryName] = !showAllCategories[categoryName];
+  applyFilters(); // Re-render with current filters
+}
+
+function toggleShowAllContributors() {
+  showAllContributors = !showAllContributors;
+  renderContributors(allContributors);
+  // Scroll to default parts when showing less
+  if (!showAllContributors) {
+    setTimeout(() => {
+      const contributorsSection = document.getElementById("contributors");
+      if (contributorsSection) {
+        contributorsSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }, 0);
   }
 }
 
@@ -421,6 +476,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // GitHub Stars functionality
 async function loadGitHubStars() {
+  const owner = "ArshdeepGrover";
+  const repo = "ai-tools-manager";
   try {
     const response = await fetch(
       "https://api.github.com/repos/ArshdeepGrover/ai-tools-manager"
@@ -429,11 +486,18 @@ async function loadGitHubStars() {
     const starCount = data.stargazers_count;
     const forkCount = data.forks_count;
 
+    // Get open issues
+    const issuesRes = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/issues?state=open`
+    );
+    const issuesData = await issuesRes.json();
+    const issuesCount = issuesData.filter((item) => !item.pull_request).length; // exclude PRs 
+
     // Update all GitHub star buttons
     updateGitHubButtons(starCount);
 
     // Update footer stats
-    updateFooterStats(starCount, forkCount);
+    updateFooterStats(starCount, forkCount , issuesCount);
   } catch (error) {
     console.error("Error fetching GitHub stats:", error);
     // Fallback - just show the buttons without star count
@@ -476,7 +540,7 @@ function updateGitHubButtons(starCount) {
   }
 }
 
-function updateFooterStats(starCount, forkCount) {
+function updateFooterStats(starCount, forkCount , issuesCount) {
   // Update footer star count
   const footerStarCount = document.getElementById("footer-star-count");
   if (footerStarCount) {
@@ -496,6 +560,17 @@ function updateFooterStats(starCount, forkCount) {
       footerForkCount.classList.remove("animate-pulse");
     }, 1000);
   }
+ 
+
+  //update issue's count
+  const footerIssuesCount = document.getElementById("footer-issue-count");
+  if (footerIssuesCount) {
+    footerIssuesCount.textContent = issuesCount;
+    footerIssuesCount.classList.add("animate-pulse");
+    setTimeout(() => {
+      footerIssuesCount.classList.remove("animate-pulse");
+    }, 1000);
+  }
 
   // Track GitHub stats loaded
   if (typeof gtag !== "undefined") {
@@ -509,34 +584,35 @@ function updateFooterStats(starCount, forkCount) {
 
 // Theme Toggle Functionality (system-aware with persistence)
 function initializeTheme() {
-  const themeToggle = document.getElementById('theme-toggle');
+  const themeToggle = document.getElementById("theme-toggle");
   if (!themeToggle) return;
 
   const root = document.documentElement; // apply data-theme on <html> to minimize FOUC
-  const mediaQuery = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+  const mediaQuery =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
 
-  const getSavedPreference = () => localStorage.getItem('theme'); // 'light' | 'dark' | null
+  const getSavedPreference = () => localStorage.getItem("theme"); // 'light' | 'dark' | null
   const inSystemMode = () => getSavedPreference() == null;
 
   const applyTheme = (mode) => {
-    if (mode === 'dark') {
-      root.setAttribute('data-theme', 'dark');
+    if (mode === "dark") {
+      root.setAttribute("data-theme", "dark");
     } else {
-      root.removeAttribute('data-theme');
+      root.removeAttribute("data-theme");
     }
   };
 
   const syncToggle = (mode) => {
-    const isLight = mode === 'light';
+    const isLight = mode === "light";
     themeToggle.checked = isLight; // Checked = light mode
-    themeToggle.setAttribute('aria-checked', String(isLight));
+    themeToggle.setAttribute("aria-checked", String(isLight));
   };
 
   const effectiveTheme = () => {
     const saved = getSavedPreference();
-    if (saved === 'light' || saved === 'dark') return saved;
+    if (saved === "light" || saved === "dark") return saved;
     // Default to system preference when no saved value
-    return mediaQuery && mediaQuery.matches ? 'dark' : 'light';
+    return mediaQuery && mediaQuery.matches ? "dark" : "light";
   };
 
   // Initial apply
@@ -547,35 +623,38 @@ function initializeTheme() {
   // Respond to system changes only when in "system mode" (no saved preference)
   const handleSystemChange = (e) => {
     if (!inSystemMode()) return;
-    const next = e.matches ? 'dark' : 'light';
+    const next = e.matches ? "dark" : "light";
     applyTheme(next);
     syncToggle(next);
   };
-  if (mediaQuery && typeof mediaQuery.addEventListener === 'function') {
-    mediaQuery.addEventListener('change', handleSystemChange);
-  } else if (mediaQuery && typeof mediaQuery.addListener === 'function') {
+  if (mediaQuery && typeof mediaQuery.addEventListener === "function") {
+    mediaQuery.addEventListener("change", handleSystemChange);
+  } else if (mediaQuery && typeof mediaQuery.addListener === "function") {
     // Safari fallback
     mediaQuery.addListener(handleSystemChange);
   }
 
   // Toggle handler: user explicitly chooses light/dark (exits system mode)
-  themeToggle.addEventListener('change', function () {
-    const next = this.checked ? 'light' : 'dark';
+  themeToggle.addEventListener("change", function () {
+    const next = this.checked ? "light" : "dark";
     applyTheme(next);
     syncToggle(next);
-    localStorage.setItem('theme', next);
+    localStorage.setItem("theme", next);
   });
 }
 
 // Initialize theme when DOM is loaded (runs alongside other DOMContentLoaded)
-document.addEventListener('DOMContentLoaded', initializeTheme);
+document.addEventListener("DOMContentLoaded", initializeTheme);
 
 //back to top button
 const backToTopBtn = document.getElementById("backToTopBtn");
 
 // Show/hide button on scroll
 window.onscroll = function () {
-  if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+  if (
+    document.body.scrollTop > 150 ||
+    document.documentElement.scrollTop > 150
+  ) {
     backToTopBtn.classList.add("show");
   } else {
     backToTopBtn.classList.remove("show");
@@ -586,6 +665,6 @@ window.onscroll = function () {
 backToTopBtn.addEventListener("click", () => {
   window.scrollTo({
     top: 0,
-    behavior: "smooth"
+    behavior: "smooth",
   });
 });
