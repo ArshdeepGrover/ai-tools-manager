@@ -95,16 +95,16 @@ function filterByCategory(categoryName) {
         "px-6 py-3 rounded-lg font-medium transition-colors flex items-center space-x-2" +
         " border-2" +
         " hover:border-blue-300";
-      button.style.cssText = `
+      btn.style.cssText = `
         background-color: var(--card-bg);
         color: var(--text-secondary);
         border-color: var(--border-color);
       `;
-      button.addEventListener("mouseover", () => {
-        button.style.backgroundColor = "var(--bg-tertiary)";
+      btn.addEventListener("mouseover", () => {
+        btn.style.backgroundColor = "var(--bg-tertiary)";
       });
-      button.addEventListener("mouseout", () => {
-        button.style.backgroundColor = "var(--card-bg)";
+      btn.addEventListener("mouseout", () => {
+        btn.style.backgroundColor = "var(--card-bg)";
       });
       // Update count styling for inactive buttons
       const countSpan = btn.querySelector("span:last-child");
@@ -136,6 +136,7 @@ function filterByCategory(categoryName) {
   // Track filter usage
   trackCategoryFilter(categoryName);
 }
+
 
 function renderLinks(categories) {
   const mainContent = document.getElementById("main-content");
