@@ -268,16 +268,7 @@
      "contributions": [
       "Added Pi (Inflection AI)", "Improved AI tool categorization logic"],
      "role":"Contributor"
-    }
-    ,
-    {
-      "name": "Hariharan",
-      "github": "nothariharan",
-      "avatar": "https://github.com/nothariharan.png",
-      "tagline": "better than yesterday",
-      "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
-      "role": "Contributor"
-    },
+    },    
     {
       "name": "Saatvik Sawarn",
       "github": "Saatvik-GT",
@@ -288,6 +279,14 @@
         "Added DeepSeek open source local model",
         "Removed duplicate Qwen entry"
       ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Hariharan",
+      "github": "nothariharan",
+      "avatar": "https://github.com/nothariharan.png",
+      "tagline": "better than yesterday",
+      "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
       "role": "Contributor"
     }
   ]
