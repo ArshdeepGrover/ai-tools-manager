@@ -281,6 +281,17 @@
         "Removed duplicate Qwen entry"
       ],
       "role": "Contributor"
-    }
+    },
+     {
+  "name": "Radhika Dodain",
+  "github": "Radhika-dodain",
+  "avatar": "https://avatars.githubusercontent.com/u/179999318?v=4",
+  "linkedin": "radhika-dodain",
+  "tagline": "Lets make studying fun",
+  "contributions": [
+    "Added Notion AI under AI Productivity category"
+  ],
+  "role": "Contributor"
+   }
   ]
 }
