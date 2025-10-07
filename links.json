@@ -508,6 +508,21 @@
       "title": "Resemble AI",
       "url": "https://www.resemble.ai/",
       "description": "Synthetic speech tool for custom voices and interactive experiences. Offers 1,000 words/month."
+    },
+    {
+      "title": "Lovo.ai",
+      "url": "https://lovo.ai/",
+      "description": "AI voice generation with video editing for content creators. 14 minutes/month on free plan."
+    },
+    {
+      "title": "Google Veo",
+      "url": "https://deepmind.google/models/veo/",
+      "description": "AI video generator for creative visuals and b-roll. Limited free via VideoFX."
+    },
+    {
+      "title": "OpusClip",
+      "url": "https://www.opus.pro/",
+      "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
     }
       ]
     },
@@ -609,7 +624,32 @@
         "title": "Pi (Inflection AI)",
         "url": "https://pi.ai",
         "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
-        }
+        },
+        {
+      "title": "Minimax",
+      "url": "https://www.minimax.chat/",
+      "description": "Multilingual AI chatbot for general queries and translations. Unlimited basic chats."
+    },
+    {
+      "title": "Chatbase",
+      "url": "https://www.chatbase.co/",
+      "description": "No-code AI chatbot builder for websites. 1 bot free."
+    },
+    {
+      "title": "Text Blaze",
+      "url": "https://www.textblaze.com/",
+      "description": "Automation tool for repetitive typing with snippets. Free snippets."
+    },
+    {
+      "title": "Actor Do",
+      "url": "https://actordo.ai/",
+      "description": "AI assistant for managing calendars and emails. Free calendar basics."
+    },
+    {
+      "title": "Wispr Flow",
+      "url": "https://wisprflow.ai/",
+      "description": "Voice-first AI for capturing thoughts into notes. Free voice notes."
+    }
       ]
     },
     {
