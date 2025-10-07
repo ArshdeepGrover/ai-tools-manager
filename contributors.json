@@ -271,6 +271,14 @@
     }
     ,
     {
+      "name": "Hariharan",
+      "github": "nothariharan",
+      "avatar": "https://github.com/nothariharan.png",
+      "tagline": "better than yesterday",
+      "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
+      "role": "Contributor"
+    },
+    {
       "name": "Saatvik Sawarn",
       "github": "Saatvik-GT",
       "avatar": "https://github.com/Saatvik-GT.png",

@@ -280,6 +280,11 @@
           "title": "PowerPoint Speaker Coach",
           "url": "https://www.microsoft.com/en-us/microsoft-365/powerpoint",
           "description": "Free with Microsoft 365 account. AI feedback tool for improving public speaking in presentations."
+        },
+        {
+          "title": "ChatSlide",
+          "url": "https://www.chatslide.ai/",
+          "description": "ChatSlide AI instantly transforms your text prompts into complete presentation slides using a simple conversational interface."
         }
       ]
     },
@@ -625,6 +630,11 @@
           "title": "AI Dungeon",
           "url": "https://aidungeon.com/",
           "description": "An AI-generated text-based adventure game with endless possibilities and storylines."
+        },
+        {
+          "title": "Infinite Craft",
+          "url": "https://neal.fun/infinite-craft/",
+          "description": "Infinite Craft is an AI-powered game where you start with four basic elements and combine them to discover a virtually endless universe of creations."
         }
       ]
     },
