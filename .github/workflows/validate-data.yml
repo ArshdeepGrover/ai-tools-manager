@@ -2,7 +2,6 @@ name: Validate Data
 
 on:
   pull_request:
-    branches: [production]
     paths:
       - "links.json"
       - "contributors.json"
@@ -10,8 +9,6 @@ on:
 jobs:
   validate-data:
     runs-on: ubuntu-latest
-    # Only run for the repository owner
-    if: github.actor == 'ArshdeepGrover' || github.repository_owner == 'ArshdeepGrover'
 
     steps:
       - name: Checkout code
