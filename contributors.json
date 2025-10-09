@@ -253,8 +253,8 @@
       "linkedin": "trivedikavya",
       "tagline": "AI Enthusiast",
       "contributions": [
-        "Added Gemini, Poe , AISEO AI tool to the collection",
-        "Added project goal section in readme file",
+        "Added Gemini,Poe,AISEO,Writesonic,HyperWrite,Yomu,ContentBot,Lately,PowerPoint Speaker Coach,NightCafe Studio,Artbreeder,Craiyon,Microsoft Designer,Playground AI,Codeium,Replit Ghostwriter,Mutable AI,Continue,Play.ht,Resemble AI,Minimax,Chatbase,Text Blaze,Actor Do,Wispr Flow,Lovo.ai,Google Veo,OpusClip AI tool to the collection" , 
+        "Added project goal section in readme file" , 
         "Fixed Tailwind CSS loading issues in some browsers"
       ],
       "website": "https://kavyatrivediterminalportfolio.netlify.app/",
@@ -272,15 +272,13 @@
       "role": "Contributor"
     },
     {
-      "name": "Jaswanth Kumar K",
-      "github": "Jaswanth-Kumar-2007",
-      "avatar": "https://github.com/Jaswanth-Kumar-2007.png",
-      "tagline": "Aspiring Software Engineer & Open Source Contributor",
-      "contributions": [
-        "Added Pi (Inflection AI)",
-        "Improved AI tool categorization logic"
-      ],
-      "role": "Contributor"
+     "name": "Jaswanth Kumar K",
+     "github": "Jaswanth-Kumar-2007",
+     "avatar": "https://github.com/Jaswanth-Kumar-2007.png",
+     "tagline": "Aspiring Software Engineer & Open Source Contributor",
+     "contributions": [
+      "Added Pi (Inflection AI)", "Improved AI tool categorization logic"],
+     "role":"Contributor"
     },
     {
       "name": "Saatvik Sawarn",
@@ -303,6 +301,14 @@
       "contributions": [
         "Added Redirect to Home Page When Clicking the Logo on Navbar"
       ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Hariharan",
+      "github": "nothariharan",
+      "avatar": "https://github.com/nothariharan.png",
+      "tagline": "better than yesterday",
+      "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
       "role": "Contributor"
     }
   ]

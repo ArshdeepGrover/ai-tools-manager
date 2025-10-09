@@ -20,8 +20,11 @@ jobs:
           script: |
             const prNumber = context.issue.number;
             const commentBody = `### 🚀 Your PR has been deployed!
-            Your changes are now live on the website: [AI Tools Hub](https://ai-tool-collection.vercel.app/)
-            Thank you for your contribution! 🎉`;
+             Your changes are now live on the website: [AI Tools Hub](https://ai-tool-collection.vercel.app/)
+             
+             If you forgot to give a star, please consider starring this project! ⭐
+
+             Thank you for your contribution! 🎉`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,

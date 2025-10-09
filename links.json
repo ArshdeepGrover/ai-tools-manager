@@ -280,6 +280,11 @@
           "title": "PowerPoint Speaker Coach",
           "url": "https://www.microsoft.com/en-us/microsoft-365/powerpoint",
           "description": "Free with Microsoft 365 account. AI feedback tool for improving public speaking in presentations."
+        },
+        {
+          "title": "ChatSlide",
+          "url": "https://www.chatslide.ai/",
+          "description": "ChatSlide AI instantly transforms your text prompts into complete presentation slides using a simple conversational interface."
         }
       ]
     },
@@ -388,11 +393,11 @@
           "description": "An AI coding assistant that understands your entire codebase to help write, fix, and explain code."
         },
         {
-      "title": "Codeium",
-      "url": "https://codeium.com/",
-      "description": "Free AI coding assistant with IDE integration and code completion. Unlimited for individuals."
-    },
-    {
+          "title": "Codeium",
+          "url": "https://codeium.com/",
+          "description": "Free AI coding assistant with IDE integration and code completion. Unlimited for individuals."
+       },
+       {
       "title": "Replit Ghostwriter",
       "url": "https://replit.com/site/ghostwriter",
       "description": "AI coding companion for generating and debugging code in Replit. Free in Replit core."
@@ -503,6 +508,21 @@
       "title": "Resemble AI",
       "url": "https://www.resemble.ai/",
       "description": "Synthetic speech tool for custom voices and interactive experiences. Offers 1,000 words/month."
+    },
+    {
+      "title": "Lovo.ai",
+      "url": "https://lovo.ai/",
+      "description": "AI voice generation with video editing for content creators. 14 minutes/month on free plan."
+    },
+    {
+      "title": "Google Veo",
+      "url": "https://deepmind.google/models/veo/",
+      "description": "AI video generator for creative visuals and b-roll. Limited free via VideoFX."
+    },
+    {
+      "title": "OpusClip",
+      "url": "https://www.opus.pro/",
+      "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
     }
       ]
     },
@@ -604,7 +624,32 @@
         "title": "Pi (Inflection AI)",
         "url": "https://pi.ai",
         "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
-        }
+        },
+        {
+      "title": "Minimax",
+      "url": "https://www.minimax.chat/",
+      "description": "Multilingual AI chatbot for general queries and translations. Unlimited basic chats."
+    },
+    {
+      "title": "Chatbase",
+      "url": "https://www.chatbase.co/",
+      "description": "No-code AI chatbot builder for websites. 1 bot free."
+    },
+    {
+      "title": "Text Blaze",
+      "url": "https://www.textblaze.com/",
+      "description": "Automation tool for repetitive typing with snippets. Free snippets."
+    },
+    {
+      "title": "Actor Do",
+      "url": "https://actordo.ai/",
+      "description": "AI assistant for managing calendars and emails. Free calendar basics."
+    },
+    {
+      "title": "Wispr Flow",
+      "url": "https://wisprflow.ai/",
+      "description": "Voice-first AI for capturing thoughts into notes. Free voice notes."
+    }
       ]
     },
     {
@@ -625,6 +670,11 @@
           "title": "AI Dungeon",
           "url": "https://aidungeon.com/",
           "description": "An AI-generated text-based adventure game with endless possibilities and storylines."
+        },
+        {
+          "title": "Infinite Craft",
+          "url": "https://neal.fun/infinite-craft/",
+          "description": "Infinite Craft is an AI-powered game where you start with four basic elements and combine them to discover a virtually endless universe of creations."
         }
       ]
     },

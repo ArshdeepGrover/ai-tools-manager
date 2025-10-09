@@ -215,9 +215,14 @@ function checkDuplicatesOnly() {
 if (require.main === module) {
   // Check command line arguments
   const args = process.argv.slice(2);
-  if (args.includes("--duplicates-only")) {
-    checkDuplicatesOnly();
-  } else {
-    validateLinks();
+  try {
+    if (args.includes("--duplicates-only")) {
+      checkDuplicatesOnly();
+    } else {
+      validateLinks();
+    }
+  } catch (err) {
+    console.error("\n❌ Script error:", err && err.stack ? err.stack : err);
+    process.exit(1);
   }
 }
