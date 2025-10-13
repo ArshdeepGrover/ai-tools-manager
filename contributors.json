@@ -288,6 +288,14 @@
       "tagline": "better than yesterday",
       "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
       "role": "Contributor"
+    },
+    {
+      "name": "Aprajita Thakur",
+      "github": "aprajita-99",
+      "avatar": "https://github.com/aprajita-99.png",
+      "tagline": "Keep Pushing",
+      "contributions": ["Added Junia AI in AI writing and content category ","Added Photocut , Lovart and Let's Enhance in AI Design and images","Added Just Done in AI productivity."],
+      "role": "Contributor"
     }
   ]
 }

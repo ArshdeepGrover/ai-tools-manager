@@ -133,6 +133,11 @@
           "title": "Lately",
           "url": "https://www.lately.ai/",
           "description": "AI-powered social media post generator with scheduling and analytics. Offers a free trial."
+        },
+        {
+          "title": "Junia AI",
+          "url": "https://junia.ai", 
+          "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning." 
         }
       ]
     },
@@ -234,6 +239,21 @@
           "title": "NightCafe Studio",
           "url": "https://creator.nightcafe.studio/",
           "description": "5 credits/day. AI art generator with multiple models and community challenges."
+        },
+        {
+          "title": "PhotoCut",
+          "url": "https://photocut.ai/free-tools/ai-design",
+          "description": "Generates logos, avatars, posters or interior designs from text prompts + offers editing tools like background removal & enhancements." 
+        },
+        {
+          "title": "Lovart",
+          "url": "https://lovart.ai",
+          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser." 
+        },
+        {
+          "title": "Let’s Enhance",
+          "url": "https://letsenhance.io", 
+          "description": "Upscale images, improve resolution, enhance lighting & tone using AI, especially for low quality photos." 
         }
       ]
     },
@@ -649,7 +669,12 @@
       "title": "Wispr Flow",
       "url": "https://wisprflow.ai/",
       "description": "Voice-first AI for capturing thoughts into notes. Free voice notes."
-    }
+    },
+    {
+          "title": "JustDone",
+          "url": "https://justdone.ai", 
+          "description": "Detects AI-generated content, checks similarity / plagiarism, helpful for content validation and authenticity." 
+        }
       ]
     },
     {
