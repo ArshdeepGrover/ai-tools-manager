@@ -1,0 +1,125 @@
+/* Responsive Design */
+
+/* Large screens */
+@media (max-width: 1200px) {
+  .contributors-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+  .contributors-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+/* Small screens and mobile */
+@media (max-width: 640px) {
+  .contributors-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .contributor-card-modern {
+    padding: 16px;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Mobile theme toggle adjustments */
+  .toggle-switch {
+    width: 40px;
+    height: 20px;
+  }
+
+  .switch-label {
+    height: 20px;
+    border-radius: 10px;
+  }
+
+  .slider::before {
+    width: 14px;
+    height: 14px;
+    top: 2px;
+    left: 2px;
+  }
+
+  .checkbox:checked ~ .slider::before {
+    transform: translateX(20px);
+  }
+
+  /* Mobile menu styles */
+  #mobile-menu a:hover {
+    background-color: var(--bg-tertiary) !important;
+    color: #3b82f6 !important;
+  }
+
+  /* Form elements for mobile */
+  input:focus, select:focus {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+    border-color: #3b82f6 !important;
+  }
+
+  input::placeholder {
+    color: var(--text-tertiary);
+  }
+
+  select option {
+    background-color: var(--card-bg);
+    color: var(--text-primary);
+  }
+
+  /* Back to top button mobile */
+  #backToTopBtn {
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+    font-size: 16px;
+  }
+
+  /* Show more button mobile */
+  .show-more-btn {
+    font-size: 12px;
+    padding: 10px 18px;
+    min-width: 120px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .contributor-card-modern {
+    padding: 12px;
+  }
+
+  .contributor-avatar-modern {
+    width: 40px;
+    height: 40px;
+  }
+
+  .social-link-modern {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .contributors-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1400px) {
+  .contributors-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

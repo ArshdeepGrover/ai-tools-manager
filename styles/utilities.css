@@ -1,0 +1,137 @@
+/* Utility Classes - Extracted from inline Tailwind */
+
+/* Border utilities */
+.border-t {
+  border-top: 1px solid var(--border-color);
+}
+
+.border-gray-800 {
+  border-color: #1f2937;
+}
+
+/* Margin utilities */
+.mt-8 {
+  margin-top: 2rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* Padding utilities */
+.pt-8 {
+  padding-top: 2rem;
+}
+
+.p-8 {
+  padding: 2rem;
+}
+
+/* Text utilities */
+.text-center {
+  text-align: center;
+}
+
+.text-gray-400 {
+  color: var(--text-tertiary);
+}
+
+.text-white {
+  color: #ffffff;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Flex utilities */
+.flex {
+  display: flex;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.space-x-8 > * + * {
+  margin-left: 2rem;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem;
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem;
+}
+
+/* Grid utilities */
+.grid {
+  display: grid;
+}
+
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+/* Color utilities */
+.bg-gray-900 {
+  background-color: #111827;
+}
+
+/* Footer specific styles */
+.footer-stats {
+  border-top: 1px solid #374151;
+  margin-top: 2rem;
+  padding-top: 2rem;
+}
+
+.footer-stats-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.footer-stat-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-tertiary);
+}
+
+.footer-stat-value {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-copyright {
+  text-align: center;
+  color: var(--text-tertiary);
+}
+
+/* Icon colors */
+.text-yellow-400 {
+  color: #fbbf24;
+}
+
+.text-blue-400 {
+  color: #60a5fa;
+}
