@@ -2,16 +2,16 @@ name: Check Duplicates
 
 on:
   pull_request:
-    branches: [production]
     paths:
       - "links.json"
+
+permissions:
+  pull-requests: write
+  contents: read
 
 jobs:
   check-duplicates:
     runs-on: ubuntu-latest
-    # Only run for the repository owner
-    if: github.actor == 'ArshdeepGrover' || github.repository_owner == 'ArshdeepGrover'
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -22,35 +22,28 @@ jobs:
           node-version: "18"
 
       - name: Check for duplicate links
-        run: node validate-links.js --duplicates-only
+        id: check
+        run: |
+          if node validate-links.js --duplicates-only; then
+            echo "result=success" >> $GITHUB_OUTPUT
+          else
+            echo "result=failure" >> $GITHUB_OUTPUT
+            exit 1
+          fi
 
-      - name: Comment on PR if duplicates found
-        if: failure()
-        uses: actions/github-script@v7
+      - name: Comment on PR
+        if: always()
+        uses: actions/github-script@v6
         with:
           script: |
-            github.rest.issues.createComment({
+            const result = '${{ steps.check.outputs.result }}';
+            const body = result === 'success' 
+              ? `✅ **No Duplicates Found**\n\nAll links are unique. Ready for review!`
+              : `❌ **Duplicate Links Detected**\n\nFound duplicate titles or URLs in your changes.\nCheck the workflow logs for details.\n\nPlease remove duplicates and push again.`;
+            
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `❌ **Duplicate Links Detected**
-              
-              Found duplicate titles or URLs in your changes.
-              Check the workflow logs for details.
-              
-              Please remove duplicates and push again.`
-            })
-
-      - name: Comment on PR if no duplicates
-        if: success()
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `✅ **No Duplicates Found**
-              
-              All links are unique. Ready for review!`
-            })
+              body: body
+            });

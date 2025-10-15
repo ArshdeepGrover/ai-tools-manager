@@ -108,33 +108,37 @@
           "title": "AISEO",
            "url": "https://aiseo.ai/",
           "description": "An AI-powered writing assistant for generating SEO-optimized content, including articles, blog posts, and marketing copy."
-},
-{
-    "title": "Writesonic",
-    "url": "https://writesonic.com/",
-    "description": "AI content generator for SEO-optimized blog posts, landing pages, and product descriptions. Free plan offers 10,000 words/month."
-  },
-  {
-    "title": "HyperWrite",
-    "url": "https://www.hyperwriteai.com/",
-    "description": "AI writing assistant for brainstorming, outlining, and drafting content, with unlimited basic generations on the free plan."
-  },
-  {
-    "title": "Yomu",
-    "url": "https://www.yomu.ai/",
-    "description": "AI writing assistant for academic writing, structuring essays and citations. Free for individuals with limits."
-  },
-  {
-    "title": "ContentBot",
-    "url": "https://www.contentbot.ai/",
-    "description": "Versatile AI content creator for eCommerce product descriptions and blog posts. Free plan includes 2,000 words/month."
-  },
-  {
-    "title": "Lately",
-    "url": "https://www.lately.ai/",
-    "description": "AI-powered social media post generator with scheduling and analytics. Offers a free trial."
-  }
-
+        },
+        {
+          "title": "Writesonic",
+          "url": "https://writesonic.com/",
+          "description": "AI content generator for SEO-optimized blog posts, landing pages, and product descriptions. Free plan offers 10,000 words/month."
+        },
+        {
+          "title": "HyperWrite",
+          "url": "https://www.hyperwriteai.com/",
+          "description": "AI writing assistant for brainstorming, outlining, and drafting content, with unlimited basic generations on the free plan."
+        },
+        {
+          "title": "Yomu",
+          "url": "https://www.yomu.ai/",
+          "description": "AI writing assistant for academic writing, structuring essays and citations. Free for individuals with limits."
+        },
+        {
+          "title": "ContentBot",
+          "url": "https://www.contentbot.ai/",
+          "description": "Versatile AI content creator for eCommerce product descriptions and blog posts. Free plan includes 2,000 words/month."
+        },
+        {
+          "title": "Lately",
+          "url": "https://www.lately.ai/",
+          "description": "AI-powered social media post generator with scheduling and analytics. Offers a free trial."
+        },
+        {
+          "title": "Junia AI",
+          "url": "https://junia.ai", 
+          "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning." 
+        }
       ]
     },
     {
@@ -210,6 +214,46 @@
           "title": "Looka",
           "url": "https://looka.com/",
           "description": "AI-powered platform for designing logos and building a brand identity."
+        },
+        {
+          "title": "Playground AI",
+          "url": "https://playgroundai.com/",
+          "description": "500 images/day. User-friendly image generation using Stable Diffusion and DALL-E models."
+        },
+        {
+          "title": "Microsoft Designer",
+          "url": "https://designer.microsoft.com/",
+          "description": "Unlimited with Microsoft account. AI graphic design platform for social media and marketing visuals."
+        },
+        {
+          "title": "Craiyon",
+          "url": "https://www.craiyon.com/",
+          "description": "Unlimited generations. Lightweight AI image generator for fun illustrations and memes."
+        },
+        {
+          "title": "Artbreeder",
+          "url": "https://www.artbreeder.com/",
+          "description": "Free community access. AI tool for blending and evolving images in real-time."
+        },
+        {
+          "title": "NightCafe Studio",
+          "url": "https://creator.nightcafe.studio/",
+          "description": "5 credits/day. AI art generator with multiple models and community challenges."
+        },
+        {
+          "title": "PhotoCut",
+          "url": "https://photocut.ai/free-tools/ai-design",
+          "description": "Generates logos, avatars, posters or interior designs from text prompts + offers editing tools like background removal & enhancements." 
+        },
+        {
+          "title": "Lovart",
+          "url": "https://lovart.ai",
+          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser." 
+        },
+        {
+          "title": "Let’s Enhance",
+          "url": "https://letsenhance.io", 
+          "description": "Upscale images, improve resolution, enhance lighting & tone using AI, especially for low quality photos." 
         }
       ]
     },
@@ -251,6 +295,16 @@
           "title": "Zoho Show Zia AI",
           "url": "https://www.zoho.com/show/",
           "description": "AI-integrated presentaton builder"
+        },
+        {
+          "title": "PowerPoint Speaker Coach",
+          "url": "https://www.microsoft.com/en-us/microsoft-365/powerpoint",
+          "description": "Free with Microsoft 365 account. AI feedback tool for improving public speaking in presentations."
+        },
+        {
+          "title": "ChatSlide",
+          "url": "https://www.chatslide.ai/",
+          "description": "ChatSlide AI instantly transforms your text prompts into complete presentation slides using a simple conversational interface."
         }
       ]
     },
@@ -357,7 +411,28 @@
           "title": "Sourcegraph Cody",
           "url": "https://sourcegraph.com/cody",
           "description": "An AI coding assistant that understands your entire codebase to help write, fix, and explain code."
-        }
+        },
+        {
+          "title": "Codeium",
+          "url": "https://codeium.com/",
+          "description": "Free AI coding assistant with IDE integration and code completion. Unlimited for individuals."
+       },
+       {
+      "title": "Replit Ghostwriter",
+      "url": "https://replit.com/site/ghostwriter",
+      "description": "AI coding companion for generating and debugging code in Replit. Free in Replit core."
+    },
+    {
+      "title": "Mutable AI",
+      "url": "https://www.mutable.ai/",
+      "description": "AI for refactoring legacy code and generating documentation. Free tier for basic refactoring."
+    },
+    {
+      "title": "Continue",
+      "url": "https://www.continue.dev/",
+      "description": "Open-source AI coding assistant with in-IDE autocomplete. Fully free."
+    }
+
       ]
     },
     {
@@ -443,7 +518,32 @@
           "title": "Murf",
           "url": "https://murf.ai/",
           "description": "Realistic AI voice & TTS tool"
-        }
+        },
+            {
+      "title": "Play.ht",
+      "url": "https://play.ht/",
+      "description": "Text-to-speech platform for business narration and podcasts. Offers 12,500 characters/month."
+    },
+    {
+      "title": "Resemble AI",
+      "url": "https://www.resemble.ai/",
+      "description": "Synthetic speech tool for custom voices and interactive experiences. Offers 1,000 words/month."
+    },
+    {
+      "title": "Lovo.ai",
+      "url": "https://lovo.ai/",
+      "description": "AI voice generation with video editing for content creators. 14 minutes/month on free plan."
+    },
+    {
+      "title": "Google Veo",
+      "url": "https://deepmind.google/models/veo/",
+      "description": "AI video generator for creative visuals and b-roll. Limited free via VideoFX."
+    },
+    {
+      "title": "OpusClip",
+      "url": "https://www.opus.pro/",
+      "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
+    }
       ]
     },
     {
@@ -549,7 +649,37 @@
         "title": "Pi (Inflection AI)",
         "url": "https://pi.ai",
         "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
-        }
+        },
+        {
+      "title": "Minimax",
+      "url": "https://www.minimax.chat/",
+      "description": "Multilingual AI chatbot for general queries and translations. Unlimited basic chats."
+    },
+    {
+      "title": "Chatbase",
+      "url": "https://www.chatbase.co/",
+      "description": "No-code AI chatbot builder for websites. 1 bot free."
+    },
+    {
+      "title": "Text Blaze",
+      "url": "https://www.textblaze.com/",
+      "description": "Automation tool for repetitive typing with snippets. Free snippets."
+    },
+    {
+      "title": "Actor Do",
+      "url": "https://actordo.ai/",
+      "description": "AI assistant for managing calendars and emails. Free calendar basics."
+    },
+    {
+      "title": "Wispr Flow",
+      "url": "https://wisprflow.ai/",
+      "description": "Voice-first AI for capturing thoughts into notes. Free voice notes."
+    },
+    {
+      "title": "JustDone",
+      "url": "https://justdone.ai", 
+      "description": "Detects AI-generated content, checks similarity / plagiarism, helpful for content validation and authenticity." 
+    }
       ]
     },
     {
@@ -570,6 +700,11 @@
           "title": "AI Dungeon",
           "url": "https://aidungeon.com/",
           "description": "An AI-generated text-based adventure game with endless possibilities and storylines."
+        },
+        {
+          "title": "Infinite Craft",
+          "url": "https://neal.fun/infinite-craft/",
+          "description": "Infinite Craft is an AI-powered game where you start with four basic elements and combine them to discover a virtually endless universe of creations."
         }
       ]
     },
