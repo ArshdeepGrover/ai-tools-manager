@@ -1,21 +1,6 @@
 {
   "contributors": [
     {
-      "name": "Bhuwan",
-      "github": "BhuwanSKumar",
-      "avatar": "https://avatars.githubusercontent.com/u/133322497",
-      "linkedin": "https://www.linkedin.com/in/bhuwan-saretia/",
-      "tagline": "Full Stack Developer | Open Source Enthusiast",
-      "contributions": [
-        "RunDiffusion – AI image model prototyping platform.",
-        "Google Colab – Free Jupyter notebooks with GPU support for AI experimentation.",
-        "Kaggle Notebooks – Free Jupyter notebooks with GPU support and access to datasets.",
-        "MagickPen – AI-powered writing and code prototyping tool.",
-        "Tiipe AI - AI-driven content and workflow automation."
-      ],
-      "role": "Contributor"
-    },
-    {
       "name": "Arshdeep Singh",
       "github": "ArshdeepGrover",
       "avatar": "https://www.arshdeepsingh.info/images/arshdeep-singh.png",
@@ -283,8 +268,7 @@
      "contributions": [
       "Added Pi (Inflection AI)", "Improved AI tool categorization logic"],
      "role":"Contributor"
-    }
-    ,
+    },
     {
       "name": "Saatvik Sawarn",
       "github": "Saatvik-GT",
@@ -296,6 +280,21 @@
         "Removed duplicate Qwen entry"
       ],
       "role": "Contributor"
-    }
+    },
+    {
+      "name": "Bhuwan",
+      "github": "BhuwanSKumar",
+      "avatar": "https://avatars.githubusercontent.com/u/133322497",
+      "linkedin": "https://www.linkedin.com/in/bhuwan-saretia/",
+      "tagline": "Full Stack Developer | Open Source Enthusiast",
+      "contributions": [
+        "RunDiffusion – AI image model prototyping platform.",
+        "Google Colab – Free Jupyter notebooks with GPU support for AI experimentation.",
+        "Kaggle Notebooks – Free Jupyter notebooks with GPU support and access to datasets.",
+        "MagickPen – AI-powered writing and code prototyping tool.",
+        "Tiipe AI - AI-driven content and workflow automation."
+      ],
+      "role": "Contributor"
+    },
   ]
 }
