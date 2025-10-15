@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="styles/layout.css" />
     <link rel="stylesheet" href="styles/animations.css" />
     <link rel="stylesheet" href="styles/utilities.css" />
+    <link rel="stylesheet" href="styles/page-specific.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
     <link rel="stylesheet" href="style.css" />
     <!-- Primary Meta Tags -->
@@ -129,6 +130,8 @@
         }
       }
     </script>
+
+
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -272,6 +275,14 @@
               style="color: var(--text-secondary);"
               >About</a
             >
+            
+            <!-- Theme Toggle -->
+            <!-- <div class="toggle-switch">
+              <input type="checkbox" class="checkbox" id="theme-toggle" aria-label="Toggle dark mode" />
+              <label for="theme-toggle" class="switch-label">
+                <span class="slider"></span>
+              </label>
+            </div> -->
           </div>
 
       <!-- GitHub Star Button -->
@@ -462,38 +473,36 @@
     <!-- Contributors Section -->
     <section id="contributors" class="py-16" style="background-color: var(--bg-secondary);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Repo states -->
-         
-        <div class="flex justify-center items-center flex-col mb-6">
-          <div class="flex justify-center mb-4 px-2 ">
-            <h2
-              class="text-3xl font-bold"
-              style="color: var(--text-primary)"
-            >
-              Repository States
-            </h2>
-          </div>
-          <div>
-            <div class="flex flex-col md:flex-row gap-8 p-4 justify-center item-center px-10 py-6 rounded-2xl shadow-lg border border-gray-700">
-              <!-- stars count -->
-              <div class="flex items-center space-x-2 text-gray-400 rounded-xl shadow-lg border border-yellow-700 p-2">
-                <i class="fas fa-star text-yellow-400"></i>
-                <span class="text-lg">Stars:</span>
-                <span class="font-bold text-white" id="footer-star-count">-</span>
+        <!-- Repository Stats -->
+        <div class="text-center mb-12">
+          <h2 class="text-2xl font-bold mb-6" style="color: var(--text-primary);">
+            Repository Stats
+          </h2>
+          <div class="flex flex-col sm:flex-row gap-6 justify-center items-center max-w-2xl mx-auto">
+            <!-- Stars -->
+            <div class="flex items-center gap-3 bg-gradient-to-r from-yellow-50 to-orange-50 px-6 py-4 rounded-xl border border-yellow-200 min-w-[140px]" style="background: var(--card-bg); border-color: var(--border-color);">
+              <i class="fas fa-star text-yellow-500 text-xl"></i>
+              <div class="text-left">
+                <div class="text-2xl font-bold" style="color: var(--text-primary);" id="repo-star-count">-</div>
+                <div class="text-sm" style="color: var(--text-secondary);">Stars</div>
               </div>
-              <!-- forks count -->
-              <div class="flex items-center space-x-2 text-gray-400 rounded-xl shadow-lg border border-blue-700 p-2">
-                <i class="fas fa-code-branch text-blue-400"></i>
-                <span class="text-lg">Forks:</span>
-                <span class="font-bold text-white" id="footer-fork-count">-</span>
-              </div> 
-              <!-- issues -->
-              <div class="flex items-center space-x-2 text-gray-400 rounded-xl shadow-lg border border-blue-700 p-2">
-                <i class="fa-solid fa-circle-exclamation text-red-400 "></i>
-                <span class="text-lg">Issue's:</span>
-                <span class="font-bold text-white" id="footer-issue-count">-</span>
+            </div>
+            <!-- Forks -->
+            <div class="flex items-center gap-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-6 py-4 rounded-xl border border-blue-200 min-w-[140px]" style="background: var(--card-bg); border-color: var(--border-color);">
+              <i class="fas fa-code-branch text-blue-500 text-xl"></i>
+              <div class="text-left">
+                <div class="text-2xl font-bold" style="color: var(--text-primary);" id="repo-fork-count">-</div>
+                <div class="text-sm" style="color: var(--text-secondary);">Forks</div>
               </div>
-            </div> 
+            </div>
+            <!-- Issues -->
+            <div class="flex items-center gap-3 bg-gradient-to-r from-red-50 to-pink-50 px-6 py-4 rounded-xl border border-red-200 min-w-[140px]" style="background: var(--card-bg); border-color: var(--border-color);">
+              <i class="fas fa-exclamation-circle text-red-500 text-xl"></i>
+              <div class="text-left">
+                <div class="text-2xl font-bold" style="color: var(--text-primary);" id="repo-issue-count">-</div>
+                <div class="text-sm" style="color: var(--text-secondary);">Issues</div>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -676,107 +685,66 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="py-16 border-t" style="background-color: var(--bg-secondary); border-color: var(--border-color);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div class="col-span-1 md:col-span-2">
+          <!-- Logo & Description -->
+          <div class="md:col-span-2">
             <div class="flex items-center space-x-3 mb-4">
-              <div
-                class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center"
-              >
+              <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
                 <i class="fas fa-robot text-white text-lg"></i>
               </div>
               <div>
-                <h3 class="text-xl font-bold">AI Tools Hub</h3>
-                <p class="text-gray-400 text-sm">Professional Directory</p>
+                <h3 class="text-lg font-bold" style="color: var(--text-primary);">AI Tools Hub</h3>
+                <p class="text-xs" style="color: var(--text-tertiary);">Professional Directory</p>
               </div>
             </div>
-            <p class="text-gray-400 mb-4">
-              Discover, explore, and contribute to the most comprehensive
-              collection of AI tools for professionals.
+            <p class="mb-4 max-w-md" style="color: var(--text-secondary);">
+              Discover the best free AI tools for professionals. Our curated collection helps developers, designers, and creators find the perfect AI tools for their workflow.
             </p>
             <div class="flex space-x-4">
-              <a
-                href="https://github.com/ArshdeepGrover/ai-tools-manager"
-                target="_blank"
-                class="text-gray-400 hover:text-white transition-colors"
-              >
+              <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors">
                 <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://linkedin.com/in/ArshdeepGrover" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="https://arshdeepsingh.info" target="_blank" class="text-gray-400 hover:text-blue-600 transition-colors">
+                <i class="fas fa-globe text-xl"></i>
               </a>
             </div>
           </div>
 
+          <!-- Quick Links -->
           <div>
-            <h4 class="font-semibold mb-4">Quick Links</h4>
-            <ul class="space-y-2 text-gray-400">
-              <li>
-                <a href="#tools" class="hover:text-white transition-colors"
-                  >Browse Tools</a
-                >
-              </li>
-              <li>
-                <a href="#categories" class="hover:text-white transition-colors"
-                  >Categories</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#contributors"
-                  class="hover:text-white transition-colors"
-                  >Contributors</a
-                >
-              </li>
-              <li>
-                <a href="#about" class="hover:text-white transition-colors"
-                  >About</a
-                >
-              </li>
+            <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Quick Links</h4>
+            <ul class="space-y-2">
+              <li><a href="#tools" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Browse Tools</a></li>
+              <li><a href="#categories" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Categories</a></li>
+              <li><a href="#contributors" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Contributors</a></li>
+              <li><a href="#about" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">About</a></li>
             </ul>
           </div>
 
+          <!-- Community -->
           <div>
-            <h4 class="font-semibold mb-4">Community</h4>
-            <ul class="space-y-2 text-gray-400">
-              <li>
-                <a
-                  href="https://github.com/ArshdeepGrover/ai-tools-manager"
-                  target="_blank"
-                  class="hover:text-white transition-colors"
-                  >GitHub</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/ArshdeepGrover/ai-tools-manager/issues"
-                  target="_blank"
-                  class="hover:text-white transition-colors"
-                  >Report Issues</a
-                >
-              </li>
+            <h4 class="font-semibold mb-4" style="color: var(--text-primary);">Community</h4>
+            <ul class="space-y-2">
+              <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager/issues" target="_blank" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Report Issues</a></li>
+              <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager/discussions" target="_blank" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Discussions</a></li>
+              <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager/blob/main/CONTRIBUTING.md" target="_blank" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Contributing</a></li>
+              <li><a href="https://www.commudle.com/communities/meerut-coders" target="_blank" class="hover:text-blue-600 transition-colors" style="color: var(--text-secondary);">Meerut Coders</a></li>
             </ul>
           </div>
         </div>
 
-        <!-- GitHub Stats -->
-        <div class="footer-stats">
-          <div class="footer-stats-grid">
-            <div class="footer-stat-item">
-              <i class="fas fa-star text-yellow-400"></i>
-              <span>Stars:</span>
-              <span class="footer-stat-value" id="footer-star-count">-</span>
-            </div>
-            <div class="footer-stat-item">
-              <i class="fas fa-code-branch text-blue-400"></i>
-              <span>Forks:</span>
-              <span class="footer-stat-value" id="footer-fork-count">-</span>
-            </div>
-          </div>
-          <div class="footer-copyright">
-            <p>
-              &copy; 2025 AI Tools Hub. Open source project by Arshdeep Singh.
-              MIT License.
-            </p>
-          </div>
+        <!-- Bottom Bar -->
+        <div class="border-t pt-8 mt-8 text-center" style="border-color: var(--border-color);">
+          <p style="color: var(--text-secondary);">
+            &copy; 2025 AI Tools Hub. Made with ❤️ by 
+            <a href="https://arshdeepsingh.info" target="_blank" class="text-blue-600 hover:text-blue-700 transition-colors font-medium">Arshdeep Singh</a> 
+            and the community. Open source under MIT License.
+          </p>
         </div>
       </div>
       <!-- Back to Top Button -->

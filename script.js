@@ -541,35 +541,32 @@ function updateGitHubButtons(starCount) {
   }
 }
 
-function updateFooterStats(starCount, forkCount , issuesCount) {
-  // Update footer star count
-  const footerStarCount = document.getElementById("footer-star-count");
-  if (footerStarCount) {
-    footerStarCount.textContent = starCount;
-    footerStarCount.classList.add("animate-pulse");
+function updateFooterStats(starCount, forkCount, issuesCount) {
+  // Update repository stats
+  const repoStarCount = document.getElementById("repo-star-count");
+  if (repoStarCount) {
+    repoStarCount.textContent = starCount;
+    repoStarCount.classList.add("animate-pulse");
     setTimeout(() => {
-      footerStarCount.classList.remove("animate-pulse");
+      repoStarCount.classList.remove("animate-pulse");
     }, 1000);
   }
 
-  // Update footer fork count
-  const footerForkCount = document.getElementById("footer-fork-count");
-  if (footerForkCount) {
-    footerForkCount.textContent = forkCount;
-    footerForkCount.classList.add("animate-pulse");
+  const repoForkCount = document.getElementById("repo-fork-count");
+  if (repoForkCount) {
+    repoForkCount.textContent = forkCount;
+    repoForkCount.classList.add("animate-pulse");
     setTimeout(() => {
-      footerForkCount.classList.remove("animate-pulse");
+      repoForkCount.classList.remove("animate-pulse");
     }, 1000);
   }
- 
 
-  //update issue's count
-  const footerIssuesCount = document.getElementById("footer-issue-count");
-  if (footerIssuesCount) {
-    footerIssuesCount.textContent = issuesCount;
-    footerIssuesCount.classList.add("animate-pulse");
+  const repoIssueCount = document.getElementById("repo-issue-count");
+  if (repoIssueCount) {
+    repoIssueCount.textContent = issuesCount;
+    repoIssueCount.classList.add("animate-pulse");
     setTimeout(() => {
-      footerIssuesCount.classList.remove("animate-pulse");
+      repoIssueCount.classList.remove("animate-pulse");
     }, 1000);
   }
 
@@ -605,8 +602,20 @@ function initializeTheme() {
 
   const syncToggle = (mode) => {
     const isLight = mode === "light";
-    themeToggle.checked = isLight; // Checked = light mode
+    themeToggle.checked = isLight;
     themeToggle.setAttribute("aria-checked", String(isLight));
+    
+    // Force update toggle appearance
+    const switchLabel = themeToggle.nextElementSibling;
+    if (switchLabel) {
+      if (isLight) {
+        switchLabel.style.backgroundColor = "var(--toggle-light)";
+        switchLabel.style.borderColor = "var(--toggle-light)";
+      } else {
+        switchLabel.style.backgroundColor = "var(--toggle-dark)";
+        switchLabel.style.borderColor = "var(--toggle-dark)";
+      }
+    }
   };
 
   const effectiveTheme = () => {
