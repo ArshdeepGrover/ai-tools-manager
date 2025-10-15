@@ -187,9 +187,7 @@
       "github": "MRamazan",
       "avatar": "https://avatars.githubusercontent.com/u/124697078?v=4",
       "tagline": "Tools Contributor",
-      "contributions": [
-        "Added Monica under AI Writing & Content category"
-      ],
+      "contributions": ["Added Monica under AI Writing & Content category"],
       "role": "Contributor"
     },
     {
@@ -199,9 +197,7 @@
       "linkedin": "ahammad-abdullah",
       "website": "https://ahammadabdullah.dev",
       "tagline": "Its never too late",
-      "contributions": [
-        "Added 16 tools in different categories"
-      ],
+      "contributions": ["Added 16 tools in different categories"],
       "role": "Contributor"
     },
     {
@@ -209,18 +205,14 @@
       "github": "mathncode-sid",
       "avatar": "https://avatars.githubusercontent.com/u/168301526?v=4",
       "tagline": "Veni, Codavi, Vici",
-      "contributions": [
-        "Added GPTforSlides under AI Presentations"
-      ],
+      "contributions": ["Added GPTforSlides under AI Presentations"],
       "role": "Contributor"
     },
     {
       "name": "T Pavan Teja",
       "github": "itspavant",
       "avatar": "https://github.com/itspavant.png",
-      "contributions": [
-        "Added Tools 15.ai, Murf in AI Video & Audio cateogry"
-      ],
+      "contributions": ["Added Tools 15.ai, Murf in AI Video & Audio cateogry"],
       "linkedin": "itspavant",
       "tagline": "Keep Hustling",
       "role": "Contributor"
@@ -241,9 +233,7 @@
       "github": "Utkarsh-username",
       "avatar": "https://github.com/Utkarsh-username.png",
       "tagline": "Coding...",
-      "contributions": [
-        "Added Zoho Show's Zia AI in presentations category"
-      ],
+      "contributions": ["Added Zoho Show's Zia AI in presentations category"],
       "role": "Contributor"
     },
     {
@@ -253,8 +243,8 @@
       "linkedin": "trivedikavya",
       "tagline": "AI Enthusiast",
       "contributions": [
-        "Added Gemini,Poe,AISEO,Writesonic,HyperWrite,Yomu,ContentBot,Lately,PowerPoint Speaker Coach,NightCafe Studio,Artbreeder,Craiyon,Microsoft Designer,Playground AI,Codeium,Replit Ghostwriter,Mutable AI,Continue,Play.ht,Resemble AI,Minimax,Chatbase,Text Blaze,Actor Do,Wispr Flow,Lovo.ai,Google Veo,OpusClip AI tool to the collection" , 
-        "Added project goal section in readme file" , 
+        "Added Gemini,Poe,AISEO,Writesonic,HyperWrite,Yomu,ContentBot,Lately,PowerPoint Speaker Coach,NightCafe Studio,Artbreeder,Craiyon,Microsoft Designer,Playground AI,Codeium,Replit Ghostwriter,Mutable AI,Continue,Play.ht,Resemble AI,Minimax,Chatbase,Text Blaze,Actor Do,Wispr Flow,Lovo.ai,Google Veo,OpusClip AI tool to the collection",
+        "Added project goal section in readme file",
         "Fixed Tailwind CSS loading issues in some browsers"
       ],
       "website": "https://kavyatrivediterminalportfolio.netlify.app/",
@@ -272,14 +262,15 @@
       "role": "Contributor"
     },
     {
-     "name": "Jaswanth Kumar K",
-     "github": "Jaswanth-Kumar-2007",
-     "avatar": "https://github.com/Jaswanth-Kumar-2007.png",
-     "tagline": "Aspiring Software Engineer & Open Source Contributor",
-     "contributions": [
-      "Added Pi (Inflection AI)", "Improved AI tool categorization logic"],
-     "role":"Contributor"
-    },
+      "name": "Jaswanth Kumar K",
+      "github": "Jaswanth-Kumar-2007",
+      "avatar": "https://github.com/Jaswanth-Kumar-2007.png",
+      "tagline": "Aspiring Software Engineer & Open Source Contributor",
+      "contributions": [
+        "Added Pi (Inflection AI)",
+        "Improved AI tool categorization logic"
+      ],
+      "role": "Contributor"
     },
     {
       "name": "Saatvik Sawarn",
@@ -298,7 +289,7 @@
       "github": "nothariharan",
       "avatar": "https://github.com/nothariharan.png",
       "tagline": "better than yesterday",
-      "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
+      "contributions": ["Added ChatSlide AI", "Added Infinite Craft"],
       "role": "Contributor"
     },
     {
@@ -317,7 +308,7 @@
       "github": "nothariharan",
       "avatar": "https://github.com/nothariharan.png",
       "tagline": "better than yesterday",
-      "contributions": ["Added ChatSlide AI","Added Infinite Craft"],
+      "contributions": ["Added ChatSlide AI", "Added Infinite Craft"],
       "role": "Contributor"
     },
     {
@@ -325,7 +316,26 @@
       "github": "aprajita-99",
       "avatar": "https://github.com/aprajita-99.png",
       "tagline": "Keep Pushing",
-      "contributions": ["Added Junia AI in AI writing and content category ","Added Photocut , Lovart and Let's Enhance in AI Design and images","Added Just Done in AI productivity."],
+      "contributions": [
+        "Added Junia AI in AI writing and content category ",
+        "Added Photocut , Lovart and Let's Enhance in AI Design and images",
+        "Added Just Done in AI productivity."
+      ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Bhuwan",
+      "github": "BhuwanSKumar",
+      "avatar": "https://avatars.githubusercontent.com/u/133322497",
+      "linkedin": "https://www.linkedin.com/in/bhuwan-saretia/",
+      "tagline": "Full Stack Developer | Open Source Enthusiast",
+      "contributions": [
+        "RunDiffusion – AI image model prototyping platform.",
+        "Google Colab – Free Jupyter notebooks with GPU support for AI experimentation.",
+        "Kaggle Notebooks – Free Jupyter notebooks with GPU support and access to datasets.",
+        "MagickPen – AI-powered writing and code prototyping tool.",
+        "Tiipe AI - AI-driven content and workflow automation."
+      ],
       "role": "Contributor"
     }
   ]
