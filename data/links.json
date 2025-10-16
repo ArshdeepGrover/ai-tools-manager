@@ -106,7 +106,7 @@
         },
         {
           "title": "AISEO",
-           "url": "https://aiseo.ai/",
+          "url": "https://aiseo.ai/",
           "description": "An AI-powered writing assistant for generating SEO-optimized content, including articles, blog posts, and marketing copy."
         },
         {
@@ -136,8 +136,8 @@
         },
         {
           "title": "Junia AI",
-          "url": "https://junia.ai", 
-          "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning." 
+          "url": "https://junia.ai",
+          "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning."
         }
       ]
     },
@@ -243,17 +243,22 @@
         {
           "title": "PhotoCut",
           "url": "https://photocut.ai/free-tools/ai-design",
-          "description": "Generates logos, avatars, posters or interior designs from text prompts + offers editing tools like background removal & enhancements." 
+          "description": "Generates logos, avatars, posters or interior designs from text prompts + offers editing tools like background removal & enhancements."
         },
         {
           "title": "Lovart",
           "url": "https://lovart.ai",
-          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser." 
+          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser."
         },
         {
           "title": "Let’s Enhance",
-          "url": "https://letsenhance.io", 
-          "description": "Upscale images, improve resolution, enhance lighting & tone using AI, especially for low quality photos." 
+          "url": "https://letsenhance.io",
+          "description": "Upscale images, improve resolution, enhance lighting & tone using AI, especially for low quality photos."
+        },
+        {
+          "title": "DeepAI",
+          "url": "https://deepai.org/",
+          "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
         }
       ]
     },
@@ -416,23 +421,27 @@
           "title": "Codeium",
           "url": "https://codeium.com/",
           "description": "Free AI coding assistant with IDE integration and code completion. Unlimited for individuals."
-       },
-       {
-      "title": "Replit Ghostwriter",
-      "url": "https://replit.com/site/ghostwriter",
-      "description": "AI coding companion for generating and debugging code in Replit. Free in Replit core."
-    },
-    {
-      "title": "Mutable AI",
-      "url": "https://www.mutable.ai/",
-      "description": "AI for refactoring legacy code and generating documentation. Free tier for basic refactoring."
-    },
-    {
-      "title": "Continue",
-      "url": "https://www.continue.dev/",
-      "description": "Open-source AI coding assistant with in-IDE autocomplete. Fully free."
-    }
-
+        },
+        {
+          "title": "Replit Ghostwriter",
+          "url": "https://replit.com/site/ghostwriter",
+          "description": "AI coding companion for generating and debugging code in Replit. Free in Replit core."
+        },
+        {
+          "title": "Mutable AI",
+          "url": "https://www.mutable.ai/",
+          "description": "AI for refactoring legacy code and generating documentation. Free tier for basic refactoring."
+        },
+        {
+          "title": "Continue",
+          "url": "https://www.continue.dev/",
+          "description": "Open-source AI coding assistant with in-IDE autocomplete. Fully free."
+        },
+        {
+          "title": "HackerAI",
+          "url": "https://hackerai.co/",
+          "description": "AI penetration testing assistant designed to assist with tasks like vulnerability analysis, ethical hacking techniques, and security research."
+        }
       ]
     },
     {
@@ -519,31 +528,31 @@
           "url": "https://murf.ai/",
           "description": "Realistic AI voice & TTS tool"
         },
-            {
-      "title": "Play.ht",
-      "url": "https://play.ht/",
-      "description": "Text-to-speech platform for business narration and podcasts. Offers 12,500 characters/month."
-    },
-    {
-      "title": "Resemble AI",
-      "url": "https://www.resemble.ai/",
-      "description": "Synthetic speech tool for custom voices and interactive experiences. Offers 1,000 words/month."
-    },
-    {
-      "title": "Lovo.ai",
-      "url": "https://lovo.ai/",
-      "description": "AI voice generation with video editing for content creators. 14 minutes/month on free plan."
-    },
-    {
-      "title": "Google Veo",
-      "url": "https://deepmind.google/models/veo/",
-      "description": "AI video generator for creative visuals and b-roll. Limited free via VideoFX."
-    },
-    {
-      "title": "OpusClip",
-      "url": "https://www.opus.pro/",
-      "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
-    }
+        {
+          "title": "Play.ht",
+          "url": "https://play.ht/",
+          "description": "Text-to-speech platform for business narration and podcasts. Offers 12,500 characters/month."
+        },
+        {
+          "title": "Resemble AI",
+          "url": "https://www.resemble.ai/",
+          "description": "Synthetic speech tool for custom voices and interactive experiences. Offers 1,000 words/month."
+        },
+        {
+          "title": "Lovo.ai",
+          "url": "https://lovo.ai/",
+          "description": "AI voice generation with video editing for content creators. 14 minutes/month on free plan."
+        },
+        {
+          "title": "Google Veo",
+          "url": "https://deepmind.google/models/veo/",
+          "description": "AI video generator for creative visuals and b-roll. Limited free via VideoFX."
+        },
+        {
+          "title": "OpusClip",
+          "url": "https://www.opus.pro/",
+          "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
+        }
       ]
     },
     {
@@ -641,40 +650,40 @@
           "description": "Wobo AI helps you land your dream job with AI-powered job search, ATS-friendly resumes, and smart cover letters."
         },
         {
-        "title": "Pi (Inflection AI)",
-        "url": "https://pi.ai",
-        "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
+          "title": "Pi (Inflection AI)",
+          "url": "https://pi.ai",
+          "description": "Empathetic AI assistant that offers calm, reflective conversations to support mindfulness and productivity."
         },
         {
-      "title": "Minimax",
-      "url": "https://www.minimax.chat/",
-      "description": "Multilingual AI chatbot for general queries and translations. Unlimited basic chats."
-    },
-    {
-      "title": "Chatbase",
-      "url": "https://www.chatbase.co/",
-      "description": "No-code AI chatbot builder for websites. 1 bot free."
-    },
-    {
-      "title": "Text Blaze",
-      "url": "https://www.textblaze.com/",
-      "description": "Automation tool for repetitive typing with snippets. Free snippets."
-    },
-    {
-      "title": "Actor Do",
-      "url": "https://actordo.ai/",
-      "description": "AI assistant for managing calendars and emails. Free calendar basics."
-    },
-    {
-      "title": "Wispr Flow",
-      "url": "https://wisprflow.ai/",
-      "description": "Voice-first AI for capturing thoughts into notes. Free voice notes."
-    },
-    {
-      "title": "JustDone",
-      "url": "https://justdone.ai", 
-      "description": "Detects AI-generated content, checks similarity / plagiarism, helpful for content validation and authenticity." 
-    }
+          "title": "Minimax",
+          "url": "https://www.minimax.chat/",
+          "description": "Multilingual AI chatbot for general queries and translations. Unlimited basic chats."
+        },
+        {
+          "title": "Chatbase",
+          "url": "https://www.chatbase.co/",
+          "description": "No-code AI chatbot builder for websites. 1 bot free."
+        },
+        {
+          "title": "Text Blaze",
+          "url": "https://www.textblaze.com/",
+          "description": "Automation tool for repetitive typing with snippets. Free snippets."
+        },
+        {
+          "title": "Actor Do",
+          "url": "https://actordo.ai/",
+          "description": "AI assistant for managing calendars and emails. Free calendar basics."
+        },
+        {
+          "title": "Wispr Flow",
+          "url": "https://wisprflow.ai/",
+          "description": "Voice-first AI for capturing thoughts into notes. Free voice notes."
+        },
+        {
+          "title": "JustDone",
+          "url": "https://justdone.ai",
+          "description": "Detects AI-generated content, checks similarity / plagiarism, helpful for content validation and authenticity."
+        }
       ]
     },
     {
@@ -735,13 +744,13 @@
         },
         {
           "title": "Ludo Ai Game",
-          "url" : "https://ludo.ai/",
-          "description" : "Idea generator for new game mechanics, storylines, and level design"
+          "url": "https://ludo.ai/",
+          "description": "Idea generator for new game mechanics, storylines, and level design"
         },
         {
           "title": "TACTIC BLITZ",
-          "url" : "https://www.yeschat.ai/gpts-9t557fXc0DB-TACTIC-BLITZ?utm_source=chatgpt.com",
-          "description" : "AI coach that gives move-by-move strategy advice for different genres"
+          "url": "https://www.yeschat.ai/gpts-9t557fXc0DB-TACTIC-BLITZ?utm_source=chatgpt.com",
+          "description": "AI coach that gives move-by-move strategy advice for different genres"
         }
       ]
     },

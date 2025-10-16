@@ -542,36 +542,35 @@ function updateGitHubButtons(starCount) {
 }
 
 function updateFooterStats(starCount, forkCount , issuesCount) {
-  // Update footer star count
-  const footerStarCount = document.getElementById("footer-star-count");
-  if (footerStarCount) {
-    footerStarCount.textContent = starCount;
-    footerStarCount.classList.add("animate-pulse");
+  // Update ALL footer star count elements (there might be multiple)
+  const footerStarCounts = document.querySelectorAll('[id="footer-star-count"]');
+  footerStarCounts.forEach(element => {
+    element.textContent = starCount;
+    element.classList.add("animate-pulse");
     setTimeout(() => {
-      footerStarCount.classList.remove("animate-pulse");
+      element.classList.remove("animate-pulse");
     }, 1000);
-  }
+  });
 
-  // Update footer fork count
-  const footerForkCount = document.getElementById("footer-fork-count");
-  if (footerForkCount) {
-    footerForkCount.textContent = forkCount;
-    footerForkCount.classList.add("animate-pulse");
+  // Update ALL footer fork count elements
+  const footerForkCounts = document.querySelectorAll('[id="footer-fork-count"]');
+  footerForkCounts.forEach(element => {
+    element.textContent = forkCount;
+    element.classList.add("animate-pulse");
     setTimeout(() => {
-      footerForkCount.classList.remove("animate-pulse");
+      element.classList.remove("animate-pulse");
     }, 1000);
-  }
+  });
  
-
-  //update issue's count
-  const footerIssuesCount = document.getElementById("footer-issue-count");
-  if (footerIssuesCount) {
-    footerIssuesCount.textContent = issuesCount;
-    footerIssuesCount.classList.add("animate-pulse");
+  // Update ALL footer issues count elements
+  const footerIssuesCounts = document.querySelectorAll('[id="footer-issue-count"]');
+  footerIssuesCounts.forEach(element => {
+    element.textContent = issuesCount;
+    element.classList.add("animate-pulse");
     setTimeout(() => {
-      footerIssuesCount.classList.remove("animate-pulse");
+      element.classList.remove("animate-pulse");
     }, 1000);
-  }
+  });
 
   // Track GitHub stats loaded
   if (typeof gtag !== "undefined") {

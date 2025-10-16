@@ -318,6 +318,20 @@
       "tagline": "Keep Pushing",
       "contributions": ["Added Junia AI in AI writing and content category ","Added Photocut , Lovart and Let's Enhance in AI Design and images","Added Just Done in AI productivity."],
       "role": "Contributor"
+    },
+    {
+      "name": "Manan Narwal",
+      "github": "manannarwal",
+      "avatar": "https://github.com/manannarwal.png",
+      "linkedin": "manannarwal",
+      "tagline": "Aspiring Web Developer",
+      "contributions": [
+        "Added AI Tool 'DeepAI' under 'AI Design & Images' ",
+        "Added AI Tool 'HackerAI' under 'AI Coding & Development' ",
+        "Fixed the issue where number of stars and forks were not visible in the footer."
+      ],
+      "website": "https://manannarwal.vercel.app",
+      "role": "Contributor"
     }
   ]
 }
