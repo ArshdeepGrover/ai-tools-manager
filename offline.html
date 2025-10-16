@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Offline - AI Tools Hub</title>
+    <meta name="description" content="You're currently offline. Browse cached AI tools." />
+    <meta name="theme-color" content="#3b82f6" />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    
+    <style>
+      :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --text-primary: #1f2937;
+        --text-secondary: #4b5563;
+        --text-tertiary: #9ca3af;
+        --card-bg: #ffffff;
+        --border-color: #e5e7eb;
+        --nav-bg: rgba(255, 255, 255, 0.95);
+        --nav-shadow: rgba(0, 0, 0, 0.1);
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg-primary: #111827;
+          --bg-secondary: #1f2937;
+          --text-primary: #f9fafb;
+          --text-secondary: #d1d5db;
+          --text-tertiary: #9ca3af;
+          --card-bg: #1f2937;
+          --border-color: #374151;
+          --nav-bg: rgba(31, 41, 55, 0.95);
+          --nav-shadow: rgba(0, 0, 0, 0.3);
+        }
+      }
+
+      body {
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+      }
+
+      .offline-icon {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .retry-btn:hover {
+        transform: translateY(-1px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation -->
+    <nav class="shadow-lg sticky top-0 z-50" style="background-color: var(--nav-bg); box-shadow: 0 1px 3px 0 var(--nav-shadow);">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <a href="/">
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <i class="fas fa-robot text-white text-lg"></i>
+              </div>
+              <div>
+                <h1 class="text-xl font-bold" style="color: var(--text-primary);">AI Tools Hub</h1>
+                <p class="text-xs" style="color: var(--text-tertiary);">Offline Mode</p>
+              </div>
+            </div>
+          </a>
+
+          <!-- Offline Status -->
+          <div class="flex items-center space-x-2 text-orange-600">
+            <i class="fas fa-wifi-slash offline-icon"></i>
+            <span class="hidden sm:inline text-sm font-medium">Offline</span>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="min-h-screen" style="background-color: var(--bg-primary);">
+      <!-- Offline Hero Section -->
+      <section class="py-20">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div class="mb-8">
+            <i class="fas fa-wifi-slash text-6xl text-orange-500 offline-icon mb-6"></i>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4" style="color: var(--text-primary);">
+              You're Offline
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              No internet connection detected. Don't worry - you can still browse cached AI tools!
+            </p>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <button
+              onclick="location.reload()"
+              class="retry-btn bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200 flex items-center justify-center space-x-2"
+            >
+              <i class="fas fa-redo-alt"></i>
+              <span>Try Again</span>
+            </button>
+            
+            <button
+              onclick="goToMainPage()"
+              class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors flex items-center justify-center space-x-2"
+            >
+              <i class="fas fa-home"></i>
+              <span>Browse Cached Tools</span>
+            </button>
+          </div>
+
+          <!-- Offline Features -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div class="p-6 rounded-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-search text-green-600 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2" style="color: var(--text-primary);">Search Tools</h3>
+              <p class="text-sm" style="color: var(--text-secondary);">
+                Search through available AI tools and descriptions
+              </p>
+            </div>
+
+            <div class="p-6 rounded-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-filter text-blue-600 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2" style="color: var(--text-primary);">Filter Categories</h3>
+              <p class="text-sm" style="color: var(--text-secondary);">
+                Browse tools by category using stored data
+              </p>
+            </div>
+
+            <div class="p-6 rounded-lg" style="background-color: var(--card-bg); border: 1px solid var(--border-color);">
+              <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-bookmark text-purple-600 text-xl"></i>
+              </div>
+              <h3 class="text-lg font-semibold mb-2" style="color: var(--text-primary);">View Details</h3>
+              <p class="text-sm" style="color: var(--text-secondary);">
+                Access tool information that was previously loaded
+              </p>
+            </div>
+          </div>
+
+          <!-- Connection Status -->
+          <div class="p-4 rounded-lg bg-yellow-50 border border-yellow-200 mb-8">
+            <div class="flex items-center justify-center space-x-2 text-yellow-800">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span class="text-sm font-medium">
+                Some features may be limited while offline. Tool links will not work without internet.
+              </span>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a href="/#tools" class="p-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 transition-colors group">
+              <i class="fas fa-tools text-2xl text-gray-400 group-hover:text-blue-600 mb-2"></i>
+              <p class="text-sm font-medium" style="color: var(--text-secondary);">All Tools</p>
+            </a>
+            
+            <a href="/#categories" class="p-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 transition-colors group">
+              <i class="fas fa-th-large text-2xl text-gray-400 group-hover:text-blue-600 mb-2"></i>
+              <p class="text-sm font-medium" style="color: var(--text-secondary);">Categories</p>
+            </a>
+            
+            <a href="/#contributors" class="p-4 rounded-lg border-2 border-gray-200 hover:border-blue-300 transition-colors group">
+              <i class="fas fa-users text-2xl text-gray-400 group-hover:text-blue-600 mb-2"></i>
+              <p class="text-sm font-medium" style="color: var(--text-secondary);">Contributors</p>
+            </a>
+            
+            <button onclick="checkConnection()" class="p-4 rounded-lg border-2 border-gray-200 hover:border-green-300 transition-colors group">
+              <i class="fas fa-sync-alt text-2xl text-gray-400 group-hover:text-green-600 mb-2"></i>
+              <p class="text-sm font-medium" style="color: var(--text-secondary);">Retry</p>
+            </button>
+          </div>
+        </div>
+      </section>
+
+          <!-- Cached Tools Preview -->
+      <section class="py-16" style="background-color: var(--bg-secondary);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4" style="color: var(--text-primary);">
+              Previously Viewed Tools
+            </h2>
+            <p style="color: var(--text-secondary);">
+              These tools were saved during your last visit
+            </p>
+          </div>          <div id="cached-tools" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cached tools will be loaded here -->
+          </div>
+
+          <div class="text-center mt-8">
+            <button
+              onclick="goToMainPage()"
+              class="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+            >
+              View All Available Tools
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="flex items-center justify-center space-x-3 mb-4">
+          <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <i class="fas fa-robot text-white text-sm"></i>
+          </div>
+          <h3 class="text-lg font-bold">AI Tools Hub</h3>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Offline functionality powered by Service Workers • 
+          <span id="cache-status">Cache Status: Unknown</span>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Check if we're online
+      function checkConnection() {
+        if (navigator.onLine) {
+          // Try to fetch a small resource to verify connection
+          fetch('/', { method: 'HEAD', cache: 'no-cache' })
+            .then(() => {
+              // Connection verified, redirect to main page
+              window.location.href = '/';
+            })
+            .catch(() => {
+              // Still offline
+              showConnectionError();
+            });
+        } else {
+          showConnectionError();
+        }
+      }
+
+      function showConnectionError() {
+        const message = document.createElement('div');
+        message.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-6 py-3 rounded-lg z-50';
+        message.innerHTML = '<i class="fas fa-wifi-slash mr-2"></i>Still offline. Please check your connection.';
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+          document.body.removeChild(message);
+        }, 3000);
+      }
+
+      function goToMainPage() {
+        window.location.href = '/';
+      }
+
+      // Load cached tools preview
+      async function loadCachedTools() {
+        try {
+          // Try to get cached data
+          const cache = await caches.open('ai-tools-data-v1.0.0');
+          const cachedResponse = await cache.match('/data/links.json');
+          
+          if (cachedResponse) {
+            const data = await cachedResponse.json();
+            const allTools = data.categories.flatMap(cat => 
+              cat.links.map(link => ({ ...link, category: cat.name, icon: cat.icon }))
+            );
+            
+            // Show first 6 tools
+            const toolsToShow = allTools.slice(0, 6);
+            const container = document.getElementById('cached-tools');
+            
+            container.innerHTML = toolsToShow.map(tool => `
+              <div class="p-6 rounded-lg border hover:shadow-lg transition-shadow" style="background-color: var(--card-bg); border-color: var(--border-color);">
+                <div class="flex items-start space-x-3 mb-3">
+                  <span class="text-2xl">${tool.icon}</span>
+                  <div class="flex-1">
+                    <h3 class="font-semibold text-lg mb-1" style="color: var(--text-primary);">${tool.title}</h3>
+                    <p class="text-sm text-gray-500 mb-2">${tool.category}</p>
+                  </div>
+                </div>
+                <p class="text-sm mb-4" style="color: var(--text-secondary);">${tool.description}</p>
+                <div class="flex items-center text-orange-600 text-sm">
+                  <i class="fas fa-wifi-slash mr-2"></i>
+                  <span>Available offline</span>
+                </div>
+              </div>
+            `).join('');
+            
+            // Update cache status
+            document.getElementById('cache-status').textContent = `Cache Status: ${allTools.length} tools available`;
+          } else {
+            document.getElementById('cached-tools').innerHTML = `
+              <div class="col-span-full text-center py-8">
+                <i class="fas fa-database text-4xl text-gray-400 mb-4"></i>
+                <p style="color: var(--text-secondary);">No tools available offline. Visit the main page while online to save tools.</p>
+              </div>
+            `;
+          }
+        } catch (error) {
+          console.log('Error loading cached tools:', error);
+          document.getElementById('cached-tools').innerHTML = `
+            <div class="col-span-full text-center py-8">
+              <i class="fas fa-exclamation-triangle text-4xl text-yellow-500 mb-4"></i>
+              <p style="color: var(--text-secondary);">Unable to load saved data.</p>
+            </div>
+          `;
+        }
+      }
+
+      // Connection status monitoring
+      function updateConnectionStatus() {
+        const statusElements = document.querySelectorAll('.connection-status');
+        statusElements.forEach(el => {
+          if (navigator.onLine) {
+            el.className = 'connection-status text-green-600';
+            el.innerHTML = '<i class="fas fa-wifi mr-2"></i>Online';
+          } else {
+            el.className = 'connection-status text-orange-600';
+            el.innerHTML = '<i class="fas fa-wifi-slash mr-2"></i>Offline';
+          }
+        });
+      }
+
+      // Event listeners
+      window.addEventListener('online', () => {
+        // Automatically redirect when connection is restored
+        setTimeout(() => {
+          window.location.href = '/';
+        }, 1000);
+      });
+
+      window.addEventListener('offline', updateConnectionStatus);
+      window.addEventListener('load', () => {
+        loadCachedTools();
+        updateConnectionStatus();
+      });
+
+      // Keyboard shortcuts
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'r' && (e.ctrlKey || e.metaKey)) {
+          e.preventDefault();
+          checkConnection();
+        }
+        if (e.key === 'h' && (e.ctrlKey || e.metaKey)) {
+          e.preventDefault();
+          goToMainPage();
+        }
+      });
+    </script>
+  </body>
+</html>

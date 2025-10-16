@@ -896,6 +896,11 @@
               style="color: var(--text-secondary);"
               >About</a
             >
+            
+            <!-- Connection Status Indicator -->
+            <div class="connection-status flex items-center text-green-600 text-sm">
+              <i class="fas fa-wifi text-green-500 mr-2"></i>Online
+            </div>
           </div>
 
       <!-- GitHub Star Button -->
@@ -1068,6 +1073,21 @@
               >
                 <option value="all">Loading categories...</option>
               </select>
+            </div>
+          </div>
+          
+          <!-- Offline Indicator & Sync Status -->
+          <div class="mt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <!-- Offline Indicator -->
+            <div class="offline-indicator hidden flex items-center bg-orange-100 text-orange-800 px-4 py-2 rounded-lg">
+              <i class="fas fa-wifi-slash mr-2"></i>
+              <span class="text-sm font-medium">Offline Mode - Limited functionality</span>
+            </div>
+            
+            <!-- Sync Status -->
+            <div id="sync-status" class="text-sm text-gray-600 flex items-center">
+              <i class="fas fa-sync text-green-500 mr-1"></i>
+              <span>Last sync: Loading...</span>
             </div>
           </div>
         </div>
@@ -1410,6 +1430,13 @@
 
 
     </footer>
+    
+    <!-- PWA Install Button (hidden by default, shown when installable) -->
+    <button id="pwa-install-btn" class="fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2 hidden">
+      <i class="fas fa-download"></i>
+      <span>Install App</span>
+    </button>
+    
     <script src="script.js"></script>
   </body>
 </html>
