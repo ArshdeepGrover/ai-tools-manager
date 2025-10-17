@@ -370,3 +370,170 @@ img {
     padding: 12px 20px;
   }
 }
+
+/* PWA Specific Styles */
+.offline-indicator {
+  animation: slideInDown 0.3s ease-out;
+}
+
+.connection-status {
+  transition: all 0.3s ease;
+}
+
+.connection-status i {
+  transition: color 0.3s ease;
+}
+
+/* PWA Install Button */
+#pwa-install-btn {
+  animation: bounceIn 0.5s ease-out;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+#pwa-install-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(59, 130, 246, 0.4);
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Offline Mode Styles */
+.offline-mode {
+  filter: grayscale(20%);
+}
+
+.offline-badge {
+  position: relative;
+}
+
+.offline-badge::after {
+  content: 'OFFLINE';
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #f59e0b;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+/* Notification Styles */
+.notification-enter {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.notification-exit {
+  animation: slideOutRight 0.3s ease-in;
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Sync Status Animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.syncing {
+  animation: spin 1s linear infinite;
+}
+
+/* PWA-specific responsive adjustments */
+@media (max-width: 640px) {
+  #pwa-install-btn {
+    bottom: 80px; /* Avoid conflicts with back-to-top */
+    right: 16px;
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+  
+  .offline-indicator {
+    flex-direction: column;
+    text-align: center;
+    padding: 8px 12px;
+  }
+  
+  .connection-status {
+    font-size: 12px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .connection-status {
+    border: 2px solid currentColor;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .offline-indicator,
+  #pwa-install-btn,
+  .connection-status,
+  .notification-enter,
+  .notification-exit {
+    animation: none;
+  }
+  
+  .connection-status,
+  .connection-status i,
+  #pwa-install-btn {
+    transition: none;
+  }
+}
