@@ -683,6 +683,11 @@
           "title": "JustDone",
           "url": "https://justdone.ai",
           "description": "Detects AI-generated content, checks similarity / plagiarism, helpful for content validation and authenticity."
+        },
+        {
+          "title": "Explainpaper",
+          "url": "https://www.explainpaper.com",
+          "description": "Highlight text to get instant plain-language explanations."
         }
       ]
     },

@@ -332,6 +332,17 @@
       ],
       "website": "https://manannarwal.vercel.app",
       "role": "Contributor"
+    },
+    {
+      "name": "D Manohar Reddy",
+      "github": "manoharreddydaram",
+      "avatar": "https://github.com/manoharreddydaram.png",
+      "contributions": [
+        "Added Tools Explainpaper, in AI Productivity cateogry"
+      ],
+      "linkedin": "manoharreddydaram",
+      "tagline": "Keep Smiling :)",
+      "role": "Contributor"
     }
   ]
 }
