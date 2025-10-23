@@ -713,3 +713,432 @@ backToTopBtn.addEventListener("click", () => {
     behavior: "smooth",
   });
 });
+
+// PWA and Offline Functionality
+class PWAManager {
+  constructor() {
+    this.isOnline = navigator.onLine;
+    this.lastSyncTime = localStorage.getItem('ai-tools-last-sync') || 'Never';
+    this.installPrompt = null;
+    this.swRegistration = null;
+    this.init();
+  }
+
+  async init() {
+    this.setupConnectionListeners();
+    this.setupServiceWorker();
+    this.setupInstallPrompt();
+    this.updateConnectionStatus();
+    this.loadCachedDataWhenOffline();
+  }
+
+  // Service Worker Registration
+  async setupServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      try {
+        this.swRegistration = await navigator.serviceWorker.register('/sw.js');
+        
+        console.log('[PWA] Service Worker registered successfully');
+        
+        // Listen for SW messages
+        navigator.serviceWorker.addEventListener('message', (event) => {
+          this.handleServiceWorkerMessage(event.data);
+        });
+
+        // Check for updates
+        this.swRegistration.addEventListener('updatefound', () => {
+          this.handleServiceWorkerUpdate();
+        });
+
+        // Handle SW state changes
+        if (this.swRegistration.waiting) {
+          this.showUpdateAvailable();
+        }
+
+      } catch (error) {
+        console.error('[PWA] Service Worker registration failed:', error);
+      }
+    }
+  }
+
+  // Handle messages from Service Worker
+  handleServiceWorkerMessage(data) {
+    switch (data.type) {
+      case 'DATA_UPDATE':
+        this.handleDataUpdate(data);
+        break;
+      case 'CACHE_STATUS':
+        this.updateCacheStatus(data);
+        break;
+      case 'CACHE_CLEARED':
+        this.showNotification('Cache cleared successfully', 'success');
+        break;
+    }
+  }
+
+  // Handle data updates from SW
+  handleDataUpdate(data) {
+    if (data.isStale) {
+      this.showNotification('Working offline - some features may be limited', 'warning');
+    } else {
+      this.lastSyncTime = new Date().toLocaleString();
+      localStorage.setItem('ai-tools-last-sync', this.lastSyncTime);
+      this.updateSyncStatus();
+    }
+  }
+
+  // Handle SW updates
+  handleServiceWorkerUpdate() {
+    const newWorker = this.swRegistration.installing;
+    
+    newWorker.addEventListener('statechange', () => {
+      if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+        this.showUpdateAvailable();
+      }
+    });
+  }
+
+  // Show update notification
+  showUpdateAvailable() {
+    const updateNotification = this.createNotification(
+      'App Update Available',
+      'A new version is ready. Refresh to update.',
+      'info',
+      [
+        {
+          text: 'Update Now',
+          action: () => {
+            if (this.swRegistration.waiting) {
+              this.swRegistration.waiting.postMessage({ type: 'SKIP_WAITING' });
+              window.location.reload();
+            }
+          }
+        },
+        {
+          text: 'Later',
+          action: () => this.dismissNotification()
+        }
+      ]
+    );
+    this.showNotificationElement(updateNotification);
+  }
+
+  // Connection Status Management
+  setupConnectionListeners() {
+    window.addEventListener('online', () => {
+      this.isOnline = true;
+      this.updateConnectionStatus();
+      this.syncDataWhenOnline();
+      this.showNotification('Connection restored', 'success');
+    });
+
+    window.addEventListener('offline', () => {
+      this.isOnline = false;
+      this.updateConnectionStatus();
+      this.showNotification('Working offline', 'warning');
+    });
+  }
+
+  // Update connection status in UI
+  updateConnectionStatus() {
+    const statusIndicators = document.querySelectorAll('.connection-status');
+    const offlineIndicators = document.querySelectorAll('.offline-indicator');
+    
+    statusIndicators.forEach(indicator => {
+      if (this.isOnline) {
+        indicator.innerHTML = '<i class="fas fa-wifi text-green-500 mr-2"></i>Online';
+        indicator.className = 'connection-status text-green-600 text-sm';
+      } else {
+        indicator.innerHTML = '<i class="fas fa-wifi-slash text-orange-500 mr-2"></i>Offline';
+        indicator.className = 'connection-status text-orange-600 text-sm';
+      }
+    });
+
+    // Show/hide offline indicators
+    offlineIndicators.forEach(indicator => {
+      if (this.isOnline) {
+        indicator.classList.add('hidden');
+      } else {
+        indicator.classList.remove('hidden');
+      }
+    });
+
+    // Update sync status
+    this.updateSyncStatus();
+  }
+
+  // Update sync status display
+  updateSyncStatus() {
+    const syncStatus = document.getElementById('sync-status');
+    if (syncStatus) {
+      if (this.isOnline) {
+        syncStatus.innerHTML = `<i class="fas fa-sync text-green-500 mr-1"></i>Last sync: ${this.lastSyncTime}`;
+      } else {
+        syncStatus.innerHTML = `<i class="fas fa-sync-alt text-orange-500 mr-1"></i>Offline - Last sync: ${this.lastSyncTime}`;
+      }
+    }
+  }
+
+  // Load cached data when offline
+  async loadCachedDataWhenOffline() {
+    if (!this.isOnline) {
+      try {
+        // Override the loadLinks function to use cache-first strategy
+        if (typeof loadLinks === 'function') {
+          const originalLoadLinks = loadLinks;
+          
+          window.loadLinks = async () => {
+            try {
+              await originalLoadLinks();
+            } catch (error) {
+              console.log('[PWA] Loading from cache due to network error');
+              await this.loadFromCache();
+            }
+          };
+        }
+      } catch (error) {
+        console.error('[PWA] Error setting up offline data loading:', error);
+      }
+    }
+  }
+
+  // Load data from cache
+  async loadFromCache() {
+    try {
+      const cache = await caches.open('ai-tools-data-v1.0.0');
+      const cachedResponse = await cache.match('/data/links.json');
+      
+      if (cachedResponse) {
+        const data = await cachedResponse.json();
+        allCategories = data.categories;
+        renderCategoryFilters(allCategories);
+        applyFilters();
+        updateStats(allCategories);
+        this.showNotification('Loaded saved data', 'info');
+      }
+    } catch (error) {
+      console.error('[PWA] Error loading cached data:', error);
+    }
+  }
+
+  // Sync data when coming back online
+  async syncDataWhenOnline() {
+    if (this.swRegistration && this.swRegistration.sync) {
+      try {
+        await this.swRegistration.sync.register('background-sync-data');
+      } catch (error) {
+        console.log('[PWA] Background sync not available, manual sync');
+        // Manual sync fallback
+        setTimeout(() => {
+          if (typeof loadLinks === 'function') loadLinks();
+          if (typeof loadContributors === 'function') loadContributors();
+        }, 1000);
+      }
+    }
+  }
+
+  // PWA Installation
+  setupInstallPrompt() {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.installPrompt = e;
+      this.showInstallButton();
+    });
+
+    // Handle install result
+    window.addEventListener('appinstalled', () => {
+      this.installPrompt = null;
+      this.hideInstallButton();
+      this.showNotification('App installed successfully!', 'success');
+      
+      // Track installation
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'pwa_install', {
+          event_category: 'engagement'
+        });
+      }
+    });
+  }
+
+  // Show install button
+  showInstallButton() {
+    const installButton = document.getElementById('pwa-install-btn');
+    if (installButton) {
+      installButton.classList.remove('hidden');
+      installButton.addEventListener('click', () => this.promptInstall());
+    } else {
+      // Create install button if it doesn't exist
+      this.createInstallButton();
+    }
+  }
+
+  // Create install button
+  createInstallButton() {
+    const installBtn = document.createElement('button');
+    installBtn.id = 'pwa-install-btn';
+    installBtn.className = 'fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2';
+    installBtn.innerHTML = '<i class="fas fa-download"></i><span>Install App</span>';
+    installBtn.addEventListener('click', () => this.promptInstall());
+    
+    document.body.appendChild(installBtn);
+  }
+
+  // Prompt installation
+  async promptInstall() {
+    if (!this.installPrompt) return;
+    
+    try {
+      const result = await this.installPrompt.prompt();
+      
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'pwa_install_prompt', {
+          event_category: 'engagement',
+          result: result.outcome
+        });
+      }
+      
+      this.installPrompt = null;
+    } catch (error) {
+      console.error('[PWA] Install prompt error:', error);
+    }
+  }
+
+  // Hide install button
+  hideInstallButton() {
+    const installButton = document.getElementById('pwa-install-btn');
+    if (installButton) {
+      installButton.classList.add('hidden');
+    }
+  }
+
+  // Notification System
+  showNotification(message, type = 'info', duration = 5000) {
+    const notification = this.createNotification(message, '', type);
+    this.showNotificationElement(notification);
+    
+    if (duration > 0) {
+      setTimeout(() => {
+        this.dismissNotification(notification);
+      }, duration);
+    }
+  }
+
+  createNotification(title, message, type = 'info', actions = []) {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 max-w-sm p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
+    
+    // Type-specific styling
+    const typeClasses = {
+      success: 'bg-green-500 text-white',
+      warning: 'bg-orange-500 text-white', 
+      error: 'bg-red-500 text-white',
+      info: 'bg-blue-500 text-white'
+    };
+    
+    notification.classList.add(...typeClasses[type].split(' '));
+    
+    const icons = {
+      success: 'fas fa-check-circle',
+      warning: 'fas fa-exclamation-triangle',
+      error: 'fas fa-times-circle',
+      info: 'fas fa-info-circle'
+    };
+    
+    notification.innerHTML = `
+      <div class="flex items-start space-x-3">
+        <i class="${icons[type]} mt-1"></i>
+        <div class="flex-1">
+          <div class="font-semibold">${title}</div>
+          ${message ? `<div class="text-sm opacity-90">${message}</div>` : ''}
+          ${actions.length > 0 ? `
+            <div class="mt-2 flex space-x-2">
+              ${actions.map(action => `
+                <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded text-sm transition-colors" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.notification-action-${actions.indexOf(action)}').click()">
+                  ${action.text}
+                </button>
+              `).join('')}
+            </div>
+          ` : ''}
+        </div>
+        <button class="text-white hover:text-gray-200 transition-colors" onclick="this.parentElement.parentElement.remove()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    `;
+    
+    // Add action handlers
+    actions.forEach((action, index) => {
+      const actionBtn = document.createElement('button');
+      actionBtn.className = `notification-action-${index} hidden`;
+      actionBtn.addEventListener('click', action.action);
+      notification.appendChild(actionBtn);
+    });
+    
+    return notification;
+  }
+
+  showNotificationElement(notification) {
+    document.body.appendChild(notification);
+    
+    // Trigger animation
+    setTimeout(() => {
+      notification.classList.remove('translate-x-full');
+    }, 100);
+  }
+
+  dismissNotification(notification) {
+    if (notification && notification.parentElement) {
+      notification.classList.add('translate-x-full');
+      setTimeout(() => {
+        if (notification.parentElement) {
+          notification.parentElement.removeChild(notification);
+        }
+      }, 300);
+    }
+  }
+
+  // Cache Management
+  async getCacheStatus() {
+    try {
+      const cacheNames = await caches.keys();
+      let totalSize = 0;
+      
+      for (const cacheName of cacheNames) {
+        const cache = await caches.open(cacheName);
+        const requests = await cache.keys();
+        totalSize += requests.length;
+      }
+      
+      return {
+        cacheCount: cacheNames.length,
+        totalItems: totalSize
+      };
+    } catch (error) {
+      return { cacheCount: 0, totalItems: 0 };
+    }
+  }
+
+  async clearCache() {
+    try {
+      const cacheNames = await caches.keys();
+      await Promise.all(cacheNames.map(name => caches.delete(name)));
+      this.showNotification('Cache cleared successfully', 'success');
+    } catch (error) {
+      this.showNotification('Error clearing cache', 'error');
+    }
+  }
+}
+
+// Initialize PWA Manager
+let pwaManager;
+document.addEventListener('DOMContentLoaded', () => {
+  pwaManager = new PWAManager();
+});
+
+// Expose PWA functions globally for debugging
+window.pwa = {
+  clearCache: () => pwaManager?.clearCache(),
+  getCacheStatus: () => pwaManager?.getCacheStatus(),
+  promptInstall: () => pwaManager?.promptInstall(),
+  sync: () => pwaManager?.syncDataWhenOnline()
+};
