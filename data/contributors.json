@@ -343,6 +343,13 @@
       "linkedin": "manoharreddydaram",
       "tagline": "Keep Smiling :)",
       "role": "Contributor"
+    },
+    {
+    "name": "B Tarakeshwar",
+    "github": "tarakeshwarb",
+    "avatar": "https://github.com/tarakeshwarb.png",
+    "contributions": ["Added Toggle Button to switch between dark and light mode"],
+    "role": "Contributor"
     }
   ]
 }

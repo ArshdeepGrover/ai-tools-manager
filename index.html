@@ -829,6 +829,67 @@
           font-size: 16px;
         }
       }
+
+      /* Theme Toggle Button Styling */
+      .theme-toggle-button {
+        width: 44px;
+        height: 44px;
+        border-radius: 8px;
+        border: 2px solid var(--border-color);
+        background-color: var(--card-bg);
+        color: var(--text-primary);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        transition: all 0.3s ease;
+        margin: 0 8px;
+        margin-right: 12px;
+      }
+
+      @media (min-width: 900px) {
+        .theme-toggle-button {
+          margin-right: 0px;
+        }
+      }
+
+      @media (min-width: 1200px) {
+        .theme-toggle-button {
+          margin-right: 0px;
+        }
+      }
+
+      .theme-toggle-button:hover {
+        background-color: var(--bg-tertiary);
+        border-color: #3b82f6;
+        color: #3b82f6;
+        transform: scale(1.05);
+      }
+
+      .theme-toggle-button:active {
+        transform: scale(0.95);
+      }
+
+      #theme-icon {
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      @media (max-width: 640px) {
+        .theme-toggle-button {
+          width: 40px;
+          height: 40px;
+          font-size: 16px;
+          margin: 0 4px;
+          margin-right: 30px;
+        }
+      }
+
+      @media (max-width: 350px) {
+        .theme-toggle-button {
+          margin-right: 50px;
+        }
+      }
     </style>
     
     <!-- Early theme boot to avoid flash of wrong theme -->
@@ -897,6 +958,13 @@
               >About</a
             >
           </div>
+
+      <!-- Theme Toggle Button -->
+      <div class="flex items-center">
+        <button id="theme-toggle-btn" class="theme-toggle-button" aria-label="Toggle dark mode" title="Toggle theme">
+          <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+      </div>
 
       <!-- GitHub Star Button -->
       <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" 

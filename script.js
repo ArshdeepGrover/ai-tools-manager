@@ -622,14 +622,14 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
 
 // Theme Toggle Functionality (system-aware with persistence)
 function initializeTheme() {
-  const themeToggle = document.getElementById("theme-toggle");
-  if (!themeToggle) return;
+  const themeToggleBtn = document.getElementById("theme-toggle-btn");
+  const themeIcon = document.getElementById("theme-icon");
+  if (!themeToggleBtn || !themeIcon) return;
 
-  const root = document.documentElement; // apply data-theme on <html> to minimize FOUC
-  const mediaQuery =
-    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+  const root = document.documentElement;
+  const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
 
-  const getSavedPreference = () => localStorage.getItem("theme"); // 'light' | 'dark' | null
+  const getSavedPreference = () => localStorage.getItem("theme");
   const inSystemMode = () => getSavedPreference() == null;
 
   const applyTheme = (mode) => {
@@ -640,43 +640,50 @@ function initializeTheme() {
     }
   };
 
-  const syncToggle = (mode) => {
-    const isLight = mode === "light";
-    themeToggle.checked = isLight; // Checked = light mode
-    themeToggle.setAttribute("aria-checked", String(isLight));
+  const updateIcon = (mode) => {
+    if (mode === "dark") {
+      themeIcon.classList.remove("fa-moon");
+      themeIcon.classList.add("fa-sun");
+      themeToggleBtn.setAttribute("aria-label", "Switch to light mode");
+      themeToggleBtn.setAttribute("title", "Switch to light mode");
+    } else {
+      themeIcon.classList.remove("fa-sun");
+      themeIcon.classList.add("fa-moon");
+      themeToggleBtn.setAttribute("aria-label", "Switch to dark mode");
+      themeToggleBtn.setAttribute("title", "Switch to dark mode");
+    }
   };
 
   const effectiveTheme = () => {
     const saved = getSavedPreference();
     if (saved === "light" || saved === "dark") return saved;
-    // Default to system preference when no saved value
     return mediaQuery && mediaQuery.matches ? "dark" : "light";
   };
 
   // Initial apply
   const initial = effectiveTheme();
   applyTheme(initial);
-  syncToggle(initial);
+  updateIcon(initial);
 
-  // Respond to system changes only when in "system mode" (no saved preference)
+  // Respond to system changes only when in "system mode"
   const handleSystemChange = (e) => {
     if (!inSystemMode()) return;
     const next = e.matches ? "dark" : "light";
     applyTheme(next);
-    syncToggle(next);
+    updateIcon(next);
   };
   if (mediaQuery && typeof mediaQuery.addEventListener === "function") {
     mediaQuery.addEventListener("change", handleSystemChange);
   } else if (mediaQuery && typeof mediaQuery.addListener === "function") {
-    // Safari fallback
     mediaQuery.addListener(handleSystemChange);
   }
 
-  // Toggle handler: user explicitly chooses light/dark (exits system mode)
-  themeToggle.addEventListener("change", function () {
-    const next = this.checked ? "light" : "dark";
+  // Toggle handler: user explicitly chooses light/dark
+  themeToggleBtn.addEventListener("click", function () {
+    const current = effectiveTheme();
+    const next = current === "light" ? "dark" : "light";
     applyTheme(next);
-    syncToggle(next);
+    updateIcon(next);
     localStorage.setItem("theme", next);
   });
 }
