@@ -350,6 +350,15 @@
     "avatar": "https://github.com/tarakeshwarb.png",
     "contributions": ["Added Toggle Button to switch between dark and light mode"],
     "role": "Contributor"
+    },
+    {
+      "name":"Prachi Sharma",
+      "github": "dev-prachi",
+      "avatar":"https://github.com/dev-prachi.png",
+      "linkedin":"www.linkedin.com/in/prachi-sharma123",
+      "tagline":"Aspiring Software Developer",
+      "contributions":["Added hover effect in the links of navbar"],
+      "role":"Contributor"
     }
   ]
 }
