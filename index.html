@@ -1001,7 +1001,7 @@
     <!-- Navigation -->
     <nav class="shadow-lg sticky top-0 z-50" style="background-color: var(--nav-bg); box-shadow: 0 1px 3px 0 var(--nav-shadow);">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
+          <div class ="flex justify-between items-center h-16">
           <!-- Logo -->
           <a href="index.html">
           <div class="flex items-center space-x-3">
@@ -1053,7 +1053,7 @@
             <!-- GitHub Star Button -->
             <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" 
                class="hidden sm:flex px-4 py-2 rounded-lg transition-colors items-center space-x-2"
-               style="background-color: var(--button-bg); color: var(--button-text);"
+               style="background-color: var(--accent-color); color: var(--button-text);"
                onmouseover="this.style.backgroundColor='var(--button-hover)'"
                onmouseout="this.style.backgroundColor='var(--button-bg)'"
                id="nav-github-button">
@@ -1070,10 +1070,10 @@
 
   <!-- Mobile Menu Button (moved inside header flex for alignment) -->
   <button
-    class="block md:hidden p-2 absolute right-4 top-1/2 -translate-y-1/2 z-[1051]"
-    onclick="toggleMobileMenu()"
-    id="mobile-menu-btn"
-    aria-label="Toggle mobile menu"
+   id="mobile-menu-btn"
+  aria-label="Toggle mobile menu"
+  onclick="toggleMobileMenu()"
+  class="block lg:hidden p-2 absolute right-4 top-1/2 -translate-y-1/2 z-[1051] text-gray-800 hover:text-gray-900 transition flex items-center justify-center"
   >
     <i
       class="fas fa-bars text-lg"
@@ -1087,7 +1087,7 @@
 
         <div
           id="mobile-menu"
-          class="hidden md:hidden pb-4 border-t mt-4 absolute left-0 w-full z-[1050]"
+          class="hidden flex-col items-center bg-white text-gray-800 shadow-md py-4 space-y-3 lg:hidden"
           style="
             background-color: var(--nav-bg);
             border-color: var(--border-color);
