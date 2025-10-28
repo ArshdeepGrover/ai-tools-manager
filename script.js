@@ -238,7 +238,7 @@ function renderContributors(contributors) {
           : 0;
 
         return `
-          <div class="contributor-card-modern"
+          <div class="contributor-card-modern ${contributor.featured ? 'featured-contributor' : ''}"
                style="animation-delay: ${index * 0.1}s">
             <div>
               <div class="flex items-center space-x-3 mb-3">

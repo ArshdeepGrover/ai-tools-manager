@@ -13,18 +13,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment on PR
-        uses: actions/github-script@v6
+        uses: actions/github-script@v8
         with:
           script: |
             const prNumber = context.issue.number;
-            const commentBody = `### Thank you for your pull request! 😊
-            We’ll review it promptly. Please verify the file changes and ensure all commits are correct. If there are any unresolved review comments, kindly address them.
-            Don’t forget to ⭐ star the repository if you find it helpful – it means a lot to the project!`;
+            const commentBody = `👋 **Thank you for opening this pull request!**
+
+            We really appreciate your contribution.
+            Before we review it, please double-check:
+              - ✅ All related files and commits are correct
+              - 💬 Any review comments have been addressed
+
+            Our team will review your PR soon. If you enjoy this project, please consider giving it a ⭐ — it helps us grow!`;
+
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: prNumber,
               body: commentBody
             });
-            console.log('Comment added successfully.');
-
+            console.log('PR comment added successfully');

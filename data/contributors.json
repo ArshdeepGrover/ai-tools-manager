@@ -15,10 +15,20 @@
         "Created contributor system and community guidelines",
         "Established GitHub workflows and issue templates",
         "Enhanced GitHub integration with live stats display",
-        "Added comprehensive issue template collection"
+        "Added comprehensive issue template collection",
+        "Redesigned status indicators and optimized layout",
+        "Added contributors count to repository stats",
+        "Improved mobile layout and navigation",
+        "Implemented duplicate check workflows",
+        "Added PR deployed notification system",
+        "Enhanced validation systems with professional reporting",
+        "Redesigned contributors section with modern UI and interactive tooltips",
+        "Optimized folder structure and removed redundant files",
+        "Implemented contributors validation system"
       ],
       "website": "https://arshdeepsingh.info",
-      "role": "Creator & Maintainer"
+      "role": "Creator & Maintainer",
+      "featured": true
     },
     {
       "name": "Taranpreet Singh",
@@ -72,7 +82,8 @@
         "Added Copy.ai AI writing generator tool",
         "Added Vmaker AI video generation tool"
       ],
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "Lina Mariam",
@@ -100,10 +111,12 @@
         "Implemented dark/light mode toggle button in header",
         "Added theme palette dropdown feature",
         "Completed dark mode toggle enhancement",
-        "Added comprehensive theming system to the website"
+        "Added comprehensive theming system to the website",
+        "Enhanced project structure and organization"
       ],
       "website": "https://bejawadasaimahendra.vercel.app",
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "Siddarthan N",
@@ -140,7 +153,8 @@
         "Fixed various bugs and resolved errors in the codebase",
         "Enhanced project reliability with validation systems"
       ],
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "Simranpreet Kaur",
@@ -180,7 +194,8 @@
         "Automated contributor onboarding with GitHub Actions and PR checklist bots",
         "Added a scroll to the top button to reach the top of the page easily"
       ],
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "Ramazan Turan",
@@ -224,7 +239,9 @@
       "linkedin": "shivang-jaiswal-18809432b",
       "tagline": "AI Tools Contributor",
       "contributions": [
-        "Added Simplified AI Writer to AI Writing & Content category"
+        "Added Simplified AI Writer to AI Writing & Content category",
+        "Implemented scroll to top functionality for contributors section",
+        "Added Show Less feature with scroll behavior"
       ],
       "role": "Contributor"
     },
@@ -270,7 +287,8 @@
         "Added Pi (Inflection AI)",
         "Improved AI tool categorization logic"
       ],
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "Saatvik Sawarn",
@@ -327,7 +345,8 @@
         "Fixed the issue where number of stars and forks were not visible in the footer."
       ],
       "website": "https://manannarwal.vercel.app",
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "D Manohar Reddy",
@@ -341,20 +360,107 @@
       "role": "Contributor"
     },
     {
-    "name": "B Tarakeshwar",
-    "github": "tarakeshwarb",
-    "avatar": "https://github.com/tarakeshwarb.png",
-    "contributions": ["Added Toggle Button to switch between dark and light mode"],
-    "role": "Contributor"
+      "name": "B Tarakeshwar",
+      "github": "tarakeshwarb",
+      "avatar": "https://github.com/tarakeshwarb.png",
+      "contributions": [
+        "Added Toggle Button to switch between dark and light mode"
+      ],
+      "role": "Contributor"
     },
     {
-      "name":"Prachi Sharma",
+      "name": "Prachi Sharma",
       "github": "dev-prachi",
-      "avatar":"https://github.com/dev-prachi.png",
-      "linkedin":"prachi-sharma123",
-      "tagline":"Aspiring Software Developer",
-      "contributions":["Added hover effect in the links of navbar"],
-      "role":"Contributor"
+      "avatar": "https://github.com/dev-prachi.png",
+      "linkedin": "www.linkedin.com/in/prachi-sharma123",
+      "tagline": "Aspiring Software Developer",
+      "contributions": ["Added hover effect in the links of navbar"],
+      "role": "Contributor"
+    },
+    {
+      "name": "Manu",
+      "github": "maanuu5",
+      "avatar": "https://github.com/maanuu5.png",
+      "tagline": "Developer",
+      "contributions": ["Fixed persistent blue outline issues"],
+      "role": "Contributor"
+    },
+    {
+      "name": "Riddhi Patel",
+      "github": "riiddhii28",
+      "avatar": "https://github.com/riiddhii28.png",
+      "linkedin": "riddhi-patel28",
+      "tagline": "Web Developer",
+      "contributions": [
+        "Implemented Progressive Web App (PWA) offline functionality"
+      ],
+      "role": "Contributor",
+      "featured": true
+    },
+    {
+      "name": "Abhigya Sharma",
+      "github": "abhigyaabs2",
+      "avatar": "https://avatars.githubusercontent.com/u/142334571?v=4",
+      "tagline": "Developer",
+      "contributions": ["Updated script.js functionality"],
+      "role": "Contributor",
+      "featured": true
+    },
+    {
+      "name": "Arushi Waddepalli",
+      "github": "arushi2702",
+      "avatar": "https://avatars.githubusercontent.com/u/183184065?v=4",
+      "tagline": "UI/UX Developer",
+      "contributions": ["Fixed design inconsistencies across the website"],
+      "role": "Contributor",
+      "featured": true
+    },
+    {
+      "name": "Bhuwan",
+      "github": "bhuwan",
+      "avatar": "https://github.com/bhuwan.png",
+      "tagline": "AI Tools Contributor",
+      "contributions": ["Added 5 new AI tools to the collection"],
+      "role": "Contributor"
+    },
+    {
+      "name": "Khushbu Gupta",
+      "github": "khushbu-gupta",
+      "avatar": "https://github.com/khushbu-gupta.png",
+      "tagline": "Developer",
+      "contributions": ["Contributed to project maintenance and merges"],
+      "role": "Contributor"
+    },
+    {
+      "name": "Shivani Prajapati",
+      "github": "shivani-prajapati",
+      "avatar": "https://github.com/shivani-prajapati.png",
+      "tagline": "UI/UX Developer",
+      "contributions": [
+        "Changed position of repository stats and added AI gaming tools cards"
+      ],
+      "role": "Contributor",
+      "featured": true
+    },
+    {
+      "name": "Vanshika Khator",
+      "github": "vanshikakhator",
+      "avatar": "https://avatars.githubusercontent.com/u/170328755?v=4",
+      "tagline": "Frontend Developer",
+      "contributions": [
+        "Improved navbar layout for mobile and tablet versions",
+        "Enhanced navbar design and responsiveness"
+      ],
+      "role": "Contributor",
+      "featured": true
+    },
+    {
+      "name": "Manju",
+      "github": "Manju-2004",
+      "avatar": "https://github.com/Manju-2004.png",
+      "tagline": "AI Tools Contributor",
+      "contributions": ["Added Local LLMs category with multiple tools"],
+      "role": "Contributor"
     }
   ]
 }

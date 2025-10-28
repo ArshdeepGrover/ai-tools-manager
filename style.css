@@ -521,6 +521,33 @@ img {
   }
 }
 
+/* Featured Contributors Highlight */
+.featured-contributor {
+  position: relative;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  border: 2px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+.featured-contributor::before {
+  content: '⭐';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  background: linear-gradient(45deg, #fbbf24, #f59e0b);
+  color: white;
+  font-size: 12px;
+  padding: 4px 6px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.4);
+  z-index: 10;
+}
+
+.featured-contributor:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
   .offline-indicator,
