@@ -757,6 +757,11 @@
           "url": "https://www.yeschat.ai/gpts-9t557fXc0DB-TACTIC-BLITZ?utm_source=chatgpt.com",
           "description": "AI coach that gives move-by-move strategy advice for different genres"
         }
+        {
+          "title": "Rosebud AI",
+          "url": "https://lab.rosebud.ai/ai-game-creator",
+          "description": "An AI tool which help you create simple 2D games by generating game assets, levels, and mechanics based on your ideas."
+        }
       ]
     },
     {
