@@ -1225,7 +1225,6 @@ class PWAManager {
       this.installPrompt = null;
       this.hideInstallButton();
       this.showNotification('App installed successfully!', 'success');
-
       // Track installation
       if (typeof gtag !== 'undefined') {
         gtag('event', 'pwa_install', {
