@@ -58,6 +58,20 @@
       "role": "Contributor"
     },
     {
+      "name": "Varun Tankan",
+      "github": "varuntankan12",
+      "avatar": "https://avatars.githubusercontent.com/u/121188340?v=4",
+      "linkedin": "varun-tankan-61778b227",
+      "tagline": "Write - Debug - Repeat",
+      "contributions": [
+        "Updated Contributors Section to Display Contributors in a Grid Layout",
+        "Added Pagination Functionality and Search Filter to Contributors Section",
+        "Updated Card UI, Added Popup Modeal for Contributor Details"
+      ],
+      "role": "Contributor",
+      "featured": true
+    },
+    {
       "name": "Chirag Tankan",
       "github": "chiragtankan",
       "avatar": "https://avatars.githubusercontent.com/u/118548447?v=4",
