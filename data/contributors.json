@@ -66,7 +66,7 @@
       "contributions": [
         "Updated Contributors Section to Display Contributors in a Grid Layout",
         "Added Pagination Functionality and Search Filter to Contributors Section",
-        "Updated Card UI, Added Popup Modeal for Contributor Details"
+        "Updated Card UI, Added Popup modal for Contributor Details"
       ],
       "role": "Contributor",
       "featured": true
