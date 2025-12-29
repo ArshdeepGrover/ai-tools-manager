@@ -344,23 +344,23 @@ function renderContributors(contributors) {
           const contributionCount = contributor.contributions ? contributor.contributions.length : 0;
 
           return `
-            <div class="contributor-card-modern ${contributor.featured ? 'featured' : ''}"
+            <div class="contributor-card-modern no-scroll ${contributor.featured ? 'featured' : ''}"
                  style="animation-delay: ${index * 0.05}s"
                  onclick="openContributorModal(${contributors.indexOf(contributor)})">
               ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ''}
               <div>
-                <div class="flex items-center space-x-3 mb-3">
+                <div class="flex space-x-3 mb-3 no-scroll">
                   <img src="${contributor.avatar}" alt="${contributor.name}"
                        class="contributor-avatar-modern flex-shrink-0" />
-                  <div class="contributor-info flex-1 min-w-0">
-                    <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${contributor.name}</h4>
+                  <div class="contributor-info flex-1  min-w-0">
+                    <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${contributor.name}</h4>
                     ${contributor.role ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>` : ""}
-                    ${contributor.tagline ? `<p class="text-xs contributor-tagline" style="color: var(--text-secondary);">"${contributor.tagline}"</p>` : ""}
                   </div>
                 </div>
+                ${contributor.tagline ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${contributor.tagline}"</p>` : ""}
               </div>
 
-              <div class="flex justify-between items-end">
+              <div class="flex justify-between items-center mt-2 no-scroll">
                 <div class="contributor-stats">
                   ${contributionCount > 0 ? `
                     <span class="stat-item">
@@ -554,8 +554,8 @@ function openContributorModal(contributorIndex) {
 
   // Create modal HTML
   const modalHTML = `
-    <div id="contributor-modal-backdrop" class="contributor-modal-backdrop active">
-      <div class="contributor-modal">
+    <div id="contributor-modal-backdrop" class="contributor-modal-backdrop active no-scroll">
+      <div class="contributor-modal no-scroll">
         <button class="modal-close-btn" onclick="closeContributorModal()" title="Close">
           <i class="fas fa-times"></i>
         </button>
@@ -589,7 +589,7 @@ function openContributorModal(contributorIndex) {
           </div>
         ` : ""}
 
-        <div class="modal-section">
+        <div class="modal-section no-scroll ">
           <div class="modal-section-title">
             <i class="fas fa-link"></i>
             <span>Connect</span>

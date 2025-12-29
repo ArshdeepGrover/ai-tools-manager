@@ -176,7 +176,7 @@
       --button-hover: #111827;
       --accent-color: #6c63ff;
       --accent-hover: #4f46e5;
-      --featured-bg: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      --featured-bg: linear-gradient(135deg, #f0f9ff24 0%, #e0f2fed3 100%);
     }
 
     [data-theme="dark"] {
@@ -196,7 +196,17 @@
       --button-bg: #3b82f6;
       --button-text: #ffffff;
       --button-hover: #2563eb;
-      --featured-bg: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+      --featured-bg: linear-gradient(135deg, #1e3b8a12 0%, #16338437 25%, #1e40af69 100%);
+    }
+
+    .no-scroll {
+      overflow: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .no-scroll::-webkit-scrollbar {
+      display: none;
     }
 
     .gradient-bg {
@@ -359,7 +369,7 @@
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 26px 12px 6px;
       color: var(--text-secondary);
       transition: all 0.3s ease;
       position: relative;
@@ -428,26 +438,28 @@
     .contributor-stats {
       display: flex;
       gap: 8px;
-      margin: 8px 0;
+      margin: 6px 0;
       flex-wrap: wrap;
     }
 
     .stat-item {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       padding: 4px 8px;
-      background: #f3f4f6;
-      border-radius: 12px;
-      font-size: 11px;
+      background: #f3f4f610;
+      border-radius: 8px;
+      font-size: 10px;
       transition: all 0.3s ease;
-      border: 1px solid #e5e7eb;
-      color: #6b7280;
+      /* border: 1px solid #e5e7eb; */
+      box-shadow: #e5e7eb 0px 1px 2px 0px;
+      color: #c8cace;
     }
 
     .stat-item:hover {
       background: #e5e7eb;
-      transform: scale(1.05);
+      transform: translateY(-2px);
+      color: #1a1f29;
     }
 
     /* Tooltip Styles */
@@ -625,11 +637,11 @@
 
     .floating-badge {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      padding: 4px 8px;
+      top: 4px;
+      right: 4px;
+      padding: 4px 6px;
       background: #3b82f6;
-      border-radius: 12px;
+      border-radius: 8px;
       font-size: 10px;
       color: white;
       font-weight: 600;
@@ -1475,12 +1487,12 @@
       </div>
 
       <!-- Contributors Grid -->
-      <div id="contributors-modern-grid" class="contributors-grid mb-2">
+      <div id="contributors-modern-grid" class="contributors-grid mb-2 no-scroll">
         <!-- Contributors will be loaded here -->
       </div>
 
       <!-- Pagination Controls -->
-      <div id="pagination-container" class="flex items-center justify-center gap-2 my-8 flex-wrap">
+      <div id="pagination-container" class="flex items-center justify-center gap-2 my-8 flex-wrap no-scroll">
         <!-- Pagination will be loaded here -->
       </div>
 
