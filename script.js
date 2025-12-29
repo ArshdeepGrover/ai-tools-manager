@@ -67,66 +67,6 @@ async function loadContributors() {
         "role": "Contributor",
         featured: false,
       },
-      {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
-        featured: true,
-      },
-      {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
-        featured: false,
-      },
-      {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
-        featured: false,
-      },
-      {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
-        featured: true,
-      },
-      {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
-        featured: true,
-      },
     ];
     renderContributors(allContributors);
     updateFooterContributorsCount("-");
