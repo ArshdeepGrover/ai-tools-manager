@@ -2,8 +2,13 @@ let allCategories = [];
 let currentFilter = "all";
 let searchTerm = ""; // current text search filter
 let showAllCategories = {}; // per category expansion state
-let showAllContributors = false;
 let allContributors = [];
+
+// Contributors pagination
+let currentContributorPage = 1;
+const contributorsPerPage = 12; // 12 contributors per page (4x3 grid)
+let filteredContributors = [];
+let searchContributorsText = "";
 
 async function loadLinks() {
   try {
@@ -24,7 +29,7 @@ async function loadContributors() {
   try {
     const response = await fetch("data/contributors.json");
     const data = await response.json();
-    
+
     if (data && Array.isArray(data.contributors) && data.contributors.length > 0) {
       allContributors = data.contributors;
       renderContributors(allContributors);
@@ -36,7 +41,34 @@ async function loadContributors() {
   } catch (error) {
     console.error("Error loading contributors:", error);
     // Fallback with dash
-    allContributors = [];
+    // add fallback contributor for only development
+    allContributors = [
+      {
+        "name": "Testing Contributor",
+        "github": "tester123",
+        "avatar": "https://thispersondoesnotexist.com/",
+        "linkedin": "testing123",
+        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
+        "contributions": [
+          "Testing the contributors loading functionality."
+        ],
+        "role": "Contributor",
+        featured: true,
+      },
+      {
+        "name": "Testing Contributor",
+        "github": "tester123",
+        "avatar": "https://thispersondoesnotexist.com/",
+        "linkedin": "testing123",
+        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
+        "contributions": [
+          "Testing the contributors loading functionality."
+        ],
+        "role": "Contributor",
+        featured: false,
+      },
+    ];
+    renderContributors(allContributors);
     updateFooterContributorsCount("-");
   }
 }
@@ -164,50 +196,44 @@ function renderLinks(categories) {
     categoryDiv.innerHTML = `
       <div class="flex items-center space-x-4 mb-8">
         <span class="text-4xl">${category.icon}</span>
-        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${
-          category.name
-        }</h2>
+        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${category.name
+      }</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         ${linksToShow
-          .map(
-            (link) => `
+        .map(
+          (link) => `
           <a href="${link.url}" target="_blank"
              class="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-2 hover:border-blue-300 card-hover group"
              style="background-color: var(--card-bg); border-color: var(--card-border);"
              onclick="trackToolClick('${link.title}', '${category.name}')">
             <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors" style="color: var(--text-primary);">${
-                link.title
-              }</h3>
+              <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors" style="color: var(--text-primary);">${link.title
+            }</h3>
               <i class="fas fa-external-link-alt group-hover:text-blue-500 transition-colors" style="color: var(--text-tertiary);"></i>
             </div>
-            <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">${
-              link.description
+            <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">${link.description
             }</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-blue-600 font-medium">${
-                new URL(link.url).hostname
-              }</span>
+              <span class="text-sm text-blue-600 font-medium">${new URL(link.url).hostname
+            }</span>
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">Free</span>
             </div>
           </a>
         `
-          )
-          .join("")}
+        )
+        .join("")}
       </div>
-      ${
-        category.links.length > 6
-          ? `
+      ${category.links.length > 6
+        ? `
         <div class="text-center mt-6">
-          <button class="show-more-btn" data-action="${
-            isExpanded ? "show-less" : "show-more"
-          }" onclick="toggleCategory('${category.name}')">
+          <button class="show-more-btn" data-action="${isExpanded ? "show-less" : "show-more"
+        }" onclick="toggleCategory('${category.name}')">
             <span>${isExpanded ? "Show Less" : "Show More"}</span>
           </button>
         </div>
       `
-          : ""
+        : ""
       }
     `;
 
@@ -217,77 +243,228 @@ function renderLinks(categories) {
 
 function renderContributors(contributors) {
   // Update total contributors count
-  const totalContributorsText = document.getElementById(
-    "total-contributors-text"
-  );
+  const totalContributorsText = document.getElementById("total-contributors-text");
   if (totalContributorsText) {
     totalContributorsText.textContent = contributors.length;
   }
 
-  // Always show all contributors (pagination removed)
-  const contributorsToShow = contributors;
+  // Filter contributors based on search text
+  if (searchContributorsText.trim()) {
+    const searchLower = searchContributorsText.toLowerCase();
+    filteredContributors = contributors.filter(c =>
+      c.name.toLowerCase().includes(searchLower) ||
+      (c.tagline && c.tagline.toLowerCase().includes(searchLower)) ||
+      (c.role && c.role.toLowerCase().includes(searchLower))
+    );
+  } else {
+    filteredContributors = contributors;
+  }
+
+  // Reset to page 1 when filtering
+  currentContributorPage = 1;
+
+  // Calculate pagination
+  const totalPages = Math.ceil(filteredContributors.length / contributorsPerPage);
+  const startIndex = (currentContributorPage - 1) * contributorsPerPage;
+  const contributorsToShow = filteredContributors.slice(startIndex, startIndex + contributorsPerPage);
+
+  // Render Modern Grid
+  const modernGrid = document.getElementById("contributors-modern-grid");
+  if (modernGrid) {
+    if (filteredContributors.length === 0) {
+      modernGrid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <i class="fas fa-search text-4xl" style="color: var(--text-tertiary); opacity: 0.5;"></i>
+          <p class="mt-4" style="color: var(--text-secondary);">No contributors found matching your search.</p>
+        </div>
+      `;
+    } else {
+      modernGrid.innerHTML = contributorsToShow
+        .map((contributor, index) => {
+          const contributionCount = contributor.contributions ? contributor.contributions.length : 0;
+
+          return `
+            <div class="contributor-card-modern no-scroll ${contributor.featured ? 'featured' : ''}"
+                 style="animation-delay: ${index * 0.05}s"
+                 onclick="openContributorModal(${contributors.indexOf(contributor)})">
+              ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ''}
+              <div>
+                <div class="flex space-x-3 mb-3 no-scroll">
+                  <img src="${contributor.avatar}" alt="${contributor.name}"
+                       class="contributor-avatar-modern flex-shrink-0" />
+                  <div class="contributor-info flex-1  min-w-0">
+                    <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${contributor.name}</h4>
+                    ${contributor.role ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>` : ""}
+                  </div>
+                </div>
+                ${contributor.tagline ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${contributor.tagline}"</p>` : ""}
+              </div>
+
+              <div class="flex justify-between items-center mt-2 no-scroll">
+                <div class="contributor-stats">
+                  ${contributionCount > 0 ? `
+                    <span class="stat-item">
+                      <i class="fas fa-star" style="color: #f59e0b;"></i>
+                      <span>${contributionCount}</span>
+                    </span>
+                  ` : ''}
+                </div>
+                <div class="contributor-social-modern">
+                  <a href="https://github.com/${contributor.github}" target="_blank"
+                     class="social-link-modern" title="GitHub"
+                     onclick="event.stopPropagation(); trackContributorClick('${contributor.name}')">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  ${contributor.linkedin ? `
+                    <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
+                       class="social-link-modern" title="LinkedIn"
+                       onclick="event.stopPropagation()">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                  ` : ""}
+                  ${contributor.website ? `
+                    <a href="${contributor.website}" target="_blank"
+                       class="social-link-modern" title="Website"
+                       onclick="event.stopPropagation()">
+                      <i class="fas fa-globe"></i>
+                    </a>
+                  ` : ""}
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+    }
+  }
+
+  // Render pagination controls
+  renderPaginationControls(totalPages);
+}
+
+function renderPaginationControls(totalPages) {
+  const paginationContainer = document.getElementById("pagination-container");
+  if (!paginationContainer) return;
+
+  if (totalPages <= 1) {
+    paginationContainer.innerHTML = "";
+    return;
+  }
+
+  let html = "";
+
+  // Previous button
+  html += `
+    <button class="pagination-button ${currentContributorPage === 1 ? "disabled" : ""}"
+            ${currentContributorPage === 1 ? "disabled" : "onclick='changeContributorPage(" + (currentContributorPage - 1) + ")'"}>
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  `;
+
+  // Page numbers with ellipsis
+  for (let i = 1; i <= totalPages; i++) {
+    if (i === 1 || i === totalPages || (i >= currentContributorPage - 1 && i <= currentContributorPage + 1)) {
+      html += `
+        <button class="pagination-button ${i === currentContributorPage ? "active" : ""}"
+                onclick="changeContributorPage(${i})">
+          ${i}
+        </button>
+      `;
+    } else if (i === 2 || i === totalPages - 1) {
+      html += `<span class="pagination-info">...</span>`;
+    }
+  }
+
+  // Next button
+  html += `
+    <button class="pagination-button ${currentContributorPage === totalPages ? "disabled" : ""}"
+            ${currentContributorPage === totalPages ? "disabled" : "onclick='changeContributorPage(" + (currentContributorPage + 1) + ")'"}>
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  `;
+
+  // Pagination info
+  const totalDisplayed = filteredContributors.length;
+  const startNum = Math.min((currentContributorPage - 1) * contributorsPerPage + 1, totalDisplayed);
+  const endNum = Math.min(currentContributorPage * contributorsPerPage, totalDisplayed);
+
+  html += `<span class="pagination-info">Showing ${startNum}-${endNum} of ${totalDisplayed}</span>`;
+
+  paginationContainer.innerHTML = html;
+}
+
+function changeContributorPage(pageNumber) {
+  const totalPages = Math.ceil(filteredContributors.length / contributorsPerPage);
+
+  if (pageNumber < 1 || pageNumber > totalPages) return;
+
+  currentContributorPage = pageNumber;
+
+  // Re-render with current filtered contributors
+  const totalContributorsText = document.getElementById("total-contributors-text");
+  if (totalContributorsText) {
+    totalContributorsText.textContent = filteredContributors.length;
+  }
+
+  // Calculate pagination
+  const startIndex = (currentContributorPage - 1) * contributorsPerPage;
+  const contributorsToShow = filteredContributors.slice(startIndex, startIndex + contributorsPerPage);
 
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
   if (modernGrid) {
     modernGrid.innerHTML = contributorsToShow
       .map((contributor, index) => {
-        const isCreator = contributor.role === "Creator & Maintainer";
-        const contributionCount = contributor.contributions
-          ? contributor.contributions.length
-          : 0;
+        const contributorIndex = allContributors.indexOf(contributor);
+        const contributionCount = contributor.contributions ? contributor.contributions.length : 0;
 
         return `
-          <div class="contributor-card-modern ${contributor.featured ? 'featured-contributor' : ''}"
-               style="animation-delay: ${index * 0.1}s">
+          <div class="contributor-card-modern ${contributor.featured ? 'featured' : ''}"
+               style="animation-delay: ${index * 0.05}s"
+               onclick="openContributorModal(${contributorIndex})">
+            ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ''}
             <div>
               <div class="flex items-center space-x-3 mb-3">
                 <img src="${contributor.avatar}" alt="${contributor.name}"
                      class="contributor-avatar-modern flex-shrink-0" />
                 <div class="contributor-info flex-1 min-w-0">
-                  <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${
-                    contributor.name
-                  }</h4>
-                  ${
-                    contributor.role
-                      ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>`
-                      : ""
-                  }
-                  ${
-                    contributor.tagline
-                      ? `<p class="text-xs contributor-tagline" style="color: var(--text-secondary);">"${contributor.tagline}"</p>`
-                      : ""
-                  }
+                  <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${contributor.name}</h4>
+                  ${contributor.role ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>` : ""}
+                  ${contributor.tagline ? `<p class="text-xs contributor-tagline" style="color: var(--text-secondary);">"${contributor.tagline}"</p>` : ""}
                 </div>
               </div>
             </div>
 
-            <div class="contributor-social-modern">
-              <a href="https://github.com/${contributor.github}" target="_blank"
-                 class="social-link-modern" title="GitHub"
-                 onclick="trackContributorClick('${contributor.name}')">
-                <i class="fab fa-github"></i>
-              </a>
-              ${
-                contributor.linkedin
-                  ? `
-                <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
-                   class="social-link-modern" title="LinkedIn">
-                  <i class="fab fa-linkedin"></i>
+            <div class="flex justify-between items-end">
+              <div class="contributor-stats">
+                ${contributionCount > 0 ? `
+                  <span class="stat-item">
+                    <i class="fas fa-star" style="color: #f59e0b;"></i>
+                    <span>${contributionCount}</span>
+                  </span>
+                ` : ''}
+              </div>
+              <div class="contributor-social-modern">
+                <a href="https://github.com/${contributor.github}" target="_blank"
+                   class="social-link-modern" title="GitHub"
+                   onclick="event.stopPropagation(); trackContributorClick('${contributor.name}')">
+                  <i class="fab fa-github"></i>
                 </a>
-              `
-                  : ""
-              }
-              ${
-                contributor.website
-                  ? `
-                <a href="${contributor.website}" target="_blank"
-                   class="social-link-modern" title="Website">
-                  <i class="fas fa-globe"></i>
-                </a>
-              `
-                  : ""
-              }
+                ${contributor.linkedin ? `
+                  <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
+                     class="social-link-modern" title="LinkedIn"
+                     onclick="event.stopPropagation()">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                ` : ""}
+                ${contributor.website ? `
+                  <a href="${contributor.website}" target="_blank"
+                     class="social-link-modern" title="Website"
+                     onclick="event.stopPropagation()">
+                    <i class="fas fa-globe"></i>
+                  </a>
+                ` : ""}
+              </div>
             </div>
           </div>
         `;
@@ -295,12 +472,116 @@ function renderContributors(contributors) {
       .join("");
   }
 
-  // Pagination removed - no button needed
-  const showAllBtnContainer = document.getElementById(
-    "show-all-contributors-container"
-  );
-  if (showAllBtnContainer) {
-    showAllBtnContainer.innerHTML = "";
+  // Re-render pagination
+  renderPaginationControls(totalPages);
+
+  // Smooth scroll to contributors section
+  const contributorsSection = document.getElementById("contributors");
+  if (contributorsSection) {
+    contributorsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function openContributorModal(contributorIndex) {
+  const contributor = allContributors[contributorIndex];
+  if (!contributor) return;
+
+  // Remove any existing modal
+  const existingModal = document.getElementById("contributor-modal-backdrop");
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Create modal HTML
+  const modalHTML = `
+    <div id="contributor-modal-backdrop" class="contributor-modal-backdrop active no-scroll">
+      <div class="contributor-modal no-scroll">
+        <button class="modal-close-btn" onclick="closeContributorModal()" title="Close">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="modal-header">
+          <img src="${contributor.avatar}" alt="${contributor.name}" class="modal-avatar" />
+          <div class="modal-title-section flex-1">
+            <h2>${contributor.name}</h2>
+            ${contributor.website ? `<p><i class="fas fa-globe"></i> <a href="${contributor.website}" target="_blank" style="color: #3b82f6;">${new URL(contributor.website).hostname}</a></p>` : ""}
+            ${contributor.role ? `<div class="modal-role-badge">${contributor.role}</div>` : ""}
+          </div>
+        </div>
+
+        ${contributor.tagline ? `
+          <div class="modal-section">
+            <p style="color: var(--text-secondary); font-style: italic; border-left: 3px solid #3b82f6; padding-left: 12px;">
+              "${contributor.tagline}"
+            </p>
+          </div>
+        ` : ""}
+
+        ${contributor.contributions && contributor.contributions.length > 0 ? `
+          <div class="modal-section">
+            <div class="modal-section-title">
+              <i class="fas fa-star"></i>
+              <span>Contributions (${contributor.contributions.length})</span>
+            </div>
+            <ul class="contributions-list">
+              ${contributor.contributions.map(contrib => `<li>${contrib}</li>`).join("")}
+            </ul>
+          </div>
+        ` : ""}
+
+        <div class="modal-section no-scroll ">
+          <div class="modal-section-title">
+            <i class="fas fa-link"></i>
+            <span>Connect</span>
+          </div>
+          <div class="modal-social-links">
+            <a href="https://github.com/${contributor.github}" target="_blank" class="modal-social-link">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            ${contributor.linkedin ? `
+              <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" class="modal-social-link">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+            ` : ""}
+            ${contributor.website ? `
+              <a href="${contributor.website}" target="_blank" class="modal-social-link">
+                <i class="fas fa-globe"></i>
+                <span>Website</span>
+              </a>
+            ` : ""}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Append to body
+  document.body.insertAdjacentHTML("beforeend", modalHTML);
+
+  // Close on backdrop click
+  document.getElementById("contributor-modal-backdrop").addEventListener("click", (e) => {
+    if (e.target.id === "contributor-modal-backdrop") {
+      closeContributorModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeContributorModal();
+    }
+  });
+}
+
+function closeContributorModal() {
+  const modal = document.getElementById("contributor-modal-backdrop");
+  if (modal) {
+    modal.classList.remove("active");
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
   }
 }
 
@@ -313,7 +594,7 @@ function updateStats(categories) {
   if (totalToolsElement) {
     totalToolsElement.textContent = totalTools + "+";
   }
-  
+
   // Update tools count in status widget
   const toolsCountElement = document.getElementById("tools-count");
   if (toolsCountElement) {
@@ -369,11 +650,10 @@ function showTooltip(element) {
         </div>
         <div class="mb-2 font-medium" style="color: var(--text-secondary);">${contributorName}</div>
         <ul class="tooltip-list-modal">
-          ${
-            contributions.length > 0
-              ? contributions.map((contrib) => `<li>• ${contrib}</li>`).join("")
-              : "<li>No contributions listed</li>"
-          }
+          ${contributions.length > 0
+      ? contributions.map((contrib) => `<li>• ${contrib}</li>`).join("")
+      : "<li>No contributions listed</li>"
+    }
         </ul>
       </div>
     </div>
@@ -444,23 +724,6 @@ function toggleCategory(categoryName) {
   applyFilters(); // Re-render with current filters
 }
 
-function toggleShowAllContributors() {
-  showAllContributors = !showAllContributors;
-  renderContributors(allContributors);
-  // Scroll to default parts when showing less
-  if (!showAllContributors) {
-    setTimeout(() => {
-      const contributorsSection = document.getElementById("contributors");
-      if (contributorsSection) {
-        contributorsSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 0);
-  }
-}
-
 // Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   // Add smooth scrolling to all anchor links
@@ -491,6 +754,16 @@ document.addEventListener("DOMContentLoaded", () => {
       applyFilters();
     });
   }
+
+  // Contributors search listener
+  const contributorsSearchInput = document.getElementById("contributors-search");
+  if (contributorsSearchInput) {
+    contributorsSearchInput.addEventListener("input", (e) => {
+      searchContributorsText = e.target.value;
+      renderContributors(allContributors);
+    });
+  }
+
   const categorySelect = document.getElementById("category-select");
   if (categorySelect) {
     categorySelect.addEventListener("change", (e) => {
@@ -510,15 +783,15 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadGitHubStars() {
   const owner = "ArshdeepGrover";
   const repo = "ai-tools-manager";
-  
+
   // Set initial loading state
   updateFooterStats("-", "-", "-");
-  
+
   try {
     const response = await fetch(
       "https://api.github.com/repos/ArshdeepGrover/ai-tools-manager"
     );
-    
+
     const data = await response.json();
     const starCount = data.stargazers_count || "-";
     const forkCount = data.forks_count || "-";
@@ -605,7 +878,7 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
       element.classList.remove("animate-pulse");
     }, 1000);
   });
- 
+
   // Update ALL footer issues count elements
   const footerIssuesCounts = document.querySelectorAll('[id="footer-issue-count"]');
   footerIssuesCounts.forEach(element => {
@@ -743,9 +1016,9 @@ class PWAManager {
     if ('serviceWorker' in navigator) {
       try {
         this.swRegistration = await navigator.serviceWorker.register('/sw.js');
-        
+
         console.log('[PWA] Service Worker registered successfully');
-        
+
         // Listen for SW messages
         navigator.serviceWorker.addEventListener('message', (event) => {
           this.handleServiceWorkerMessage(event.data);
@@ -796,7 +1069,7 @@ class PWAManager {
   // Handle SW updates
   handleServiceWorkerUpdate() {
     const newWorker = this.swRegistration.installing;
-    
+
     newWorker.addEventListener('statechange', () => {
       if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
         this.showUpdateAvailable();
@@ -851,7 +1124,7 @@ class PWAManager {
     const statusWidget = document.getElementById('status-widget');
     const statusDot = document.getElementById('status-dot');
     const statusText = document.getElementById('status-text');
-    
+
     if (statusWidget && statusDot && statusText) {
       if (this.isOnline) {
         statusWidget.classList.remove('offline');
@@ -888,7 +1161,7 @@ class PWAManager {
         // Override the loadLinks function to use cache-first strategy
         if (typeof loadLinks === 'function') {
           const originalLoadLinks = loadLinks;
-          
+
           window.loadLinks = async () => {
             try {
               await originalLoadLinks();
@@ -909,7 +1182,7 @@ class PWAManager {
     try {
       const cache = await caches.open('ai-tools-data-v1.0.0');
       const cachedResponse = await cache.match('/data/links.json');
-      
+
       if (cachedResponse) {
         const data = await cachedResponse.json();
         allCategories = data.categories;
@@ -952,7 +1225,6 @@ class PWAManager {
       this.installPrompt = null;
       this.hideInstallButton();
       this.showNotification('App installed successfully!', 'success');
-      
       // Track installation
       if (typeof gtag !== 'undefined') {
         gtag('event', 'pwa_install', {
@@ -981,24 +1253,24 @@ class PWAManager {
     installBtn.className = 'fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2';
     installBtn.innerHTML = '<i class="fas fa-download"></i><span>Install App</span>';
     installBtn.addEventListener('click', () => this.promptInstall());
-    
+
     document.body.appendChild(installBtn);
   }
 
   // Prompt installation
   async promptInstall() {
     if (!this.installPrompt) return;
-    
+
     try {
       const result = await this.installPrompt.prompt();
-      
+
       if (typeof gtag !== 'undefined') {
         gtag('event', 'pwa_install_prompt', {
           event_category: 'engagement',
           result: result.outcome
         });
       }
-      
+
       this.installPrompt = null;
     } catch (error) {
       console.error('[PWA] Install prompt error:', error);
@@ -1017,7 +1289,7 @@ class PWAManager {
   showNotification(message, type = 'info', duration = 5000) {
     const notification = this.createNotification(message, '', type);
     this.showNotificationElement(notification);
-    
+
     if (duration > 0) {
       setTimeout(() => {
         this.dismissNotification(notification);
@@ -1028,24 +1300,24 @@ class PWAManager {
   createNotification(title, message, type = 'info', actions = []) {
     const notification = document.createElement('div');
     notification.className = `fixed top-4 right-4 max-w-sm p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
-    
+
     // Type-specific styling
     const typeClasses = {
       success: 'bg-green-500 text-white',
-      warning: 'bg-orange-500 text-white', 
+      warning: 'bg-orange-500 text-white',
       error: 'bg-red-500 text-white',
       info: 'bg-blue-500 text-white'
     };
-    
+
     notification.classList.add(...typeClasses[type].split(' '));
-    
+
     const icons = {
       success: 'fas fa-check-circle',
       warning: 'fas fa-exclamation-triangle',
       error: 'fas fa-times-circle',
       info: 'fas fa-info-circle'
     };
-    
+
     notification.innerHTML = `
       <div class="flex items-start space-x-3">
         <i class="${icons[type]} mt-1"></i>
@@ -1067,7 +1339,7 @@ class PWAManager {
         </button>
       </div>
     `;
-    
+
     // Add action handlers
     actions.forEach((action, index) => {
       const actionBtn = document.createElement('button');
@@ -1075,13 +1347,13 @@ class PWAManager {
       actionBtn.addEventListener('click', action.action);
       notification.appendChild(actionBtn);
     });
-    
+
     return notification;
   }
 
   showNotificationElement(notification) {
     document.body.appendChild(notification);
-    
+
     // Trigger animation
     setTimeout(() => {
       notification.classList.remove('translate-x-full');
@@ -1104,13 +1376,13 @@ class PWAManager {
     try {
       const cacheNames = await caches.keys();
       let totalSize = 0;
-      
+
       for (const cacheName of cacheNames) {
         const cache = await caches.open(cacheName);
         const requests = await cache.keys();
         totalSize += requests.length;
       }
-      
+
       return {
         cacheCount: cacheNames.length,
         totalItems: totalSize
