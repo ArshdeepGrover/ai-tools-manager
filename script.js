@@ -6,7 +6,7 @@ let allContributors = [];
 
 // Contributors pagination
 let currentContributorPage = 1;
-const contributorsPerPage = 12; // 12 contributors per page (4x3 grid)
+const contributorsPerPage = 16; // 12 contributors per page (4x3 grid)
 let filteredContributors = [];
 let searchContributorsText = "";
 
