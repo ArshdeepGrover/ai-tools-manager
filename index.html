@@ -1426,6 +1426,92 @@
       </div>
     </section>
 
+
+    <!-- chat agent -->
+    
+    <!-- 1. Puter.js Library (Crucial: Must be in Head or before your script) -->
+    <script src="https://js.puter.com/v2/"></script>
+    
+    <!-- 2. The Chat UI -->
+    <div id="ai-chat-box" style="position: fixed; bottom: 80px; left: 20px; z-index: 999999; font-family: sans-serif;">
+      <div id="ai-window"
+        style="display: none; width: 320px; height: 450px; background: #1a1f2c; border: 1px solid #3d4455; border-radius: 15px; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;">
+        <div
+          style="background: #6e8efb; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
+          <span>AI Scout Agent</span>
+          <button onclick="document.getElementById('ai-window').style.display='none'"
+            style="background:none; border:none; color:white; cursor:pointer; font-size:20px;">×</button>
+        </div>
+        <div id="ai-messages"
+          style="flex: 1; padding: 15px; overflow-y: auto; color: #eee; font-size: 14px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="background: #2d3446; padding: 10px; border-radius: 10px;">Hello! I am your AI Agent. Ask me for any
+            tool in our project!</div>
+        </div>
+        <div style="padding: 10px; border-top: 1px solid #333; display: flex; gap: 5px;">
+          <input type="text" id="ai-input" placeholder="Type a problem..."
+            style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #444; background: #0f172a; color: white;">
+          <button id="ai-send-btn"
+            style="padding: 10px; background: #6e8efb; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+        </div>
+      </div>
+      <button id="ai-toggle"
+        onclick="var w=document.getElementById('ai-window'); w.style.display = (w.style.display==='none'?'flex':'none')"
+        style="width: 60px; height: 60px; border-radius: 50%; background: #6e8efb; border: none; color: white; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">🤖</button>
+    </div>
+    
+    <!-- 3. The Logic -->
+    <script>
+      // This ensures the script runs even if other files are broken
+      console.log("AI Scout Script Loading...");
+
+      // Function to handle the AI logic
+      async function askAgent() {
+        const input = document.getElementById('ai-input');
+        const box = document.getElementById('ai-messages');
+
+        if (!input || !box) return;
+        const query = input.value.trim();
+        if (!query) return;
+
+        // 1. Show User Message
+        box.innerHTML += `<div style="background: #6e8efb; padding: 10px; border-radius: 10px; align-self: flex-end; color: white; margin-bottom: 10px;">${query}</div>`;
+        input.value = '';
+
+        const id = "bot-" + Date.now();
+        box.innerHTML += `<div id="${id}" style="background: #2d3446; padding: 10px; border-radius: 10px; align-self: flex-start; color: white; margin-bottom: 10px;">⏳ Thinking...</div>`;
+        box.scrollTop = box.scrollHeight;
+
+        try {
+          // 2. Fetch Tools (Using absolute-style path to be safe)
+          const response = await fetch('data/links.json');
+          if (!response.ok) throw new Error("JSON file not found at data/links.json");
+          const tools = await response.json();
+
+          // 3. Call Puter AI
+          if (!window.puter) throw new Error("AI Library (Puter) not loaded. Check internet.");
+
+          const aiResponse = await puter.ai.chat(
+            `You are the AI Scout for this tool collection: ${JSON.stringify(tools).substring(0, 8000)}. Recommend a tool for: "${query}"`,
+            { model: 'gpt-4o-mini' }
+          );
+
+          document.getElementById(id).innerText = aiResponse.message.content;
+        } catch (e) {
+          console.error("Chat Error:", e);
+          document.getElementById(id).innerText = "Error: " + e.message;
+        }
+        box.scrollTop = box.scrollHeight;
+      }
+
+      // Attach the event listener properly
+      document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('ai-send-btn');
+        if (btn) {
+          btn.onclick = askAgent;
+          console.log("AI Send Button Linked!");
+        }
+      });
+    </script>
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

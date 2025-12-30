@@ -64,9 +64,11 @@
       "linkedin": "chiragtankan",
       "tagline": "Organizer Of Meerut Coders",
       "contributions": [
-        "Added new AI Tool Chess Champ to the AI Game & Strategy"
+        "Added new AI Tool Chess Champ to the AI Game & Strategy",
+        "Added a AI agent to sugest best AI Tools"
       ],
-      "role": "Contributor"
+      "role": "Contributor",
+      "featured": true
     },
     {
       "name": "Dipanshu Rawat",
