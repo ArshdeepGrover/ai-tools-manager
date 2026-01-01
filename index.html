@@ -1613,17 +1613,121 @@
           </div>
         </div>
       </div>
+<!-- About Section -->
+  <section id="about" class="py-10" style="background-color: var(--bg-primary);">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">About</h2>
+        <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
+          Learn more about the creator and the community behind this project.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Left Column - Created by -->
+        <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
+          <div class="text-center mb-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Created by</h3>
+          </div>
+          <div class="flex flex-col items-center space-y-4">
+            <img src="https://www.arshdeepsingh.info/images/arshdeep-singh.png" alt="Arshdeep Singh" class="w-32 h-32 rounded-full object-cover" />
+            <div class="text-center">
+              <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Arshdeep Singh</h4>
+              <p class="mb-6" style="color: var(--text-secondary);">
+                Passionate about AI and helping developers discover the best tools to accelerate their creative journey.
+              </p>
+              <div class="flex flex-wrap justify-center gap-3">
+                <a href="https://linkedin.com/in/ArshdeepGrover" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
+                  <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/ArshdeepGrover" target="_blank" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors flex items-center space-x-2">
+                  <i class="fab fa-github"></i><span>GitHub</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column - Community -->
+        <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
+          <div class="text-center mb-4">
+            <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Community</h3>
+          </div>
+          <div class="flex flex-col items-center space-y-4">
+            <img src="https://json.commudle.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBLy9YQkE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0f09813e6aa3dc3e732cca755614d3bbadd5bf5f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFKQUFXa0NRQUU2QzJ4dllXUmxjbnNHT2dsd1lXZGxNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--e1b8c3103b542b9d7ba47b2862e0d51860fbef22/Screenshot%202025-08-15%20114940.png" alt="Meerut Coders" class="w-32 h-32 rounded-full object-cover" />
+            <div class="text-center">
+              <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Meerut Coders</h4>
+              <p class="mb-6" style="color: var(--text-secondary);">A vibrant community of developers and designers. Join us to learn and grow together.</p>
+              <div class="flex flex-wrap justify-center gap-3">
+                <a href="https://www.commudle.com/communities/meerut-coders" target="_blank" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all flex items-center space-x-2">
+                  <i class="fas fa-users"></i><span>Join Community</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!--Chat AGENT -->
+  <script src="https://js.puter.com/v2/"></script>
+  <div id="ai-chat-box" style="position: fixed; bottom: 80px; left: 20px; z-index: 999999; font-family: sans-serif;">
+    <div id="ai-window" style="display: none; width: 320px; height: 450px; background: #1a1f2c; border: 1px solid #3d4455; border-radius: 15px; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;">
+      <div style="background: #6e8efb; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
+        <span>AI Scout Agent</span>
+        <button onclick="document.getElementById('ai-window').style.display='none'" style="background:none; border:none; color:white; cursor:pointer; font-size:20px;">×</button>
+      </div>
+      <div id="ai-messages" style="flex: 1; padding: 15px; overflow-y: auto; color: #eee; font-size: 14px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="background: #2d3446; padding: 10px; border-radius: 10px;">Hello! I am your AI Agent. Ask me for any tool in our project!</div>
+      </div>
+      <div style="padding: 10px; border-top: 1px solid #333; display: flex; gap: 5px;">
+        <input type="text" id="ai-input" placeholder="Type a problem..." style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #444; background: #0f172a; color: white;">
+        <button id="ai-send-btn" style="padding: 10px; background: #6e8efb; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+      </div>
+    </div>
+    <button id="ai-toggle" onclick="var w=document.getElementById('ai-window'); w.style.display = (w.style.display==='none'?'flex':'none')" style="width: 60px; height: 60px; border-radius: 50%; background: #6e8efb; border: none; color: white; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">🤖</button>
+  </div>
+
+  <script>
+    async function askAgent() {
+      const input = document.getElementById('ai-input');
+      const box = document.getElementById('ai-messages');
+      if (!input || !box) return;
+      const query = input.value.trim();
+      if (!query) return;
+
+      box.innerHTML += `<div style="background: #6e8efb; padding: 10px; border-radius: 10px; align-self: flex-end; color: white; margin-bottom: 10px;">${query}</div>`;
+      input.value = '';
+
+      const id = "bot-" + Date.now();
+      box.innerHTML += `<div id="${id}" style="background: #2d3446; padding: 10px; border-radius: 10px; align-self: flex-start; color: white; margin-bottom: 10px;">⏳ Thinking...</div>`;
+      box.scrollTop = box.scrollHeight;
+
+      try {
+        const response = await fetch('data/links.json');
+        if (!response.ok) throw new Error("JSON file not found");
+        const tools = await response.json();
+        const aiResponse = await puter.ai.chat(`You are the AI Scout for this tool collection: ${JSON.stringify(tools).substring(0, 8000)}. Recommend a tool for: "${query}"`, { model: 'gpt-4o-mini' });
+        document.getElementById(id).innerText = aiResponse.message.content;
+      } catch (e) {
+        document.getElementById(id).innerText = "Error: " + e.message;
+      }
+      box.scrollTop = box.scrollHeight;
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      const btn = document.getElementById('ai-send-btn');
+      if (btn) btn.onclick = askAgent;
+    });
+  </script>
+
+  <!-- MASTER BRANCH FOOTER & WIDGETS -->
   <footer class="bg-gray-900 text-white py-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="col-span-1 md:col-span-2">
           <div class="flex items-center space-x-3 mb-4">
-            <div
-              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <i class="fas fa-robot text-white text-lg"></i>
             </div>
             <div>
@@ -1631,93 +1735,49 @@
               <p class="text-gray-400 text-sm">Professional Directory</p>
             </div>
           </div>
-          <p class="text-gray-400 mb-4">
-            Discover, explore, and contribute to the most comprehensive
-            collection of AI tools for professionals.
-          </p>
+          <p class="text-gray-400 mb-4">Discover, explore, and contribute to the most comprehensive collection of AI tools for professionals.</p>
           <div class="flex space-x-4">
-            <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank"
-              class="text-gray-400 hover:text-white transition-colors">
+            <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="text-gray-400 hover:text-white transition-colors">
               <i class="fab fa-github text-xl"></i>
             </a>
           </div>
         </div>
-
         <div>
           <h4 class="font-semibold mb-4">Quick Links</h4>
           <ul class="space-y-2 text-gray-400">
-            <li>
-              <a href="#tools" class="hover:text-white transition-colors">Browse Tools</a>
-            </li>
-            <li>
-              <a href="#categories" class="hover:text-white transition-colors">Categories</a>
-            </li>
-            <li>
-              <a href="#contributors" class="hover:text-white transition-colors">Contributors</a>
-            </li>
-            <li>
-              <a href="#about" class="hover:text-white transition-colors">About</a>
-            </li>
+            <li><a href="#tools" class="hover:text-white transition-colors">Browse Tools</a></li>
+            <li><a href="#categories" class="hover:text-white transition-colors">Categories</a></li>
+            <li><a href="#contributors" class="hover:text-white transition-colors">Contributors</a></li>
+            <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
           </ul>
         </div>
-
         <div>
           <h4 class="font-semibold mb-4">Community</h4>
           <ul class="space-y-2 text-gray-400">
-            <li>
-              <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank"
-                class="hover:text-white transition-colors">GitHub</a>
-            </li>
-            <li>
-              <a href="https://github.com/ArshdeepGrover/ai-tools-manager/issues" target="_blank"
-                class="hover:text-white transition-colors">Report Issues</a>
-            </li>
+            <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank" class="hover:text-white transition-colors">GitHub</a></li>
+            <li><a href="https://github.com/ArshdeepGrover/ai-tools-manager/issues" target="_blank" class="hover:text-white transition-colors">Report Issues</a></li>
           </ul>
         </div>
       </div>
-
-
-      <div class="border-t border-gray-800 mt-8 pt-8">
-
-        <div class="text-center text-gray-400">
-          <p>
-            &copy; 2025 AI Tools Hub. Open source project by Arshdeep Singh.
-            MIT License.
-          </p>
-        </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 AI Tools Hub. Open source project by Arshdeep Singh. MIT License.</p>
       </div>
     </div>
     <!-- Back to Top Button -->
-    <button id="backToTopBtn" aria-label="Back to Top">
-      <i class="fas fa-chevron-up"></i>
-    </button>
-
-
+    <button id="backToTopBtn" aria-label="Back to Top"><i class="fas fa-chevron-up"></i></button>
   </footer>
 
   <!-- Status Widget -->
-  <div id="status-widget"
-    class="fixed bottom-4 left-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3 z-40 transition-all duration-300"
-    style="background-color: var(--card-bg); border-color: var(--border-color);">
+  <div id="status-widget" class="fixed bottom-4 left-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-3 z-40 transition-all duration-300" style="background-color: var(--card-bg); border-color: var(--border-color);">
     <div class="flex items-center gap-3 text-sm">
       <div class="flex items-center gap-2">
         <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse" id="status-dot"></div>
         <span style="color: var(--text-secondary);" id="status-text">Online</span>
       </div>
       <div class="text-xs" style="color: var(--text-tertiary);" id="tools-count">Loading...</div>
-      <button id="pwa-install-btn"
-        class="hidden w-6 h-6 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-all duration-300 flex items-center justify-center text-xs relative group"
-        title="Install App">
-        <i class="fas fa-download"></i>
-        <div
-          class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-          Install App
-        </div>
-      </button>
     </div>
   </div>
 
   <script src="script.js"></script>
 </body>
-
 </html>
