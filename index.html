@@ -1613,40 +1613,175 @@
           </div>
         </div>
       </div>
-<!-- About Section -->
-  <section id="about" class="py-10" style="background-color: var(--bg-primary);">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">About</h2>
-        <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
-          Learn more about the creator and the community behind this project.
-        </p>
-      </div>
+<!-- </div> -->
+</section>
 
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <!-- Left Column - Created by -->
-        <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
-          <div class="text-center mb-4">
-            <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Created by</h3>
-          </div>
-          <div class="flex flex-col items-center space-y-4">
-            <img src="https://www.arshdeepsingh.info/images/arshdeep-singh.png" alt="Arshdeep Singh" class="w-32 h-32 rounded-full object-cover" />
-            <div class="text-center">
-              <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Arshdeep Singh</h4>
-              <p class="mb-6" style="color: var(--text-secondary);">
-                Passionate about AI and helping developers discover the best tools to accelerate their creative journey.
-              </p>
-              <div class="flex flex-wrap justify-center gap-3">
-                <a href="https://linkedin.com/in/ArshdeepGrover" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors flex items-center space-x-2">
-                  <i class="fab fa-linkedin"></i><span>LinkedIn</span>
-                </a>
-                <a href="https://github.com/ArshdeepGrover" target="_blank" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors flex items-center space-x-2">
-                  <i class="fab fa-github"></i><span>GitHub</span>
-                </a>
-              </div>
-            </div>
-          </div>
+<!-- ================= AI CHAT AGENT ================= -->
+<script src="https://js.puter.com/v2/"></script>
+
+<style>
+  /* ================= CHAT UI ================= */
+  .ai-msg-user {
+    background: #6e8efb;
+    padding: 10px 12px;
+    border-radius: 14px;
+    align-self: flex-end;
+    color: white;
+    max-width: 80%;
+  }
+
+  .ai-msg-bot {
+    background: #2d3446;
+    padding: 10px 12px;
+    border-radius: 14px;
+    align-self: flex-start;
+    color: #e5e7eb;
+    max-width: 80%;
+    font-size: 14px;
+  }
+
+  /* ================= INLINE THINKING ================= */
+  .ai-thinking {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cloud {
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .cloud span {
+    width: 6px;
+    height: 6px;
+    background: #6e8efb;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: cloudPulse 1.2s ease-in-out infinite;
+  }
+
+  .cloud span:nth-child(2) { animation-delay: .15s; }
+  .cloud span:nth-child(3) { animation-delay: .3s; }
+
+  @keyframes cloudPulse {
+    0% { transform: translateY(0); opacity: .3; }
+    50% { transform: translateY(-4px); opacity: 1; }
+    100% { transform: translateY(0); opacity: .3; }
+  }
+
+  .thinking-text {
+    color: #9ca3af;
+    font-size: 13px;
+  }
+</style>
+
+<div id="ai-chat-box" style="position: fixed; bottom: 80px; left: 20px; z-index: 999999; font-family: system-ui;">
+  <div id="ai-window"
+    style="display:none; width:320px; height:450px; background:#0f172a; border-radius:16px; flex-direction:column; box-shadow:0 10px 30px rgba(0,0,0,.5); overflow:hidden;">
+
+    <div style="background:#6e8efb; color:white; padding:14px; font-weight:600; display:flex; justify-content:space-between;">
+      <span>🤖 AI Scout Agent</span>
+      <button onclick="toggleAI()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer">×</button>
+    </div>
+
+    <div id="ai-messages" style="flex:1; padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;">
+      <div class="ai-msg-bot">Hello! Ask me for any tool 🚀</div>
+    </div>
+
+    <div style="padding:10px; border-top:1px solid #1e293b; display:flex; gap:6px;">
+      <input id="ai-input" placeholder="Ask something..."
+        style="flex:1; padding:10px; border-radius:8px; border:1px solid #334155; background:#020617; color:white;">
+      <button id="ai-send-btn"
+        style="padding:10px 14px; background:#6e8efb; border:none; border-radius:8px; color:white;">
+        Send
+      </button>
+    </div>
+  </div>
+
+  <button onclick="toggleAI()"
+    style="width:60px;height:60px;border-radius:50%;background:#6e8efb;border:none;color:white;font-size:28px;cursor:pointer;">
+    🤖
+  </button>
+</div>
+
+<script>
+  function toggleAI() {
+    const w = document.getElementById('ai-window');
+    w.style.display = (!w.style.display || w.style.display === 'none') ? 'flex' : 'none';
+  }
+
+  function cleanText(text) {
+    return text
+      .replace(/\*\*/g, '')
+      .replace(/^\s*[-•]\s*/gm, '')
+      .trim();
+  }
+
+  async function askAgent() {
+    const input = document.getElementById('ai-input');
+    const box = document.getElementById('ai-messages');
+    const query = input.value.trim();
+    if (!query) return;
+
+    box.innerHTML += `<div class="ai-msg-user">${query}</div>`;
+    input.value = '';
+
+    const id = "bot-" + Date.now();
+    box.innerHTML += `
+      <div id="${id}" class="ai-msg-bot">
+        <span class="ai-thinking">
+          <span class="thinking-text">Thinking…</span>
+          <span class="cloud"><span></span><span></span><span></span></span>
+        </span>
+      </div>
+    `;
+    box.scrollTop = box.scrollHeight;
+
+    try {
+      const tools = await (await fetch('data/links.json')).json();
+      const ai = await puter.ai.chat(
+        \`You are the AI Scout. Recommend clearly for: "\${query}"\`,
+        { model: 'gpt-4o-mini' }
+      );
+      document.getElementById(id).innerText = cleanText(ai.message.content);
+    } catch {
+      document.getElementById(id).innerText = "⚠️ Error";
+    }
+
+    box.scrollTop = box.scrollHeight;
+  }
+
+  document.getElementById('ai-send-btn').onclick = askAgent;
+  document.getElementById('ai-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') askAgent();
+  });
+</script>
+
+<!-- ================= ABOUT SECTION ================= -->
+<section id="about" class="py-10" style="background-color: var(--bg-primary);">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+      <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">About</h2>
+      <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
+        Learn more about the creator and the community behind this project.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
+        <div class="text-center mb-4">
+          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Created by</h3>
         </div>
+        <div class="flex flex-col items-center space-y-4">
+          <img src="https://www.arshdeepsingh.info/images/arshdeep-singh.png"
+               class="w-32 h-32 rounded-full object-cover" />
+          <h4 class="text-xl font-bold" style="color: var(--text-primary);">Arshdeep Singh</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
         <!-- Right Column - Community -->
         <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
