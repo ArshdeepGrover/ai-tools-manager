@@ -1617,7 +1617,7 @@
 </section>
 
 <!-- ================= AI CHAT AGENT ================= -->
-<script src="https://js.puter.com/v2/"></script>
+<!-- <script src="https://js.puter.com/v2/"></script>
 
 <style>
   /* ================= CHAT UI ================= */
@@ -1740,8 +1740,7 @@
 
     try {
       const tools = await (await fetch('data/links.json')).json();
-      const ai = await puter.ai.chat(
-        \`You are the AI Scout. Recommend clearly for: "\${query}"\`,
+      const ai = await puter.ai.chat(`You are the AI Scout. Recommend clearly for: "${query}"`,
         { model: 'gpt-4o-mini' }
       );
       document.getElementById(id).innerText = cleanText(ai.message.content);
@@ -1758,55 +1757,11 @@
   });
 </script>
 
-<!-- ================= ABOUT SECTION ================= -->
-<section id="about" class="py-10" style="background-color: var(--bg-primary);">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-8">
-      <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">About</h2>
-      <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
-        Learn more about the creator and the community behind this project.
-      </p>
-    </div>
+ -->
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
-        <div class="text-center mb-4">
-          <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Created by</h3>
-        </div>
-        <div class="flex flex-col items-center space-y-4">
-          <img src="https://www.arshdeepsingh.info/images/arshdeep-singh.png"
-               class="w-32 h-32 rounded-full object-cover" />
-          <h4 class="text-xl font-bold" style="color: var(--text-primary);">Arshdeep Singh</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-        <!-- Right Column - Community -->
-        <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
-          <div class="text-center mb-4">
-            <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Community</h3>
-          </div>
-          <div class="flex flex-col items-center space-y-4">
-            <img src="https://json.commudle.com/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBLy9YQkE9PSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--0f09813e6aa3dc3e732cca755614d3bbadd5bf5f/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJY0c1bkJqb0dSVlE2RkhKbGMybDZaVjkwYjE5c2FXMXBkRnNIYVFKQUFXa0NRQUU2QzJ4dllXUmxjbnNHT2dsd1lXZGxNQT09IiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--e1b8c3103b542b9d7ba47b2862e0d51860fbef22/Screenshot%202025-08-15%20114940.png" alt="Meerut Coders" class="w-32 h-32 rounded-full object-cover" />
-            <div class="text-center">
-              <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Meerut Coders</h4>
-              <p class="mb-6" style="color: var(--text-secondary);">A vibrant community of developers and designers. Join us to learn and grow together.</p>
-              <div class="flex flex-wrap justify-center gap-3">
-                <a href="https://www.commudle.com/communities/meerut-coders" target="_blank" class="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all flex items-center space-x-2">
-                  <i class="fas fa-users"></i><span>Join Community</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!--Chat AGENT -->
-  <script src="https://js.puter.com/v2/"></script>
+  <!-- <script src="https://js.puter.com/v2/"></script>
   <div id="ai-chat-box" style="position: fixed; bottom: 80px; left: 20px; z-index: 999999; font-family: sans-serif;">
     <div id="ai-window" style="display: none; width: 320px; height: 450px; background: #1a1f2c; border: 1px solid #3d4455; border-radius: 15px; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;">
       <div style="background: #6e8efb; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
@@ -1854,7 +1809,7 @@
       const btn = document.getElementById('ai-send-btn');
       if (btn) btn.onclick = askAgent;
     });
-  </script>
+  </script> -->
 
   <!-- MASTER BRANCH FOOTER & WIDGETS -->
   <footer class="bg-gray-900 text-white py-8">
@@ -1894,8 +1849,16 @@
           </ul>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2025 AI Tools Hub. Open source project by Arshdeep Singh. MIT License.</p>
+
+
+      <div class="border-t border-gray-800 mt-8 pt-8">
+
+        <div class="text-center text-gray-400">
+          <p>
+            &copy; <span id="current-year">2025</span> AI Tools Hub. Open source project by Arshdeep Singh.
+            MIT License.
+          </p>
+        </div>
       </div>
     </div>
     <!-- Back to Top Button -->
