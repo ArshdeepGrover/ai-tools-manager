@@ -477,16 +477,6 @@
       ],
       "role": "Contributor",
       "featured": true
-    },
-    {
-      "name": "Xiaoyuan Zhang",
-      "github": "zhangxiaoyuan2025",
-      "avatar": "https://github.com/zhangxiaoyuan2025.png",
-      "tagline": "Indie Developer",
-      "contributions": [
-      "Added Outfit Swap Studio to AI Design & Images category"
-      ],
-     "role": "Contributor"
     }
   ]
 }
