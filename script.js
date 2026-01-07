@@ -30,7 +30,11 @@ async function loadContributors() {
     const response = await fetch("data/contributors.json");
     const data = await response.json();
 
-    if (data && Array.isArray(data.contributors) && data.contributors.length > 0) {
+    if (
+      data &&
+      Array.isArray(data.contributors) &&
+      data.contributors.length > 0
+    ) {
       allContributors = data.contributors;
       renderContributors(allContributors);
       updateContributorStats(data.contributors.length);
@@ -44,27 +48,25 @@ async function loadContributors() {
     // add fallback contributor for only development
     allContributors = [
       {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
+        name: "Testing Contributor",
+        github: "tester123",
+        avatar: "https://thispersondoesnotexist.com/",
+        linkedin: "testing123",
+        tagline:
+          "This is a fallback contributor added due to an error in loading the contributors data.",
+        contributions: ["Testing the contributors loading functionality."],
+        role: "Contributor",
         featured: true,
       },
       {
-        "name": "Testing Contributor",
-        "github": "tester123",
-        "avatar": "https://thispersondoesnotexist.com/",
-        "linkedin": "testing123",
-        "tagline": "This is a fallback contributor added due to an error in loading the contributors data.",
-        "contributions": [
-          "Testing the contributors loading functionality."
-        ],
-        "role": "Contributor",
+        name: "Testing Contributor",
+        github: "tester123",
+        avatar: "https://thispersondoesnotexist.com/",
+        linkedin: "testing123",
+        tagline:
+          "This is a fallback contributor added due to an error in loading the contributors data.",
+        contributions: ["Testing the contributors loading functionality."],
+        role: "Contributor",
         featured: false,
       },
     ];
@@ -178,7 +180,6 @@ function filterByCategory(categoryName) {
   trackCategoryFilter(categoryName);
 }
 
-
 function renderLinks(categories) {
   const mainContent = document.getElementById("main-content");
 
@@ -196,44 +197,50 @@ function renderLinks(categories) {
     categoryDiv.innerHTML = `
       <div class="flex items-center space-x-4 mb-8">
         <span class="text-4xl">${category.icon}</span>
-        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${category.name
-      }</h2>
+        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${
+          category.name
+        }</h2>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         ${linksToShow
-        .map(
-          (link) => `
+          .map(
+            (link) => `
           <a href="${link.url}" target="_blank"
              class="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-2 hover:border-blue-300 card-hover group"
              style="background-color: var(--card-bg); border-color: var(--card-border);"
              onclick="trackToolClick('${link.title}', '${category.name}')">
             <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors" style="color: var(--text-primary);">${link.title
-            }</h3>
+              <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors" style="color: var(--text-primary);">${
+                link.title
+              }</h3>
               <i class="fas fa-external-link-alt group-hover:text-blue-500 transition-colors" style="color: var(--text-tertiary);"></i>
             </div>
-            <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">${link.description
+            <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">${
+              link.description
             }</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-blue-600 font-medium">${new URL(link.url).hostname
-            }</span>
+              <span class="text-sm text-blue-600 font-medium">${
+                new URL(link.url).hostname
+              }</span>
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">Free</span>
             </div>
           </a>
         `
-        )
-        .join("")}
+          )
+          .join("")}
       </div>
-      ${category.links.length > 6
-        ? `
+      ${
+        category.links.length > 6
+          ? `
         <div class="text-center mt-6">
-          <button class="show-more-btn" data-action="${isExpanded ? "show-less" : "show-more"
-        }" onclick="toggleCategory('${category.name}')">
+          <button class="show-more-btn" data-action="${
+            isExpanded ? "show-less" : "show-more"
+          }" onclick="toggleCategory('${category.name}')">
             <span>${isExpanded ? "Show Less" : "Show More"}</span>
           </button>
         </div>
       `
-        : ""
+          : ""
       }
     `;
 
@@ -243,7 +250,9 @@ function renderLinks(categories) {
 
 function renderContributors(contributors) {
   // Update total contributors count
-  const totalContributorsText = document.getElementById("total-contributors-text");
+  const totalContributorsText = document.getElementById(
+    "total-contributors-text"
+  );
   if (totalContributorsText) {
     totalContributorsText.textContent = contributors.length;
   }
@@ -251,10 +260,11 @@ function renderContributors(contributors) {
   // Filter contributors based on search text
   if (searchContributorsText.trim()) {
     const searchLower = searchContributorsText.toLowerCase();
-    filteredContributors = contributors.filter(c =>
-      c.name.toLowerCase().includes(searchLower) ||
-      (c.tagline && c.tagline.toLowerCase().includes(searchLower)) ||
-      (c.role && c.role.toLowerCase().includes(searchLower))
+    filteredContributors = contributors.filter(
+      (c) =>
+        c.name.toLowerCase().includes(searchLower) ||
+        (c.tagline && c.tagline.toLowerCase().includes(searchLower)) ||
+        (c.role && c.role.toLowerCase().includes(searchLower))
     );
   } else {
     filteredContributors = contributors;
@@ -264,9 +274,14 @@ function renderContributors(contributors) {
   currentContributorPage = 1;
 
   // Calculate pagination
-  const totalPages = Math.ceil(filteredContributors.length / contributorsPerPage);
+  const totalPages = Math.ceil(
+    filteredContributors.length / contributorsPerPage
+  );
   const startIndex = (currentContributorPage - 1) * contributorsPerPage;
-  const contributorsToShow = filteredContributors.slice(startIndex, startIndex + contributorsPerPage);
+  const contributorsToShow = filteredContributors.slice(
+    startIndex,
+    startIndex + contributorsPerPage
+  );
 
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
@@ -281,54 +296,90 @@ function renderContributors(contributors) {
     } else {
       modernGrid.innerHTML = contributorsToShow
         .map((contributor, index) => {
-          const contributionCount = contributor.contributions ? contributor.contributions.length : 0;
+          const contributionCount = contributor.contributions
+            ? contributor.contributions.length
+            : 0;
 
           return `
-            <div class="contributor-card-modern no-scroll ${contributor.featured ? 'featured' : ''}"
+            <div class="contributor-card-modern no-scroll ${
+              contributor.featured ? "featured" : ""
+            }"
                  style="animation-delay: ${index * 0.05}s"
-                 onclick="openContributorModal(${contributors.indexOf(contributor)})">
-              ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ''}
+                 onclick="openContributorModal(${contributors.indexOf(
+                   contributor
+                 )})">
+              ${
+                contributor.featured
+                  ? `<div class="floating-badge">Featured</div>`
+                  : ""
+              }
               <div>
                 <div class="flex space-x-3 mb-3 no-scroll">
                   <img src="${contributor.avatar}" alt="${contributor.name}"
                        class="contributor-avatar-modern flex-shrink-0" />
                   <div class="contributor-info flex-1  min-w-0">
-                    <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${contributor.name}</h4>
-                    ${contributor.role ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>` : ""}
+                    <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${
+                      contributor.name
+                    }</h4>
+                    ${
+                      contributor.role
+                        ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>`
+                        : ""
+                    }
                   </div>
                 </div>
-                ${contributor.tagline ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${contributor.tagline}"</p>` : ""}
+                ${
+                  contributor.tagline
+                    ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${contributor.tagline}"</p>`
+                    : ""
+                }
               </div>
 
               <div class="flex justify-between items-center mt-2 no-scroll">
                 <div class="contributor-stats">
-                  ${contributionCount > 0 ? `
+                  ${
+                    contributionCount > 0
+                      ? `
                     <span class="stat-item">
                       <i class="fas fa-star" style="color: #f59e0b;"></i>
                       <span>${contributionCount}</span>
                     </span>
-                  ` : ''}
+                  `
+                      : ""
+                  }
                 </div>
                 <div class="contributor-social-modern">
-                  <a href="https://github.com/${contributor.github}" target="_blank"
+                  <a href="https://github.com/${
+                    contributor.github
+                  }" target="_blank"
                      class="social-link-modern" title="GitHub"
-                     onclick="event.stopPropagation(); trackContributorClick('${contributor.name}')">
+                     onclick="event.stopPropagation(); trackContributorClick('${
+                       contributor.name
+                     }')">
                     <i class="fab fa-github"></i>
                   </a>
-                  ${contributor.linkedin ? `
+                  ${
+                    contributor.linkedin
+                      ? `
                     <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
                        class="social-link-modern" title="LinkedIn"
                        onclick="event.stopPropagation()">
                       <i class="fab fa-linkedin"></i>
                     </a>
-                  ` : ""}
-                  ${contributor.website ? `
+                  `
+                      : ""
+                  }
+                  ${
+                    contributor.website
+                      ? `
                     <a href="${contributor.website}" target="_blank"
                        class="social-link-modern" title="Website"
                        onclick="event.stopPropagation()">
                       <i class="fas fa-globe"></i>
                     </a>
-                  ` : ""}
+                  `
+                      : ""
+                  }
                 </div>
               </div>
             </div>
@@ -355,17 +406,31 @@ function renderPaginationControls(totalPages) {
 
   // Previous button
   html += `
-    <button class="pagination-button ${currentContributorPage === 1 ? "disabled" : ""}"
-            ${currentContributorPage === 1 ? "disabled" : "onclick='changeContributorPage(" + (currentContributorPage - 1) + ")'"}>
+    <button class="pagination-button ${
+      currentContributorPage === 1 ? "disabled" : ""
+    }"
+            ${
+              currentContributorPage === 1
+                ? "disabled"
+                : "onclick='changeContributorPage(" +
+                  (currentContributorPage - 1) +
+                  ")'"
+            }>
       <i class="fas fa-chevron-left"></i>
     </button>
   `;
 
   // Page numbers with ellipsis
   for (let i = 1; i <= totalPages; i++) {
-    if (i === 1 || i === totalPages || (i >= currentContributorPage - 1 && i <= currentContributorPage + 1)) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentContributorPage - 1 && i <= currentContributorPage + 1)
+    ) {
       html += `
-        <button class="pagination-button ${i === currentContributorPage ? "active" : ""}"
+        <button class="pagination-button ${
+          i === currentContributorPage ? "active" : ""
+        }"
                 onclick="changeContributorPage(${i})">
           ${i}
         </button>
@@ -377,16 +442,30 @@ function renderPaginationControls(totalPages) {
 
   // Next button
   html += `
-    <button class="pagination-button ${currentContributorPage === totalPages ? "disabled" : ""}"
-            ${currentContributorPage === totalPages ? "disabled" : "onclick='changeContributorPage(" + (currentContributorPage + 1) + ")'"}>
+    <button class="pagination-button ${
+      currentContributorPage === totalPages ? "disabled" : ""
+    }"
+            ${
+              currentContributorPage === totalPages
+                ? "disabled"
+                : "onclick='changeContributorPage(" +
+                  (currentContributorPage + 1) +
+                  ")'"
+            }>
       <i class="fas fa-chevron-right"></i>
     </button>
   `;
 
   // Pagination info
   const totalDisplayed = filteredContributors.length;
-  const startNum = Math.min((currentContributorPage - 1) * contributorsPerPage + 1, totalDisplayed);
-  const endNum = Math.min(currentContributorPage * contributorsPerPage, totalDisplayed);
+  const startNum = Math.min(
+    (currentContributorPage - 1) * contributorsPerPage + 1,
+    totalDisplayed
+  );
+  const endNum = Math.min(
+    currentContributorPage * contributorsPerPage,
+    totalDisplayed
+  );
 
   html += `<span class="pagination-info">Showing ${startNum}-${endNum} of ${totalDisplayed}</span>`;
 
@@ -394,21 +473,28 @@ function renderPaginationControls(totalPages) {
 }
 
 function changeContributorPage(pageNumber) {
-  const totalPages = Math.ceil(filteredContributors.length / contributorsPerPage);
+  const totalPages = Math.ceil(
+    filteredContributors.length / contributorsPerPage
+  );
 
   if (pageNumber < 1 || pageNumber > totalPages) return;
 
   currentContributorPage = pageNumber;
 
   // Re-render with current filtered contributors
-  const totalContributorsText = document.getElementById("total-contributors-text");
+  const totalContributorsText = document.getElementById(
+    "total-contributors-text"
+  );
   if (totalContributorsText) {
     totalContributorsText.textContent = filteredContributors.length;
   }
 
   // Calculate pagination
   const startIndex = (currentContributorPage - 1) * contributorsPerPage;
-  const contributorsToShow = filteredContributors.slice(startIndex, startIndex + contributorsPerPage);
+  const contributorsToShow = filteredContributors.slice(
+    startIndex,
+    startIndex + contributorsPerPage
+  );
 
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
@@ -416,54 +502,88 @@ function changeContributorPage(pageNumber) {
     modernGrid.innerHTML = contributorsToShow
       .map((contributor, index) => {
         const contributorIndex = allContributors.indexOf(contributor);
-        const contributionCount = contributor.contributions ? contributor.contributions.length : 0;
+        const contributionCount = contributor.contributions
+          ? contributor.contributions.length
+          : 0;
 
         return `
-          <div class="contributor-card-modern ${contributor.featured ? 'featured' : ''}"
+          <div class="contributor-card-modern ${
+            contributor.featured ? "featured" : ""
+          }"
                style="animation-delay: ${index * 0.05}s"
                onclick="openContributorModal(${contributorIndex})">
-            ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ''}
+            ${
+              contributor.featured
+                ? `<div class="floating-badge">Featured</div>`
+                : ""
+            }
             <div>
               <div class="flex items-center space-x-3 mb-3">
                 <img src="${contributor.avatar}" alt="${contributor.name}"
                      class="contributor-avatar-modern flex-shrink-0" />
                 <div class="contributor-info flex-1 min-w-0">
-                  <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${contributor.name}</h4>
-                  ${contributor.role ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>` : ""}
-                  ${contributor.tagline ? `<p class="text-xs contributor-tagline" style="color: var(--text-secondary);">"${contributor.tagline}"</p>` : ""}
+                  <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${
+                    contributor.name
+                  }</h4>
+                  ${
+                    contributor.role
+                      ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>`
+                      : ""
+                  }
+                  ${
+                    contributor.tagline
+                      ? `<p class="text-xs contributor-tagline" style="color: var(--text-secondary);">"${contributor.tagline}"</p>`
+                      : ""
+                  }
                 </div>
               </div>
             </div>
 
             <div class="flex justify-between items-end">
               <div class="contributor-stats">
-                ${contributionCount > 0 ? `
+                ${
+                  contributionCount > 0
+                    ? `
                   <span class="stat-item">
                     <i class="fas fa-star" style="color: #f59e0b;"></i>
                     <span>${contributionCount}</span>
                   </span>
-                ` : ''}
+                `
+                    : ""
+                }
               </div>
               <div class="contributor-social-modern">
-                <a href="https://github.com/${contributor.github}" target="_blank"
+                <a href="https://github.com/${
+                  contributor.github
+                }" target="_blank"
                    class="social-link-modern" title="GitHub"
-                   onclick="event.stopPropagation(); trackContributorClick('${contributor.name}')">
+                   onclick="event.stopPropagation(); trackContributorClick('${
+                     contributor.name
+                   }')">
                   <i class="fab fa-github"></i>
                 </a>
-                ${contributor.linkedin ? `
+                ${
+                  contributor.linkedin
+                    ? `
                   <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
                      class="social-link-modern" title="LinkedIn"
                      onclick="event.stopPropagation()">
                     <i class="fab fa-linkedin"></i>
                   </a>
-                ` : ""}
-                ${contributor.website ? `
+                `
+                    : ""
+                }
+                ${
+                  contributor.website
+                    ? `
                   <a href="${contributor.website}" target="_blank"
                      class="social-link-modern" title="Website"
                      onclick="event.stopPropagation()">
                     <i class="fas fa-globe"></i>
                   </a>
-                ` : ""}
+                `
+                    : ""
+                }
               </div>
             </div>
           </div>
@@ -501,33 +621,57 @@ function openContributorModal(contributorIndex) {
         </button>
         
         <div class="modal-header">
-          <img src="${contributor.avatar}" alt="${contributor.name}" class="modal-avatar" />
+          <img src="${contributor.avatar}" alt="${
+    contributor.name
+  }" class="modal-avatar" />
           <div class="modal-title-section flex-1">
             <h2>${contributor.name}</h2>
-            ${contributor.website ? `<p><i class="fas fa-globe"></i> <a href="${contributor.website}" target="_blank" style="color: #3b82f6;">${new URL(contributor.website).hostname}</a></p>` : ""}
-            ${contributor.role ? `<div class="modal-role-badge">${contributor.role}</div>` : ""}
+            ${
+              contributor.website
+                ? `<p><i class="fas fa-globe"></i> <a href="${
+                    contributor.website
+                  }" target="_blank" style="color: #3b82f6;">${
+                    new URL(contributor.website).hostname
+                  }</a></p>`
+                : ""
+            }
+            ${
+              contributor.role
+                ? `<div class="modal-role-badge">${contributor.role}</div>`
+                : ""
+            }
           </div>
         </div>
 
-        ${contributor.tagline ? `
+        ${
+          contributor.tagline
+            ? `
           <div class="modal-section">
             <p style="color: var(--text-secondary); font-style: italic; border-left: 3px solid #3b82f6; padding-left: 12px;">
               "${contributor.tagline}"
             </p>
           </div>
-        ` : ""}
+        `
+            : ""
+        }
 
-        ${contributor.contributions && contributor.contributions.length > 0 ? `
+        ${
+          contributor.contributions && contributor.contributions.length > 0
+            ? `
           <div class="modal-section">
             <div class="modal-section-title">
               <i class="fas fa-star"></i>
               <span>Contributions (${contributor.contributions.length})</span>
             </div>
             <ul class="contributions-list">
-              ${contributor.contributions.map(contrib => `<li>${contrib}</li>`).join("")}
+              ${contributor.contributions
+                .map((contrib) => `<li>${contrib}</li>`)
+                .join("")}
             </ul>
           </div>
-        ` : ""}
+        `
+            : ""
+        }
 
         <div class="modal-section no-scroll ">
           <div class="modal-section-title">
@@ -535,22 +679,32 @@ function openContributorModal(contributorIndex) {
             <span>Connect</span>
           </div>
           <div class="modal-social-links">
-            <a href="https://github.com/${contributor.github}" target="_blank" class="modal-social-link">
+            <a href="https://github.com/${
+              contributor.github
+            }" target="_blank" class="modal-social-link">
               <i class="fab fa-github"></i>
               <span>GitHub</span>
             </a>
-            ${contributor.linkedin ? `
+            ${
+              contributor.linkedin
+                ? `
               <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" class="modal-social-link">
                 <i class="fab fa-linkedin"></i>
                 <span>LinkedIn</span>
               </a>
-            ` : ""}
-            ${contributor.website ? `
+            `
+                : ""
+            }
+            ${
+              contributor.website
+                ? `
               <a href="${contributor.website}" target="_blank" class="modal-social-link">
                 <i class="fas fa-globe"></i>
                 <span>Website</span>
               </a>
-            ` : ""}
+            `
+                : ""
+            }
           </div>
         </div>
       </div>
@@ -561,11 +715,13 @@ function openContributorModal(contributorIndex) {
   document.body.insertAdjacentHTML("beforeend", modalHTML);
 
   // Close on backdrop click
-  document.getElementById("contributor-modal-backdrop").addEventListener("click", (e) => {
-    if (e.target.id === "contributor-modal-backdrop") {
-      closeContributorModal();
-    }
-  });
+  document
+    .getElementById("contributor-modal-backdrop")
+    .addEventListener("click", (e) => {
+      if (e.target.id === "contributor-modal-backdrop") {
+        closeContributorModal();
+      }
+    });
 
   // Close on Escape key
   document.addEventListener("keydown", (e) => {
@@ -611,10 +767,12 @@ function updateContributorStats(count) {
 
 function updateFooterContributorsCount(count) {
   // Update ALL footer contributors count elements
-  const footerContributorsCounts = document.querySelectorAll('[id="footer-contributors-count"]');
-  footerContributorsCounts.forEach(element => {
+  const footerContributorsCounts = document.querySelectorAll(
+    '[id="footer-contributors-count"]'
+  );
+  footerContributorsCounts.forEach((element) => {
     // Show count or dash if invalid
-    const displayCount = (count && count > 0) ? count : "-";
+    const displayCount = count && count > 0 ? count : "-";
     element.textContent = displayCount;
     if (displayCount !== "-") {
       element.classList.add("animate-pulse");
@@ -650,10 +808,11 @@ function showTooltip(element) {
         </div>
         <div class="mb-2 font-medium" style="color: var(--text-secondary);">${contributorName}</div>
         <ul class="tooltip-list-modal">
-          ${contributions.length > 0
-      ? contributions.map((contrib) => `<li>• ${contrib}</li>`).join("")
-      : "<li>No contributions listed</li>"
-    }
+          ${
+            contributions.length > 0
+              ? contributions.map((contrib) => `<li>• ${contrib}</li>`).join("")
+              : "<li>No contributions listed</li>"
+          }
         </ul>
       </div>
     </div>
@@ -756,7 +915,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Contributors search listener
-  const contributorsSearchInput = document.getElementById("contributors-search");
+  const contributorsSearchInput = document.getElementById(
+    "contributors-search"
+  );
   if (contributorsSearchInput) {
     contributorsSearchInput.addEventListener("input", (e) => {
       searchContributorsText = e.target.value;
@@ -803,7 +964,9 @@ async function loadGitHubStars() {
         `https://api.github.com/repos/${owner}/${repo}/issues?state=open`
       );
       const issuesData = await issuesRes.json();
-      issuesCount = Array.isArray(issuesData) ? issuesData.filter((item) => !item.pull_request).length : "-";
+      issuesCount = Array.isArray(issuesData)
+        ? issuesData.filter((item) => !item.pull_request).length
+        : "-";
     } catch (e) {
       console.warn("Could not fetch issues count:", e);
     }
@@ -860,8 +1023,10 @@ function updateGitHubButtons(starCount) {
 
 function updateFooterStats(starCount, forkCount, issuesCount) {
   // Update ALL footer star count elements (there might be multiple)
-  const footerStarCounts = document.querySelectorAll('[id="footer-star-count"]');
-  footerStarCounts.forEach(element => {
+  const footerStarCounts = document.querySelectorAll(
+    '[id="footer-star-count"]'
+  );
+  footerStarCounts.forEach((element) => {
     element.textContent = starCount;
     element.classList.add("animate-pulse");
     setTimeout(() => {
@@ -870,8 +1035,10 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
   });
 
   // Update ALL footer fork count elements
-  const footerForkCounts = document.querySelectorAll('[id="footer-fork-count"]');
-  footerForkCounts.forEach(element => {
+  const footerForkCounts = document.querySelectorAll(
+    '[id="footer-fork-count"]'
+  );
+  footerForkCounts.forEach((element) => {
     element.textContent = forkCount;
     element.classList.add("animate-pulse");
     setTimeout(() => {
@@ -880,8 +1047,10 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
   });
 
   // Update ALL footer issues count elements
-  const footerIssuesCounts = document.querySelectorAll('[id="footer-issue-count"]');
-  footerIssuesCounts.forEach(element => {
+  const footerIssuesCounts = document.querySelectorAll(
+    '[id="footer-issue-count"]'
+  );
+  footerIssuesCounts.forEach((element) => {
     element.textContent = issuesCount;
     element.classList.add("animate-pulse");
     setTimeout(() => {
@@ -906,7 +1075,8 @@ function initializeTheme() {
   if (!themeToggleBtn || !themeIcon) return;
 
   const root = document.documentElement;
-  const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+  const mediaQuery =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
 
   const getSavedPreference = () => localStorage.getItem("theme");
   const inSystemMode = () => getSavedPreference() == null;
@@ -997,7 +1167,7 @@ backToTopBtn.addEventListener("click", () => {
 class PWAManager {
   constructor() {
     this.isOnline = navigator.onLine;
-    this.lastSyncTime = localStorage.getItem('ai-tools-last-sync') || 'Never';
+    this.lastSyncTime = localStorage.getItem("ai-tools-last-sync") || "Never";
     this.installPrompt = null;
     this.swRegistration = null;
     this.init();
@@ -1013,19 +1183,19 @@ class PWAManager {
 
   // Service Worker Registration
   async setupServiceWorker() {
-    if ('serviceWorker' in navigator) {
+    if ("serviceWorker" in navigator) {
       try {
-        this.swRegistration = await navigator.serviceWorker.register('/sw.js');
+        this.swRegistration = await navigator.serviceWorker.register("/sw.js");
 
-        console.log('[PWA] Service Worker registered successfully');
+        console.log("[PWA] Service Worker registered successfully");
 
         // Listen for SW messages
-        navigator.serviceWorker.addEventListener('message', (event) => {
+        navigator.serviceWorker.addEventListener("message", (event) => {
           this.handleServiceWorkerMessage(event.data);
         });
 
         // Check for updates
-        this.swRegistration.addEventListener('updatefound', () => {
+        this.swRegistration.addEventListener("updatefound", () => {
           this.handleServiceWorkerUpdate();
         });
 
@@ -1033,9 +1203,8 @@ class PWAManager {
         if (this.swRegistration.waiting) {
           this.showUpdateAvailable();
         }
-
       } catch (error) {
-        console.error('[PWA] Service Worker registration failed:', error);
+        console.error("[PWA] Service Worker registration failed:", error);
       }
     }
   }
@@ -1043,14 +1212,14 @@ class PWAManager {
   // Handle messages from Service Worker
   handleServiceWorkerMessage(data) {
     switch (data.type) {
-      case 'DATA_UPDATE':
+      case "DATA_UPDATE":
         this.handleDataUpdate(data);
         break;
-      case 'CACHE_STATUS':
+      case "CACHE_STATUS":
         this.updateCacheStatus(data);
         break;
-      case 'CACHE_CLEARED':
-        this.showNotification('Cache cleared successfully', 'success');
+      case "CACHE_CLEARED":
+        this.showNotification("Cache cleared successfully", "success");
         break;
     }
   }
@@ -1058,10 +1227,13 @@ class PWAManager {
   // Handle data updates from SW
   handleDataUpdate(data) {
     if (data.isStale) {
-      this.showNotification('Working offline - some features may be limited', 'warning');
+      this.showNotification(
+        "Working offline - some features may be limited",
+        "warning"
+      );
     } else {
       this.lastSyncTime = new Date().toLocaleString();
-      localStorage.setItem('ai-tools-last-sync', this.lastSyncTime);
+      localStorage.setItem("ai-tools-last-sync", this.lastSyncTime);
       this.updateSyncStatus();
     }
   }
@@ -1070,8 +1242,11 @@ class PWAManager {
   handleServiceWorkerUpdate() {
     const newWorker = this.swRegistration.installing;
 
-    newWorker.addEventListener('statechange', () => {
-      if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+    newWorker.addEventListener("statechange", () => {
+      if (
+        newWorker.state === "installed" &&
+        navigator.serviceWorker.controller
+      ) {
         this.showUpdateAvailable();
       }
     });
@@ -1080,23 +1255,23 @@ class PWAManager {
   // Show update notification
   showUpdateAvailable() {
     const updateNotification = this.createNotification(
-      'App Update Available',
-      'A new version is ready. Refresh to update.',
-      'info',
+      "App Update Available",
+      "A new version is ready. Refresh to update.",
+      "info",
       [
         {
-          text: 'Update Now',
+          text: "Update Now",
           action: () => {
             if (this.swRegistration.waiting) {
-              this.swRegistration.waiting.postMessage({ type: 'SKIP_WAITING' });
+              this.swRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
               window.location.reload();
             }
-          }
+          },
         },
         {
-          text: 'Later',
-          action: () => this.dismissNotification()
-        }
+          text: "Later",
+          action: () => this.dismissNotification(),
+        },
       ]
     );
     this.showNotificationElement(updateNotification);
@@ -1104,46 +1279,47 @@ class PWAManager {
 
   // Connection Status Management
   setupConnectionListeners() {
-    window.addEventListener('online', () => {
+    window.addEventListener("online", () => {
       this.isOnline = true;
       this.updateConnectionStatus();
       this.syncDataWhenOnline();
-      this.showNotification('Connection restored', 'success');
+      this.showNotification("Connection restored", "success");
     });
 
-    window.addEventListener('offline', () => {
+    window.addEventListener("offline", () => {
       this.isOnline = false;
       this.updateConnectionStatus();
-      this.showNotification('Working offline', 'warning');
+      this.showNotification("Working offline", "warning");
     });
   }
 
   // Update connection status in UI
   updateConnectionStatus() {
     // Update floating status widget
-    const statusWidget = document.getElementById('status-widget');
-    const statusDot = document.getElementById('status-dot');
-    const statusText = document.getElementById('status-text');
+    const statusWidget = document.getElementById("status-widget");
+    const statusDot = document.getElementById("status-dot");
+    const statusText = document.getElementById("status-text");
 
     if (statusWidget && statusDot && statusText) {
       if (this.isOnline) {
-        statusWidget.classList.remove('offline');
-        statusDot.className = 'w-2 h-2 rounded-full bg-green-500 animate-pulse';
-        statusText.textContent = 'Online';
+        statusWidget.classList.remove("offline");
+        statusDot.className = "w-2 h-2 rounded-full bg-green-500 animate-pulse";
+        statusText.textContent = "Online";
       } else {
-        statusWidget.classList.add('offline');
-        statusDot.className = 'w-2 h-2 rounded-full bg-orange-500 animate-pulse';
-        statusText.textContent = 'Offline';
+        statusWidget.classList.add("offline");
+        statusDot.className =
+          "w-2 h-2 rounded-full bg-orange-500 animate-pulse";
+        statusText.textContent = "Offline";
       }
     }
 
     // Show/hide offline banner
-    const offlineBanner = document.getElementById('offline-banner');
+    const offlineBanner = document.getElementById("offline-banner");
     if (offlineBanner) {
       if (this.isOnline) {
-        offlineBanner.classList.add('hidden');
+        offlineBanner.classList.add("hidden");
       } else {
-        offlineBanner.classList.remove('hidden');
+        offlineBanner.classList.remove("hidden");
       }
     }
   }
@@ -1159,20 +1335,20 @@ class PWAManager {
     if (!this.isOnline) {
       try {
         // Override the loadLinks function to use cache-first strategy
-        if (typeof loadLinks === 'function') {
+        if (typeof loadLinks === "function") {
           const originalLoadLinks = loadLinks;
 
           window.loadLinks = async () => {
             try {
               await originalLoadLinks();
             } catch (error) {
-              console.log('[PWA] Loading from cache due to network error');
+              console.log("[PWA] Loading from cache due to network error");
               await this.loadFromCache();
             }
           };
         }
       } catch (error) {
-        console.error('[PWA] Error setting up offline data loading:', error);
+        console.error("[PWA] Error setting up offline data loading:", error);
       }
     }
   }
@@ -1180,8 +1356,8 @@ class PWAManager {
   // Load data from cache
   async loadFromCache() {
     try {
-      const cache = await caches.open('ai-tools-data-v1.0.0');
-      const cachedResponse = await cache.match('/data/links.json');
+      const cache = await caches.open("ai-tools-data-v1.0.0");
+      const cachedResponse = await cache.match("/data/links.json");
 
       if (cachedResponse) {
         const data = await cachedResponse.json();
@@ -1189,10 +1365,10 @@ class PWAManager {
         renderCategoryFilters(allCategories);
         applyFilters();
         updateStats(allCategories);
-        this.showNotification('Loaded saved data', 'info');
+        this.showNotification("Loaded saved data", "info");
       }
     } catch (error) {
-      console.error('[PWA] Error loading cached data:', error);
+      console.error("[PWA] Error loading cached data:", error);
     }
   }
 
@@ -1200,13 +1376,13 @@ class PWAManager {
   async syncDataWhenOnline() {
     if (this.swRegistration && this.swRegistration.sync) {
       try {
-        await this.swRegistration.sync.register('background-sync-data');
+        await this.swRegistration.sync.register("background-sync-data");
       } catch (error) {
-        console.log('[PWA] Background sync not available, manual sync');
+        console.log("[PWA] Background sync not available, manual sync");
         // Manual sync fallback
         setTimeout(() => {
-          if (typeof loadLinks === 'function') loadLinks();
-          if (typeof loadContributors === 'function') loadContributors();
+          if (typeof loadLinks === "function") loadLinks();
+          if (typeof loadContributors === "function") loadContributors();
         }, 1000);
       }
     }
@@ -1214,21 +1390,21 @@ class PWAManager {
 
   // PWA Installation
   setupInstallPrompt() {
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       this.installPrompt = e;
       this.showInstallButton();
     });
 
     // Handle install result
-    window.addEventListener('appinstalled', () => {
+    window.addEventListener("appinstalled", () => {
       this.installPrompt = null;
       this.hideInstallButton();
-      this.showNotification('App installed successfully!', 'success');
+      this.showNotification("App installed successfully!", "success");
       // Track installation
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'pwa_install', {
-          event_category: 'engagement'
+      if (typeof gtag !== "undefined") {
+        gtag("event", "pwa_install", {
+          event_category: "engagement",
         });
       }
     });
@@ -1236,10 +1412,10 @@ class PWAManager {
 
   // Show install button
   showInstallButton() {
-    const installButton = document.getElementById('pwa-install-btn');
+    const installButton = document.getElementById("pwa-install-btn");
     if (installButton) {
-      installButton.classList.remove('hidden');
-      installButton.addEventListener('click', () => this.promptInstall());
+      installButton.classList.remove("hidden");
+      installButton.addEventListener("click", () => this.promptInstall());
     } else {
       // Create install button if it doesn't exist
       this.createInstallButton();
@@ -1248,11 +1424,13 @@ class PWAManager {
 
   // Create install button
   createInstallButton() {
-    const installBtn = document.createElement('button');
-    installBtn.id = 'pwa-install-btn';
-    installBtn.className = 'fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2';
-    installBtn.innerHTML = '<i class="fas fa-download"></i><span>Install App</span>';
-    installBtn.addEventListener('click', () => this.promptInstall());
+    const installBtn = document.createElement("button");
+    installBtn.id = "pwa-install-btn";
+    installBtn.className =
+      "fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2";
+    installBtn.innerHTML =
+      '<i class="fas fa-download"></i><span>Install App</span>';
+    installBtn.addEventListener("click", () => this.promptInstall());
 
     document.body.appendChild(installBtn);
   }
@@ -1264,30 +1442,30 @@ class PWAManager {
     try {
       const result = await this.installPrompt.prompt();
 
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'pwa_install_prompt', {
-          event_category: 'engagement',
-          result: result.outcome
+      if (typeof gtag !== "undefined") {
+        gtag("event", "pwa_install_prompt", {
+          event_category: "engagement",
+          result: result.outcome,
         });
       }
 
       this.installPrompt = null;
     } catch (error) {
-      console.error('[PWA] Install prompt error:', error);
+      console.error("[PWA] Install prompt error:", error);
     }
   }
 
   // Hide install button
   hideInstallButton() {
-    const installButton = document.getElementById('pwa-install-btn');
+    const installButton = document.getElementById("pwa-install-btn");
     if (installButton) {
-      installButton.classList.add('hidden');
+      installButton.classList.add("hidden");
     }
   }
 
   // Notification System
-  showNotification(message, type = 'info', duration = 5000) {
-    const notification = this.createNotification(message, '', type);
+  showNotification(message, type = "info", duration = 5000) {
+    const notification = this.createNotification(message, "", type);
     this.showNotificationElement(notification);
 
     if (duration > 0) {
@@ -1297,25 +1475,25 @@ class PWAManager {
     }
   }
 
-  createNotification(title, message, type = 'info', actions = []) {
-    const notification = document.createElement('div');
+  createNotification(title, message, type = "info", actions = []) {
+    const notification = document.createElement("div");
     notification.className = `fixed top-4 right-4 max-w-sm p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
 
     // Type-specific styling
     const typeClasses = {
-      success: 'bg-green-500 text-white',
-      warning: 'bg-orange-500 text-white',
-      error: 'bg-red-500 text-white',
-      info: 'bg-blue-500 text-white'
+      success: "bg-green-500 text-white",
+      warning: "bg-orange-500 text-white",
+      error: "bg-red-500 text-white",
+      info: "bg-blue-500 text-white",
     };
 
-    notification.classList.add(...typeClasses[type].split(' '));
+    notification.classList.add(...typeClasses[type].split(" "));
 
     const icons = {
-      success: 'fas fa-check-circle',
-      warning: 'fas fa-exclamation-triangle',
-      error: 'fas fa-times-circle',
-      info: 'fas fa-info-circle'
+      success: "fas fa-check-circle",
+      warning: "fas fa-exclamation-triangle",
+      error: "fas fa-times-circle",
+      info: "fas fa-info-circle",
     };
 
     notification.innerHTML = `
@@ -1323,16 +1501,26 @@ class PWAManager {
         <i class="${icons[type]} mt-1"></i>
         <div class="flex-1">
           <div class="font-semibold">${title}</div>
-          ${message ? `<div class="text-sm opacity-90">${message}</div>` : ''}
-          ${actions.length > 0 ? `
+          ${message ? `<div class="text-sm opacity-90">${message}</div>` : ""}
+          ${
+            actions.length > 0
+              ? `
             <div class="mt-2 flex space-x-2">
-              ${actions.map(action => `
-                <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded text-sm transition-colors" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.notification-action-${actions.indexOf(action)}').click()">
+              ${actions
+                .map(
+                  (action) => `
+                <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded text-sm transition-colors" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.notification-action-${actions.indexOf(
+                  action
+                )}').click()">
                   ${action.text}
                 </button>
-              `).join('')}
+              `
+                )
+                .join("")}
             </div>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
         <button class="text-white hover:text-gray-200 transition-colors" onclick="this.parentElement.parentElement.remove()">
           <i class="fas fa-times"></i>
@@ -1342,9 +1530,9 @@ class PWAManager {
 
     // Add action handlers
     actions.forEach((action, index) => {
-      const actionBtn = document.createElement('button');
+      const actionBtn = document.createElement("button");
       actionBtn.className = `notification-action-${index} hidden`;
-      actionBtn.addEventListener('click', action.action);
+      actionBtn.addEventListener("click", action.action);
       notification.appendChild(actionBtn);
     });
 
@@ -1356,13 +1544,13 @@ class PWAManager {
 
     // Trigger animation
     setTimeout(() => {
-      notification.classList.remove('translate-x-full');
+      notification.classList.remove("translate-x-full");
     }, 100);
   }
 
   dismissNotification(notification) {
     if (notification && notification.parentElement) {
-      notification.classList.add('translate-x-full');
+      notification.classList.add("translate-x-full");
       setTimeout(() => {
         if (notification.parentElement) {
           notification.parentElement.removeChild(notification);
@@ -1385,7 +1573,7 @@ class PWAManager {
 
       return {
         cacheCount: cacheNames.length,
-        totalItems: totalSize
+        totalItems: totalSize,
       };
     } catch (error) {
       return { cacheCount: 0, totalItems: 0 };
@@ -1395,17 +1583,17 @@ class PWAManager {
   async clearCache() {
     try {
       const cacheNames = await caches.keys();
-      await Promise.all(cacheNames.map(name => caches.delete(name)));
-      this.showNotification('Cache cleared successfully', 'success');
+      await Promise.all(cacheNames.map((name) => caches.delete(name)));
+      this.showNotification("Cache cleared successfully", "success");
     } catch (error) {
-      this.showNotification('Error clearing cache', 'error');
+      this.showNotification("Error clearing cache", "error");
     }
   }
 }
 
 // Initialize PWA Manager
 let pwaManager;
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   pwaManager = new PWAManager();
 });
 
@@ -1414,5 +1602,16 @@ window.pwa = {
   clearCache: () => pwaManager?.clearCache(),
   getCacheStatus: () => pwaManager?.getCacheStatus(),
   promptInstall: () => pwaManager?.promptInstall(),
-  sync: () => pwaManager?.syncDataWhenOnline()
+  sync: () => pwaManager?.syncDataWhenOnline(),
 };
+// Update current year in footer
+function updateCurrentYear() {
+  const currentYearElement = document.getElementById("current-year");
+  if (currentYearElement) {
+    const currentYear = new Date().getFullYear();
+    currentYearElement.textContent = currentYear;
+  }
+}
+
+// Initialize year update when DOM is loaded
+document.addEventListener("DOMContentLoaded", updateCurrentYear);
