@@ -2,8 +2,13 @@ let allCategories = [];
 let currentFilter = "all";
 let searchTerm = ""; // current text search filter
 let showAllCategories = {}; // per category expansion state
-let showAllContributors = false;
 let allContributors = [];
+
+// Contributors pagination
+let currentContributorPage = 1;
+const contributorsPerPage = 16; // 12 contributors per page (4x3 grid)
+let filteredContributors = [];
+let searchContributorsText = "";
 
 async function loadLinks() {
   try {
@@ -24,8 +29,12 @@ async function loadContributors() {
   try {
     const response = await fetch("data/contributors.json");
     const data = await response.json();
-    
-    if (data && Array.isArray(data.contributors) && data.contributors.length > 0) {
+
+    if (
+      data &&
+      Array.isArray(data.contributors) &&
+      data.contributors.length > 0
+    ) {
       allContributors = data.contributors;
       renderContributors(allContributors);
       updateContributorStats(data.contributors.length);
@@ -36,7 +45,32 @@ async function loadContributors() {
   } catch (error) {
     console.error("Error loading contributors:", error);
     // Fallback with dash
-    allContributors = [];
+    // add fallback contributor for only development
+    allContributors = [
+      {
+        name: "Testing Contributor",
+        github: "tester123",
+        avatar: "https://thispersondoesnotexist.com/",
+        linkedin: "testing123",
+        tagline:
+          "This is a fallback contributor added due to an error in loading the contributors data.",
+        contributions: ["Testing the contributors loading functionality."],
+        role: "Contributor",
+        featured: true,
+      },
+      {
+        name: "Testing Contributor",
+        github: "tester123",
+        avatar: "https://thispersondoesnotexist.com/",
+        linkedin: "testing123",
+        tagline:
+          "This is a fallback contributor added due to an error in loading the contributors data.",
+        contributions: ["Testing the contributors loading functionality."],
+        role: "Contributor",
+        featured: false,
+      },
+    ];
+    renderContributors(allContributors);
     updateFooterContributorsCount("-");
   }
 }
@@ -146,7 +180,6 @@ function filterByCategory(categoryName) {
   trackCategoryFilter(categoryName);
 }
 
-
 function renderLinks(categories) {
   const mainContent = document.getElementById("main-content");
 
@@ -224,22 +257,266 @@ function renderContributors(contributors) {
     totalContributorsText.textContent = contributors.length;
   }
 
-  // Always show all contributors (pagination removed)
-  const contributorsToShow = contributors;
+  // Filter contributors based on search text
+  if (searchContributorsText.trim()) {
+    const searchLower = searchContributorsText.toLowerCase();
+    filteredContributors = contributors.filter(
+      (c) =>
+        c.name.toLowerCase().includes(searchLower) ||
+        (c.tagline && c.tagline.toLowerCase().includes(searchLower)) ||
+        (c.role && c.role.toLowerCase().includes(searchLower))
+    );
+  } else {
+    filteredContributors = contributors;
+  }
+
+  // Reset to page 1 when filtering
+  currentContributorPage = 1;
+
+  // Calculate pagination
+  const totalPages = Math.ceil(
+    filteredContributors.length / contributorsPerPage
+  );
+  const startIndex = (currentContributorPage - 1) * contributorsPerPage;
+  const contributorsToShow = filteredContributors.slice(
+    startIndex,
+    startIndex + contributorsPerPage
+  );
+
+  // Render Modern Grid
+  const modernGrid = document.getElementById("contributors-modern-grid");
+  if (modernGrid) {
+    if (filteredContributors.length === 0) {
+      modernGrid.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <i class="fas fa-search text-4xl" style="color: var(--text-tertiary); opacity: 0.5;"></i>
+          <p class="mt-4" style="color: var(--text-secondary);">No contributors found matching your search.</p>
+        </div>
+      `;
+    } else {
+      modernGrid.innerHTML = contributorsToShow
+        .map((contributor, index) => {
+          const contributionCount = contributor.contributions
+            ? contributor.contributions.length
+            : 0;
+
+          return `
+            <div class="contributor-card-modern no-scroll ${
+              contributor.featured ? "featured" : ""
+            }"
+                 style="animation-delay: ${index * 0.05}s"
+                 onclick="openContributorModal(${contributors.indexOf(
+                   contributor
+                 )})">
+              ${
+                contributor.featured
+                  ? `<div class="floating-badge">Featured</div>`
+                  : ""
+              }
+              <div>
+                <div class="flex space-x-3 mb-3 no-scroll">
+                  <img src="${contributor.avatar}" alt="${contributor.name}"
+                       class="contributor-avatar-modern flex-shrink-0" />
+                  <div class="contributor-info flex-1  min-w-0">
+                    <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${
+                      contributor.name
+                    }</h4>
+                    ${
+                      contributor.role
+                        ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>`
+                        : ""
+                    }
+                  </div>
+                </div>
+                ${
+                  contributor.tagline
+                    ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${contributor.tagline}"</p>`
+                    : ""
+                }
+              </div>
+
+              <div class="flex justify-between items-center mt-2 no-scroll">
+                <div class="contributor-stats">
+                  ${
+                    contributionCount > 0
+                      ? `
+                    <span class="stat-item">
+                      <i class="fas fa-star" style="color: #f59e0b;"></i>
+                      <span>${contributionCount}</span>
+                    </span>
+                  `
+                      : ""
+                  }
+                </div>
+                <div class="contributor-social-modern">
+                  <a href="https://github.com/${
+                    contributor.github
+                  }" target="_blank"
+                     class="social-link-modern" title="GitHub"
+                     onclick="event.stopPropagation(); trackContributorClick('${
+                       contributor.name
+                     }')">
+                    <i class="fab fa-github"></i>
+                  </a>
+                  ${
+                    contributor.linkedin
+                      ? `
+                    <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
+                       class="social-link-modern" title="LinkedIn"
+                       onclick="event.stopPropagation()">
+                      <i class="fab fa-linkedin"></i>
+                    </a>
+                  `
+                      : ""
+                  }
+                  ${
+                    contributor.website
+                      ? `
+                    <a href="${contributor.website}" target="_blank"
+                       class="social-link-modern" title="Website"
+                       onclick="event.stopPropagation()">
+                      <i class="fas fa-globe"></i>
+                    </a>
+                  `
+                      : ""
+                  }
+                </div>
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+    }
+  }
+
+  // Render pagination controls
+  renderPaginationControls(totalPages);
+}
+
+function renderPaginationControls(totalPages) {
+  const paginationContainer = document.getElementById("pagination-container");
+  if (!paginationContainer) return;
+
+  if (totalPages <= 1) {
+    paginationContainer.innerHTML = "";
+    return;
+  }
+
+  let html = "";
+
+  // Previous button
+  html += `
+    <button class="pagination-button ${
+      currentContributorPage === 1 ? "disabled" : ""
+    }"
+            ${
+              currentContributorPage === 1
+                ? "disabled"
+                : "onclick='changeContributorPage(" +
+                  (currentContributorPage - 1) +
+                  ")'"
+            }>
+      <i class="fas fa-chevron-left"></i>
+    </button>
+  `;
+
+  // Page numbers with ellipsis
+  for (let i = 1; i <= totalPages; i++) {
+    if (
+      i === 1 ||
+      i === totalPages ||
+      (i >= currentContributorPage - 1 && i <= currentContributorPage + 1)
+    ) {
+      html += `
+        <button class="pagination-button ${
+          i === currentContributorPage ? "active" : ""
+        }"
+                onclick="changeContributorPage(${i})">
+          ${i}
+        </button>
+      `;
+    } else if (i === 2 || i === totalPages - 1) {
+      html += `<span class="pagination-info">...</span>`;
+    }
+  }
+
+  // Next button
+  html += `
+    <button class="pagination-button ${
+      currentContributorPage === totalPages ? "disabled" : ""
+    }"
+            ${
+              currentContributorPage === totalPages
+                ? "disabled"
+                : "onclick='changeContributorPage(" +
+                  (currentContributorPage + 1) +
+                  ")'"
+            }>
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  `;
+
+  // Pagination info
+  const totalDisplayed = filteredContributors.length;
+  const startNum = Math.min(
+    (currentContributorPage - 1) * contributorsPerPage + 1,
+    totalDisplayed
+  );
+  const endNum = Math.min(
+    currentContributorPage * contributorsPerPage,
+    totalDisplayed
+  );
+
+  html += `<span class="pagination-info">Showing ${startNum}-${endNum} of ${totalDisplayed}</span>`;
+
+  paginationContainer.innerHTML = html;
+}
+
+function changeContributorPage(pageNumber) {
+  const totalPages = Math.ceil(
+    filteredContributors.length / contributorsPerPage
+  );
+
+  if (pageNumber < 1 || pageNumber > totalPages) return;
+
+  currentContributorPage = pageNumber;
+
+  // Re-render with current filtered contributors
+  const totalContributorsText = document.getElementById(
+    "total-contributors-text"
+  );
+  if (totalContributorsText) {
+    totalContributorsText.textContent = filteredContributors.length;
+  }
+
+  // Calculate pagination
+  const startIndex = (currentContributorPage - 1) * contributorsPerPage;
+  const contributorsToShow = filteredContributors.slice(
+    startIndex,
+    startIndex + contributorsPerPage
+  );
 
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
   if (modernGrid) {
     modernGrid.innerHTML = contributorsToShow
       .map((contributor, index) => {
-        const isCreator = contributor.role === "Creator & Maintainer";
+        const contributorIndex = allContributors.indexOf(contributor);
         const contributionCount = contributor.contributions
           ? contributor.contributions.length
           : 0;
 
         return `
-          <div class="contributor-card-modern ${contributor.featured ? 'featured-contributor' : ''}"
-               style="animation-delay: ${index * 0.1}s">
+          <div class="contributor-card-modern ${
+            contributor.featured ? "featured" : ""
+          }"
+               style="animation-delay: ${index * 0.05}s"
+               onclick="openContributorModal(${contributorIndex})">
+            ${
+              contributor.featured
+                ? `<div class="floating-badge">Featured</div>`
+                : ""
+            }
             <div>
               <div class="flex items-center space-x-3 mb-3">
                 <img src="${contributor.avatar}" alt="${contributor.name}"
@@ -262,32 +539,52 @@ function renderContributors(contributors) {
               </div>
             </div>
 
-            <div class="contributor-social-modern">
-              <a href="https://github.com/${contributor.github}" target="_blank"
-                 class="social-link-modern" title="GitHub"
-                 onclick="trackContributorClick('${contributor.name}')">
-                <i class="fab fa-github"></i>
-              </a>
-              ${
-                contributor.linkedin
-                  ? `
-                <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
-                   class="social-link-modern" title="LinkedIn">
-                  <i class="fab fa-linkedin"></i>
+            <div class="flex justify-between items-end">
+              <div class="contributor-stats">
+                ${
+                  contributionCount > 0
+                    ? `
+                  <span class="stat-item">
+                    <i class="fas fa-star" style="color: #f59e0b;"></i>
+                    <span>${contributionCount}</span>
+                  </span>
+                `
+                    : ""
+                }
+              </div>
+              <div class="contributor-social-modern">
+                <a href="https://github.com/${
+                  contributor.github
+                }" target="_blank"
+                   class="social-link-modern" title="GitHub"
+                   onclick="event.stopPropagation(); trackContributorClick('${
+                     contributor.name
+                   }')">
+                  <i class="fab fa-github"></i>
                 </a>
-              `
-                  : ""
-              }
-              ${
-                contributor.website
-                  ? `
-                <a href="${contributor.website}" target="_blank"
-                   class="social-link-modern" title="Website">
-                  <i class="fas fa-globe"></i>
-                </a>
-              `
-                  : ""
-              }
+                ${
+                  contributor.linkedin
+                    ? `
+                  <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
+                     class="social-link-modern" title="LinkedIn"
+                     onclick="event.stopPropagation()">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                `
+                    : ""
+                }
+                ${
+                  contributor.website
+                    ? `
+                  <a href="${contributor.website}" target="_blank"
+                     class="social-link-modern" title="Website"
+                     onclick="event.stopPropagation()">
+                    <i class="fas fa-globe"></i>
+                  </a>
+                `
+                    : ""
+                }
+              </div>
             </div>
           </div>
         `;
@@ -295,12 +592,152 @@ function renderContributors(contributors) {
       .join("");
   }
 
-  // Pagination removed - no button needed
-  const showAllBtnContainer = document.getElementById(
-    "show-all-contributors-container"
-  );
-  if (showAllBtnContainer) {
-    showAllBtnContainer.innerHTML = "";
+  // Re-render pagination
+  renderPaginationControls(totalPages);
+
+  // Smooth scroll to contributors section
+  const contributorsSection = document.getElementById("contributors");
+  if (contributorsSection) {
+    contributorsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
+
+function openContributorModal(contributorIndex) {
+  const contributor = allContributors[contributorIndex];
+  if (!contributor) return;
+
+  // Remove any existing modal
+  const existingModal = document.getElementById("contributor-modal-backdrop");
+  if (existingModal) {
+    existingModal.remove();
+  }
+
+  // Create modal HTML
+  const modalHTML = `
+    <div id="contributor-modal-backdrop" class="contributor-modal-backdrop active no-scroll">
+      <div class="contributor-modal no-scroll">
+        <button class="modal-close-btn" onclick="closeContributorModal()" title="Close">
+          <i class="fas fa-times"></i>
+        </button>
+        
+        <div class="modal-header">
+          <img src="${contributor.avatar}" alt="${
+    contributor.name
+  }" class="modal-avatar" />
+          <div class="modal-title-section flex-1">
+            <h2>${contributor.name}</h2>
+            ${
+              contributor.website
+                ? `<p><i class="fas fa-globe"></i> <a href="${
+                    contributor.website
+                  }" target="_blank" style="color: #3b82f6;">${
+                    new URL(contributor.website).hostname
+                  }</a></p>`
+                : ""
+            }
+            ${
+              contributor.role
+                ? `<div class="modal-role-badge">${contributor.role}</div>`
+                : ""
+            }
+          </div>
+        </div>
+
+        ${
+          contributor.tagline
+            ? `
+          <div class="modal-section">
+            <p style="color: var(--text-secondary); font-style: italic; border-left: 3px solid #3b82f6; padding-left: 12px;">
+              "${contributor.tagline}"
+            </p>
+          </div>
+        `
+            : ""
+        }
+
+        ${
+          contributor.contributions && contributor.contributions.length > 0
+            ? `
+          <div class="modal-section">
+            <div class="modal-section-title">
+              <i class="fas fa-star"></i>
+              <span>Contributions (${contributor.contributions.length})</span>
+            </div>
+            <ul class="contributions-list">
+              ${contributor.contributions
+                .map((contrib) => `<li>${contrib}</li>`)
+                .join("")}
+            </ul>
+          </div>
+        `
+            : ""
+        }
+
+        <div class="modal-section no-scroll ">
+          <div class="modal-section-title">
+            <i class="fas fa-link"></i>
+            <span>Connect</span>
+          </div>
+          <div class="modal-social-links">
+            <a href="https://github.com/${
+              contributor.github
+            }" target="_blank" class="modal-social-link">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            ${
+              contributor.linkedin
+                ? `
+              <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" class="modal-social-link">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+            `
+                : ""
+            }
+            ${
+              contributor.website
+                ? `
+              <a href="${contributor.website}" target="_blank" class="modal-social-link">
+                <i class="fas fa-globe"></i>
+                <span>Website</span>
+              </a>
+            `
+                : ""
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Append to body
+  document.body.insertAdjacentHTML("beforeend", modalHTML);
+
+  // Close on backdrop click
+  document
+    .getElementById("contributor-modal-backdrop")
+    .addEventListener("click", (e) => {
+      if (e.target.id === "contributor-modal-backdrop") {
+        closeContributorModal();
+      }
+    });
+
+  // Close on Escape key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeContributorModal();
+    }
+  });
+}
+
+function closeContributorModal() {
+  const modal = document.getElementById("contributor-modal-backdrop");
+  if (modal) {
+    modal.classList.remove("active");
+    setTimeout(() => {
+      modal.remove();
+    }, 300);
   }
 }
 
@@ -313,7 +750,7 @@ function updateStats(categories) {
   if (totalToolsElement) {
     totalToolsElement.textContent = totalTools + "+";
   }
-  
+
   // Update tools count in status widget
   const toolsCountElement = document.getElementById("tools-count");
   if (toolsCountElement) {
@@ -330,10 +767,12 @@ function updateContributorStats(count) {
 
 function updateFooterContributorsCount(count) {
   // Update ALL footer contributors count elements
-  const footerContributorsCounts = document.querySelectorAll('[id="footer-contributors-count"]');
-  footerContributorsCounts.forEach(element => {
+  const footerContributorsCounts = document.querySelectorAll(
+    '[id="footer-contributors-count"]'
+  );
+  footerContributorsCounts.forEach((element) => {
     // Show count or dash if invalid
-    const displayCount = (count && count > 0) ? count : "-";
+    const displayCount = count && count > 0 ? count : "-";
     element.textContent = displayCount;
     if (displayCount !== "-") {
       element.classList.add("animate-pulse");
@@ -444,23 +883,6 @@ function toggleCategory(categoryName) {
   applyFilters(); // Re-render with current filters
 }
 
-function toggleShowAllContributors() {
-  showAllContributors = !showAllContributors;
-  renderContributors(allContributors);
-  // Scroll to default parts when showing less
-  if (!showAllContributors) {
-    setTimeout(() => {
-      const contributorsSection = document.getElementById("contributors");
-      if (contributorsSection) {
-        contributorsSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 0);
-  }
-}
-
 // Initialize everything when DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   // Add smooth scrolling to all anchor links
@@ -491,6 +913,18 @@ document.addEventListener("DOMContentLoaded", () => {
       applyFilters();
     });
   }
+
+  // Contributors search listener
+  const contributorsSearchInput = document.getElementById(
+    "contributors-search"
+  );
+  if (contributorsSearchInput) {
+    contributorsSearchInput.addEventListener("input", (e) => {
+      searchContributorsText = e.target.value;
+      renderContributors(allContributors);
+    });
+  }
+
   const categorySelect = document.getElementById("category-select");
   if (categorySelect) {
     categorySelect.addEventListener("change", (e) => {
@@ -510,15 +944,15 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadGitHubStars() {
   const owner = "ArshdeepGrover";
   const repo = "ai-tools-manager";
-  
+
   // Set initial loading state
   updateFooterStats("-", "-", "-");
-  
+
   try {
     const response = await fetch(
       "https://api.github.com/repos/ArshdeepGrover/ai-tools-manager"
     );
-    
+
     const data = await response.json();
     const starCount = data.stargazers_count || "-";
     const forkCount = data.forks_count || "-";
@@ -530,7 +964,9 @@ async function loadGitHubStars() {
         `https://api.github.com/repos/${owner}/${repo}/issues?state=open`
       );
       const issuesData = await issuesRes.json();
-      issuesCount = Array.isArray(issuesData) ? issuesData.filter((item) => !item.pull_request).length : "-";
+      issuesCount = Array.isArray(issuesData)
+        ? issuesData.filter((item) => !item.pull_request).length
+        : "-";
     } catch (e) {
       console.warn("Could not fetch issues count:", e);
     }
@@ -587,8 +1023,10 @@ function updateGitHubButtons(starCount) {
 
 function updateFooterStats(starCount, forkCount, issuesCount) {
   // Update ALL footer star count elements (there might be multiple)
-  const footerStarCounts = document.querySelectorAll('[id="footer-star-count"]');
-  footerStarCounts.forEach(element => {
+  const footerStarCounts = document.querySelectorAll(
+    '[id="footer-star-count"]'
+  );
+  footerStarCounts.forEach((element) => {
     element.textContent = starCount;
     element.classList.add("animate-pulse");
     setTimeout(() => {
@@ -597,18 +1035,22 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
   });
 
   // Update ALL footer fork count elements
-  const footerForkCounts = document.querySelectorAll('[id="footer-fork-count"]');
-  footerForkCounts.forEach(element => {
+  const footerForkCounts = document.querySelectorAll(
+    '[id="footer-fork-count"]'
+  );
+  footerForkCounts.forEach((element) => {
     element.textContent = forkCount;
     element.classList.add("animate-pulse");
     setTimeout(() => {
       element.classList.remove("animate-pulse");
     }, 1000);
   });
- 
+
   // Update ALL footer issues count elements
-  const footerIssuesCounts = document.querySelectorAll('[id="footer-issue-count"]');
-  footerIssuesCounts.forEach(element => {
+  const footerIssuesCounts = document.querySelectorAll(
+    '[id="footer-issue-count"]'
+  );
+  footerIssuesCounts.forEach((element) => {
     element.textContent = issuesCount;
     element.classList.add("animate-pulse");
     setTimeout(() => {
@@ -633,7 +1075,8 @@ function initializeTheme() {
   if (!themeToggleBtn || !themeIcon) return;
 
   const root = document.documentElement;
-  const mediaQuery = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
+  const mediaQuery =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
 
   const getSavedPreference = () => localStorage.getItem("theme");
   const inSystemMode = () => getSavedPreference() == null;
@@ -724,7 +1167,7 @@ backToTopBtn.addEventListener("click", () => {
 class PWAManager {
   constructor() {
     this.isOnline = navigator.onLine;
-    this.lastSyncTime = localStorage.getItem('ai-tools-last-sync') || 'Never';
+    this.lastSyncTime = localStorage.getItem("ai-tools-last-sync") || "Never";
     this.installPrompt = null;
     this.swRegistration = null;
     this.init();
@@ -740,19 +1183,19 @@ class PWAManager {
 
   // Service Worker Registration
   async setupServiceWorker() {
-    if ('serviceWorker' in navigator) {
+    if ("serviceWorker" in navigator) {
       try {
-        this.swRegistration = await navigator.serviceWorker.register('/sw.js');
-        
-        console.log('[PWA] Service Worker registered successfully');
-        
+        this.swRegistration = await navigator.serviceWorker.register("/sw.js");
+
+        console.log("[PWA] Service Worker registered successfully");
+
         // Listen for SW messages
-        navigator.serviceWorker.addEventListener('message', (event) => {
+        navigator.serviceWorker.addEventListener("message", (event) => {
           this.handleServiceWorkerMessage(event.data);
         });
 
         // Check for updates
-        this.swRegistration.addEventListener('updatefound', () => {
+        this.swRegistration.addEventListener("updatefound", () => {
           this.handleServiceWorkerUpdate();
         });
 
@@ -760,9 +1203,8 @@ class PWAManager {
         if (this.swRegistration.waiting) {
           this.showUpdateAvailable();
         }
-
       } catch (error) {
-        console.error('[PWA] Service Worker registration failed:', error);
+        console.error("[PWA] Service Worker registration failed:", error);
       }
     }
   }
@@ -770,14 +1212,14 @@ class PWAManager {
   // Handle messages from Service Worker
   handleServiceWorkerMessage(data) {
     switch (data.type) {
-      case 'DATA_UPDATE':
+      case "DATA_UPDATE":
         this.handleDataUpdate(data);
         break;
-      case 'CACHE_STATUS':
+      case "CACHE_STATUS":
         this.updateCacheStatus(data);
         break;
-      case 'CACHE_CLEARED':
-        this.showNotification('Cache cleared successfully', 'success');
+      case "CACHE_CLEARED":
+        this.showNotification("Cache cleared successfully", "success");
         break;
     }
   }
@@ -785,10 +1227,13 @@ class PWAManager {
   // Handle data updates from SW
   handleDataUpdate(data) {
     if (data.isStale) {
-      this.showNotification('Working offline - some features may be limited', 'warning');
+      this.showNotification(
+        "Working offline - some features may be limited",
+        "warning"
+      );
     } else {
       this.lastSyncTime = new Date().toLocaleString();
-      localStorage.setItem('ai-tools-last-sync', this.lastSyncTime);
+      localStorage.setItem("ai-tools-last-sync", this.lastSyncTime);
       this.updateSyncStatus();
     }
   }
@@ -796,9 +1241,12 @@ class PWAManager {
   // Handle SW updates
   handleServiceWorkerUpdate() {
     const newWorker = this.swRegistration.installing;
-    
-    newWorker.addEventListener('statechange', () => {
-      if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+
+    newWorker.addEventListener("statechange", () => {
+      if (
+        newWorker.state === "installed" &&
+        navigator.serviceWorker.controller
+      ) {
         this.showUpdateAvailable();
       }
     });
@@ -807,23 +1255,23 @@ class PWAManager {
   // Show update notification
   showUpdateAvailable() {
     const updateNotification = this.createNotification(
-      'App Update Available',
-      'A new version is ready. Refresh to update.',
-      'info',
+      "App Update Available",
+      "A new version is ready. Refresh to update.",
+      "info",
       [
         {
-          text: 'Update Now',
+          text: "Update Now",
           action: () => {
             if (this.swRegistration.waiting) {
-              this.swRegistration.waiting.postMessage({ type: 'SKIP_WAITING' });
+              this.swRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
               window.location.reload();
             }
-          }
+          },
         },
         {
-          text: 'Later',
-          action: () => this.dismissNotification()
-        }
+          text: "Later",
+          action: () => this.dismissNotification(),
+        },
       ]
     );
     this.showNotificationElement(updateNotification);
@@ -831,46 +1279,47 @@ class PWAManager {
 
   // Connection Status Management
   setupConnectionListeners() {
-    window.addEventListener('online', () => {
+    window.addEventListener("online", () => {
       this.isOnline = true;
       this.updateConnectionStatus();
       this.syncDataWhenOnline();
-      this.showNotification('Connection restored', 'success');
+      this.showNotification("Connection restored", "success");
     });
 
-    window.addEventListener('offline', () => {
+    window.addEventListener("offline", () => {
       this.isOnline = false;
       this.updateConnectionStatus();
-      this.showNotification('Working offline', 'warning');
+      this.showNotification("Working offline", "warning");
     });
   }
 
   // Update connection status in UI
   updateConnectionStatus() {
     // Update floating status widget
-    const statusWidget = document.getElementById('status-widget');
-    const statusDot = document.getElementById('status-dot');
-    const statusText = document.getElementById('status-text');
-    
+    const statusWidget = document.getElementById("status-widget");
+    const statusDot = document.getElementById("status-dot");
+    const statusText = document.getElementById("status-text");
+
     if (statusWidget && statusDot && statusText) {
       if (this.isOnline) {
-        statusWidget.classList.remove('offline');
-        statusDot.className = 'w-2 h-2 rounded-full bg-green-500 animate-pulse';
-        statusText.textContent = 'Online';
+        statusWidget.classList.remove("offline");
+        statusDot.className = "w-2 h-2 rounded-full bg-green-500 animate-pulse";
+        statusText.textContent = "Online";
       } else {
-        statusWidget.classList.add('offline');
-        statusDot.className = 'w-2 h-2 rounded-full bg-orange-500 animate-pulse';
-        statusText.textContent = 'Offline';
+        statusWidget.classList.add("offline");
+        statusDot.className =
+          "w-2 h-2 rounded-full bg-orange-500 animate-pulse";
+        statusText.textContent = "Offline";
       }
     }
 
     // Show/hide offline banner
-    const offlineBanner = document.getElementById('offline-banner');
+    const offlineBanner = document.getElementById("offline-banner");
     if (offlineBanner) {
       if (this.isOnline) {
-        offlineBanner.classList.add('hidden');
+        offlineBanner.classList.add("hidden");
       } else {
-        offlineBanner.classList.remove('hidden');
+        offlineBanner.classList.remove("hidden");
       }
     }
   }
@@ -886,20 +1335,20 @@ class PWAManager {
     if (!this.isOnline) {
       try {
         // Override the loadLinks function to use cache-first strategy
-        if (typeof loadLinks === 'function') {
+        if (typeof loadLinks === "function") {
           const originalLoadLinks = loadLinks;
-          
+
           window.loadLinks = async () => {
             try {
               await originalLoadLinks();
             } catch (error) {
-              console.log('[PWA] Loading from cache due to network error');
+              console.log("[PWA] Loading from cache due to network error");
               await this.loadFromCache();
             }
           };
         }
       } catch (error) {
-        console.error('[PWA] Error setting up offline data loading:', error);
+        console.error("[PWA] Error setting up offline data loading:", error);
       }
     }
   }
@@ -907,19 +1356,19 @@ class PWAManager {
   // Load data from cache
   async loadFromCache() {
     try {
-      const cache = await caches.open('ai-tools-data-v1.0.0');
-      const cachedResponse = await cache.match('/data/links.json');
-      
+      const cache = await caches.open("ai-tools-data-v1.0.0");
+      const cachedResponse = await cache.match("/data/links.json");
+
       if (cachedResponse) {
         const data = await cachedResponse.json();
         allCategories = data.categories;
         renderCategoryFilters(allCategories);
         applyFilters();
         updateStats(allCategories);
-        this.showNotification('Loaded saved data', 'info');
+        this.showNotification("Loaded saved data", "info");
       }
     } catch (error) {
-      console.error('[PWA] Error loading cached data:', error);
+      console.error("[PWA] Error loading cached data:", error);
     }
   }
 
@@ -927,13 +1376,13 @@ class PWAManager {
   async syncDataWhenOnline() {
     if (this.swRegistration && this.swRegistration.sync) {
       try {
-        await this.swRegistration.sync.register('background-sync-data');
+        await this.swRegistration.sync.register("background-sync-data");
       } catch (error) {
-        console.log('[PWA] Background sync not available, manual sync');
+        console.log("[PWA] Background sync not available, manual sync");
         // Manual sync fallback
         setTimeout(() => {
-          if (typeof loadLinks === 'function') loadLinks();
-          if (typeof loadContributors === 'function') loadContributors();
+          if (typeof loadLinks === "function") loadLinks();
+          if (typeof loadContributors === "function") loadContributors();
         }, 1000);
       }
     }
@@ -941,22 +1390,21 @@ class PWAManager {
 
   // PWA Installation
   setupInstallPrompt() {
-    window.addEventListener('beforeinstallprompt', (e) => {
+    window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       this.installPrompt = e;
       this.showInstallButton();
     });
 
     // Handle install result
-    window.addEventListener('appinstalled', () => {
+    window.addEventListener("appinstalled", () => {
       this.installPrompt = null;
       this.hideInstallButton();
-      this.showNotification('App installed successfully!', 'success');
-      
+      this.showNotification("App installed successfully!", "success");
       // Track installation
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'pwa_install', {
-          event_category: 'engagement'
+      if (typeof gtag !== "undefined") {
+        gtag("event", "pwa_install", {
+          event_category: "engagement",
         });
       }
     });
@@ -964,10 +1412,10 @@ class PWAManager {
 
   // Show install button
   showInstallButton() {
-    const installButton = document.getElementById('pwa-install-btn');
+    const installButton = document.getElementById("pwa-install-btn");
     if (installButton) {
-      installButton.classList.remove('hidden');
-      installButton.addEventListener('click', () => this.promptInstall());
+      installButton.classList.remove("hidden");
+      installButton.addEventListener("click", () => this.promptInstall());
     } else {
       // Create install button if it doesn't exist
       this.createInstallButton();
@@ -976,48 +1424,50 @@ class PWAManager {
 
   // Create install button
   createInstallButton() {
-    const installBtn = document.createElement('button');
-    installBtn.id = 'pwa-install-btn';
-    installBtn.className = 'fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2';
-    installBtn.innerHTML = '<i class="fas fa-download"></i><span>Install App</span>';
-    installBtn.addEventListener('click', () => this.promptInstall());
-    
+    const installBtn = document.createElement("button");
+    installBtn.id = "pwa-install-btn";
+    installBtn.className =
+      "fixed bottom-4 right-4 bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-700 transition-colors z-50 flex items-center space-x-2";
+    installBtn.innerHTML =
+      '<i class="fas fa-download"></i><span>Install App</span>';
+    installBtn.addEventListener("click", () => this.promptInstall());
+
     document.body.appendChild(installBtn);
   }
 
   // Prompt installation
   async promptInstall() {
     if (!this.installPrompt) return;
-    
+
     try {
       const result = await this.installPrompt.prompt();
-      
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'pwa_install_prompt', {
-          event_category: 'engagement',
-          result: result.outcome
+
+      if (typeof gtag !== "undefined") {
+        gtag("event", "pwa_install_prompt", {
+          event_category: "engagement",
+          result: result.outcome,
         });
       }
-      
+
       this.installPrompt = null;
     } catch (error) {
-      console.error('[PWA] Install prompt error:', error);
+      console.error("[PWA] Install prompt error:", error);
     }
   }
 
   // Hide install button
   hideInstallButton() {
-    const installButton = document.getElementById('pwa-install-btn');
+    const installButton = document.getElementById("pwa-install-btn");
     if (installButton) {
-      installButton.classList.add('hidden');
+      installButton.classList.add("hidden");
     }
   }
 
   // Notification System
-  showNotification(message, type = 'info', duration = 5000) {
-    const notification = this.createNotification(message, '', type);
+  showNotification(message, type = "info", duration = 5000) {
+    const notification = this.createNotification(message, "", type);
     this.showNotificationElement(notification);
-    
+
     if (duration > 0) {
       setTimeout(() => {
         this.dismissNotification(notification);
@@ -1025,72 +1475,82 @@ class PWAManager {
     }
   }
 
-  createNotification(title, message, type = 'info', actions = []) {
-    const notification = document.createElement('div');
+  createNotification(title, message, type = "info", actions = []) {
+    const notification = document.createElement("div");
     notification.className = `fixed top-4 right-4 max-w-sm p-4 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
-    
+
     // Type-specific styling
     const typeClasses = {
-      success: 'bg-green-500 text-white',
-      warning: 'bg-orange-500 text-white', 
-      error: 'bg-red-500 text-white',
-      info: 'bg-blue-500 text-white'
+      success: "bg-green-500 text-white",
+      warning: "bg-orange-500 text-white",
+      error: "bg-red-500 text-white",
+      info: "bg-blue-500 text-white",
     };
-    
-    notification.classList.add(...typeClasses[type].split(' '));
-    
+
+    notification.classList.add(...typeClasses[type].split(" "));
+
     const icons = {
-      success: 'fas fa-check-circle',
-      warning: 'fas fa-exclamation-triangle',
-      error: 'fas fa-times-circle',
-      info: 'fas fa-info-circle'
+      success: "fas fa-check-circle",
+      warning: "fas fa-exclamation-triangle",
+      error: "fas fa-times-circle",
+      info: "fas fa-info-circle",
     };
-    
+
     notification.innerHTML = `
       <div class="flex items-start space-x-3">
         <i class="${icons[type]} mt-1"></i>
         <div class="flex-1">
           <div class="font-semibold">${title}</div>
-          ${message ? `<div class="text-sm opacity-90">${message}</div>` : ''}
-          ${actions.length > 0 ? `
+          ${message ? `<div class="text-sm opacity-90">${message}</div>` : ""}
+          ${
+            actions.length > 0
+              ? `
             <div class="mt-2 flex space-x-2">
-              ${actions.map(action => `
-                <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded text-sm transition-colors" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.notification-action-${actions.indexOf(action)}').click()">
+              ${actions
+                .map(
+                  (action) => `
+                <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded text-sm transition-colors" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.notification-action-${actions.indexOf(
+                  action
+                )}').click()">
                   ${action.text}
                 </button>
-              `).join('')}
+              `
+                )
+                .join("")}
             </div>
-          ` : ''}
+          `
+              : ""
+          }
         </div>
         <button class="text-white hover:text-gray-200 transition-colors" onclick="this.parentElement.parentElement.remove()">
           <i class="fas fa-times"></i>
         </button>
       </div>
     `;
-    
+
     // Add action handlers
     actions.forEach((action, index) => {
-      const actionBtn = document.createElement('button');
+      const actionBtn = document.createElement("button");
       actionBtn.className = `notification-action-${index} hidden`;
-      actionBtn.addEventListener('click', action.action);
+      actionBtn.addEventListener("click", action.action);
       notification.appendChild(actionBtn);
     });
-    
+
     return notification;
   }
 
   showNotificationElement(notification) {
     document.body.appendChild(notification);
-    
+
     // Trigger animation
     setTimeout(() => {
-      notification.classList.remove('translate-x-full');
+      notification.classList.remove("translate-x-full");
     }, 100);
   }
 
   dismissNotification(notification) {
     if (notification && notification.parentElement) {
-      notification.classList.add('translate-x-full');
+      notification.classList.add("translate-x-full");
       setTimeout(() => {
         if (notification.parentElement) {
           notification.parentElement.removeChild(notification);
@@ -1104,16 +1564,16 @@ class PWAManager {
     try {
       const cacheNames = await caches.keys();
       let totalSize = 0;
-      
+
       for (const cacheName of cacheNames) {
         const cache = await caches.open(cacheName);
         const requests = await cache.keys();
         totalSize += requests.length;
       }
-      
+
       return {
         cacheCount: cacheNames.length,
-        totalItems: totalSize
+        totalItems: totalSize,
       };
     } catch (error) {
       return { cacheCount: 0, totalItems: 0 };
@@ -1123,17 +1583,17 @@ class PWAManager {
   async clearCache() {
     try {
       const cacheNames = await caches.keys();
-      await Promise.all(cacheNames.map(name => caches.delete(name)));
-      this.showNotification('Cache cleared successfully', 'success');
+      await Promise.all(cacheNames.map((name) => caches.delete(name)));
+      this.showNotification("Cache cleared successfully", "success");
     } catch (error) {
-      this.showNotification('Error clearing cache', 'error');
+      this.showNotification("Error clearing cache", "error");
     }
   }
 }
 
 // Initialize PWA Manager
 let pwaManager;
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   pwaManager = new PWAManager();
 });
 
@@ -1142,5 +1602,16 @@ window.pwa = {
   clearCache: () => pwaManager?.clearCache(),
   getCacheStatus: () => pwaManager?.getCacheStatus(),
   promptInstall: () => pwaManager?.promptInstall(),
-  sync: () => pwaManager?.syncDataWhenOnline()
+  sync: () => pwaManager?.syncDataWhenOnline(),
 };
+// Update current year in footer
+function updateCurrentYear() {
+  const currentYearElement = document.getElementById("current-year");
+  if (currentYearElement) {
+    const currentYear = new Date().getFullYear();
+    currentYearElement.textContent = currentYear;
+  }
+}
+
+// Initialize year update when DOM is loaded
+document.addEventListener("DOMContentLoaded", updateCurrentYear);
