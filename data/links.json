@@ -469,6 +469,11 @@
           "description": "AI voice generator with free credits"
         },
         {
+          "title": "PVID",
+          "url": "http://pvid.app/",
+          "description": "Free AI video generator aggregating Kling 3.0, Sora 2, Veo 3.1 with 100 free credits"
+        },
+        {
           "title": "Runway ML",
           "url": "https://runwayml.com",
           "description": "AI video tools with free trial"
