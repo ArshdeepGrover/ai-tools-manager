@@ -698,6 +698,11 @@
           "title": "Explainpaper",
           "url": "https://www.explainpaper.com",
           "description": "Highlight text to get instant plain-language explanations."
+        },
+        {
+          "title": "ZeroGTM",
+          "url": "https://www.gtm-zero.com",
+          "description": "Open-source AI SDR agent for sales outreach"
         }
       ]
     },

@@ -204,7 +204,9 @@
       "github": "MRamazan",
       "avatar": "https://avatars.githubusercontent.com/u/124697078?v=4",
       "tagline": "Tools Contributor",
-      "contributions": ["Added Monica under AI Writing & Content category"],
+      "contributions": [
+        "Added Monica under AI Writing & Content category"
+      ],
       "role": "Contributor"
     },
     {
@@ -214,7 +216,9 @@
       "linkedin": "ahammad-abdullah",
       "website": "https://ahammadabdullah.dev",
       "tagline": "Its never too late",
-      "contributions": ["Added 16 tools in different categories"],
+      "contributions": [
+        "Added 16 tools in different categories"
+      ],
       "role": "Contributor"
     },
     {
@@ -222,14 +226,18 @@
       "github": "mathncode-sid",
       "avatar": "https://avatars.githubusercontent.com/u/168301526?v=4",
       "tagline": "Veni, Codavi, Vici",
-      "contributions": ["Added GPTforSlides under AI Presentations"],
+      "contributions": [
+        "Added GPTforSlides under AI Presentations"
+      ],
       "role": "Contributor"
     },
     {
       "name": "T Pavan Teja",
       "github": "itspavant",
       "avatar": "https://github.com/itspavant.png",
-      "contributions": ["Added Tools 15.ai, Murf in AI Video & Audio cateogry"],
+      "contributions": [
+        "Added Tools 15.ai, Murf in AI Video & Audio cateogry"
+      ],
       "linkedin": "itspavant",
       "tagline": "Keep Hustling",
       "role": "Contributor"
@@ -252,7 +260,9 @@
       "github": "Utkarsh-username",
       "avatar": "https://github.com/Utkarsh-username.png",
       "tagline": "Coding...",
-      "contributions": ["Added Zoho Show's Zia AI in presentations category"],
+      "contributions": [
+        "Added Zoho Show's Zia AI in presentations category"
+      ],
       "role": "Contributor"
     },
     {
@@ -309,7 +319,10 @@
       "github": "nothariharan",
       "avatar": "https://github.com/nothariharan.png",
       "tagline": "better than yesterday",
-      "contributions": ["Added ChatSlide AI", "Added Infinite Craft"],
+      "contributions": [
+        "Added ChatSlide AI",
+        "Added Infinite Craft"
+      ],
       "role": "Contributor"
     },
     {
@@ -376,7 +389,9 @@
       "avatar": "https://github.com/dev-prachi.png",
       "linkedin": "www.linkedin.com/in/prachi-sharma123",
       "tagline": "Aspiring Software Developer",
-      "contributions": ["Added hover effect in the links of navbar"],
+      "contributions": [
+        "Added hover effect in the links of navbar"
+      ],
       "role": "Contributor"
     },
     {
@@ -384,7 +399,9 @@
       "github": "maanuu5",
       "avatar": "https://github.com/maanuu5.png",
       "tagline": "Developer",
-      "contributions": ["Fixed persistent blue outline issues"],
+      "contributions": [
+        "Fixed persistent blue outline issues"
+      ],
       "role": "Contributor"
     },
     {
@@ -404,7 +421,9 @@
       "github": "abhigyaabs2",
       "avatar": "https://avatars.githubusercontent.com/u/142334571?v=4",
       "tagline": "Developer",
-      "contributions": ["Updated script.js functionality"],
+      "contributions": [
+        "Updated script.js functionality"
+      ],
       "role": "Contributor",
       "featured": true
     },
@@ -413,7 +432,9 @@
       "github": "arushi2702",
       "avatar": "https://avatars.githubusercontent.com/u/183184065?v=4",
       "tagline": "UI/UX Developer",
-      "contributions": ["Fixed design inconsistencies across the website"],
+      "contributions": [
+        "Fixed design inconsistencies across the website"
+      ],
       "role": "Contributor",
       "featured": true
     },
@@ -422,7 +443,9 @@
       "github": "bhuwan",
       "avatar": "https://github.com/bhuwan.png",
       "tagline": "AI Tools Contributor",
-      "contributions": ["Added 5 new AI tools to the collection"],
+      "contributions": [
+        "Added 5 new AI tools to the collection"
+      ],
       "role": "Contributor"
     },
     {
@@ -430,7 +453,9 @@
       "github": "khushbu-gupta",
       "avatar": "https://github.com/khushbu-gupta.png",
       "tagline": "Developer",
-      "contributions": ["Contributed to project maintenance and merges"],
+      "contributions": [
+        "Contributed to project maintenance and merges"
+      ],
       "role": "Contributor"
     },
     {
@@ -461,7 +486,9 @@
       "github": "Manju-2004",
       "avatar": "https://github.com/Manju-2004.png",
       "tagline": "AI Tools Contributor",
-      "contributions": ["Added Local LLMs category with multiple tools"],
+      "contributions": [
+        "Added Local LLMs category with multiple tools"
+      ],
       "role": "Contributor"
     },
     {
@@ -484,9 +511,18 @@
       "avatar": "https://github.com/zhangxiaoyuan2025.png",
       "tagline": "Indie Developer",
       "contributions": [
-      "Added Outfit Swap Studio to AI Design & Images category"
+        "Added Outfit Swap Studio to AI Design & Images category"
       ],
-     "role": "Contributor"
+      "role": "Contributor"
+    },
+    {
+      "name": "Manol Trendafilov",
+      "github": "man0l",
+      "avatar": "https://github.com/man0l.png",
+      "contributions": [
+        "Added ZeroGTM to AI Productivity category"
+      ],
+      "website": "https://www.gtm-zero.com"
     }
   ]
 }
