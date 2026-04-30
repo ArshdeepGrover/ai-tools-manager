@@ -2,7 +2,7 @@
   "categories": [
     {
       "name": "AI Writing & Content",
-      "icon": "✍️",
+      "icon": "\u270d\ufe0f",
       "links": [
         {
           "title": "ChatGPT",
@@ -143,7 +143,7 @@
     },
     {
       "name": "AI Design & Images",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "links": [
         {
           "title": "Canva AI",
@@ -198,7 +198,7 @@
         {
           "title": "Pixlr",
           "url": "https://pixlr.com/",
-          "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools."
+          "description": "Edit photos, generate images, and design freely with Pixlr\u2019s powerful AI tools."
         },
         {
           "title": "Stitch",
@@ -253,10 +253,10 @@
         {
           "title": "Lovart",
           "url": "https://lovart.ai",
-          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser."
+          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets \u2014 acting like a one-person design team in your browser."
         },
         {
-          "title": "Let’s Enhance",
+          "title": "Let\u2019s Enhance",
           "url": "https://letsenhance.io",
           "description": "Upscale images, improve resolution, enhance lighting & tone using AI, especially for low quality photos."
         },
@@ -264,12 +264,17 @@
           "title": "DeepAI",
           "url": "https://deepai.org/",
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
+        },
+        {
+          "title": "igly.ai",
+          "url": "https://igly.ai",
+          "description": "Free AI image editing: background removal, inpainting, upscaling & generative fill"
         }
       ]
     },
     {
       "name": "AI Presentations",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "links": [
         {
           "title": "Gamma",
@@ -320,7 +325,7 @@
     },
     {
       "name": "AI Coding & Development",
-      "icon": "💻",
+      "icon": "\ud83d\udcbb",
       "links": [
         {
           "title": "GitHub Copilot",
@@ -451,7 +456,7 @@
     },
     {
       "name": "AI Video & Audio",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "links": [
         {
           "title": "Loom AI",
@@ -511,7 +516,7 @@
         {
           "title": "Suno",
           "url": "https://suno.ai/",
-          "description": "AI model that generates complete songs—lyrics, instrumentals, and vocals—from a simple text prompt."
+          "description": "AI model that generates complete songs\u2014lyrics, instrumentals, and vocals\u2014from a simple text prompt."
         },
         {
           "title": "HeyGen",
@@ -567,7 +572,7 @@
     },
     {
       "name": "AI Productivity",
-      "icon": "⚡",
+      "icon": "\u26a1",
       "links": [
         {
           "title": "Otter.ai",
@@ -708,7 +713,7 @@
     },
     {
       "name": "AI Entertainment",
-      "icon": "😂",
+      "icon": "\ud83d\ude02",
       "links": [
         {
           "title": "Super Meme",
@@ -734,7 +739,7 @@
     },
     {
       "name": "AI Model Prototyping",
-      "icon": "🧪",
+      "icon": "\ud83e\uddea",
       "links": [
         {
           "title": "Google AI Studio",
@@ -755,7 +760,7 @@
     },
     {
       "name": "AI Game & Strategy",
-      "icon": "🎮",
+      "icon": "\ud83c\udfae",
       "links": [
         {
           "title": "Chess Champ",
@@ -781,7 +786,7 @@
     },
     {
       "name": "AI Local Models",
-      "icon": "🖥️",
+      "icon": "\ud83d\udda5\ufe0f",
       "links": [
         {
           "title": "GPT4All",
