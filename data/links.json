@@ -703,6 +703,11 @@
           "title": "ZeroGTM",
           "url": "https://www.gtm-zero.com",
           "description": "Open-source AI SDR agent for sales outreach"
+        },
+        {
+          "title": "IdeaTwister",
+          "url": "https://ideatwister.com",
+          "description": "Locally-run AI engine that turns one rough business idea into 50+ scored variations across 15 strategic angles. Built for solo founders."
         }
       ]
     },
