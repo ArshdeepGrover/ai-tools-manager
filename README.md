@@ -94,6 +94,7 @@ We welcome contributions from everyone! Here's how you can help improve this pro
    - Create a descriptive title
    - Explain what tool you added and why it's valuable
    - Include any relevant screenshots
+- [Nick Launches](https://nicklaunches.com/) - Launch platform for builders, AI startups, and SaaS founders to get discovered and earn a permanent dofollow backlink.
 
 ### Adding Yourself as a Contributor
 
