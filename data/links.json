@@ -264,6 +264,11 @@
           "title": "DeepAI",
           "url": "https://deepai.org/",
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
+        },
+        {
+          "title": "Aurcue",
+          "url": "https://www.aurcue.com",
+          "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
         }
       ]
     },

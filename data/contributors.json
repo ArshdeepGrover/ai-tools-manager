@@ -524,6 +524,18 @@
       ],
       "website": "https://www.gtm-zero.com",
       "role": "Contributor"
+    },
+    {
+      "name": "George Zou",
+      "github": "georgezouq",
+      "avatar": "https://github.com/georgezouq.png",
+      "tagline": "AI product builder",
+      "contributions": [
+        "Added Aurcue to AI Design & Images"
+      ],
+      "website": "https://www.aurcue.com",
+      "role": "Contributor",
+      "featured": false
     }
   ]
 }
