@@ -264,6 +264,11 @@
           "title": "DeepAI",
           "url": "https://deepai.org/",
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
+        },
+        {
+          "title": "LandscapioAI",
+          "url": "https://www.landscapioai.com/",
+          "description": "AI landscape design from yard photos with estimates"
         }
       ]
     },
