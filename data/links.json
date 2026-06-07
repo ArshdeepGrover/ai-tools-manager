@@ -446,6 +446,11 @@
           "title": "HackerAI",
           "url": "https://hackerai.co/",
           "description": "AI penetration testing assistant designed to assist with tasks like vulnerability analysis, ethical hacking techniques, and security research."
+        },
+        {
+          "title": "CoderPlan",
+          "url": "https://coderplan.ai",
+          "description": "Unified LLM API gateway for Claude Code, Codex CLI, Cursor, and Cline with OpenAI-compatible endpoint"
         }
       ]
     },
