@@ -25,6 +25,11 @@
           "description": "AI-powered workspace with free trial"
         },
         {
+          "title": "Remio",
+          "url": "https://remio.ai/",
+          "description": "Local-first AI memory and knowledge base app that parses files, webpages, recordings, emails, messages, images, and notes into local indexes and vectors for faster personal context retrieval."
+        },
+        {
           "title": "QuillBot",
           "url": "https://quillbot.com/",
           "description": "Free paraphrasing, grammar checking, summarizer"
