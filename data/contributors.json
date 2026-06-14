@@ -536,6 +536,15 @@
       "website": "https://www.aurcue.com",
       "role": "Contributor",
       "featured": false
+    },
+    {
+      "name": "ArtImageHub Team",
+      "github": "linxuaning",
+      "avatar": "https://github.com/linxuaning.png",
+      "contributions": [
+        "Added ArtImageHub to AI Design & Images"
+      ],
+      "website": "https://artimagehub.com"
     }
   ]
 }
