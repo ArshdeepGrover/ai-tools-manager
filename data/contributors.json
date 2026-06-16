@@ -536,6 +536,18 @@
       "website": "https://www.aurcue.com",
       "role": "Contributor",
       "featured": false
+    },
+    {
+      "name": "Andreu Serra Sastre",
+      "github": "AndreuSerraSastre",
+      "avatar": "https://github.com/AndreuSerraSastre.png",
+      "tagline": "AI validation experiment maintainer",
+      "contributions": [
+        "Added FiveCoins Validation Plan to AI Productivity"
+      ],
+      "website": "https://fivecoins.app.tipdata.es/?src=ai-tools-manager-pr",
+      "role": "Contributor",
+      "featured": false
     }
   ]
 }

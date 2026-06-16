@@ -718,6 +718,11 @@
           "title": "IdeaTwister",
           "url": "https://ideatwister.com",
           "description": "Locally-run AI engine that turns one rough business idea into 50+ scored variations across 15 strategic angles. Built for solo founders."
+        },
+        {
+          "title": "FiveCoins Validation Plan",
+          "url": "https://fivecoins.app.tipdata.es/?src=ai-tools-manager-pr",
+          "description": "AI planner for validating tiny paid offers"
         }
       ]
     },
