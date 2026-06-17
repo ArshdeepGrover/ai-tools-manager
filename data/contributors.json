@@ -536,6 +536,16 @@
       "website": "https://www.aurcue.com",
       "role": "Contributor",
       "featured": false
+    },
+    {
+      "name": "outwrit",
+      "github": "outwrit",
+      "avatar": "https://github.com/outwrit.png",
+      "contributions": [
+        "Added CallURL to AI Productivity category"
+      ],
+      "website": "https://callurl.com",
+      "role": "Contributor"
     }
   ]
 }
