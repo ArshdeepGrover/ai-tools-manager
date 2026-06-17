@@ -536,6 +536,16 @@
       "website": "https://www.aurcue.com",
       "role": "Contributor",
       "featured": false
+    },
+    {
+      "name": "chugzb",
+      "github": "chugzb",
+      "avatar": "https://github.com/chugzb.png",
+      "tagline": "AI tools contributor",
+      "contributions": [
+        "Added Roblox GUI Maker to AI Game & Strategy"
+      ],
+      "role": "Contributor"
     }
   ]
 }
