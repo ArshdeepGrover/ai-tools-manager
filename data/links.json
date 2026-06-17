@@ -610,6 +610,11 @@
           "description": "AI data analysis and visualization tool"
         },
         {
+          "title": "FPVTune",
+          "url": "https://fpvtune.com/",
+          "description": "Betaflight log analysis and PID/filter tuning suggestions"
+        },
+        {
           "title": "Genspark AI",
           "url": "https://genspark.ai",
           "description": "AI-powered search and research assistant"
