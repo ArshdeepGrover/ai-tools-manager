@@ -166,6 +166,11 @@
           "description": "Free AI background remover"
         },
         {
+          "title": "ClearCrowds",
+          "url": "https://www.clearcrowds.com",
+          "description": "AI photo cleanup and editing tool for removing crowds, objects, text, clutter, and other distractions from images."
+        },
+        {
           "title": "Outfit Swap Studio",
           "url": "https://outfitswapstudio.com",
           "description": "AI virtual try-on and outfit swap for your photos; preserves face, pose, and background."
