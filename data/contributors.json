@@ -538,6 +538,16 @@
       "featured": false
     },
     {
+      "name": "FPVTune Team",
+      "github": "chugzb",
+      "avatar": "https://github.com/chugzb.png",
+      "tagline": "Open-source FPV tuning tools",
+      "contributions": [
+        "Added FPVTune to AI Productivity category"
+      ],
+    },
+    {
+      "website": "https://fpvtune.com/",
       "name": "chugzb",
       "github": "chugzb",
       "avatar": "https://github.com/chugzb.png",
