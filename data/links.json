@@ -744,6 +744,11 @@
           "title": "Infinite Craft",
           "url": "https://neal.fun/infinite-craft/",
           "description": "Infinite Craft is an AI-powered game where you start with four basic elements and combine them to discover a virtually endless universe of creations."
+        },
+        {
+          "title": "Auferet",
+          "url": "https://auferet.com",
+          "description": "AI game master for solo text adventures and tabletop RPGs, with long-term story memory and uploadable lore"
         }
       ]
     },
