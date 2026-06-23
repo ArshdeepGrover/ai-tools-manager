@@ -733,6 +733,11 @@
           "title": "IdeaTwister",
           "url": "https://ideatwister.com",
           "description": "Locally-run AI engine that turns one rough business idea into 50+ scored variations across 15 strategic angles. Built for solo founders."
+        },
+        {
+          "title": "CallURL",
+          "url": "https://callurl.com",
+          "description": "Build a free Call App in 60 seconds, then share it by link or QR to handle calls."
         }
       ]
     },
