@@ -538,6 +538,15 @@
       "featured": false
     },
     {
+      "name": "chugzb",
+      "github": "chugzb",
+      "avatar": "https://github.com/chugzb.png",
+      "tagline": "AI tools contributor",
+      "contributions": [
+        "Added Roblox GUI Maker to AI Game & Strategy"
+      ],
+    },
+    {
       "name": "outwrit",
       "github": "outwrit",
       "avatar": "https://github.com/outwrit.png",

@@ -816,6 +816,11 @@
           "title": "Rosebud AI",
           "url": "https://lab.rosebud.ai/ai-game-creator",
           "description": "An AI tool which help you create simple 2D games by generating game assets, levels, and mechanics based on your ideas."
+        },
+        {
+          "title": "Roblox GUI Maker",
+          "url": "https://robloxguimaker.dev/",
+          "description": "Generate Roblox Studio GUI layouts and Lua code"
         }
       ]
     },
