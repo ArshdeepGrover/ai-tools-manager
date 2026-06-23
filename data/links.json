@@ -269,6 +269,11 @@
           "title": "Aurcue",
           "url": "https://www.aurcue.com",
           "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
+        },
+        {
+          "title": "Catoon",
+          "url": "https://catoon.xyz",
+          "description": "Turn long stories into editable AI comic chapters."
         }
       ]
     },
