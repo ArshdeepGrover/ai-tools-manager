@@ -545,7 +545,35 @@
       "contributions": [
         "Added FPVTune to AI Productivity category"
       ],
+    },
+    {
       "website": "https://fpvtune.com/",
+      "name": "chugzb",
+      "github": "chugzb",
+      "avatar": "https://github.com/chugzb.png",
+      "tagline": "AI tools contributor",
+      "contributions": [
+        "Added Roblox GUI Maker to AI Game & Strategy"
+      ],
+    },
+    {
+      "name": "outwrit",
+      "github": "outwrit",
+      "avatar": "https://github.com/outwrit.png",
+      "contributions": [
+        "Added CallURL to AI Productivity category"
+      ],
+      "website": "https://callurl.com",
+    },
+    {
+      "name": "Justin",
+      "github": "zuoyouxuan",
+      "avatar": "https://github.com/zuoyouxuan.png",
+      "tagline": "AI product builder",
+      "contributions": [
+        "Added Catoon to AI Design & Images"
+      ],
+      "website": "https://catoon.xyz",
       "role": "Contributor"
     }
   ]

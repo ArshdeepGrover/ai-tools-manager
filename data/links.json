@@ -166,6 +166,11 @@
           "description": "Free AI background remover"
         },
         {
+          "title": "ClearCrowds",
+          "url": "https://www.clearcrowds.com",
+          "description": "AI photo cleanup and editing tool for removing crowds, objects, text, clutter, and other distractions from images."
+        },
+        {
           "title": "Outfit Swap Studio",
           "url": "https://outfitswapstudio.com",
           "description": "AI virtual try-on and outfit swap for your photos; preserves face, pose, and background."
@@ -266,9 +271,19 @@
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
         },
         {
+          "title": "ImagineClip",
+          "url": "https://imagineclip.com",
+          "description": "AI video generator for avatar clips, stylized scenes, and social-ready content."
+        },
+        {
           "title": "Aurcue",
           "url": "https://www.aurcue.com",
           "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
+        },
+        {
+          "title": "Catoon",
+          "url": "https://catoon.xyz",
+          "description": "Turn long stories into editable AI comic chapters."
         }
       ]
     },
@@ -723,6 +738,11 @@
           "title": "IdeaTwister",
           "url": "https://ideatwister.com",
           "description": "Locally-run AI engine that turns one rough business idea into 50+ scored variations across 15 strategic angles. Built for solo founders."
+        },
+        {
+          "title": "CallURL",
+          "url": "https://callurl.com",
+          "description": "Build a free Call App in 60 seconds, then share it by link or QR to handle calls."
         }
       ]
     },
@@ -749,6 +769,11 @@
           "title": "Infinite Craft",
           "url": "https://neal.fun/infinite-craft/",
           "description": "Infinite Craft is an AI-powered game where you start with four basic elements and combine them to discover a virtually endless universe of creations."
+        },
+        {
+          "title": "Auferet",
+          "url": "https://auferet.com",
+          "description": "AI game master for solo text adventures and tabletop RPGs, with long-term story memory and uploadable lore"
         }
       ]
     },
@@ -796,6 +821,11 @@
           "title": "Rosebud AI",
           "url": "https://lab.rosebud.ai/ai-game-creator",
           "description": "An AI tool which help you create simple 2D games by generating game assets, levels, and mechanics based on your ideas."
+        },
+        {
+          "title": "Roblox GUI Maker",
+          "url": "https://robloxguimaker.dev/",
+          "description": "Generate Roblox Studio GUI layouts and Lua code"
         }
       ]
     },
