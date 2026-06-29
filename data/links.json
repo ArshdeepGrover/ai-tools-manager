@@ -743,6 +743,11 @@
           "title": "CallURL",
           "url": "https://callurl.com",
           "description": "Build a free Call App in 60 seconds, then share it by link or QR to handle calls."
+        },
+        {
+          "title": "Memex",
+          "url": "https://www.memexlab.ai/",
+          "description": "Private AI journal for searchable life memories"
         }
       ]
     },
