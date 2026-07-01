@@ -640,6 +640,11 @@
           "description": "AI to-do lists, outlines, and workflows"
         },
         {
+          "title": "Tudo",
+          "url": "https://blynkai.app/tudo/",
+          "description": "AI task capture and personal planning app for turning quick thoughts into organized next actions"
+        },
+        {
           "title": "Tango",
           "url": "https://tango.us/",
           "description": "Create step-by-step guides and automate workflows with AI"
