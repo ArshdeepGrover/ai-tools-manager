@@ -286,6 +286,11 @@
           "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
         },
         {
+          "title": "ArtImageHub",
+          "url": "https://artimagehub.com/old-photo-restoration",
+          "description": "AI old photo restoration that repairs scratches, fading, and blur and colorizes black-and-white family photos."
+        },
+        {
           "title": "Catoon",
           "url": "https://catoon.xyz",
           "description": "Turn long stories into editable AI comic chapters."
