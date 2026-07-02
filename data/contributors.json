@@ -538,6 +538,15 @@
       "featured": false
     },
     {
+      "name": "ArtImageHub Team",
+      "github": "linxuaning",
+      "avatar": "https://github.com/linxuaning.png",
+      "contributions": [
+        "Added ArtImageHub to AI Design & Images"
+      ],
+      "website": "https://artimagehub.com"
+    },
+    {
       "name": "FPVTune Team",
       "github": "chugzb",
       "avatar": "https://github.com/chugzb.png",
