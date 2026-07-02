@@ -4,6 +4,59 @@ let searchTerm = ""; // current text search filter
 let showAllCategories = {}; // per category expansion state
 let allContributors = [];
 
+// --- Security helpers -------------------------------------------------
+// Escape untrusted strings (community-contributed JSON) before injecting
+// them into innerHTML to prevent XSS.
+function escapeHtml(value) {
+  if (value == null) return "";
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+// Escape a value for use inside a single-quoted JS string (inline handlers).
+function escapeJsString(value) {
+  if (value == null) return "";
+  return String(value)
+    .replace(/\\/g, "\\\\")
+    .replace(/'/g, "\\'")
+    .replace(/"/g, '\\"')
+    .replace(/\n/g, "\\n")
+    .replace(/\r/g, "\\r");
+}
+
+// Safely derive the hostname from a URL; returns "" if it can't be parsed.
+function safeHostname(url) {
+  try {
+    return new URL(url).hostname;
+  } catch (e) {
+    return "";
+  }
+}
+
+// Only allow http/https URLs; otherwise return "#" to block javascript: etc.
+function safeUrl(url) {
+  try {
+    const u = new URL(url);
+    if (u.protocol === "http:" || u.protocol === "https:") return u.href;
+  } catch (e) {
+    /* fall through */
+  }
+  return "#";
+}
+
+// Favicon service for a given tool URL (used as a visual logo on cards).
+function faviconUrl(url) {
+  const host = safeHostname(url);
+  if (!host) return "";
+  return `https://www.google.com/s2/favicons?domain=${encodeURIComponent(
+    host,
+  )}&sz=64`;
+}
+
 // Contributors pagination
 let currentContributorPage = 1;
 const contributorsPerPage = 16; // 12 contributors per page (4x3 grid)
@@ -84,9 +137,49 @@ function renderCategoryFilters(categories) {
     categories
       .map(
         (category) =>
-          `<option value="${category.name}">${category.icon} ${category.name} (${category.links.length})</option>`
+          `<option value="${escapeHtml(category.name)}">${escapeHtml(
+            category.icon,
+          )} ${escapeHtml(category.name)} (${category.links.length})</option>`,
       )
       .join("");
+  renderCategoryChips(categories, total);
+}
+
+// Quick-filter chip row mirroring the category dropdown.
+function renderCategoryChips(categories, total) {
+  const container = document.getElementById("category-chips");
+  if (!container) return;
+
+  const chip = (value, label, icon, count) => `
+    <button type="button" class="category-chip ${
+      currentFilter === value ? "active" : ""
+    }" data-category="${escapeHtml(value)}"
+      onclick="filterToCategory('${escapeJsString(value)}')">
+      <span>${icon ? escapeHtml(icon) + " " : ""}${escapeHtml(label)}</span>
+      <span class="chip-count">${count}</span>
+    </button>`;
+
+  container.innerHTML =
+    chip("all", "All", "🎯", total) +
+    categories
+      .map((c) => chip(c.name, c.name, c.icon, c.links.length))
+      .join("");
+}
+
+// Central handler used by chips (keeps dropdown + chips + filters in sync).
+function filterToCategory(categoryName) {
+  currentFilter = categoryName;
+  const select = document.getElementById("category-select");
+  if (select) select.value = categoryName;
+  syncChipActiveState();
+  applyFilters();
+  trackCategoryFilter(categoryName);
+}
+
+function syncChipActiveState() {
+  document.querySelectorAll("#category-chips .category-chip").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.category === currentFilter);
+  });
 }
 
 // New unified filtering applying category + search term
@@ -102,7 +195,7 @@ function applyFilters() {
     const filteredLinks = cat.links.filter(
       (link) =>
         link.title.toLowerCase().includes(term) ||
-        (link.description && link.description.toLowerCase().includes(term))
+        (link.description && link.description.toLowerCase().includes(term)),
     );
     return { ...cat, links: filteredLinks };
   });
@@ -110,12 +203,32 @@ function applyFilters() {
   // Remove categories that have zero links after search filtering
   filtered = filtered.filter((cat) => cat.links && cat.links.length > 0);
 
+  // Keep the chip row in sync with the current filter
+  syncChipActiveState();
+
   const mainContent = document.getElementById("main-content");
+  const resultsCount = document.getElementById("results-count");
   mainContent.innerHTML = "";
+
   if (filtered.length === 0) {
-    mainContent.innerHTML = `<p class="text-center" style="color: var(--text-tertiary);">No tools found matching your criteria.</p>`;
+    if (resultsCount) resultsCount.textContent = "";
+    mainContent.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-magnifying-glass"></i>
+        <p>No tools found matching your criteria.</p>
+        <p class="empty-hint">Try a different search term or category.</p>
+      </div>`;
     return;
   }
+
+  // Update results count
+  if (resultsCount) {
+    const toolCount = filtered.reduce((sum, cat) => sum + cat.links.length, 0);
+    const catLabel = filtered.length === 1 ? "category" : "categories";
+    const toolLabel = toolCount === 1 ? "tool" : "tools";
+    resultsCount.textContent = `Showing ${toolCount} ${toolLabel} across ${filtered.length} ${catLabel}`;
+  }
+
   renderLinks(filtered);
 }
 
@@ -167,7 +280,7 @@ function filterByCategory(categoryName) {
     filteredCategories = allCategories;
   } else {
     filteredCategories = allCategories.filter(
-      (category) => category.name === categoryName
+      (category) => category.name === categoryName,
     );
   }
 
@@ -194,39 +307,55 @@ function renderLinks(categories) {
       ? category.links
       : category.links.slice(0, 6);
 
+    const safeCatName = escapeHtml(category.name);
+    const catJs = escapeJsString(category.name);
+
     categoryDiv.innerHTML = `
       <div class="flex items-center space-x-4 mb-8">
-        <span class="text-4xl">${category.icon}</span>
-        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${
-          category.name
-        }</h2>
+        <span class="text-4xl">${escapeHtml(category.icon)}</span>
+        <h2 class="text-3xl font-bold" style="color: var(--text-primary);">${safeCatName}</h2>
+        <span class="category-count-pill">${category.links.length}</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         ${linksToShow
-          .map(
-            (link) => `
-          <a href="${link.url}" target="_blank"
+          .map((link) => {
+            const url = safeUrl(link.url);
+            const host = safeHostname(link.url);
+            const favicon = faviconUrl(link.url);
+            return `
+          <a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer"
              class="rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border-2 hover:border-blue-300 card-hover group"
              style="background-color: var(--card-bg); border-color: var(--card-border);"
-             onclick="trackToolClick('${link.title}', '${category.name}')">
+             onclick="trackToolClick('${escapeJsString(
+               link.title,
+             )}', '${catJs}')">
             <div class="flex items-start justify-between mb-4">
-              <h3 class="text-xl font-semibold group-hover:text-blue-600 transition-colors" style="color: var(--text-primary);">${
-                link.title
-              }</h3>
-              <i class="fas fa-external-link-alt group-hover:text-blue-500 transition-colors" style="color: var(--text-tertiary);"></i>
+              <div class="flex items-center gap-3 min-w-0">
+                ${
+                  favicon
+                    ? `<img src="${escapeHtml(favicon)}" alt="" loading="lazy"
+                         class="tool-favicon" width="32" height="32"
+                         onerror="this.style.display='none'" />`
+                    : ""
+                }
+                <h3 class="text-lg font-semibold group-hover:text-blue-600 transition-colors truncate" style="color: var(--text-primary);">${escapeHtml(
+                  link.title,
+                )}</h3>
+              </div>
+              <i class="fas fa-external-link-alt group-hover:text-blue-500 transition-colors flex-shrink-0 ml-2" style="color: var(--text-tertiary);"></i>
             </div>
-            <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">${
-              link.description
-            }</p>
+            <p class="mb-4 leading-relaxed" style="color: var(--text-secondary);">${escapeHtml(
+              link.description,
+            )}</p>
             <div class="flex items-center justify-between">
-              <span class="text-sm text-blue-600 font-medium">${
-                new URL(link.url).hostname
-              }</span>
-              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium">Free</span>
+              <span class="text-sm text-blue-600 font-medium truncate">${escapeHtml(
+                host,
+              )}</span>
+              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full font-medium flex-shrink-0">Free</span>
             </div>
           </a>
-        `
-          )
+        `;
+          })
           .join("")}
       </div>
       ${
@@ -235,7 +364,7 @@ function renderLinks(categories) {
         <div class="text-center mt-6">
           <button class="show-more-btn" data-action="${
             isExpanded ? "show-less" : "show-more"
-          }" onclick="toggleCategory('${category.name}')">
+          }" onclick="toggleCategory('${catJs}')">
             <span>${isExpanded ? "Show Less" : "Show More"}</span>
           </button>
         </div>
@@ -248,10 +377,88 @@ function renderLinks(categories) {
   });
 }
 
+// Shared builder for a contributor card (used by initial render + pagination).
+// Escapes all community-provided fields and hardens external links.
+function contributorCardHTML(contributor, index) {
+  const contributionCount = contributor.contributions
+    ? contributor.contributions.length
+    : 0;
+  const modalIndex = allContributors.indexOf(contributor);
+  const name = escapeHtml(contributor.name);
+  const nameJs = escapeJsString(contributor.name);
+  const githubUrl = escapeHtml(
+    safeUrl("https://github.com/" + contributor.github),
+  );
+
+  return `
+    <div class="contributor-card-modern no-scroll ${
+      contributor.featured ? "featured" : ""
+    }"
+         style="animation-delay: ${index * 0.05}s"
+         onclick="openContributorModal(${modalIndex})">
+      ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ""}
+      <div>
+        <div class="flex space-x-3 mb-3 no-scroll">
+          <img src="${escapeHtml(contributor.avatar)}" alt="${name}" loading="lazy"
+               class="contributor-avatar-modern flex-shrink-0" />
+          <div class="contributor-info flex-1 min-w-0">
+            <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${name}</h4>
+            ${
+              contributor.role
+                ? `<p class="text-blue-600 text-sm font-medium mb-1">${escapeHtml(
+                    contributor.role,
+                  )}</p>`
+                : ""
+            }
+          </div>
+        </div>
+        ${
+          contributor.tagline
+            ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${escapeHtml(
+                contributor.tagline,
+              )}"</p>`
+            : ""
+        }
+      </div>
+
+      <div class="flex justify-between items-center mt-2 no-scroll">
+        <div class="contributor-stats">
+          ${
+            contributionCount > 0
+              ? `<span class="stat-item"><i class="fas fa-star" style="color: #f59e0b;"></i><span>${contributionCount}</span></span>`
+              : ""
+          }
+        </div>
+        <div class="contributor-social-modern">
+          <a href="${githubUrl}" target="_blank" rel="noopener noreferrer"
+             class="social-link-modern" title="GitHub"
+             onclick="event.stopPropagation(); trackContributorClick('${nameJs}')">
+            <i class="fab fa-github"></i>
+          </a>
+          ${
+            contributor.linkedin
+              ? `<a href="${escapeHtml(
+                  safeUrl("https://linkedin.com/in/" + contributor.linkedin),
+                )}" target="_blank" rel="noopener noreferrer" class="social-link-modern" title="LinkedIn" onclick="event.stopPropagation()"><i class="fab fa-linkedin"></i></a>`
+              : ""
+          }
+          ${
+            contributor.website
+              ? `<a href="${escapeHtml(
+                  safeUrl(contributor.website),
+                )}" target="_blank" rel="noopener noreferrer" class="social-link-modern" title="Website" onclick="event.stopPropagation()"><i class="fas fa-globe"></i></a>`
+              : ""
+          }
+        </div>
+      </div>
+    </div>
+  `;
+}
+
 function renderContributors(contributors) {
   // Update total contributors count
   const totalContributorsText = document.getElementById(
-    "total-contributors-text"
+    "total-contributors-text",
   );
   if (totalContributorsText) {
     totalContributorsText.textContent = contributors.length;
@@ -264,7 +471,7 @@ function renderContributors(contributors) {
       (c) =>
         c.name.toLowerCase().includes(searchLower) ||
         (c.tagline && c.tagline.toLowerCase().includes(searchLower)) ||
-        (c.role && c.role.toLowerCase().includes(searchLower))
+        (c.role && c.role.toLowerCase().includes(searchLower)),
     );
   } else {
     filteredContributors = contributors;
@@ -275,12 +482,12 @@ function renderContributors(contributors) {
 
   // Calculate pagination
   const totalPages = Math.ceil(
-    filteredContributors.length / contributorsPerPage
+    filteredContributors.length / contributorsPerPage,
   );
   const startIndex = (currentContributorPage - 1) * contributorsPerPage;
   const contributorsToShow = filteredContributors.slice(
     startIndex,
-    startIndex + contributorsPerPage
+    startIndex + contributorsPerPage,
   );
 
   // Render Modern Grid
@@ -295,96 +502,7 @@ function renderContributors(contributors) {
       `;
     } else {
       modernGrid.innerHTML = contributorsToShow
-        .map((contributor, index) => {
-          const contributionCount = contributor.contributions
-            ? contributor.contributions.length
-            : 0;
-
-          return `
-            <div class="contributor-card-modern no-scroll ${
-              contributor.featured ? "featured" : ""
-            }"
-                 style="animation-delay: ${index * 0.05}s"
-                 onclick="openContributorModal(${contributors.indexOf(
-                   contributor
-                 )})">
-              ${
-                contributor.featured
-                  ? `<div class="floating-badge">Featured</div>`
-                  : ""
-              }
-              <div>
-                <div class="flex space-x-3 mb-3 no-scroll">
-                  <img src="${contributor.avatar}" alt="${contributor.name}"
-                       class="contributor-avatar-modern flex-shrink-0" />
-                  <div class="contributor-info flex-1  min-w-0">
-                    <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${
-                      contributor.name
-                    }</h4>
-                    ${
-                      contributor.role
-                        ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>`
-                        : ""
-                    }
-                  </div>
-                </div>
-                ${
-                  contributor.tagline
-                    ? `<p class="text-xs contributor-tagline truncate" style="color: var(--text-secondary);">"${contributor.tagline}"</p>`
-                    : ""
-                }
-              </div>
-
-              <div class="flex justify-between items-center mt-2 no-scroll">
-                <div class="contributor-stats">
-                  ${
-                    contributionCount > 0
-                      ? `
-                    <span class="stat-item">
-                      <i class="fas fa-star" style="color: #f59e0b;"></i>
-                      <span>${contributionCount}</span>
-                    </span>
-                  `
-                      : ""
-                  }
-                </div>
-                <div class="contributor-social-modern">
-                  <a href="https://github.com/${
-                    contributor.github
-                  }" target="_blank"
-                     class="social-link-modern" title="GitHub"
-                     onclick="event.stopPropagation(); trackContributorClick('${
-                       contributor.name
-                     }')">
-                    <i class="fab fa-github"></i>
-                  </a>
-                  ${
-                    contributor.linkedin
-                      ? `
-                    <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
-                       class="social-link-modern" title="LinkedIn"
-                       onclick="event.stopPropagation()">
-                      <i class="fab fa-linkedin"></i>
-                    </a>
-                  `
-                      : ""
-                  }
-                  ${
-                    contributor.website
-                      ? `
-                    <a href="${contributor.website}" target="_blank"
-                       class="social-link-modern" title="Website"
-                       onclick="event.stopPropagation()">
-                      <i class="fas fa-globe"></i>
-                    </a>
-                  `
-                      : ""
-                  }
-                </div>
-              </div>
-            </div>
-          `;
-        })
+        .map((contributor, index) => contributorCardHTML(contributor, index))
         .join("");
     }
   }
@@ -460,11 +578,11 @@ function renderPaginationControls(totalPages) {
   const totalDisplayed = filteredContributors.length;
   const startNum = Math.min(
     (currentContributorPage - 1) * contributorsPerPage + 1,
-    totalDisplayed
+    totalDisplayed,
   );
   const endNum = Math.min(
     currentContributorPage * contributorsPerPage,
-    totalDisplayed
+    totalDisplayed,
   );
 
   html += `<span class="pagination-info">Showing ${startNum}-${endNum} of ${totalDisplayed}</span>`;
@@ -474,7 +592,7 @@ function renderPaginationControls(totalPages) {
 
 function changeContributorPage(pageNumber) {
   const totalPages = Math.ceil(
-    filteredContributors.length / contributorsPerPage
+    filteredContributors.length / contributorsPerPage,
   );
 
   if (pageNumber < 1 || pageNumber > totalPages) return;
@@ -483,7 +601,7 @@ function changeContributorPage(pageNumber) {
 
   // Re-render with current filtered contributors
   const totalContributorsText = document.getElementById(
-    "total-contributors-text"
+    "total-contributors-text",
   );
   if (totalContributorsText) {
     totalContributorsText.textContent = filteredContributors.length;
@@ -493,102 +611,14 @@ function changeContributorPage(pageNumber) {
   const startIndex = (currentContributorPage - 1) * contributorsPerPage;
   const contributorsToShow = filteredContributors.slice(
     startIndex,
-    startIndex + contributorsPerPage
+    startIndex + contributorsPerPage,
   );
 
   // Render Modern Grid
   const modernGrid = document.getElementById("contributors-modern-grid");
   if (modernGrid) {
     modernGrid.innerHTML = contributorsToShow
-      .map((contributor, index) => {
-        const contributorIndex = allContributors.indexOf(contributor);
-        const contributionCount = contributor.contributions
-          ? contributor.contributions.length
-          : 0;
-
-        return `
-          <div class="contributor-card-modern ${
-            contributor.featured ? "featured" : ""
-          }"
-               style="animation-delay: ${index * 0.05}s"
-               onclick="openContributorModal(${contributorIndex})">
-            ${
-              contributor.featured
-                ? `<div class="floating-badge">Featured</div>`
-                : ""
-            }
-            <div>
-              <div class="flex items-center space-x-3 mb-3">
-                <img src="${contributor.avatar}" alt="${contributor.name}"
-                     class="contributor-avatar-modern flex-shrink-0" />
-                <div class="contributor-info flex-1 min-w-0">
-                  <h4 class="font-semibold text-base mb-1 truncate" style="color: var(--text-primary);">${
-                    contributor.name
-                  }</h4>
-                  ${
-                    contributor.role
-                      ? `<p class="text-blue-600 text-sm font-medium mb-1">${contributor.role}</p>`
-                      : ""
-                  }
-                  ${
-                    contributor.tagline
-                      ? `<p class="text-xs contributor-tagline" style="color: var(--text-secondary);">"${contributor.tagline}"</p>`
-                      : ""
-                  }
-                </div>
-              </div>
-            </div>
-
-            <div class="flex justify-between items-end">
-              <div class="contributor-stats">
-                ${
-                  contributionCount > 0
-                    ? `
-                  <span class="stat-item">
-                    <i class="fas fa-star" style="color: #f59e0b;"></i>
-                    <span>${contributionCount}</span>
-                  </span>
-                `
-                    : ""
-                }
-              </div>
-              <div class="contributor-social-modern">
-                <a href="https://github.com/${
-                  contributor.github
-                }" target="_blank"
-                   class="social-link-modern" title="GitHub"
-                   onclick="event.stopPropagation(); trackContributorClick('${
-                     contributor.name
-                   }')">
-                  <i class="fab fa-github"></i>
-                </a>
-                ${
-                  contributor.linkedin
-                    ? `
-                  <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank"
-                     class="social-link-modern" title="LinkedIn"
-                     onclick="event.stopPropagation()">
-                    <i class="fab fa-linkedin"></i>
-                  </a>
-                `
-                    : ""
-                }
-                ${
-                  contributor.website
-                    ? `
-                  <a href="${contributor.website}" target="_blank"
-                     class="social-link-modern" title="Website"
-                     onclick="event.stopPropagation()">
-                    <i class="fas fa-globe"></i>
-                  </a>
-                `
-                    : ""
-                }
-              </div>
-            </div>
-          </div>
-        `;
-      })
+      .map((contributor, index) => contributorCardHTML(contributor, index))
       .join("");
   }
 
@@ -613,6 +643,15 @@ function openContributorModal(contributorIndex) {
   }
 
   // Create modal HTML
+  const cName = escapeHtml(contributor.name);
+  const cWebsite = escapeHtml(safeUrl(contributor.website));
+  const cWebsiteHost = escapeHtml(safeHostname(contributor.website));
+  const cGithub = escapeHtml(
+    safeUrl("https://github.com/" + contributor.github),
+  );
+  const cLinkedin = escapeHtml(
+    safeUrl("https://linkedin.com/in/" + contributor.linkedin),
+  );
   const modalHTML = `
     <div id="contributor-modal-backdrop" class="contributor-modal-backdrop active no-scroll">
       <div class="contributor-modal no-scroll">
@@ -621,23 +660,19 @@ function openContributorModal(contributorIndex) {
         </button>
         
         <div class="modal-header">
-          <img src="${contributor.avatar}" alt="${
-    contributor.name
-  }" class="modal-avatar" />
+          <img src="${escapeHtml(contributor.avatar)}" alt="${cName}" class="modal-avatar" />
           <div class="modal-title-section flex-1">
-            <h2>${contributor.name}</h2>
+            <h2>${cName}</h2>
             ${
               contributor.website
-                ? `<p><i class="fas fa-globe"></i> <a href="${
-                    contributor.website
-                  }" target="_blank" style="color: #3b82f6;">${
-                    new URL(contributor.website).hostname
-                  }</a></p>`
+                ? `<p><i class="fas fa-globe"></i> <a href="${cWebsite}" target="_blank" rel="noopener noreferrer" style="color: #3b82f6;">${cWebsiteHost}</a></p>`
                 : ""
             }
             ${
               contributor.role
-                ? `<div class="modal-role-badge">${contributor.role}</div>`
+                ? `<div class="modal-role-badge">${escapeHtml(
+                    contributor.role,
+                  )}</div>`
                 : ""
             }
           </div>
@@ -648,7 +683,7 @@ function openContributorModal(contributorIndex) {
             ? `
           <div class="modal-section">
             <p style="color: var(--text-secondary); font-style: italic; border-left: 3px solid #3b82f6; padding-left: 12px;">
-              "${contributor.tagline}"
+              "${escapeHtml(contributor.tagline)}"
             </p>
           </div>
         `
@@ -665,7 +700,7 @@ function openContributorModal(contributorIndex) {
             </div>
             <ul class="contributions-list">
               ${contributor.contributions
-                .map((contrib) => `<li>${contrib}</li>`)
+                .map((contrib) => `<li>${escapeHtml(contrib)}</li>`)
                 .join("")}
             </ul>
           </div>
@@ -679,16 +714,14 @@ function openContributorModal(contributorIndex) {
             <span>Connect</span>
           </div>
           <div class="modal-social-links">
-            <a href="https://github.com/${
-              contributor.github
-            }" target="_blank" class="modal-social-link">
+            <a href="${cGithub}" target="_blank" rel="noopener noreferrer" class="modal-social-link">
               <i class="fab fa-github"></i>
               <span>GitHub</span>
             </a>
             ${
               contributor.linkedin
                 ? `
-              <a href="https://linkedin.com/in/${contributor.linkedin}" target="_blank" class="modal-social-link">
+              <a href="${cLinkedin}" target="_blank" rel="noopener noreferrer" class="modal-social-link">
                 <i class="fab fa-linkedin"></i>
                 <span>LinkedIn</span>
               </a>
@@ -698,7 +731,7 @@ function openContributorModal(contributorIndex) {
             ${
               contributor.website
                 ? `
-              <a href="${contributor.website}" target="_blank" class="modal-social-link">
+              <a href="${cWebsite}" target="_blank" rel="noopener noreferrer" class="modal-social-link">
                 <i class="fas fa-globe"></i>
                 <span>Website</span>
               </a>
@@ -744,7 +777,7 @@ function closeContributorModal() {
 function updateStats(categories) {
   const totalTools = categories.reduce(
     (sum, category) => sum + category.links.length,
-    0
+    0,
   );
   const totalToolsElement = document.getElementById("total-tools");
   if (totalToolsElement) {
@@ -768,7 +801,7 @@ function updateContributorStats(count) {
 function updateFooterContributorsCount(count) {
   // Update ALL footer contributors count elements
   const footerContributorsCounts = document.querySelectorAll(
-    '[id="footer-contributors-count"]'
+    '[id="footer-contributors-count"]',
   );
   footerContributorsCounts.forEach((element) => {
     // Show count or dash if invalid
@@ -908,37 +941,70 @@ document.addEventListener("DOMContentLoaded", () => {
   // Set up search + category listeners
   const searchInput = document.getElementById("tool-search");
   if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      searchTerm = e.target.value;
+    const runToolSearch = debounce((value) => {
+      searchTerm = value;
       applyFilters();
-    });
+    }, 180);
+    searchInput.addEventListener("input", (e) => runToolSearch(e.target.value));
   }
 
   // Contributors search listener
   const contributorsSearchInput = document.getElementById(
-    "contributors-search"
+    "contributors-search",
   );
   if (contributorsSearchInput) {
-    contributorsSearchInput.addEventListener("input", (e) => {
-      searchContributorsText = e.target.value;
+    const runContributorSearch = debounce((value) => {
+      searchContributorsText = value;
       renderContributors(allContributors);
-    });
+    }, 180);
+    contributorsSearchInput.addEventListener("input", (e) =>
+      runContributorSearch(e.target.value),
+    );
   }
 
   const categorySelect = document.getElementById("category-select");
   if (categorySelect) {
     categorySelect.addEventListener("change", (e) => {
       currentFilter = e.target.value;
+      syncChipActiveState();
       applyFilters();
       trackCategoryFilter(currentFilter);
     });
   }
+
+  // Show loading skeletons while data is being fetched
+  showToolsSkeleton();
 
   // Load content
   loadLinks();
   loadContributors();
   loadGitHubStars();
 });
+
+// Lightweight debounce used for search inputs.
+function debounce(fn, wait) {
+  let timer;
+  return function (...args) {
+    clearTimeout(timer);
+    timer = setTimeout(() => fn.apply(this, args), wait);
+  };
+}
+
+// Render shimmer placeholder cards while tools load.
+function showToolsSkeleton(count = 6) {
+  const mainContent = document.getElementById("main-content");
+  if (!mainContent) return;
+  const card = `
+    <div class="skeleton-card">
+      <div class="skeleton-line title"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line"></div>
+      <div class="skeleton-line short"></div>
+    </div>`;
+  mainContent.innerHTML = `<div class="skeleton-grid">${card.repeat(
+    count,
+  )}</div>`;
+}
 
 // GitHub Stars functionality
 async function loadGitHubStars() {
@@ -950,7 +1016,7 @@ async function loadGitHubStars() {
 
   try {
     const response = await fetch(
-      "https://api.github.com/repos/ArshdeepGrover/ai-tools-manager"
+      "https://api.github.com/repos/ArshdeepGrover/ai-tools-manager",
     );
 
     const data = await response.json();
@@ -961,7 +1027,7 @@ async function loadGitHubStars() {
     let issuesCount = "-";
     try {
       const issuesRes = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}/issues?state=open`
+        `https://api.github.com/repos/${owner}/${repo}/issues?state=open`,
       );
       const issuesData = await issuesRes.json();
       issuesCount = Array.isArray(issuesData)
@@ -1004,7 +1070,7 @@ function updateGitHubButtons(starCount) {
 
   // Update contributors section GitHub button
   const contributorsStarCount = document.getElementById(
-    "contributors-star-count"
+    "contributors-star-count",
   );
   if (contributorsStarCount) {
     contributorsStarCount.innerHTML = `<i class="fas fa-star mr-1"></i>${starCount}`;
@@ -1024,7 +1090,7 @@ function updateGitHubButtons(starCount) {
 function updateFooterStats(starCount, forkCount, issuesCount) {
   // Update ALL footer star count elements (there might be multiple)
   const footerStarCounts = document.querySelectorAll(
-    '[id="footer-star-count"]'
+    '[id="footer-star-count"]',
   );
   footerStarCounts.forEach((element) => {
     element.textContent = starCount;
@@ -1036,7 +1102,7 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
 
   // Update ALL footer fork count elements
   const footerForkCounts = document.querySelectorAll(
-    '[id="footer-fork-count"]'
+    '[id="footer-fork-count"]',
   );
   footerForkCounts.forEach((element) => {
     element.textContent = forkCount;
@@ -1048,7 +1114,7 @@ function updateFooterStats(starCount, forkCount, issuesCount) {
 
   // Update ALL footer issues count elements
   const footerIssuesCounts = document.querySelectorAll(
-    '[id="footer-issue-count"]'
+    '[id="footer-issue-count"]',
   );
   footerIssuesCounts.forEach((element) => {
     element.textContent = issuesCount;
@@ -1229,7 +1295,7 @@ class PWAManager {
     if (data.isStale) {
       this.showNotification(
         "Working offline - some features may be limited",
-        "warning"
+        "warning",
       );
     } else {
       this.lastSyncTime = new Date().toLocaleString();
@@ -1272,7 +1338,7 @@ class PWAManager {
           text: "Later",
           action: () => this.dismissNotification(),
         },
-      ]
+      ],
     );
     this.showNotificationElement(updateNotification);
   }
@@ -1510,11 +1576,11 @@ class PWAManager {
                 .map(
                   (action) => `
                 <button class="bg-white bg-opacity-20 hover:bg-opacity-30 px-3 py-1 rounded text-sm transition-colors" onclick="this.parentElement.parentElement.parentElement.parentElement.querySelector('.notification-action-${actions.indexOf(
-                  action
+                  action,
                 )}').click()">
                   ${action.text}
                 </button>
-              `
+              `,
                 )
                 .join("")}
             </div>

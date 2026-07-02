@@ -5,7 +5,8 @@
   "scripts": {
     "check-duplicates": "node scripts/validate-links.js --duplicates-only",
     "validate": "node scripts/validate-links.js",
-    "validate-contributors": "node scripts/validate-contributors.js"
+    "validate-contributors": "node scripts/validate-contributors.js",
+    "validate-json": "node -e \"['data/links.json','data/contributors.json'].forEach(function(f){try{JSON.parse(require('fs').readFileSync(f,'utf8'));console.log('\\u2713 valid JSON: '+f)}catch(e){console.error('\\u2717 invalid JSON in '+f+': '+e.message);process.exit(1)}})\""
   },
   "author": "Arshdeep Singh",
   "license": "MIT"

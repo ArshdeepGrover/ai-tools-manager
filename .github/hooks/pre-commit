@@ -1,14 +1,28 @@
 #!/bin/sh
-# Pre-commit hook to validate data files (production branch only)
+# Pre-commit hook to validate data files
 
 # Get current branch name
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
 echo "🔍 Current branch: $BRANCH"
 
-# Only run validation on production branch
+# --- Always-on JSON syntax check (all branches) ---------------------------
+# Invalid JSON silently breaks the live site (falls back to placeholder data),
+# so guard against it on every branch, not just production.
+if git diff --cached --name-only | grep -q -E "data/(links|contributors)\.json"; then
+    echo "🧪 Validating JSON syntax of staged data files..."
+    if node -e "['data/links.json','data/contributors.json'].forEach(function(f){JSON.parse(require('fs').readFileSync(f,'utf8'))})"; then
+        echo "✅ JSON syntax is valid!"
+    else
+        echo "❌ Invalid JSON detected. Fix the syntax error (e.g. a trailing comma) and try again."
+        echo "Run 'npm run validate-json' to see details."
+        exit 1
+    fi
+fi
+
+# Only run the heavier data validation on production branch
 if [ "$BRANCH" != "production" ]; then
-    echo "📄 Not on production branch, skipping data validation."
+    echo "📄 Not on production branch, skipping deep data validation."
     echo "🚀 Pre-commit checks passed!"
     exit 0
 fi

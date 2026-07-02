@@ -130,8 +130,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
 
   <!-- Preload critical resources -->
-  <link rel="preload" href="links.json" as="fetch" crossorigin="anonymous" />
-  <link rel="preload" href="contributors.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="data/links.json" as="fetch" crossorigin="anonymous" />
+  <link rel="preload" href="data/contributors.json" as="fetch" crossorigin="anonymous" />
 
   <!-- DNS prefetch for external domains -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com" />
@@ -1420,12 +1420,16 @@
           </div>
         </div>
       </div>
+
+      <!-- Category quick-filter chips -->
+      <!-- <div id="category-chips" class="category-chips reveal"></div> -->
     </div>
   </section>
 
   <!-- Tools Section -->
   <section id="tools" class="py-10" style="background-color: var(--bg-primary);">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="results-count" class="results-count" aria-live="polite"></div>
       <main id="main-content">
         <!-- AI Tools will be loaded here -->
       </main>

@@ -516,6 +516,166 @@ html.js-ready #main-content .card-hover.card-in {
 }
 
 /* ============================================================
+   TOOL CARD FAVICON + CATEGORY COUNT PILL
+   ============================================================ */
+.tool-favicon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
+  background: color-mix(in srgb, var(--text-tertiary) 10%, transparent);
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.category-count-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--brand-gradient);
+  box-shadow: 0 4px 12px -4px rgba(124, 58, 237, 0.6);
+}
+
+/* ============================================================
+   CATEGORY QUICK-FILTER CHIPS
+   ============================================================ */
+.category-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 1.25rem;
+}
+
+.category-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--text-secondary);
+  background: var(--card-bg);
+  border: 1.5px solid var(--border-color);
+  transition: transform 0.2s ease, border-color 0.25s ease,
+    background 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+}
+
+.category-chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--grad-1) 55%, transparent);
+  color: var(--text-primary);
+}
+
+.category-chip.active {
+  color: #fff;
+  background: var(--brand-gradient);
+  border-color: transparent;
+  box-shadow: 0 8px 20px -8px rgba(124, 58, 237, 0.7);
+}
+
+.category-chip .chip-count {
+  font-size: 0.72rem;
+  opacity: 0.75;
+}
+
+/* ============================================================
+   RESULTS COUNT + EMPTY STATE
+   ============================================================ */
+.results-count {
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 3.5rem 1rem;
+  color: var(--text-secondary);
+}
+
+.empty-state i {
+  font-size: 2.75rem;
+  color: var(--text-tertiary);
+  opacity: 0.5;
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.empty-state .empty-hint {
+  font-size: 0.85rem;
+  color: var(--text-tertiary);
+  margin-top: 0.4rem;
+}
+
+/* ============================================================
+   LOADING SKELETONS
+   ============================================================ */
+.skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .skeleton-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+  .skeleton-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+.skeleton-card {
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  background: var(--card-bg);
+  border: 2px solid var(--card-border);
+}
+
+.skeleton-line {
+  height: 14px;
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--text-tertiary) 12%, transparent) 25%,
+    color-mix(in srgb, var(--text-tertiary) 22%, transparent) 37%,
+    color-mix(in srgb, var(--text-tertiary) 12%, transparent) 63%
+  );
+  background-size: 400% 100%;
+  animation: skeletonShimmer 1.4s ease infinite;
+}
+
+.skeleton-line.title { height: 20px; width: 55%; margin-bottom: 1rem; }
+.skeleton-line.short { width: 40%; margin-top: 1rem; }
+.skeleton-line + .skeleton-line { margin-top: 0.6rem; }
+
+@keyframes skeletonShimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-line { animation: none; }
+}
+
+/* ============================================================
    FANCY SCROLLBAR (dark-aware)
    ============================================================ */
 [data-theme="dark"] ::-webkit-scrollbar-track { background: #0f172a; }
