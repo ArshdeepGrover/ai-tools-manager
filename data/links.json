@@ -481,6 +481,11 @@
           "title": "CoderPlan",
           "url": "https://coderplan.ai",
           "description": "Unified LLM API gateway for Claude Code, Codex CLI, Cursor, and Cline with OpenAI-compatible endpoint"
+        },
+        {
+          "title": "Xquik",
+          "url": "https://xquik.com",
+          "description": "X data API with free MCP compose and radar tools"
         }
       ]
     },
