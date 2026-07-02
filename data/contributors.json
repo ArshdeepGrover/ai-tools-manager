@@ -3,7 +3,7 @@
     {
       "name": "Arshdeep Singh",
       "github": "ArshdeepGrover",
-      "avatar": "https://www.arshdeepsingh.info/images/arshdeep-singh.png",
+      "avatar": "https://www.arshdeepgrover.dev/images/arshdeep-singh.png",
       "linkedin": "ArshdeepGrover",
       "tagline": "AI Tools Curator",
       "contributions": [
@@ -26,7 +26,7 @@
         "Optimized folder structure and removed redundant files",
         "Implemented contributors validation system"
       ],
-      "website": "https://arshdeepsingh.info",
+      "website": "https://arshdeepgrover.dev",
       "role": "Creator & Maintainer",
       "featured": true
     },
@@ -523,6 +523,66 @@
         "Added ZeroGTM to AI Productivity category"
       ],
       "website": "https://www.gtm-zero.com",
+      "role": "Contributor"
+    },
+    {
+      "name": "George Zou",
+      "github": "georgezouq",
+      "avatar": "https://github.com/georgezouq.png",
+      "tagline": "AI product builder",
+      "contributions": [
+        "Added Aurcue to AI Design & Images"
+      ],
+      "website": "https://www.aurcue.com",
+      "role": "Contributor",
+      "featured": false
+    },
+    {
+      "name": "ArtImageHub Team",
+      "github": "linxuaning",
+      "avatar": "https://github.com/linxuaning.png",
+      "contributions": [
+        "Added ArtImageHub to AI Design & Images"
+      ],
+      "website": "https://artimagehub.com"
+    },
+    {
+      "name": "FPVTune Team",
+      "github": "chugzb",
+      "avatar": "https://github.com/chugzb.png",
+      "tagline": "Open-source FPV tuning tools",
+      "contributions": [
+        "Added FPVTune to AI Productivity category"
+      ]
+    },
+    {
+      "website": "https://fpvtune.com/",
+      "name": "chugzb",
+      "github": "chugzb",
+      "avatar": "https://github.com/chugzb.png",
+      "tagline": "AI tools contributor",
+      "contributions": [
+        "Added Roblox GUI Maker to AI Game & Strategy"
+      ]
+    },
+    {
+      "name": "outwrit",
+      "github": "outwrit",
+      "avatar": "https://github.com/outwrit.png",
+      "contributions": [
+        "Added CallURL to AI Productivity category"
+      ],
+      "website": "https://callurl.com"
+    },
+    {
+      "name": "Justin",
+      "github": "zuoyouxuan",
+      "avatar": "https://github.com/zuoyouxuan.png",
+      "tagline": "AI product builder",
+      "contributions": [
+        "Added Catoon to AI Design & Images"
+      ],
+      "website": "https://catoon.xyz",
       "role": "Contributor"
     }
   ]

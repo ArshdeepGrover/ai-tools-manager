@@ -25,6 +25,11 @@
           "description": "AI-powered workspace with free trial"
         },
         {
+          "title": "Remio",
+          "url": "https://remio.ai/",
+          "description": "Local-first AI memory and knowledge base app that parses files, webpages, recordings, emails, messages, images, and notes into local indexes and vectors for faster personal context retrieval."
+        },
+        {
           "title": "QuillBot",
           "url": "https://quillbot.com/",
           "description": "Free paraphrasing, grammar checking, summarizer"
@@ -166,6 +171,11 @@
           "description": "Free AI background remover"
         },
         {
+          "title": "ClearCrowds",
+          "url": "https://www.clearcrowds.com",
+          "description": "AI photo cleanup and editing tool for removing crowds, objects, text, clutter, and other distractions from images."
+        },
+        {
           "title": "Outfit Swap Studio",
           "url": "https://outfitswapstudio.com",
           "description": "AI virtual try-on and outfit swap for your photos; preserves face, pose, and background."
@@ -264,6 +274,31 @@
           "title": "DeepAI",
           "url": "https://deepai.org/",
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
+        },
+        {
+          "title": "ImagineClip",
+          "url": "https://imagineclip.com",
+          "description": "AI video generator for avatar clips, stylized scenes, and social-ready content."
+        },
+        {
+          "title": "Aurcue",
+          "url": "https://www.aurcue.com",
+          "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
+        },
+        {
+          "title": "igly.ai",
+          "url": "https://igly.ai",
+          "description": "Free AI image editor for background removal, inpainting, upscaling, generative fill, and product photo workflows."
+        },
+        {
+          "title": "ArtImageHub",
+          "url": "https://artimagehub.com/old-photo-restoration",
+          "description": "AI old photo restoration that repairs scratches, fading, and blur and colorizes black-and-white family photos."
+        },
+        {
+          "title": "Catoon",
+          "url": "https://catoon.xyz",
+          "description": "Turn long stories into editable AI comic chapters."
         }
       ]
     },
@@ -446,6 +481,16 @@
           "title": "HackerAI",
           "url": "https://hackerai.co/",
           "description": "AI penetration testing assistant designed to assist with tasks like vulnerability analysis, ethical hacking techniques, and security research."
+        },
+        {
+          "title": "CoderPlan",
+          "url": "https://coderplan.ai",
+          "description": "Unified LLM API gateway for Claude Code, Codex CLI, Cursor, and Cline with OpenAI-compatible endpoint"
+        },
+        {
+          "title": "Xquik",
+          "url": "https://xquik.com",
+          "description": "X data API with free MCP compose and radar tools"
         }
       ]
     },
@@ -497,6 +542,11 @@
           "title": "Vmaker AI",
           "url": "https://www.vmaker.com/",
           "description": "Generate videos from text, voice, or docs and edit with AI"
+        },
+        {
+          "title": "ImagineClip",
+          "url": "https://imagineclip.com?ref=ai-tools-manager",
+          "description": "AI video generator for social clips and avatars"
         },
         {
           "title": "Flow",
@@ -562,6 +612,11 @@
           "title": "OpusClip",
           "url": "https://www.opus.pro/",
           "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
+        },
+        {
+          "title": "ImagineClip",
+          "url": "https://imagineclip.com",
+          "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
         }
       ]
     },
@@ -600,6 +655,11 @@
           "description": "AI data analysis and visualization tool"
         },
         {
+          "title": "FPVTune",
+          "url": "https://fpvtune.com/",
+          "description": "Betaflight log analysis and PID/filter tuning suggestions"
+        },
+        {
           "title": "Genspark AI",
           "url": "https://genspark.ai",
           "description": "AI-powered search and research assistant"
@@ -608,6 +668,11 @@
           "title": "Taskade",
           "url": "https://taskade.com/",
           "description": "AI to-do lists, outlines, and workflows"
+        },
+        {
+          "title": "Tudo",
+          "url": "https://blynkai.app/tudo/",
+          "description": "AI task capture and personal planning app for turning quick thoughts into organized next actions"
         },
         {
           "title": "Tango",
@@ -703,6 +768,21 @@
           "title": "ZeroGTM",
           "url": "https://www.gtm-zero.com",
           "description": "Open-source AI SDR agent for sales outreach"
+        },
+        {
+          "title": "IdeaTwister",
+          "url": "https://ideatwister.com",
+          "description": "Locally-run AI engine that turns one rough business idea into 50+ scored variations across 15 strategic angles. Built for solo founders."
+        },
+        {
+          "title": "CallURL",
+          "url": "https://callurl.com",
+          "description": "Build a free Call App in 60 seconds, then share it by link or QR to handle calls."
+        },
+        {
+          "title": "Memex",
+          "url": "https://www.memexlab.ai/",
+          "description": "Private AI journal for searchable life memories"
         }
       ]
     },
@@ -729,6 +809,11 @@
           "title": "Infinite Craft",
           "url": "https://neal.fun/infinite-craft/",
           "description": "Infinite Craft is an AI-powered game where you start with four basic elements and combine them to discover a virtually endless universe of creations."
+        },
+        {
+          "title": "Auferet",
+          "url": "https://auferet.com",
+          "description": "AI game master for solo text adventures and tabletop RPGs, with long-term story memory and uploadable lore"
         }
       ]
     },
@@ -776,6 +861,11 @@
           "title": "Rosebud AI",
           "url": "https://lab.rosebud.ai/ai-game-creator",
           "description": "An AI tool which help you create simple 2D games by generating game assets, levels, and mechanics based on your ideas."
+        },
+        {
+          "title": "Roblox GUI Maker",
+          "url": "https://robloxguimaker.dev/",
+          "description": "Generate Roblox Studio GUI layouts and Lua code"
         }
       ]
     },

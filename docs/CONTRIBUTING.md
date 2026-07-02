@@ -252,7 +252,7 @@ Brief description of what you're adding/changing
 
 - **Questions**: Open a [GitHub Discussion](https://github.com/ArshdeepGrover/ai-tools-collection/discussions)
 - **Issues**: Report bugs via [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-collection/issues)
-- **Direct Contact**: Reach out to [Arshdeep Singh](https://arshdeepsingh.info)
+- **Direct Contact**: Reach out to [Arshdeep Singh](https://arshdeepgrover.dev)
 
 ## 🎉 Thank You
 
