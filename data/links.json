@@ -607,6 +607,11 @@
           "title": "OpusClip",
           "url": "https://www.opus.pro/",
           "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
+        },
+        {
+          "title": "ImagineClip",
+          "url": "https://imagineclip.com",
+          "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
         }
       ]
     },
