@@ -135,7 +135,7 @@ Here's a complete example of how Arshdeep Singh's profile is structured:
 {
   "name": "Arshdeep Singh",
   "github": "ArshdeepGrover",
-  "avatar": "https://www.arshdeepsingh.info/images/arshdeep-singh.png",
+  "avatar": "https://www.arshdeepgrover.dev/images/arshdeep-singh.png",
   "linkedin": "ArshdeepGrover",
   "tagline": "AI Tools Curator",
   "contributions": [
@@ -148,7 +148,7 @@ Here's a complete example of how Arshdeep Singh's profile is structured:
     "Created contributor system and community guidelines",
     "Established GitHub workflows and validation scripts"
   ],
-  "website": "https://arshdeepsingh.info",
+  "website": "https://arshdeepgrover.dev",
   "role": "Creator & Maintainer"
 }
 ```

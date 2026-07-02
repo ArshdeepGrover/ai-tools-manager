@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="modern.css" />
   <!-- Primary Meta Tags -->
   <title>AI Tools Hub - Professional AI Tools Directory</title>
   <meta name="title" content="AI Tools Hub - Professional AI Tools Directory" />
@@ -68,7 +69,7 @@
         "author": {
           "@type": "Person",
           "name": "Arshdeep Singh",
-          "url": "https://arshdeepsingh.info"
+          "url": "https://arshdeepgrover.dev"
         },
         "publisher": {
           "@type": "Organization",
@@ -1220,6 +1221,7 @@
   <script>
     (function () {
       try {
+        document.documentElement.classList.add('js-ready');
         var stored = localStorage.getItem('theme');
         var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
         var theme = stored === 'light' || stored === 'dark' ? stored : (prefersDark ? 'dark' : 'light');
@@ -1238,16 +1240,18 @@
 
 <body class="font-sans"
   style="background-color: var(--bg-primary); color: var(--text-primary); transition: background-color 0.3s ease, color 0.3s ease;">
+  <!-- Scroll progress bar -->
+  <div id="scroll-progress" aria-hidden="true"></div>
+
   <!-- Navigation -->
-  <nav class="shadow-lg sticky top-0 z-50"
-    style="background-color: var(--nav-bg); box-shadow: 0 1px 3px 0 var(--nav-shadow);">
+  <nav id="main-nav" class="nav-glass sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-around items-center h-16">
         <!-- Logo -->
         <a href="index.html">
           <div class="flex items-center space-x-3">
             <div
-              class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              class="logo-badge w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
               <i class="fas fa-robot text-white text-lg"></i>
             </div>
             <div>
@@ -1260,13 +1264,13 @@
         <!-- Navigation Links -->
         <div class="hidden lg:flex items-center space-x-8">
           <a href="#tools"
-            class="font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">Tools</a>
+            class="nav-link-underline font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">Tools</a>
           <a href="#categories"
-            class="font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">Categories</a>
+            class="nav-link-underline font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">Categories</a>
           <a href="#contributors"
-            class="font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">Contributors</a>
+            class="nav-link-underline font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">Contributors</a>
           <a href="#about"
-            class="font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">About</a>
+            class="nav-link-underline font-medium transition-colors duration-300 text-[var(--text-secondary)] hover:text-[var(--accent-color)]">About</a>
 
 
         </div>
@@ -1345,27 +1349,29 @@
   </nav>
 
   <!-- Hero Section -->
-  <section class="gradient-bg text-white py-12">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-3xl md:text-5xl font-bold mb-4">
-        Discover the Best
-        <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-          AI Tools
-        </span>
+  <section class="hero-section">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-grid"></div>
+      <div class="hero-orb orb-1"></div>
+      <div class="hero-orb orb-2"></div>
+    </div>
+
+    <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="hero-title reveal">
+        Discover the Best <span class="hero-gradient-text">AI Tools</span>
       </h1>
-      <p class="text-lg md:text-xl mb-6 text-blue-100 max-w-2xl mx-auto">
-        A curated collection of professional AI tools for developers, designers, and creators. Open source and
-        community-driven.
+
+      <p class="hero-subtitle reveal">
+        A curated, community-driven directory of 100+ professional AI tools.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="#tools"
-          class="bg-white text-blue-600 px-6 py-2.5 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-          Explore Tools
+
+      <div class="hero-cta reveal">
+        <a href="#tools" class="btn-primary-glow">
+          Explore Tools <i class="fas fa-arrow-right"></i>
         </a>
         <a href="https://github.com/ArshdeepGrover/ai-tools-manager" target="_blank"
-          class="border-2 border-white text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition-colors"
-          id="hero-github-button">
-          Contribute
+          class="btn-ghost-glass" id="hero-github-button">
+          <i class="fab fa-github"></i> Contribute
         </a>
       </div>
     </div>
@@ -1374,18 +1380,19 @@
   <!-- Category Filter Section -->
   <section id="categories" class="py-10" style="background-color: var(--bg-secondary);">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">
+      <div class="text-center mb-8 reveal">
+        <span class="section-eyebrow">Explore</span>
+        <h2 class="text-3xl font-bold mb-3 section-title-underline" style="color: var(--text-primary);">
           Browse by Category
         </h2>
-        <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
+        <p class="max-w-xl mx-auto text-sm mt-5" style="color: var(--text-secondary);">
           Find the perfect AI tools for your specific needs. Filter by category to discover tools tailored to your
           workflow.
         </p>
       </div>
 
       <!-- Search + Category Filter (replaces buttons) -->
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-3xl mx-auto reveal">
         <div class="flex flex-col md:flex-row gap-4 items-stretch">
           <!-- Search Bar -->
           <div class="flex-1">
@@ -1430,13 +1437,13 @@
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Repo states -->
 
-      <div class="flex justify-center items-center flex-col mb-6">
+      <div class="flex justify-center items-center flex-col mb-6 reveal">
         <div class="flex justify-center mb-4 px-2 ">
-          <h2 class="text-3xl font-bold" style="color: var(--text-primary)">
+          <h2 class="text-3xl font-bold section-title-underline" style="color: var(--text-primary)">
             Repository States
           </h2>
         </div>
-        <div>
+        <div class="mt-4">
           <div
             class="flex flex-row gap-2 md:gap-8 p-4 justify-center item-center px-4 md:px-10 py-6 rounded-2xl shadow-lg border border-gray-700">
             <!-- stars count -->
@@ -1468,11 +1475,12 @@
       </div>
 
       <!-- Header -->
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">
+      <div class="text-center mb-8 reveal">
+        <span class="section-eyebrow">The People</span>
+        <h2 class="text-3xl font-bold mb-3 section-title-underline" style="color: var(--text-primary);">
           Our Contributors
         </h2>
-        <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
+        <p class="max-w-xl mx-auto text-sm mt-5" style="color: var(--text-secondary);">
           Meet the
           <span id="total-contributors-text" class="text-blue-600 font-semibold">-</span>
           amazing people who help maintain and grow this collection of AI tools.
@@ -1480,7 +1488,7 @@
       </div>
 
       <!-- Contributors Search -->
-      <div class="mb-6">
+      <div class="mb-6 reveal">
         <input type="text" id="contributors-search" placeholder="Search contributors by name..."
           class="w-full px-4 py-3 rounded-lg border-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 shadow-sm transition-colors"
           style="background-color: var(--card-bg); color: var(--text-primary); border-color: var(--border-color);" />
@@ -1520,21 +1528,22 @@
   <!-- About Section -->
   <section id="about" class="py-10" style="background-color: var(--bg-primary);">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <h2 class="text-2xl font-bold mb-2" style="color: var(--text-primary);">About</h2>
-        <p class="max-w-xl mx-auto text-sm" style="color: var(--text-secondary);">
+      <div class="text-center mb-8 reveal">
+        <span class="section-eyebrow">Behind the Project</span>
+        <h2 class="text-3xl font-bold mb-3 section-title-underline" style="color: var(--text-primary);">About</h2>
+        <p class="max-w-xl mx-auto text-sm mt-5" style="color: var(--text-secondary);">
           Learn more about the creator and the community behind this project.
         </p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <!-- Left Column - Created by -->
-        <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
+        <div class="rounded-2xl shadow-lg p-6 reveal reveal-left" style="background-color: var(--card-bg);">
           <div class="text-center mb-4">
             <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Created by</h3>
           </div>
           <div class="flex flex-col items-center space-y-4">
-            <img src="https://www.arshdeepsingh.info/images/arshdeep-singh.png" alt="Arshdeep Singh"
+            <img src="https://www.arshdeepgrover.dev/images/arshdeep-singh.png" alt="Arshdeep Singh"
               class="w-32 h-32 rounded-full object-cover" />
             <div class="text-center">
               <h4 class="text-xl font-bold mb-2" style="color: var(--text-primary);">
@@ -1562,7 +1571,7 @@
                   <i class="fab fa-medium"></i>
                   <span>Medium</span>
                 </a>
-                <a href="https://arshdeepsingh.info" target="_blank"
+                <a href="https://arshdeepgrover.dev" target="_blank"
                   class="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition-colors flex items-center space-x-2">
                   <i class="fas fa-globe"></i>
                   <span>Website</span>
@@ -1573,7 +1582,7 @@
         </div>
 
         <!-- Right Column - Community -->
-        <div class="rounded-2xl shadow-lg p-6" style="background-color: var(--card-bg);">
+        <div class="rounded-2xl shadow-lg p-6 reveal reveal-right" style="background-color: var(--card-bg);">
           <div class="text-center mb-4">
             <h3 class="text-xl font-bold mb-2" style="color: var(--text-primary);">Community</h3>
           </div>
@@ -1877,5 +1886,6 @@
   </div>
 
   <script src="script.js"></script>
+  <script src="animations.js"></script>
 </body>
 </html>

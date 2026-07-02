@@ -3,7 +3,7 @@
     {
       "name": "Arshdeep Singh",
       "github": "ArshdeepGrover",
-      "avatar": "https://www.arshdeepsingh.info/images/arshdeep-singh.png",
+      "avatar": "https://www.arshdeepgrover.dev/images/arshdeep-singh.png",
       "linkedin": "ArshdeepGrover",
       "tagline": "AI Tools Curator",
       "contributions": [
@@ -26,7 +26,7 @@
         "Optimized folder structure and removed redundant files",
         "Implemented contributors validation system"
       ],
-      "website": "https://arshdeepsingh.info",
+      "website": "https://arshdeepgrover.dev",
       "role": "Creator & Maintainer",
       "featured": true
     },
@@ -553,7 +553,7 @@
       "tagline": "Open-source FPV tuning tools",
       "contributions": [
         "Added FPVTune to AI Productivity category"
-      ],
+      ]
     },
     {
       "website": "https://fpvtune.com/",
@@ -563,7 +563,7 @@
       "tagline": "AI tools contributor",
       "contributions": [
         "Added Roblox GUI Maker to AI Game & Strategy"
-      ],
+      ]
     },
     {
       "name": "outwrit",
@@ -572,7 +572,7 @@
       "contributions": [
         "Added CallURL to AI Productivity category"
       ],
-      "website": "https://callurl.com",
+      "website": "https://callurl.com"
     },
     {
       "name": "Justin",

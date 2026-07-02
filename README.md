@@ -322,7 +322,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - **Issues**: [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-collection/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/ArshdeepGrover/ai-tools-collection/discussions)
-- **Creator**: [Arshdeep Singh](https://arshdeepsingh.info)
+- **Creator**: [Arshdeep Singh](https://arshdeepgrover.dev)
 - **Website**: [AI Tools Collection](https://ai-tool-collection.vercel.app/)
 
 ---
