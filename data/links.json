@@ -524,6 +524,11 @@
           "description": "Generate videos from text, voice, or docs and edit with AI"
         },
         {
+          "title": "ImagineClip",
+          "url": "https://imagineclip.com?ref=ai-tools-manager",
+          "description": "AI video generator for social clips and avatars"
+        },
+        {
           "title": "Flow",
           "url": "https://labs.google/flow",
           "description": "AI platform for editing and producing video content"
