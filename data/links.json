@@ -491,6 +491,11 @@
           "title": "Xquik",
           "url": "https://xquik.com",
           "description": "X data API with free MCP compose and radar tools"
+        },
+        {
+          "title": "Tree Ring Memory",
+          "url": "https://terminallylazy.github.io/Tree-Ring-Memory/",
+          "description": "Local-first memory lifecycle for AI coding agents"
         }
       ]
     },
