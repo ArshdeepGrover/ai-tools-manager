@@ -584,6 +584,17 @@
       ],
       "website": "https://catoon.xyz",
       "role": "Contributor"
+    },
+    {
+      "name": "TerminallyLazy",
+      "github": "TerminallyLazy",
+      "avatar": "https://github.com/TerminallyLazy.png",
+      "tagline": "Open-source AI agent tooling",
+      "contributions": [
+        "Added Tree Ring Memory to AI Coding & Development"
+      ],
+      "website": "https://terminallylazy.github.io/Tree-Ring-Memory/",
+      "role": "Contributor"
     }
   ]
 }
