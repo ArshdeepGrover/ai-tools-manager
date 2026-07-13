@@ -448,6 +448,11 @@
           "description": "AI-first code editor with free features for real-time coding assistance"
         },
         {
+          "title": "AI Badger",
+          "url": "https://github.com/PVRLabs/aibadger",
+          "description": "Extract focused repo context locally for any AI chat"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
