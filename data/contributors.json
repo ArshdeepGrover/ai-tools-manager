@@ -31,6 +31,16 @@
       "featured": true
     },
     {
+      "name": "alvabillwu",
+      "github": "alvabillwu",
+      "avatar": "https://github.com/alvabillwu.png",
+      "tagline": "AI/LLM Developer Tools",
+      "contributions": [
+        "Added agentguard, ctxpack, judgekit, mcp-guard, ragbench, and tokencost to AI Coding & Development category"
+      ],
+      "role": "Contributor"
+    },
+    {
       "name": "Taranpreet Singh",
       "github": "TARANPREETS1999",
       "avatar": "https://github.com/TARANPREETS1999.png",
