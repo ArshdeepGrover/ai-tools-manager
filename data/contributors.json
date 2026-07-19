@@ -604,6 +604,17 @@
         "Added AI Badger to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Simon He",
+      "github": "Simon-He95",
+      "avatar": "https://github.com/Simon-He95.png",
+      "tagline": "Open-source frontend developer",
+      "contributions": [
+        "Added Markstream to AI Coding & Development"
+      ],
+      "website": "https://markstream.simonhe.me/",
+      "role": "Contributor"
     }
   ]
 }

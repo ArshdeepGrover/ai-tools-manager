@@ -453,6 +453,11 @@
           "description": "Extract focused repo context locally for any AI chat"
         },
         {
+          "title": "Markstream",
+          "url": "https://markstream.simonhe.me/",
+          "description": "Streaming Markdown renderer for AI chat interfaces"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
