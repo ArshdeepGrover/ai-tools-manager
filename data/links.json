@@ -536,6 +536,11 @@
           "title": "tokencost",
           "url": "https://github.com/alvabillwu/tokencost",
           "description": "LLM token usage and cost calculator for OpenAI and Anthropic models"
+        },
+        {
+          "title": "DaoXE",
+          "url": "https://daoxe.com",
+          "description": "OpenAI-compatible multi-model LLM API gateway (Claude/GPT/Gemini/DeepSeek) with one API key."
         }
       ]
     },
