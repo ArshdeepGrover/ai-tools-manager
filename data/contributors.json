@@ -604,6 +604,16 @@
         "Added AI Badger to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Chai Pin Zheng",
+      "github": "Ducksss",
+      "avatar": "https://github.com/Ducksss.png",
+      "tagline": "Open-source developer tools builder",
+      "contributions": [
+        "Added codex-profiles to AI Coding & Development"
+      ],
+      "role": "Contributor"
     }
   ]
 }
