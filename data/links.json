@@ -208,7 +208,7 @@
         {
           "title": "Pixlr",
           "url": "https://pixlr.com/",
-          "description": "Edit photos, generate images, and design freely with Pixlr’s powerful AI tools."
+          "description": "Edit photos, generate images, and design freely with Pixlr's powerful AI tools."
         },
         {
           "title": "Stitch",
@@ -266,7 +266,7 @@
           "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser."
         },
         {
-          "title": "Let’s Enhance",
+          "title": "Let's Enhance",
           "url": "https://letsenhance.io",
           "description": "Upscale images, improve resolution, enhance lighting & tone using AI, especially for low quality photos."
         },
@@ -448,6 +448,21 @@
           "description": "AI-first code editor with free features for real-time coding assistance"
         },
         {
+          "title": "codex-profiles",
+          "url": "https://github.com/Ducksss/codex-profiles",
+          "description": "Manage named Codex and ChatGPT profiles"
+        },
+        {
+          "title": "AI Badger",
+          "url": "https://github.com/PVRLabs/aibadger",
+          "description": "Extract focused repo context locally for any AI chat"
+        },
+        {
+          "title": "Markstream",
+          "url": "https://markstream.simonhe.me/",
+          "description": "Streaming Markdown renderer for AI chat interfaces"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
@@ -491,6 +506,36 @@
           "title": "Xquik",
           "url": "https://xquik.com",
           "description": "X data API with free MCP compose and radar tools"
+        },
+        {
+          "title": "agentguard",
+          "url": "https://github.com/alvabillwu/agentguard",
+          "description": "AI-powered shell command safety gate that validates CLI commands before execution"
+        },
+        {
+          "title": "ctxpack",
+          "url": "https://github.com/alvabillwu/ctxpack",
+          "description": "Context window packer that optimizes prompts for maximum token efficiency"
+        },
+        {
+          "title": "judgekit",
+          "url": "https://github.com/alvabillwu/judgekit",
+          "description": "LLM-as-judge evaluation harness for testing and comparing model outputs"
+        },
+        {
+          "title": "mcp-guard",
+          "url": "https://github.com/alvabillwu/mcp-guard",
+          "description": "Security scanner for MCP servers that detects vulnerabilities and misconfigurations"
+        },
+        {
+          "title": "ragbench",
+          "url": "https://github.com/alvabillwu/ragbench",
+          "description": "Benchmarking toolkit for evaluating RAG pipeline performance"
+        },
+        {
+          "title": "tokencost",
+          "url": "https://github.com/alvabillwu/tokencost",
+          "description": "LLM token usage and cost calculator for OpenAI and Anthropic models"
         }
       ]
     },

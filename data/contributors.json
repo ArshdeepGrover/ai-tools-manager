@@ -31,6 +31,16 @@
       "featured": true
     },
     {
+      "name": "alvabillwu",
+      "github": "alvabillwu",
+      "avatar": "https://github.com/alvabillwu.png",
+      "tagline": "AI/LLM Developer Tools",
+      "contributions": [
+        "Added agentguard, ctxpack, judgekit, mcp-guard, ragbench, and tokencost to AI Coding & Development category"
+      ],
+      "role": "Contributor"
+    },
+    {
       "name": "Taranpreet Singh",
       "github": "TARANPREETS1999",
       "avatar": "https://github.com/TARANPREETS1999.png",
@@ -583,6 +593,36 @@
         "Added Catoon to AI Design & Images"
       ],
       "website": "https://catoon.xyz",
+      "role": "Contributor"
+    },
+    {
+      "name": "Ted Kupolov",
+      "github": "ejboy",
+      "avatar": "https://avatars.githubusercontent.com/u/1303453?v=4",
+      "tagline": "Creator of AI Badger",
+      "contributions": [
+        "Added AI Badger to AI Coding & Development"
+      ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Simon He",
+      "github": "Simon-He95",
+      "avatar": "https://github.com/Simon-He95.png",
+      "tagline": "Open-source frontend developer",
+      "contributions": [
+        "Added Markstream to AI Coding & Development"
+      ],
+      "website": "https://markstream.simonhe.me/",
+    },
+    {
+      "name": "Chai Pin Zheng",
+      "github": "Ducksss",
+      "avatar": "https://github.com/Ducksss.png",
+      "tagline": "Open-source developer tools builder",
+      "contributions": [
+        "Added codex-profiles to AI Coding & Development"
+      ],
       "role": "Contributor"
     }
   ]
