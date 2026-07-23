@@ -675,6 +675,11 @@
           "description": "Free AI meeting transcription"
         },
         {
+          "title": "Echo99",
+          "url": "https://www.echo99.app/",
+          "description": "Local Mac call recording and speaker-labeled transcripts"
+        },
+        {
           "title": "Calendly AI",
           "url": "https://calendly.com",
           "description": "Smart scheduling with free plan"
