@@ -614,6 +614,7 @@
         "Added Markstream to AI Coding & Development"
       ],
       "website": "https://markstream.simonhe.me/",
+      "role": "Contributor"
     },
     {
       "name": "Chai Pin Zheng",
@@ -623,6 +624,17 @@
       "contributions": [
         "Added codex-profiles to AI Coding & Development"
       ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Tomas Zeman",
+      "github": "ertra",
+      "avatar": "https://github.com/ertra.png",
+      "tagline": "Developer of Echo99",
+      "contributions": [
+        "Added Echo99 to AI Productivity"
+      ],
+      "website": "https://www.echo99.app/",
       "role": "Contributor"
     }
   ]
