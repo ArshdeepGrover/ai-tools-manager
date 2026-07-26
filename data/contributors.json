@@ -613,7 +613,7 @@
       "contributions": [
         "Added Markstream to AI Coding & Development"
       ],
-      "website": "https://markstream.simonhe.me/",
+      "website": "https://markstream.simonhe.me/"
     },
     {
       "name": "Chai Pin Zheng",
@@ -623,6 +623,17 @@
       "contributions": [
         "Added codex-profiles to AI Coding & Development"
       ],
+      "role": "Contributor"
+    },
+    {
+      "name": "Toolina Team",
+      "github": "fpy5627",
+      "avatar": "https://github.com/fpy5627.png",
+      "tagline": "Browser-based AI tool builder",
+      "contributions": [
+        "Added four browser-based AI tools to matching categories"
+      ],
+      "website": "https://imagedescriber.dev",
       "role": "Contributor"
     }
   ]
