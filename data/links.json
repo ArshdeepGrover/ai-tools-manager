@@ -206,6 +206,11 @@
           "description": "Transform any image with simple text prompts"
         },
         {
+          "title": "ImageChanger",
+          "url": "https://aiimagechanger.app/",
+          "description": "AI photo editor with 38 focused transformation workflows"
+        },
+        {
           "title": "Pixlr",
           "url": "https://pixlr.com/",
           "description": "Edit photos, generate images, and design freely with Pixlr's powerful AI tools."
