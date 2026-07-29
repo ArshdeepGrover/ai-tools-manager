@@ -143,6 +143,11 @@
           "title": "Junia AI",
           "url": "https://junia.ai",
           "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning."
+        },
+        {
+          "title": "WizGenerator Story Generator",
+          "url": "https://wizgenerator.com/tools/story-generator/",
+          "description": "Free AI story drafts with genre, tone and POV controls"
         }
       ]
     },
