@@ -828,6 +828,11 @@
           "title": "Memex",
           "url": "https://www.memexlab.ai/",
           "description": "Private AI journal for searchable life memories"
+        },
+        {
+          "title": "SaaSCity",
+          "url": "https://saascity.io",
+          "description": "Free gamified SaaS & AI directory — launch on a live city map"
         }
       ]
     },
