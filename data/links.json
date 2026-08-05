@@ -675,6 +675,11 @@
           "description": "Free AI meeting transcription"
         },
         {
+          "title": "Orkas",
+          "url": "https://github.com/Orkas-AI/Orkas",
+          "description": "Open-source, local-first desktop AI workforce that turns goals into plans and coordinates specialist agents through one chat."
+        },
+        {
           "title": "Calendly AI",
           "url": "https://calendly.com",
           "description": "Smart scheduling with free plan"
