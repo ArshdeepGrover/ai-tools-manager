@@ -624,6 +624,17 @@
         "Added codex-profiles to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Wavect GmbH",
+      "github": "wavect",
+      "avatar": "https://github.com/wavect.png",
+      "tagline": "Software engineering company building SEMAPRAX",
+      "contributions": [
+        "Added SEMAPRAX to AI Coding & Development"
+      ],
+      "website": "https://wavect.io/",
+      "role": "Contributor"
     }
   ]
 }
