@@ -833,6 +833,11 @@
           "title": "Memex",
           "url": "https://www.memexlab.ai/",
           "description": "Private AI journal for searchable life memories"
+        },
+        {
+          "title": "IdeaHunter",
+          "url": "https://ideahunter.today",
+          "description": "AI startup idea research for solo founders"
         }
       ]
     },
