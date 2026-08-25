@@ -536,6 +536,11 @@
           "title": "tokencost",
           "url": "https://github.com/alvabillwu/tokencost",
           "description": "LLM token usage and cost calculator for OpenAI and Anthropic models"
+        },
+        {
+          "title": "SEMAPRAX",
+          "url": "https://wavect.io/semaprax/",
+          "description": "Pre-alpha language and compiler for semantic agent edits"
         }
       ]
     },
