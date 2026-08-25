@@ -869,6 +869,11 @@
           "title": "Auferet",
           "url": "https://auferet.com",
           "description": "AI game master for solo text adventures and tabletop RPGs, with long-term story memory and uploadable lore"
+        },
+        {
+          "title": "Fortuneteller.Today",
+          "url": "https://www.fortuneteller.today",
+          "description": "AI tarot, astrology, BaZi, numerology, and rune readings."
         }
       ]
     },
