@@ -616,6 +616,17 @@
       "website": "https://markstream.simonhe.me/",
     },
     {
+      "name": "Ofek Ron",
+      "github": "ofekron",
+      "avatar": "https://github.com/ofekron.png",
+      "tagline": "Better Agent maintainer",
+      "contributions": [
+        "Added Better Agent to AI Coding & Development"
+      ],
+      "website": "https://github.com/ofekron/better-agent",
+      "role": "Contributor"
+    },
+    {
       "name": "Chai Pin Zheng",
       "github": "Ducksss",
       "avatar": "https://github.com/Ducksss.png",

@@ -463,6 +463,11 @@
           "description": "Streaming Markdown renderer for AI chat interfaces"
         },
         {
+          "title": "Better Agent",
+          "url": "https://github.com/ofekron/better-agent",
+          "description": "Orchestrate native coding-agent sessions locally"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
