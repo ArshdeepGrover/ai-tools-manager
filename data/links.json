@@ -156,6 +156,11 @@
           "description": "Free design tool with AI features"
         },
         {
+          "title": "Image Describer",
+          "url": "https://imagedescriber.dev",
+          "description": "Free AI image descriptions, alt text, OCR, and prompts"
+        },
+        {
           "title": "DALL-E 2",
           "url": "https://openai.com/dall-e-2",
           "description": "AI image generator with free credits"
