@@ -397,7 +397,7 @@
       "name": "Prachi Sharma",
       "github": "dev-prachi",
       "avatar": "https://github.com/dev-prachi.png",
-      "linkedin": "www.linkedin.com/in/prachi-sharma123",
+      "linkedin": "prachi-sharma123",
       "tagline": "Aspiring Software Developer",
       "contributions": [
         "Added hover effect in the links of navbar"
@@ -554,7 +554,8 @@
       "contributions": [
         "Added ArtImageHub to AI Design & Images"
       ],
-      "website": "https://artimagehub.com"
+      "website": "https://artimagehub.com",
+      "role": "Contributor"
     },
     {
       "name": "FPVTune Team",
@@ -562,18 +563,11 @@
       "avatar": "https://github.com/chugzb.png",
       "tagline": "Open-source FPV tuning tools",
       "contributions": [
-        "Added FPVTune to AI Productivity category"
-      ]
-    },
-    {
-      "website": "https://fpvtune.com/",
-      "name": "chugzb",
-      "github": "chugzb",
-      "avatar": "https://github.com/chugzb.png",
-      "tagline": "AI tools contributor",
-      "contributions": [
+        "Added FPVTune to AI Productivity category",
         "Added Roblox GUI Maker to AI Game & Strategy"
-      ]
+      ],
+      "website": "https://fpvtune.com/",
+      "role": "Contributor"
     },
     {
       "name": "outwrit",
@@ -582,7 +576,8 @@
       "contributions": [
         "Added CallURL to AI Productivity category"
       ],
-      "website": "https://callurl.com"
+      "website": "https://callurl.com",
+      "role": "Contributor"
     },
     {
       "name": "Justin",
@@ -614,6 +609,7 @@
         "Added Markstream to AI Coding & Development"
       ],
       "website": "https://markstream.simonhe.me/",
+      "role": "Contributor"
     },
     {
       "name": "Ofek Ron",
@@ -645,6 +641,16 @@
         "Added SEMAPRAX to AI Coding & Development"
       ],
       "website": "https://wavect.io/",
+      "role": "Contributor"
+    },
+    {
+      "name": "Pranshu Chittora",
+      "github": "pranshuchittora",
+      "avatar": "https://avatars.githubusercontent.com/u/32242596?v=4",
+      "contributions": [
+        "Added Agent QA to AI Coding & Development",
+        "Repaired catalog duplicates and contributor data validation"
+      ],
       "role": "Contributor"
     }
   ]
