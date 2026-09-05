@@ -281,11 +281,6 @@
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
         },
         {
-          "title": "ImagineClip",
-          "url": "https://imagineclip.com",
-          "description": "AI video generator for avatar clips, stylized scenes, and social-ready content."
-        },
-        {
           "title": "Aurcue",
           "url": "https://www.aurcue.com",
           "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
@@ -362,6 +357,11 @@
       "name": "AI Coding & Development",
       "icon": "💻",
       "links": [
+        {
+          "title": "Agent QA",
+          "url": "https://vostride.com/docs/agent-qa",
+          "description": "AI web/mobile QA; FSL-1.1-ALv2; model costs separate"
+        },
         {
           "title": "GitHub Copilot",
           "url": "https://github.com/features/copilot",
@@ -602,11 +602,6 @@
           "title": "Vmaker AI",
           "url": "https://www.vmaker.com/",
           "description": "Generate videos from text, voice, or docs and edit with AI"
-        },
-        {
-          "title": "ImagineClip",
-          "url": "https://imagineclip.com?ref=ai-tools-manager",
-          "description": "AI video generator for social clips and avatars"
         },
         {
           "title": "Flow",
