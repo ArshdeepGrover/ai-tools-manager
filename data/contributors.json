@@ -646,6 +646,17 @@
       ],
       "website": "https://wavect.io/",
       "role": "Contributor"
+    },
+    {
+      "name": "Alan Hoffmeister",
+      "github": "alanhoff",
+      "avatar": "https://github.com/alanhoff.png",
+      "tagline": "Open-source developer",
+      "contributions": [
+        "Added Agent Coordinator to AI Coding & Development"
+      ],
+      "website": "https://github.com/alanhoff/agent-coordinator",
+      "role": "Contributor"
     }
   ]
 }
