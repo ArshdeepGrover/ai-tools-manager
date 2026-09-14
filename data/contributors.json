@@ -652,6 +652,28 @@
         "Repaired catalog duplicates and contributor data validation"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "bao",
+      "github": "cute-baobao",
+      "avatar": "https://github.com/cute-baobao.png",
+      "tagline": "HyNote — AI note-taking for meetings, audio & PDFs",
+      "contributions": [
+        "Added HyNote to AI Productivity category"
+      ],
+      "website": "https://hynote.ai?utm_source=ai-tool-collection&utm_medium=referral&utm_campaign=ai-tools-manager",
+       "role": "Contributor"
+  },
+  { 
+      "name": "Alan Hoffmeister",
+      "github": "alanhoff",
+      "avatar": "https://github.com/alanhoff.png",
+      "tagline": "Open-source developer",
+      "contributions": [
+        "Added Agent Coordinator to AI Coding & Development"
+      ],
+      "website": "https://github.com/alanhoff/agent-coordinator",
+      "role": "Contributor"
     }
   ]
 }

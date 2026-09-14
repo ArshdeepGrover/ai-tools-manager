@@ -299,6 +299,11 @@
           "title": "Catoon",
           "url": "https://catoon.xyz",
           "description": "Turn long stories into editable AI comic chapters."
+        },
+        {
+          "title": "Lunalisa",
+          "url": "https://luna-lisa.art",
+          "description": "Free credits. AI product photos, posters, image-to-video."
         }
       ]
     },
@@ -473,6 +478,11 @@
           "description": "Orchestrate native coding-agent sessions locally"
         },
         {
+          "title": "YYLO",
+          "url": "https://github.com/yylo-dev/yylo",
+          "description": "Command-line orchestrator for coding agents"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
@@ -551,6 +561,11 @@
           "title": "SEMAPRAX",
           "url": "https://wavect.io/semaprax/",
           "description": "Pre-alpha language and compiler for semantic agent edits"
+        },
+        {
+          "title": "Agent Coordinator",
+          "url": "https://github.com/alanhoff/agent-coordinator",
+          "description": "Bounded Codex work graphs with resumable local state"
         }
       ]
     },
@@ -768,6 +783,11 @@
           "title": "Fireflies.ai",
           "url": "https://fireflies.ai/",
           "description": "An AI meeting assistant that joins your calls to record, transcribe, summarize, and analyze voice conversations."
+        },
+        {
+          "title": "HyNote",
+          "url": "https://hynote.ai?utm_source=ai-tool-collection&utm_medium=referral&utm_campaign=ai-tools-manager",
+          "description": "AI note taker for meetings, audio & PDF summaries"
         },
         {
           "title": "Motion",
