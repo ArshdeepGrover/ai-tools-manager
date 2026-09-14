@@ -478,6 +478,11 @@
           "description": "Orchestrate native coding-agent sessions locally"
         },
         {
+          "title": "YYLO",
+          "url": "https://github.com/yylo-dev/yylo",
+          "description": "Command-line orchestrator for coding agents"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
