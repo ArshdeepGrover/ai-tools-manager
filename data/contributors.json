@@ -656,6 +656,17 @@
         "Added HyNote to AI Productivity category"
       ],
       "website": "https://hynote.ai?utm_source=ai-tool-collection&utm_medium=referral&utm_campaign=ai-tools-manager",
+       "role": "Contributor"
+},
+{
+      "name": "Alan Hoffmeister",
+      "github": "alanhoff",
+      "avatar": "https://github.com/alanhoff.png",
+      "tagline": "Open-source developer",
+      "contributions": [
+        "Added Agent Coordinator to AI Coding & Development"
+      ],
+      "website": "https://github.com/alanhoff/agent-coordinator",
       "role": "Contributor"
     }
   ]

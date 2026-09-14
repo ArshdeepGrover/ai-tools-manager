@@ -304,6 +304,11 @@
           "title": "Catoon",
           "url": "https://catoon.xyz",
           "description": "Turn long stories into editable AI comic chapters."
+        },
+        {
+          "title": "Lunalisa",
+          "url": "https://luna-lisa.art",
+          "description": "Free credits. AI product photos, posters, image-to-video."
         }
       ]
     },
@@ -551,6 +556,11 @@
           "title": "SEMAPRAX",
           "url": "https://wavect.io/semaprax/",
           "description": "Pre-alpha language and compiler for semantic agent edits"
+        },
+        {
+          "title": "Agent Coordinator",
+          "url": "https://github.com/alanhoff/agent-coordinator",
+          "description": "Bounded Codex work graphs with resumable local state"
         }
       ]
     },
