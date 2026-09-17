@@ -674,6 +674,16 @@
       ],
       "website": "https://github.com/alanhoff/agent-coordinator",
       "role": "Contributor"
+    },
+    {
+      "name": "33hodl",
+      "github": "33hodl",
+      "avatar": "https://github.com/33hodl.png",
+      "tagline": "Hermes Startup maintainer",
+      "contributions": [
+        "Added Hermes Startup to AI Productivity"
+      ],
+      "role": "Contributor"
     }
   ]
 }
