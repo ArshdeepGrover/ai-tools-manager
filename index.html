@@ -428,6 +428,31 @@
       box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
     }
 
+    /* Shown instead of a broken image when an avatar URL is missing or fails
+       to load. Reuses the avatar size classes so dimensions stay identical. */
+    .avatar-initial-fallback {
+      box-sizing: border-box;
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #3b82f6 0%, #7c3aed 100%);
+      color: #ffffff;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .contributor-avatar-modern.avatar-initial-fallback {
+      font-size: 20px;
+    }
+
+    .modal-avatar.avatar-initial-fallback {
+      font-size: 32px;
+    }
+
     .contributor-info {
       position: relative;
       z-index: 2;
@@ -918,6 +943,10 @@
       .contributor-avatar-modern {
         width: 40px;
         height: 40px;
+      }
+
+      .contributor-avatar-modern.avatar-initial-fallback {
+        font-size: 17px;
       }
 
       .text-blue-600 {

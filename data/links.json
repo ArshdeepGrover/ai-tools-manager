@@ -156,6 +156,11 @@
           "description": "Free design tool with AI features"
         },
         {
+          "title": "Image Describer",
+          "url": "https://imagedescriber.dev",
+          "description": "Free AI image descriptions, alt text, OCR, and prompts"
+        },
+        {
           "title": "DALL-E 2",
           "url": "https://openai.com/dall-e-2",
           "description": "AI image generator with free credits"
@@ -276,11 +281,6 @@
           "description": "Multipurpose Chatbot with features like Video/Image/Music Generation, Image Editor, and much more."
         },
         {
-          "title": "ImagineClip",
-          "url": "https://imagineclip.com",
-          "description": "AI video generator for avatar clips, stylized scenes, and social-ready content."
-        },
-        {
           "title": "Aurcue",
           "url": "https://www.aurcue.com",
           "description": "AI personal aesthetic assistant for color analysis, outfit upgrades, hairstyles, glasses, and daily style decisions from a photo."
@@ -299,6 +299,11 @@
           "title": "Catoon",
           "url": "https://catoon.xyz",
           "description": "Turn long stories into editable AI comic chapters."
+        },
+        {
+          "title": "Lunalisa",
+          "url": "https://luna-lisa.art",
+          "description": "Free credits. AI product photos, posters, image-to-video."
         }
       ]
     },
@@ -357,6 +362,11 @@
       "name": "AI Coding & Development",
       "icon": "💻",
       "links": [
+        {
+          "title": "Agent QA",
+          "url": "https://vostride.com/docs/agent-qa",
+          "description": "AI web/mobile QA; FSL-1.1-ALv2; model costs separate"
+        },
         {
           "title": "GitHub Copilot",
           "url": "https://github.com/features/copilot",
@@ -463,6 +473,16 @@
           "description": "Streaming Markdown renderer for AI chat interfaces"
         },
         {
+          "title": "Better Agent",
+          "url": "https://github.com/ofekron/better-agent",
+          "description": "Orchestrate native coding-agent sessions locally"
+        },
+        {
+          "title": "YYLO",
+          "url": "https://github.com/yylo-dev/yylo",
+          "description": "Command-line orchestrator for coding agents"
+        },
+        {
           "title": "Aider",
           "url": "https://aider.chat/",
           "description": "AI pair programming in your terminal"
@@ -536,6 +556,16 @@
           "title": "tokencost",
           "url": "https://github.com/alvabillwu/tokencost",
           "description": "LLM token usage and cost calculator for OpenAI and Anthropic models"
+        },
+        {
+          "title": "SEMAPRAX",
+          "url": "https://wavect.io/semaprax/",
+          "description": "Pre-alpha language and compiler for semantic agent edits"
+        },
+        {
+          "title": "Agent Coordinator",
+          "url": "https://github.com/alanhoff/agent-coordinator",
+          "description": "Bounded Codex work graphs with resumable local state"
         }
       ]
     },
@@ -587,11 +617,6 @@
           "title": "Vmaker AI",
           "url": "https://www.vmaker.com/",
           "description": "Generate videos from text, voice, or docs and edit with AI"
-        },
-        {
-          "title": "ImagineClip",
-          "url": "https://imagineclip.com?ref=ai-tools-manager",
-          "description": "AI video generator for social clips and avatars"
         },
         {
           "title": "Flow",
@@ -675,6 +700,11 @@
           "description": "Free AI meeting transcription"
         },
         {
+          "title": "Orkas",
+          "url": "https://github.com/Orkas-AI/Orkas",
+          "description": "Open-source, local-first desktop AI workforce that turns goals into plans and coordinates specialist agents through one chat."
+        },
+        {
           "title": "Calendly AI",
           "url": "https://calendly.com",
           "description": "Smart scheduling with free plan"
@@ -688,6 +718,11 @@
           "title": "Perplexity AI",
           "url": "https://perplexity.ai",
           "description": "Free AI search & research assistant"
+        },
+        {
+          "title": "AI Tools Radar",
+          "url": "https://aitoolsradar.com",
+          "description": "AI tools directory with daily AI industry news and product discovery"
         },
         {
           "title": "NotebookLM",
@@ -753,6 +788,11 @@
           "title": "Fireflies.ai",
           "url": "https://fireflies.ai/",
           "description": "An AI meeting assistant that joins your calls to record, transcribe, summarize, and analyze voice conversations."
+        },
+        {
+          "title": "HyNote",
+          "url": "https://hynote.ai?utm_source=ai-tool-collection&utm_medium=referral&utm_campaign=ai-tools-manager",
+          "description": "AI note taker for meetings, audio & PDF summaries"
         },
         {
           "title": "Motion",
@@ -828,6 +868,11 @@
           "title": "Memex",
           "url": "https://www.memexlab.ai/",
           "description": "Private AI journal for searchable life memories"
+        },
+        {
+          "title": "IdeaHunter",
+          "url": "https://ideahunter.today",
+          "description": "AI startup idea research for solo founders"
         }
       ]
     },
@@ -859,6 +904,11 @@
           "title": "Auferet",
           "url": "https://auferet.com",
           "description": "AI game master for solo text adventures and tabletop RPGs, with long-term story memory and uploadable lore"
+        },
+        {
+          "title": "Fortuneteller.Today",
+          "url": "https://www.fortuneteller.today",
+          "description": "AI tarot, astrology, BaZi, numerology, and rune readings."
         }
       ]
     },

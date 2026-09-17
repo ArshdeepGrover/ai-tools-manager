@@ -1,7 +1,7 @@
 // Service Worker for AI Tools Hub PWA
 // Implements offline functionality with strategic caching
 
-const CACHE_NAME = 'ai-tools-hub-v1.0.0';
+const CACHE_NAME = 'ai-tools-hub-v1.0.1';
 const DATA_CACHE_NAME = 'ai-tools-data-v1.0.0';
 
 // Files to cache for offline functionality
