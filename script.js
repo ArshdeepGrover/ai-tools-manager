@@ -48,6 +48,62 @@ function safeUrl(url) {
   return "#";
 }
 
+// --- Avatar fallback --------------------------------------------------
+// Contributor avatars are community-supplied URLs, so they can be missing,
+// malformed, or simply stop resolving (deleted GitHub account, dead CDN).
+// In those cases we render the contributor's first initial instead of a
+// broken-image icon.
+
+// First initial for a contributor name; ignores leading punctuation/emoji
+// and falls back to "?" when no letter or digit can be found.
+function contributorInitial(name) {
+  const match = String(name == null ? "" : name).match(/[a-z0-9]/i);
+  return match ? match[0].toUpperCase() : "?";
+}
+
+// Builds the avatar markup for a contributor.
+// `avatarClass` is the existing size/shape class for the surface (card vs modal);
+// the fallback reuses it so both variants share identical dimensions.
+function contributorAvatarHTML(contributor, avatarClass, options) {
+  const opts = options || {};
+  const initial = escapeHtml(contributorInitial(contributor.name));
+  const classes = `${avatarClass}${opts.extraClass ? " " + opts.extraClass : ""}`;
+
+  // No usable URL at all: skip the network request and render the initial.
+  const src = safeUrl(contributor.avatar);
+  if (!contributor.avatar || src === "#") {
+    return `<span class="${classes} avatar-initial-fallback" aria-hidden="true">${initial}</span>`;
+  }
+
+  return `<img src="${escapeHtml(src)}" alt="${escapeHtml(contributor.name)}"${
+    opts.lazy ? ' loading="lazy"' : ""
+  }
+       class="${classes}"
+       data-initial="${initial}" data-fallback-class="${escapeHtml(classes)}"
+       onerror="handleAvatarError(this)" onload="handleAvatarLoad(this)" />`;
+}
+
+// Swaps a failed <img> for an initial badge. Kept idempotent because cards are
+// re-rendered on search/pagination and the handler can fire more than once.
+function handleAvatarError(img) {
+  if (!img || !img.parentNode || img.dataset.avatarFallbackApplied === "true") {
+    return;
+  }
+  img.dataset.avatarFallbackApplied = "true";
+
+  const fallback = document.createElement("span");
+  fallback.className = `${img.dataset.fallbackClass || ""} avatar-initial-fallback`;
+  fallback.setAttribute("aria-hidden", "true");
+  fallback.textContent = img.dataset.initial || "?";
+  img.replaceWith(fallback);
+}
+
+// Some hosts answer with a 200 + non-image body (error/placeholder page).
+// The browser fires `load`, not `error`, so verify we actually decoded pixels.
+function handleAvatarLoad(img) {
+  if (img && img.naturalWidth === 0) handleAvatarError(img);
+}
+
 // Favicon service for a given tool URL (used as a visual logo on cards).
 function faviconUrl(url) {
   const host = safeHostname(url);
@@ -399,8 +455,10 @@ function contributorCardHTML(contributor, index) {
       ${contributor.featured ? `<div class="floating-badge">Featured</div>` : ""}
       <div>
         <div class="flex space-x-3 mb-3 no-scroll">
-          <img src="${escapeHtml(contributor.avatar)}" alt="${name}" loading="lazy"
-               class="contributor-avatar-modern flex-shrink-0" />
+          ${contributorAvatarHTML(contributor, "contributor-avatar-modern", {
+            lazy: true,
+            extraClass: "flex-shrink-0",
+          })}
           <div class="contributor-info flex-1 min-w-0">
             <h4 class="font-semibold text-base truncate" style="color: var(--text-primary);">${name}</h4>
             ${
@@ -660,7 +718,7 @@ function openContributorModal(contributorIndex) {
         </button>
         
         <div class="modal-header">
-          <img src="${escapeHtml(contributor.avatar)}" alt="${cName}" class="modal-avatar" />
+          ${contributorAvatarHTML(contributor, "modal-avatar")}
           <div class="modal-title-section flex-1">
             <h2>${cName}</h2>
             ${
