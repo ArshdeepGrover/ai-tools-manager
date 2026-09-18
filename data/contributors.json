@@ -684,6 +684,16 @@
         "Added Hermes Startup to AI Productivity"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "xizhuomengcontin",
+      "github": "xizhuomengcontin",
+      "avatar": "https://github.com/xizhuomengcontin.png",
+      "tagline": "OrcaReplay maintainer",
+      "contributions": [
+        "Added OrcaReplay to AI Coding & Development"
+      ],
+      "role": "Contributor"
     }
   ]
 }
