@@ -684,6 +684,17 @@
         "Added Hermes Startup to AI Productivity"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Runbo Li",
+      "github": "runshouse",
+      "avatar": "https://github.com/runshouse.png",
+      "tagline": "Magic Hour co-founder",
+      "contributions": [
+        "Added Magic Hour to AI Video & Audio"
+      ],
+      "website": "https://magichour.ai",
+      "role": "Contributor"
     }
   ]
 }

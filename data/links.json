@@ -687,6 +687,11 @@
           "title": "ImagineClip",
           "url": "https://imagineclip.com",
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
+        },
+        {
+          "title": "Magic Hour",
+          "url": "https://magichour.ai",
+          "description": "AI video creation platform with a free plan"
         }
       ]
     },
