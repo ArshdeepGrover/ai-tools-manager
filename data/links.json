@@ -566,6 +566,11 @@
           "title": "Agent Coordinator",
           "url": "https://github.com/alanhoff/agent-coordinator",
           "description": "Bounded Codex work graphs with resumable local state"
+        },
+        {
+          "title": "OrcaReplay",
+          "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
+          "description": "Record, diff and replay AI agent runs from local traces"
         }
       ]
     },
