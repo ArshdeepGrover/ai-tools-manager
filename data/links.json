@@ -689,6 +689,11 @@
           "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
         },
         {
+          "title": "shortshort",
+          "url": "https://www.shortshort.io",
+          "description": "Long video in, captioned 9:16 shorts out. 60 free credits"
+        },
+        {
           "title": "ImagineClip",
           "url": "https://imagineclip.com",
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
