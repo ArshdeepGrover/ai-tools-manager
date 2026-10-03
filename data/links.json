@@ -309,6 +309,11 @@
           "title": "PhotoGenerAI",
           "url": "https://photogenerai.com",
           "description": "Free AI photo generator and editor, no sign-up needed"
+        },
+        {
+          "title": "Tesla Wrap Generator",
+          "url": "https://teslawrapgenerator.com/",
+          "description": "Generate Tesla Paint Shop wraps from a prompt or photo, with 3D preview and PNG export"
         }
       ]
     },
