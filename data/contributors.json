@@ -694,6 +694,16 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Louis Beaumont",
+      "github": "louis030195",
+      "avatar": "https://github.com/louis030195.png",
+      "tagline": "Hyperconsciousness maintainer",
+      "contributions": [
+        "Added Hyperconsciousness to AI Coding & Development"
+      ],
+      "role": "Contributor"
     }
   ]
 }
