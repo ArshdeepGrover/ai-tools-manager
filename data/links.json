@@ -576,6 +576,11 @@
           "title": "OrcaReplay",
           "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
           "description": "Record, diff and replay AI agent runs from local traces"
+        },
+        {
+          "title": "Hyperconsciousness",
+          "url": "https://github.com/louis030195/hyperconsciousness",
+          "description": "Developer-alpha encrypted agent memory with CLI and MCP"
         }
       ]
     },
