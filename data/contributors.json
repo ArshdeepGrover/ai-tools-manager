@@ -705,6 +705,17 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "grades2018",
+      "github": "grades2018",
+      "avatar": "https://github.com/grades2018.png",
+      "tagline": "ImagineYourBook team",
+      "contributions": [
+        "Added ImagineYourBook to AI Writing & Content"
+      ],
+      "website": "https://www.imagineyourbook.com/",
+      "role": "Contributor"
     }
   ]
 }
