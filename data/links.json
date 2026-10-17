@@ -576,6 +576,11 @@
           "title": "OrcaReplay",
           "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
           "description": "Record, diff and replay AI agent runs from local traces"
+        },
+        {
+          "title": "Aident Loadout",
+          "url": "https://aident.ai",
+          "description": "Hosted MCP server and CLI that connects agents to apps"
         }
       ]
     },

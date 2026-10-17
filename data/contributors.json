@@ -705,6 +705,17 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "ljhskyso",
+      "github": "ljhskyso",
+      "avatar": "https://github.com/ljhskyso.png",
+      "tagline": "Works on Aident Loadout",
+      "contributions": [
+        "Added Aident Loadout to AI Coding & Development"
+      ],
+      "website": "https://aident.ai",
+      "role": "Contributor"
     }
   ]
 }
