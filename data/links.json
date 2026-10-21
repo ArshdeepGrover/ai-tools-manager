@@ -893,6 +893,11 @@
           "title": "Hermes Startup",
           "url": "https://hermesstartup.com",
           "description": "Free: 10 questions, 10 proven ideas via Hermes Agent"
+        },
+        {
+          "title": "SummarizAI",
+          "url": "https://summarizai.ink",
+          "description": "Chrome extension that adds AI summaries, chapters, chat, and study flashcards to YouTube videos (free plan)"
         }
       ]
     },
