@@ -576,6 +576,11 @@
           "title": "OrcaReplay",
           "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
           "description": "Record, diff and replay AI agent runs from local traces"
+        },
+        {
+          "title": "deed.page",
+          "url": "https://deed.page",
+          "description": "Free hosting for HTML that coding agents publish"
         }
       ]
     },
