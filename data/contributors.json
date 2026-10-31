@@ -705,6 +705,15 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Tera Studio",
+      "github": "Teralabsx",
+      "avatar": "https://github.com/Teralabsx.png",
+      "contributions": [
+        "Added Tera Studio"
+      ],
+      "website": "https://terastudio.co"
     }
   ]
 }
