@@ -309,6 +309,11 @@
           "title": "PhotoGenerAI",
           "url": "https://photogenerai.com",
           "description": "Free AI photo generator and editor, no sign-up needed"
+        },
+        {
+          "title": "Lookslate",
+          "url": "https://lookslate.com/",
+          "description": "Free AI makeup previews on sample faces, no sign-up. Six looks, three steps to recreate each."
         }
       ]
     },
