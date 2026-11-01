@@ -705,6 +705,16 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Zhijun Song",
+      "github": "szj2ys",
+      "avatar": "https://github.com/szj2ys.png",
+      "tagline": "Lookslate maker",
+      "contributions": [
+        "Added Lookslate to AI Design & Images"
+      ],
+      "role": "Contributor"
     }
   ]
 }
