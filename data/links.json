@@ -309,6 +309,11 @@
           "title": "PhotoGenerAI",
           "url": "https://photogenerai.com",
           "description": "Free AI photo generator and editor, no sign-up needed"
+        },
+        {
+          "title": "MakeImg",
+          "url": "https://makeimg.ai",
+          "description": "AI photo generator with 11 models and free daily credits"
         }
       ]
     },
