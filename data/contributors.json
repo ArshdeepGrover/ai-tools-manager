@@ -705,6 +705,17 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Louis Chi",
+      "github": "ocxers",
+      "avatar": "https://github.com/ocxers.png",
+      "tagline": "RefVid maker",
+      "contributions": [
+        "Added RefVid to AI Video & Audio"
+      ],
+      "website": "https://refvid.com",
+      "role": "Contributor"
     }
   ]
 }
