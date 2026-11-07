@@ -657,7 +657,7 @@
       "name": "bao",
       "github": "cute-baobao",
       "avatar": "https://github.com/cute-baobao.png",
-      "tagline": "HyNote — AI note-taking for meetings, audio & PDFs",
+      "tagline": "HyNote \u2014 AI note-taking for meetings, audio & PDFs",
       "contributions": [
         "Added HyNote to AI Productivity category"
       ],
@@ -676,7 +676,7 @@
       "role": "Contributor"
     },
     {
-      "name": "Arsène Huot",
+      "name": "Ars\u00e8ne Huot",
       "github": "arseneHuot",
       "avatar": "https://github.com/arseneHuot.png",
       "tagline": "shortshort maker",
@@ -705,6 +705,15 @@
         "Added OrcaReplay to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "dnzg",
+      "github": "dnzg",
+      "avatar": "https://github.com/dnzg.png",
+      "contributions": [
+        "Added Transcribe Video: To The Text"
+      ],
+      "website": "https://video2text.ttt.so"
     }
   ]
 }

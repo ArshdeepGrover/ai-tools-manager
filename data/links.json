@@ -2,7 +2,7 @@
   "categories": [
     {
       "name": "AI Writing & Content",
-      "icon": "✍️",
+      "icon": "\u270d\ufe0f",
       "links": [
         {
           "title": "ChatGPT",
@@ -148,7 +148,7 @@
     },
     {
       "name": "AI Design & Images",
-      "icon": "🎨",
+      "icon": "\ud83c\udfa8",
       "links": [
         {
           "title": "Canva AI",
@@ -268,7 +268,7 @@
         {
           "title": "Lovart",
           "url": "https://lovart.ai",
-          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets — acting like a one-person design team in your browser."
+          "description": "An AI Design Agent that turns your text prompts into full brand visuals, videos, and design assets \u2014 acting like a one-person design team in your browser."
         },
         {
           "title": "Let's Enhance",
@@ -314,7 +314,7 @@
     },
     {
       "name": "AI Presentations",
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "links": [
         {
           "title": "Gamma",
@@ -365,7 +365,7 @@
     },
     {
       "name": "AI Coding & Development",
-      "icon": "💻",
+      "icon": "\ud83d\udcbb",
       "links": [
         {
           "title": "Agent QA",
@@ -581,7 +581,7 @@
     },
     {
       "name": "AI Video & Audio",
-      "icon": "🎬",
+      "icon": "\ud83c\udfac",
       "links": [
         {
           "title": "Loom AI",
@@ -641,7 +641,7 @@
         {
           "title": "Suno",
           "url": "https://suno.ai/",
-          "description": "AI model that generates complete songs—lyrics, instrumentals, and vocals—from a simple text prompt."
+          "description": "AI model that generates complete songs\u2014lyrics, instrumentals, and vocals\u2014from a simple text prompt."
         },
         {
           "title": "HeyGen",
@@ -707,12 +707,17 @@
     },
     {
       "name": "AI Productivity",
-      "icon": "⚡",
+      "icon": "\u26a1",
       "links": [
         {
           "title": "Otter.ai",
           "url": "https://otter.ai",
           "description": "Free AI meeting transcription"
+        },
+        {
+          "title": "Transcribe Video: To The Text",
+          "url": "https://video2text.ttt.so",
+          "description": "iOS app for video/YouTube/Vimeo/live-voice transcription with speaker split, Summarize, and TXT/DOCX export; free \u22485 min + 5 MB"
         },
         {
           "title": "Orkas",
@@ -898,7 +903,7 @@
     },
     {
       "name": "AI Entertainment",
-      "icon": "😂",
+      "icon": "\ud83d\ude02",
       "links": [
         {
           "title": "Super Meme",
@@ -934,7 +939,7 @@
     },
     {
       "name": "AI Model Prototyping",
-      "icon": "🧪",
+      "icon": "\ud83e\uddea",
       "links": [
         {
           "title": "Google AI Studio",
@@ -955,7 +960,7 @@
     },
     {
       "name": "AI Game & Strategy",
-      "icon": "🎮",
+      "icon": "\ud83c\udfae",
       "links": [
         {
           "title": "Chess Champ",
@@ -986,7 +991,7 @@
     },
     {
       "name": "AI Local Models",
-      "icon": "🖥️",
+      "icon": "\ud83d\udda5\ufe0f",
       "links": [
         {
           "title": "GPT4All",
