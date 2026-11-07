@@ -713,7 +713,9 @@
       "contributions": [
         "Added Transcribe Video: To The Text"
       ],
-      "website": "https://video2text.ttt.so"
+      "website": "https://video2text.ttt.so",
+      "role": "Contributor",
+      "tagline": "Maker of Transcribe Video: To The Text"
     }
   ]
 }
