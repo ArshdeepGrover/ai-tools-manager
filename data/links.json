@@ -309,6 +309,11 @@
           "title": "PhotoGenerAI",
           "url": "https://photogenerai.com",
           "description": "Free AI photo generator and editor, no sign-up needed"
+        },
+        {
+          "title": "objekto.io",
+          "url": "https://objekto.io/en",
+          "description": "Describe an object: AI designs it, a workshop 3D prints it"
         }
       ]
     },
