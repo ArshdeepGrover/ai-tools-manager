@@ -143,6 +143,16 @@
           "title": "Junia AI",
           "url": "https://junia.ai",
           "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning."
+        },
+        {
+          "title": "ImagineYourBook",
+          "url": "https://www.imagineyourbook.com/",
+          "description": "Plans and drafts full books, exports EPUB/Word. Free trial"
+        },
+        {
+          "title": "AI eBook Pro",
+          "url": "https://aiebookpro.com/",
+          "description": "Turn one sentence into a full eBook with chapters, cover and PDF/EPUB/DOCX export"
         }
       ]
     },
@@ -306,9 +316,30 @@
           "description": "Free credits. AI product photos, posters, image-to-video."
         },
         {
+          "title": "RemoveMate",
+          "url": "https://removemate.com/",
+          "description": "Free AI background removal and image cleanup tools for product, portrait and pet photos."
+        },
+        {
           "title": "PhotoGenerAI",
           "url": "https://photogenerai.com",
           "description": "Free AI photo generator and editor, no sign-up needed"
+        },
+        {
+          "title": "MakeImg",
+          "url": "https://makeimg.ai",
+          "description": "AI photo generator with 11 models and free daily credits"
+          "title": "Lookslate",
+          "url": "https://lookslate.com/",
+          "description": "Free AI makeup previews on sample faces, no sign-up. Six looks, three steps to recreate each."
+          "title": "APPLORE",
+          "url": "https://applore.app/ai-app-icon-generator",
+          "description": "AI app icon generator that uses 18,000+ real App Store and Google Play icons as style references. Free to start"
+        },
+        {
+          "title": "RealFun Color",
+          "url": "https://color.realfun.online/does-this-color-suit-me?utm_source=ai_tools_hub&utm_medium=directory&utm_campaign=realfun_color_listing_20261009",
+          "description": "Photo-based personal color tool that checks whether a specific color suits you and gives practical wardrobe guidance."
         }
       ]
     },
@@ -576,6 +607,19 @@
           "title": "OrcaReplay",
           "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
           "description": "Record, diff and replay AI agent runs from local traces"
+        },
+        {
+          "title": "AUTOMATER.ai",
+          "url": "https://automater.ai",
+          "description": "Tray app tracking AI coding agents, sessions and usage"
+          "title": "Aident Loadout",
+          "url": "https://aident.ai",
+          "description": "Hosted MCP server and CLI that connects agents to apps"
+        },
+        {
+          "title": "Hyperconsciousness",
+          "url": "https://github.com/louis030195/hyperconsciousness",
+          "description": "Developer-alpha encrypted agent memory with CLI and MCP"
         }
       ]
     },
@@ -699,6 +743,11 @@
           "description": "Long video in, captioned 9:16 shorts out. 60 free credits"
         },
         {
+          "title": "make.ad",
+          "url": "https://www.make.ad",
+          "description": "Describe your product, get a finished 45-second video ad with a character, a jingle and animated scenes. First ad free, no card."
+        },
+        {
           "title": "ImagineClip",
           "url": "https://imagineclip.com",
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
@@ -707,6 +756,17 @@
           "title": "RefVid",
           "url": "https://refvid.com",
           "description": "Consistent product and character AI videos. First 5s free"
+          "title": "Seedance Now",
+          "url": "https://seedancenow.com",
+          "description": "Multi-model AI video generator with free credits on sign-up"
+          "title": "AI Fruit Video",
+          "url": "https://aifruitvideo.com",
+          "description": "Free AI generator for funny talking-fruit video clips."
+        },
+        {
+          "title": "Magic Hour",
+          "url": "https://magichour.ai",
+          "description": "AI video creation platform with a free plan"
         }
       ]
     },
@@ -898,6 +958,11 @@
           "title": "Hermes Startup",
           "url": "https://hermesstartup.com",
           "description": "Free: 10 questions, 10 proven ideas via Hermes Agent"
+        },
+        {
+          "title": "SummarizAI",
+          "url": "https://summarizai.ink",
+          "description": "Chrome extension that adds AI summaries, chapters, chat, and study flashcards to YouTube videos (free plan)"
         }
       ]
     },
