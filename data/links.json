@@ -734,6 +734,11 @@
           "description": "Long video in, captioned 9:16 shorts out. 60 free credits"
         },
         {
+          "title": "make.ad",
+          "url": "https://www.make.ad",
+          "description": "Describe your product, get a finished 45-second video ad with a character, a jingle and animated scenes. First ad free, no card."
+        },
+        {
           "title": "ImagineClip",
           "url": "https://imagineclip.com",
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
