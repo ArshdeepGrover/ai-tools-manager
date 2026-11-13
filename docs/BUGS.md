@@ -2,151 +2,174 @@
 
 Single source of truth for known defects in this repo. Kiro maintains this file: it re-analyses the codebase and updates this register **before** fixing anything, so the list reflects reality rather than history.
 
-- **Audited:** 2026-11-13 against `master` @ `15c3cf9`
+- **Audited:** 2026-11-13 against `master` @ `67d7d45`
 - **Protocol:** `.kiro/steering/bug-workflow.md`
 
 ## Legend
 
-| Severity | Meaning |
-|---|---|
-| **P0** | Live site is broken for all visitors |
-| **P1** | Blocks contributors or CI; data loss |
-| **P2** | Degrades UX, SEO, or offline behaviour |
-| **P3** | Cosmetic, dead code, stale docs |
+| Severity | Meaning                                |
+| -------- | -------------------------------------- |
+| **P0**   | Live site is broken for all visitors   |
+| **P1**   | Blocks contributors or CI; data loss   |
+| **P2**   | Degrades UX, SEO, or offline behaviour |
+| **P3**   | Cosmetic, dead code, stale docs        |
 
 Status: `open` · `in-progress` · `fixed` · `wontfix`
 
 ---
 
-## P0 — Live site broken
+## Open
 
-### BUG-001 · `data/links.json` is not valid JSON · open
+### BUG-013 · Social preview image shows stale counts and clipped text · P3 · open
 
-**Symptom.** The tools list never renders. `loadLinks()` in `script.js` throws on `response.json()` and the catch block replaces `#main-content` with `Error loading links`. The entire directory — every tool, every category — is invisible to visitors.
+**Symptom.** `assets/og-image.svg` (and the PNG rendered from it, now served to every social crawler) advertises **100+ AI Tools** and **10+ Categories**. Actual counts are 211 tools and exactly 10 categories. The `Open Source` label also overflows its rounded pill, visibly crossing the border.
 
-**Scope.** Committed on `master`; working tree is clean, so this is what Vercel serves.
+**Cause.** The badge text is hard-coded in the SVG at the `<text>` nodes around line 58 and has not been updated as the directory grew. The overflow is a layout issue in the same file — the pill width was sized for shorter text.
 
-**Cause.** Conflict resolution in six back-to-back tool-addition merges dropped the `},` / `{` separators between adjacent link objects. Three regions are damaged, and nine tool entries have collapsed into three objects:
+**Why it is still open.** This is a design asset, and editing the text requires re-sizing the pill to avoid making the overflow worse. Left for a deliberate design pass rather than bundled into a bug sweep.
 
-| Object starts | Entries merged into it | Tools silently lost |
-|---|---|---|
-| line 328 | `objekto.io`, `MakeImg`, `Lookslate`, `APPLORE` | 3 |
-| line 614 | `AUTOMATER.ai`, `Aident Loadout` | 1 |
-| line 758 | `RefVid`, `Seedance Now`, `AI Fruit Video` | 2 |
+**Fix direction.** Update both badge labels, widen the `Open Source` pill, then re-render: `rsvg-convert -w 1200 -h 630 -o assets/og-image.png assets/og-image.svg`.
 
-Missing separators sit at lines 332, 335, 338, 618, 762, 765.
-
-**Trap.** Inserting the missing braces makes the file *parse*, but JSON duplicate-key semantics mean the last `title`/`url`/`description` in each merged object wins. A naive syntax fix therefore keeps the file broken-but-silent and drops six tools. Each object must be split back into its original entries, recovering the lost field values from the source branches (`add-makeimg`, `add-lookslate`, `add-applore`, `add-automater-ai`, `add-refvid`, `add-seedance-now`).
-
-**Verify.** `npm run validate-json` passes, `npm run check-duplicates` passes, and the category/tool counts rise by 6 tools versus the broken file.
+**Verify.** The regenerated PNG is 1200×630, the badges read the current counts, and no text crosses a pill border.
 
 ---
 
-### BUG-002 · `data/contributors.json` is not valid JSON · open
+### BUG-014 · One tool URL uses `http://` and redirects · P3 · open
 
-**Symptom.** Same failure mode in `loadContributors()`: the contributors wall, its count, and the footer contributor stat all fail to populate.
+**Symptom.** `data/links.json` lists `http://pvid.app/`, which answers `301` and redirects. Every other entry is HTTPS, and `validate-contributors.js` already treats non-HTTPS as an error for contributor URLs.
 
-**Cause.** Two distinct defects from the same merges:
+**Fix direction.** Follow the redirect to its final HTTPS target and update the entry. Verify the destination is the intended tool before changing the stored URL.
 
-1. **Merged objects.** The object starting at line 742 holds four `name` keys — `dnzg`, `Louis Chi`, `Zhijun Song`, `ViggoZ` — collapsed into one. Three contributors are silently lost; separators are missing at lines 752 and 766, and the `contributions` array of the `APPLORE` entry is closed inline (`"..."],`) instead of on its own line.
-2. **Trailing commas** before a closing `}` at lines 771, 781, 791, 801 (`website` fields of `Frank-Masciopinto`, `ljhskyso`, `grades2018`, plus the malformed array above).
-
-**Verify.** `node scripts/validate-contributors.js --quick` exits 0 and reports 73 contributors (70 currently counted, 3 recovered from the merged object).
+**Verify.** `grep '"url": "http://' data/links.json` returns nothing, and `npm run validate` reports the entry reachable.
 
 ---
 
-## P1 — Blocks contributors or CI
+### BUG-015 · No formatter config, so format-on-save restyles whole files · P3 · open
 
-### BUG-003 · Nothing validates `master` after a merge · open
+**Symptom.** Editing one line of `sw.js` through an editor with format-on-save rewrote all 166 remaining lines, converting the file's single quotes to double quotes. The same risk applies to any file a contributor touches, which buries one-line changes in whole-file diffs and causes avoidable merge conflicts — the conditions that produced BUG-001 and BUG-002.
 
-**Symptom.** BUG-001 and BUG-002 reached production undetected. This is the root cause that let them land.
+**Cause.** The repo has no `.prettierrc`, `.editorconfig`, or `.prettierignore`. Editors fall back to their own defaults, which disagree with the committed style: `sw.js` and `animations.js` use single quotes, while `script.js` and `scripts/*.js` use double.
 
-**Cause.** `check-duplicates.yml` and `validate-data.yml` trigger only on `pull_request`. They validate the *branch head*, never the *merge result*. The pre-commit hook (`.github/hooks/pre-commit`) checks staged files, so it does not run for a merge commit created by GitHub's UI. Conflict damage introduced during resolution therefore has no gate at all.
+**Fix direction.** Commit an `.editorconfig` and a `.prettierrc` that encode the dominant style (2-space indent, double quotes, semicolons, trailing commas), then reformat the stragglers in one isolated commit so future diffs stay minimal. Do not mix that reformat with a functional change.
 
-**Fix direction.** Add `push: branches: [master, production]` to the data-validation workflow so every merge result is parsed, and consider `merge_group` if merge queues are enabled later. Keep the PR triggers as they are.
-
-**Verify.** Push a branch with deliberately broken JSON to a scratch branch and confirm the workflow fails.
-
----
-
-### BUG-004 · Six contributors are missing the required `role` field · open
-
-**Symptom.** Even once BUG-002 is fixed, `validate-contributors.js --quick` fails: `role` is in `REQUIRED_FIELDS`, and 64 of 70 entries have it.
-
-**Cause.** The contributor examples in `README.md` and `docs/CONTRIBUTING.md` omit `role` entirely, so contributors copy an invalid template. `docs/CONTRIBUTOR_EXAMPLE.md` should be checked against the validator too.
-
-**Fix direction.** Backfill `"role": "Contributor"` on the affected entries *and* add `role` to both documented examples, otherwise the problem returns with the next PR.
-
-**Verify.** `node scripts/validate-contributors.js --quick` reports no missing fields; the docs examples validate when pasted in.
-
----
-
-## P2 — Degraded UX, SEO, offline
-
-### BUG-005 · Service worker caches the wrong asset set · open
-
-**Symptom.** Offline and repeat visitors get a partially-styled page with no entrance animations.
-
-**Cause.** `FILES_TO_CACHE` in `sw.js` lists `/style.css` and `/script.js` but omits `modern.css` and `animations.js`, both of which `index.html` loads. It also pre-caches Font Awesome **6.0.0** while `index.html` requests **6.4.0**, so the cached stylesheet is never used and the real one is never cached.
-
-**Fix direction.** Add the two missing local files, align the Font Awesome URL to 6.4.0, and bump `CACHE_NAME` (currently `ai-tools-hub-v1.0.1`) so existing installs refresh.
-
-**Verify.** DevTools → Application → Cache Storage lists all five local assets under the new cache name; the page renders correctly with the network throttled to offline.
-
----
-
-### BUG-006 · Social preview images are SVG and will not render · open
-
-**Symptom.** Links shared to X/Twitter, Facebook, LinkedIn, Slack, Discord and WhatsApp show no preview image.
-
-**Cause.** `index.html` sets `og:image` and `twitter:image` to `/assets/og-image.svg`. No major social crawler supports SVG for Open Graph images; the declared `og:image:width/height` of 1200×630 is also meaningless for a vector file.
-
-**Fix direction.** Render `assets/og-image.svg` to a 1200×630 PNG, commit it, and point both meta tags at it.
-
-**Verify.** The PNG exists at the referenced path and loads over HTTPS from the deployed site.
-
----
-
-### BUG-007 · `manifest.json` references a screenshot that does not exist · open
-
-**Symptom.** 404 during PWA install; browsers drop the screenshot from the install prompt.
-
-**Cause.** `screenshots[0].src` is `/assets/og-image.png`. `assets/` contains only `favicon.svg` and `og-image.svg`.
-
-**Note.** Fixing BUG-006 creates exactly the PNG this entry expects, so handle the two together. The `icons` array also declares `sizes: "192x192"` and `"512x512"` for the same SVG, which is harmless but misleading.
-
-**Verify.** Every `src` in `manifest.json` resolves to a committed file.
-
----
-
-## P3 — Cosmetic, dead code, stale docs
-
-### BUG-008 · `sitemap.xml` contains invalid entries · open
-
-Fragment URLs (`/#tools`, `/#categories`, `/#contributors`, `/#about`) are not distinct pages and are ignored by crawlers, and the `github.com` entry points off-domain, which is invalid in a sitemap hosted on `ai-tool-collection.vercel.app`. Every `lastmod` is frozen at `2025-01-26`. Reduce to the single homepage URL with a current `lastmod`.
-
-### BUG-009 · ~190 lines of commented-out AI chat widget in `index.html` · open
-
-Two near-identical copies of an unreleased "AI Scout Agent" widget sit inside HTML comments at lines 1661–1802 and 1805–1854, each with its own markup, `<style>`, and `askAgent()` implementation. Both are inert — the duplicate `ai-window` / `ai-input` / `ai-messages` ids are not live — but they ship to every visitor and will cause real id collisions if either is ever uncommented. Delete both; the feature is recoverable from git history.
-
-### BUG-010 · Documentation contradicts the repo · open
-
-- `README.md` claims "100+ Free AI Tools" and "15+ Active Contributors"; actual counts are ~211 tools and 70 contributors.
-- `README.md`'s project-structure block omits `modern.css` and `animations.js`.
-- `docs/CONTRIBUTING.md`'s structure block lists `src/`, `tests/`, `check-duplicates.js` and root-level `links.json` / `contributors.json`, none of which exist.
-- `docs/CONTRIBUTING.md` numbers two consecutive steps "8" (Commit & Push, Create Pull Request).
-- `setup-hooks.sh` tells users to run `node validate-links.js`, but the script lives at `scripts/validate-links.js`.
-
-### BUG-011 · `validate-links.js` reports every `http://` URL as unreachable · open
-
-`checkReachability()` always calls `https.request()`, which throws `ERR_INVALID_PROTOCOL` for an `http://` URL; the `catch` turns that into `resolve(false)`. One such URL is currently in `links.json`, so `npm run validate` will always warn about it regardless of whether the host is up. Select the module from the parsed protocol. The destructured `hostname` on the same line is unused and can go.
-
-### BUG-012 · Pagination comment contradicts the code · open
-
-`script.js` sets `contributorsPerPage = 16` with the trailing comment `// 12 contributors per page (4x3 grid)`. Correct the comment to match the value, or the value to match the intended grid.
+**Verify.** Editing a single line in `sw.js` produces a single-line diff.
 
 ---
 
 ## Fixed
 
-_Nothing yet. Move entries here with the commit SHA and date when they are resolved._
+All entries below were fixed and verified on **2026-11-13**. Everything except BUG-003's event guard landed in commit `14bab45`.
+
+### BUG-001 · `data/links.json` was not valid JSON · fixed
+
+Six tool-addition merges dropped the `},`/`{` separators between adjacent link objects, fusing nine entries into three objects and leaving the file unparseable, so `loadLinks()` replaced the whole directory with `Error loading links`.
+
+Because JSON duplicate-key semantics let the last `title`/`url`/`description` win, simply inserting the missing braces would have made the file parse while silently discarding six tools. Each object was split back into its original entries, with field values recovered from the commits that introduced them:
+
+| Fused object                               | Entries restored | Recovered from                             |
+| ------------------------------------------ | ---------------- | ------------------------------------------ |
+| objekto.io + MakeImg + Lookslate + APPLORE | 4                | `3520b28`, `578cc5e`, `a3457c3`, `4bfe8a1` |
+| AUTOMATER.ai + Aident Loadout              | 2                | `c7cc235`, `4bfe8a1`                       |
+| RefVid + Seedance Now + AI Fruit Video     | 3                | `e616494`, `ccf5067`, `4bfe8a1`            |
+
+**Verified.** `npm run validate-json` passes. 211 parsed tool objects exactly match the 211 `"title":` occurrences in the raw text, confirming zero loss. `npm run check-duplicates` reports 211 links across 10 categories with no duplicates. In headless Chrome all 211 tools render, including all 9 restored entries.
+
+### BUG-002 · `data/contributors.json` was not valid JSON · fixed
+
+Same failure mode plus trailing commas: four contributors (`dnzg`, `Louis Chi`, `Zhijun Song`, `ViggoZ`) were fused into one object, and four `}` closers were preceded by a stray comma. All four entries were reconstructed from `f5c89f4`, `e616494`, `eaec35d` and `4edcd43`.
+
+**Verified.** `node scripts/validate-contributors.js --quick` passes with 70 contributors; 70 parsed objects match 70 `"name":` occurrences. All four restored contributors render in the browser across the five contributor pages.
+
+### BUG-003 · No validation gate on the merge result · fixed
+
+**Correction to the original analysis.** This entry first claimed the damage "had no gate at all". The CI logs disprove that. The PR runs _did_ catch it: `Validate Data` on `add-objekto`, `add-transcribe-video-to-the-text`, `add-refvid` and `add-automater-ai` all failed with `SyntaxError: Unexpected string in JSON at position 13474` — the same byte offset reproduced locally.
+
+The actual failure chain:
+
+1. Resolving a conflict while merging `master` into a contributor branch dropped the object separators. The first bad commit is `b7c0307`.
+2. CI ran on the branch and correctly failed.
+3. The step that posts the explanatory comment crashed with a `TypeError` before commenting (BUG-016), so the PR showed no explanation of what broke.
+4. The PRs were merged while red.
+5. No `push` gate existed, so `master` carried the breakage with no further signal.
+
+Step 5 is what this entry fixes; step 3 is BUG-016. Added a `push` trigger for `master` and `production` scoped to the two data paths, so the merge result itself is validated. Both PR-comment steps needed guarding with `github.event_name == 'pull_request'` — they read `context.issue.number` and the `pull_request` payload, neither of which exists on a push event, so without the guard every push run would throw and report failure even when validation passed.
+
+**Verified end-to-end on GitHub.** Run `43380433249`: workflow `Validate Data`, branch `master`, event `push`, result **success** in 15s. The trigger fires and the event guard holds.
+
+### BUG-016 · Validation failures never reached contributors · P1 · fixed
+
+**Found during this pass, from the CI logs — not previously recorded.**
+
+**Symptom.** Both comment steps in `validate-data.yml` crashed instead of commenting:
+
+```
+TypeError: changedFiles.includes is not a function
+##[error]Unhandled error: TypeError: changedFiles.includes is not a function
+```
+
+So a contributor whose PR failed validation saw a red check with no explanation, and a passing PR got no confirmation either. This is why the broken-JSON PRs were merged: the failure was never surfaced in the conversation.
+
+**Cause.** `context.payload.pull_request.changed_files` is an **integer count** of changed files, not an array of filenames. Calling `.includes()` on a number throws.
+
+**Fix.** Fetch the real filenames with `github.rest.pulls.listFiles` and map to `f.filename`. Also added the missing `await` on both `createComment` calls so future failures surface as step errors rather than unhandled rejections.
+
+**Verified.** Workflow YAML parses with all 5 steps intact; both embedded `github-script` blocks pass `node --check`. The comment path itself will be exercised by the next pull request that touches a data file — the type fix is confirmed against the documented payload shape and the observed `TypeError`, not yet by a green comment in a PR.
+
+### BUG-004 · Contributors were missing the required `role` field · fixed
+
+`role` is in the validator's `REQUIRED_FIELDS`, but the contributor templates in `README.md` and `docs/CONTRIBUTING.md` omitted it, so contributors copied an invalid shape. Backfilled `"role": "Contributor"` on the three affected entries (the other three arrived with the BUG-002 recovery, which restored their original `role` values) and added `role` to both documented examples, each now stating which fields are required and that `linkedin` must be a bare username.
+
+**Verified.** `validate-contributors.js --quick` reports no missing fields across all 70 entries.
+
+### BUG-005 · Service worker cached the wrong asset set · fixed
+
+`FILES_TO_CACHE` omitted `modern.css` and `animations.js`, so offline visitors got a partially-styled page, and it pre-cached Font Awesome 6.0.0 while `index.html` requests 6.4.0 — the cached copy was never used and the real one never cached. Added both local files, aligned the CDN URL to 6.4.0, and bumped `CACHE_NAME` to `ai-tools-hub-v1.0.2` so existing installs refresh.
+
+**Verified.** Every local path in `FILES_TO_CACHE` resolves to a committed file; `node --check sw.js` passes. The edit is a 12-line diff — an earlier attempt through the editor restyled all 166 lines of the file and was reverted (see BUG-015).
+
+### BUG-006 · Social preview images were SVG · fixed
+
+No major social crawler renders SVG for `og:image`, so shared links showed no preview. Rendered `assets/og-image.svg` to a 1200×630 PNG with `rsvg-convert` and pointed `og:image` and `twitter:image` at it.
+
+**Verified.** `assets/og-image.png` exists at 1200×630 with 8,669 distinct colours (not blank) and was inspected visually. Note the rendered image carries the stale counts tracked as BUG-013.
+
+### BUG-007 · `manifest.json` referenced a missing screenshot · fixed
+
+`screenshots[0].src` pointed at `/assets/og-image.png`, which did not exist. Fixed by BUG-006 creating exactly that file; no manifest edit was needed.
+
+**Verified.** Every `src` in `manifest.json` — icons, screenshots, shortcut icons, and the offline fallback — resolves to a committed file.
+
+### BUG-008 · `sitemap.xml` contained invalid entries · fixed
+
+Four fragment URLs that crawlers ignore, one off-domain `github.com` URL that is invalid in a sitemap served from this host, and a `lastmod` frozen at 2025-01-26. Reduced to the single homepage URL with a current `lastmod` and a comment explaining why.
+
+**Verified.** XML parses; one `<url>` entry with `lastmod` 2026-11-13.
+
+### BUG-009 · 195 lines of dead AI chat widget in `index.html` · fixed
+
+Two near-identical copies of an unreleased "AI Scout Agent" widget sat inside HTML comments, each with its own markup, `<style>` block and `askAgent()` implementation, shipping to every visitor. Before deleting, confirmed all 26 references to its ids and functions were inside the dead block and that no live asset referenced them. Removed lines 1662–1856; the feature remains in git history.
+
+**Verified.** `index.html` went from 1,924 to 1,729 lines; zero residual references; comment markers balanced at 56 open / 56 close; the page still renders correctly in headless Chrome.
+
+### BUG-010 · Documentation contradicted the repo · fixed
+
+- Stats refreshed: 200+ tools and 70+ contributors, replacing "100+" and "15+".
+- Nine links to the nonexistent `ai-tools-collection` repo corrected to `ai-tools-manager` across `README.md` and `docs/CONTRIBUTING.md`.
+- `README.md`'s structure block now lists `modern.css`, `animations.js`, `sw.js`, `offline.html`, `robots.txt`, `sitemap.xml`, `setup-hooks.sh` and `docs/BUGS.md`.
+- `docs/CONTRIBUTING.md`'s structure block no longer lists `src/`, `tests/`, `check-duplicates.js` or root-level JSON paths, and now shows the real `data/`, `docs/`, `scripts/` and `assets/` layout.
+- The duplicate step "8" is now correctly numbered 9.
+- `setup-hooks.sh` points at `scripts/validate-links.js` rather than a root-level path.
+
+The stale counts baked into the OG image are tracked separately as BUG-013.
+
+### BUG-011 · `validate-links.js` reported every `http://` URL as unreachable · fixed
+
+`checkReachability()` always called `https.request()`, which throws `ERR_INVALID_PROTOCOL` on an `http://` URL; the surrounding `catch` turned that into "unreachable". Now selects `http` or `https` from the parsed protocol. The unused `hostname` destructure was removed.
+
+**Verified.** Against the one `http://` entry in the data, the old logic returned `ERR_INVALID_PROTOCOL` and the new logic returns `301`. The URL itself is tracked as BUG-014.
+
+### BUG-012 · Pagination comment contradicted the code · fixed
+
+`contributorsPerPage = 16` was annotated `// 12 contributors per page (4x3 grid)`. Comment corrected to `4x4 grid`.
+
+**Verified.** The browser reports 70 contributors across 5 pages at 16 per page, matching the corrected comment.
