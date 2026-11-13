@@ -304,6 +304,11 @@
           "title": "Lunalisa",
           "url": "https://luna-lisa.art",
           "description": "Free credits. AI product photos, posters, image-to-video."
+        },
+        {
+          "title": "PhotoGenerAI",
+          "url": "https://photogenerai.com",
+          "description": "Free AI photo generator and editor, no sign-up needed"
         }
       ]
     },
@@ -566,6 +571,11 @@
           "title": "Agent Coordinator",
           "url": "https://github.com/alanhoff/agent-coordinator",
           "description": "Bounded Codex work graphs with resumable local state"
+        },
+        {
+          "title": "OrcaReplay",
+          "url": "https://github.com/Continuum-AI-Corp/OrcaReplay",
+          "description": "Record, diff and replay AI agent runs from local traces"
         }
       ]
     },
@@ -684,6 +694,11 @@
           "description": "AI tool for clipping long videos into social media shorts. 90 minutes/month on free plan."
         },
         {
+          "title": "shortshort",
+          "url": "https://www.shortshort.io",
+          "description": "Long video in, captioned 9:16 shorts out. 60 free credits"
+        },
+        {
           "title": "ImagineClip",
           "url": "https://imagineclip.com",
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
@@ -692,6 +707,11 @@
           "title": "AI Fruit Video",
           "url": "https://aifruitvideo.com",
           "description": "Free AI generator for funny talking-fruit video clips."
+        },
+        {
+          "title": "Magic Hour",
+          "url": "https://magichour.ai",
+          "description": "AI video creation platform with a free plan"
         }
       ]
     },
