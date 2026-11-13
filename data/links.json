@@ -143,6 +143,16 @@
           "title": "Junia AI",
           "url": "https://junia.ai",
           "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning."
+        },
+        {
+          "title": "ImagineYourBook",
+          "url": "https://www.imagineyourbook.com/",
+          "description": "Plans and drafts full books, exports EPUB/Word. Free trial"
+        },
+        {
+          "title": "AI eBook Pro",
+          "url": "https://aiebookpro.com/",
+          "description": "Turn one sentence into a full eBook with chapters, cover and PDF/EPUB/DOCX export"
         }
       ]
     },
@@ -306,9 +316,19 @@
           "description": "Free credits. AI product photos, posters, image-to-video."
         },
         {
+          "title": "RemoveMate",
+          "url": "https://removemate.com/",
+          "description": "Free AI background removal and image cleanup tools for product, portrait and pet photos."
+        },
+        {
           "title": "PhotoGenerAI",
           "url": "https://photogenerai.com",
           "description": "Free AI photo generator and editor, no sign-up needed"
+        },
+        {
+          "title": "RealFun Color",
+          "url": "https://color.realfun.online/does-this-color-suit-me?utm_source=ai_tools_hub&utm_medium=directory&utm_campaign=realfun_color_listing_20261009",
+          "description": "Photo-based personal color tool that checks whether a specific color suits you and gives practical wardrobe guidance."
         }
       ]
     },
@@ -581,6 +601,11 @@
           "title": "Aident Loadout",
           "url": "https://aident.ai",
           "description": "Hosted MCP server and CLI that connects agents to apps"
+        },
+        {
+          "title": "Hyperconsciousness",
+          "url": "https://github.com/louis030195/hyperconsciousness",
+          "description": "Developer-alpha encrypted agent memory with CLI and MCP"
         }
       ]
     },
@@ -707,6 +732,16 @@
           "title": "ImagineClip",
           "url": "https://imagineclip.com",
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
+        },
+        {
+          "title": "AI Fruit Video",
+          "url": "https://aifruitvideo.com",
+          "description": "Free AI generator for funny talking-fruit video clips."
+        },
+        {
+          "title": "Magic Hour",
+          "url": "https://magichour.ai",
+          "description": "AI video creation platform with a free plan"
         }
       ]
     },
