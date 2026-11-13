@@ -52,10 +52,10 @@ Visit the live website: [AI Tools Collection](https://ai-tool-collection.vercel.
 
 ## 📊 Current Stats
 
-- **100+** Free AI Tools
+- **200+** Free AI Tools
 - **10** Categories
 - **Open Source** & Community Maintained
-- **15+** Active Contributors
+- **70+** Contributors
 
 ## 🤝 How to Contribute
 
@@ -107,21 +107,33 @@ When you contribute, add yourself to the contributors list:
      "github": "your-github-username",
      "avatar": "https://github.com/your-username.png",
      "contributions": ["Added Tool Name", "Fixed bug in category X"],
-     "website": "https://your-website.com" // optional
+     "role": "Contributor",
+     "website": "https://your-website.com"
    }
    ```
+
+   `name`, `github`, `avatar`, `contributions` and `role` are required — validation
+   fails without them. `website`, `linkedin` and `tagline` are optional, and
+   `linkedin` must be a bare username, not a full URL.
 
 2. **Your profile will automatically appear** in the contributors section
 
 ## 📁 Project Structure
 
 ```
-ai-tools-collection/
+ai-tools-manager/
 ├── index.html              # Main HTML file
-├── style.css               # Styling and animations
+├── style.css               # Base styling
+├── modern.css              # Additional styling layer (loaded after style.css)
 ├── script.js               # JavaScript functionality
+├── animations.js           # Scroll effects and entrance animations
+├── sw.js                   # Service worker (PWA / offline support)
+├── offline.html            # Offline fallback page
 ├── manifest.json           # PWA manifest
 ├── package.json            # Project configuration
+├── robots.txt              # Crawler rules
+├── sitemap.xml             # Sitemap
+├── setup-hooks.sh          # Installs the pre-commit hook
 ├── README.md               # This file
 ├── data/                   # Data files
 │   ├── links.json          # AI tools database
@@ -129,7 +141,8 @@ ai-tools-collection/
 ├── docs/                   # Documentation
 │   ├── CONTRIBUTING.md     # Contribution guidelines
 │   ├── COMMIT_GUIDELINES.md # Commit message standards
-│   └── CONTRIBUTOR_EXAMPLE.md # Contributor profile template
+│   ├── CONTRIBUTOR_EXAMPLE.md # Contributor profile template
+│   └── BUGS.md             # Known-defect register
 ├── scripts/                # Validation scripts
 │   ├── validate-links.js   # Links validation
 │   └── validate-contributors.js # Contributors validation
@@ -148,8 +161,8 @@ ai-tools-collection/
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/ArshdeepGrover/ai-tools-collection.git
-   cd ai-tools-collection
+   git clone https://github.com/ArshdeepGrover/ai-tools-manager.git
+   cd ai-tools-manager
    ```
 
 2. **Install dependencies (optional)**
@@ -163,10 +176,10 @@ ai-tools-collection/
    ```bash
    # Check for duplicate tools
    npm run check-duplicates
-   
+
    # Validate all links and data
    npm run validate
-   
+
    # Validate contributors data
    npm run validate-contributors
    ```
@@ -176,13 +189,13 @@ ai-tools-collection/
    ```bash
    # Simply open index.html in your preferred browser
    # Or use a local development server:
-   
+
    # Using Node.js (if installed):
    npx serve .
-   
+
    # Using PHP (if installed):
    php -S localhost:8000
-   
+
    # Or just double-click index.html to open in browser
    ```
 
@@ -293,7 +306,7 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ### Current Features
 
-- ✅ 100+ curated AI tools across 10 categories
+- ✅ 200+ curated AI tools across 10 categories
 - ✅ Real-time search and filtering
 - ✅ Responsive design for all devices
 - ✅ Progressive Web App (PWA) support
@@ -314,14 +327,14 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 🙏 Acknowledgments
 
 - **Original Creator**: [Arshdeep Singh](https://github.com/ArshdeepGrover)
-- **All Contributors**: Thank you to our 15+ contributors for making this project better!
+- **All Contributors**: Thank you to our 70+ contributors for making this project better!
 - **AI Tool Creators**: Thanks to all the amazing AI tool developers
 - **Open Source Community**: For the inspiration and support
 
 ## 📞 Contact & Support
 
-- **Issues**: [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-collection/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ArshdeepGrover/ai-tools-collection/discussions)
+- **Issues**: [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-manager/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/ArshdeepGrover/ai-tools-manager/discussions)
 - **Creator**: [Arshdeep Singh](https://arshdeepgrover.dev)
 - **Website**: [AI Tools Collection](https://ai-tool-collection.vercel.app/)
 

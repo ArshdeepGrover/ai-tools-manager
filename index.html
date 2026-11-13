@@ -24,7 +24,8 @@
   <meta property="og:title" content="AI Tools Hub - Professional AI Tools Directory" />
   <meta property="og:description"
     content="Discover 100+ best free AI tools for professionals. Curated collection of AI tools for writing, design, coding, productivity & more. Open source & community-driven." />
-  <meta property="og:image" content="https://ai-tool-collection.vercel.app/assets/og-image.svg" />
+  <!-- Must be PNG/JPEG: no major social crawler renders SVG og:image -->
+  <meta property="og:image" content="https://ai-tool-collection.vercel.app/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="AI Tools Hub - Professional AI Tools Directory" />
@@ -37,7 +38,7 @@
   <meta property="twitter:title" content="AI Tools Hub - Professional AI Tools Directory" />
   <meta property="twitter:description"
     content="Discover 100+ best free AI tools for professionals. Curated collection of AI tools for writing, design, coding, productivity & more." />
-  <meta property="twitter:image" content="https://ai-tool-collection.vercel.app/assets/og-image.svg" />
+  <meta property="twitter:image" content="https://ai-tool-collection.vercel.app/assets/og-image.png" />
   <meta property="twitter:image:alt" content="AI Tools Hub - Professional AI Tools Directory" />
   <meta property="twitter:creator" content="@ArshdeepGrover" />
   <meta property="twitter:site" content="@ArshdeepGrover" />
@@ -1657,201 +1658,6 @@
       </div>
 <!-- </div> -->
 </section>
-
-<!-- ================= AI CHAT AGENT ================= -->
-<!-- <script src="https://js.puter.com/v2/"></script>
-
-<style>
-  /* ================= CHAT UI ================= */
-  .ai-msg-user {
-    background: #6e8efb;
-    padding: 10px 12px;
-    border-radius: 14px;
-    align-self: flex-end;
-    color: white;
-    max-width: 80%;
-  }
-
-  .ai-msg-bot {
-    background: #2d3446;
-    padding: 10px 12px;
-    border-radius: 14px;
-    align-self: flex-start;
-    color: #e5e7eb;
-    max-width: 80%;
-    font-size: 14px;
-  }
-
-  /* ================= INLINE THINKING ================= */
-  .ai-thinking {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .cloud {
-    display: inline-flex;
-    gap: 4px;
-  }
-
-  .cloud span {
-    width: 6px;
-    height: 6px;
-    background: #6e8efb;
-    border-radius: 50%;
-    opacity: 0.3;
-    animation: cloudPulse 1.2s ease-in-out infinite;
-  }
-
-  .cloud span:nth-child(2) { animation-delay: .15s; }
-  .cloud span:nth-child(3) { animation-delay: .3s; }
-
-  @keyframes cloudPulse {
-    0% { transform: translateY(0); opacity: .3; }
-    50% { transform: translateY(-4px); opacity: 1; }
-    100% { transform: translateY(0); opacity: .3; }
-  }
-
-  .thinking-text {
-    color: #9ca3af;
-    font-size: 13px;
-  }
-</style>
-
-<div id="ai-chat-box" style="position: fixed; bottom: 80px; left: 20px; z-index: 999999; font-family: system-ui;">
-  <div id="ai-window"
-    style="display:none; width:320px; height:450px; background:#0f172a; border-radius:16px; flex-direction:column; box-shadow:0 10px 30px rgba(0,0,0,.5); overflow:hidden;">
-
-    <div style="background:#6e8efb; color:white; padding:14px; font-weight:600; display:flex; justify-content:space-between;">
-      <span>🤖 AI Scout Agent</span>
-      <button onclick="toggleAI()" style="background:none;border:none;color:white;font-size:20px;cursor:pointer">×</button>
-    </div>
-
-    <div id="ai-messages" style="flex:1; padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px;">
-      <div class="ai-msg-bot">Hello! Ask me for any tool 🚀</div>
-    </div>
-
-    <div style="padding:10px; border-top:1px solid #1e293b; display:flex; gap:6px;">
-      <input id="ai-input" placeholder="Ask something..."
-        style="flex:1; padding:10px; border-radius:8px; border:1px solid #334155; background:#020617; color:white;">
-      <button id="ai-send-btn"
-        style="padding:10px 14px; background:#6e8efb; border:none; border-radius:8px; color:white;">
-        Send
-      </button>
-    </div>
-  </div>
-
-  <button onclick="toggleAI()"
-    style="width:60px;height:60px;border-radius:50%;background:#6e8efb;border:none;color:white;font-size:28px;cursor:pointer;">
-    🤖
-  </button>
-</div>
-
-<script>
-  function toggleAI() {
-    const w = document.getElementById('ai-window');
-    w.style.display = (!w.style.display || w.style.display === 'none') ? 'flex' : 'none';
-  }
-
-  function cleanText(text) {
-    return text
-      .replace(/\*\*/g, '')
-      .replace(/^\s*[-•]\s*/gm, '')
-      .trim();
-  }
-
-  async function askAgent() {
-    const input = document.getElementById('ai-input');
-    const box = document.getElementById('ai-messages');
-    const query = input.value.trim();
-    if (!query) return;
-
-    box.innerHTML += `<div class="ai-msg-user">${query}</div>`;
-    input.value = '';
-
-    const id = "bot-" + Date.now();
-    box.innerHTML += `
-      <div id="${id}" class="ai-msg-bot">
-        <span class="ai-thinking">
-          <span class="thinking-text">Thinking…</span>
-          <span class="cloud"><span></span><span></span><span></span></span>
-        </span>
-      </div>
-    `;
-    box.scrollTop = box.scrollHeight;
-
-    try {
-      const tools = await (await fetch('data/links.json')).json();
-      const ai = await puter.ai.chat(`You are the AI Scout. Recommend clearly for: "${query}"`,
-        { model: 'gpt-4o-mini' }
-      );
-      document.getElementById(id).innerText = cleanText(ai.message.content);
-    } catch {
-      document.getElementById(id).innerText = "⚠️ Error";
-    }
-
-    box.scrollTop = box.scrollHeight;
-  }
-
-  document.getElementById('ai-send-btn').onclick = askAgent;
-  document.getElementById('ai-input').addEventListener('keydown', e => {
-    if (e.key === 'Enter') askAgent();
-  });
-</script>
-
- -->
-
-
-  <!--Chat AGENT -->
-  <!-- <script src="https://js.puter.com/v2/"></script>
-  <div id="ai-chat-box" style="position: fixed; bottom: 80px; left: 20px; z-index: 999999; font-family: sans-serif;">
-    <div id="ai-window" style="display: none; width: 320px; height: 450px; background: #1a1f2c; border: 1px solid #3d4455; border-radius: 15px; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden;">
-      <div style="background: #6e8efb; color: white; padding: 15px; font-weight: bold; display: flex; justify-content: space-between;">
-        <span>AI Scout Agent</span>
-        <button onclick="document.getElementById('ai-window').style.display='none'" style="background:none; border:none; color:white; cursor:pointer; font-size:20px;">×</button>
-      </div>
-      <div id="ai-messages" style="flex: 1; padding: 15px; overflow-y: auto; color: #eee; font-size: 14px; display: flex; flex-direction: column; gap: 10px;">
-        <div style="background: #2d3446; padding: 10px; border-radius: 10px;">Hello! I am your AI Agent. Ask me for any tool in our project!</div>
-      </div>
-      <div style="padding: 10px; border-top: 1px solid #333; display: flex; gap: 5px;">
-        <input type="text" id="ai-input" placeholder="Type a problem..." style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #444; background: #0f172a; color: white;">
-        <button id="ai-send-btn" style="padding: 10px; background: #6e8efb; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
-      </div>
-    </div>
-    <button id="ai-toggle" onclick="var w=document.getElementById('ai-window'); w.style.display = (w.style.display==='none'?'flex':'none')" style="width: 60px; height: 60px; border-radius: 50%; background: #6e8efb; border: none; color: white; font-size: 30px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">🤖</button>
-  </div>
-
-  <script>
-    async function askAgent() {
-      const input = document.getElementById('ai-input');
-      const box = document.getElementById('ai-messages');
-      if (!input || !box) return;
-      const query = input.value.trim();
-      if (!query) return;
-
-      box.innerHTML += `<div style="background: #6e8efb; padding: 10px; border-radius: 10px; align-self: flex-end; color: white; margin-bottom: 10px;">${query}</div>`;
-      input.value = '';
-
-      const id = "bot-" + Date.now();
-      box.innerHTML += `<div id="${id}" style="background: #2d3446; padding: 10px; border-radius: 10px; align-self: flex-start; color: white; margin-bottom: 10px;">⏳ Thinking...</div>`;
-      box.scrollTop = box.scrollHeight;
-
-      try {
-        const response = await fetch('data/links.json');
-        if (!response.ok) throw new Error("JSON file not found");
-        const tools = await response.json();
-        const aiResponse = await puter.ai.chat(`You are the AI Scout for this tool collection: ${JSON.stringify(tools).substring(0, 8000)}. Recommend a tool for: "${query}"`, { model: 'gpt-4o-mini' });
-        document.getElementById(id).innerText = aiResponse.message.content;
-      } catch (e) {
-        document.getElementById(id).innerText = "Error: " + e.message;
-      }
-      box.scrollTop = box.scrollHeight;
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-      const btn = document.getElementById('ai-send-btn');
-      if (btn) btn.onclick = askAgent;
-    });
-  </script> -->
 
   <!-- MASTER BRANCH FOOTER & WIDGETS -->
   <footer class="bg-gray-900 text-white py-8">

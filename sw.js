@@ -1,20 +1,24 @@
 // Service Worker for AI Tools Hub PWA
 // Implements offline functionality with strategic caching
 
-const CACHE_NAME = 'ai-tools-hub-v1.0.1';
+const CACHE_NAME = 'ai-tools-hub-v1.0.2';
 const DATA_CACHE_NAME = 'ai-tools-data-v1.0.0';
 
-// Files to cache for offline functionality
+// Files to cache for offline functionality.
+// Keep this list in sync with the stylesheets and scripts index.html loads,
+// and bump CACHE_NAME whenever it changes or existing installs keep stale copies.
 const FILES_TO_CACHE = [
   '/',
   '/index.html',
   '/style.css',
+  '/modern.css',
   '/script.js',
+  '/animations.js',
   '/manifest.json',
   '/offline.html',
   '/assets/favicon.svg',
-  // External CDN resources
-  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css',
+  // External CDN resources - versions must match index.html
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   'https://cdn.tailwindcss.com'
 ];
 

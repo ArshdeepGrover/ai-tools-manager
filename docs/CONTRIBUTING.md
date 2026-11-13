@@ -41,8 +41,8 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
 
    ```bash
    # Fork the repo on GitHub, then:
-   git clone https://github.com/YOUR_USERNAME/ai-tools-collection.git
-   cd ai-tools-collection
+   git clone https://github.com/YOUR_USERNAME/ai-tools-manager.git
+   cd ai-tools-manager
    ```
 
 3. **Create a Branch**
@@ -70,16 +70,21 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
      "github": "your-username",
      "avatar": "https://github.com/your-username.png",
      "contributions": ["Added Tool Name", "Fixed bug in category X"],
+     "role": "Contributor",
      "website": "https://your-site.com"
    }
    ```
+
+   Required fields: `name`, `github`, `avatar`, `contributions`, `role`.
+   Optional: `website`, `linkedin`, `tagline`. `linkedin` must be a bare
+   username (e.g. `"john-doe"`), not a full URL — a URL fails validation.
 
 6. **Validate Your Changes**
 
    ```bash
    # Check for duplicates
    npm run check-duplicates
-   
+
    # Validate all data
    npm run validate
    ```
@@ -98,7 +103,7 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
    git push origin add-new-tool-name
    ```
 
-8. **Create Pull Request**
+9. **Create Pull Request**
    - Use descriptive title
    - Explain the value of the tool
    - Include screenshots if relevant
@@ -124,25 +129,31 @@ Thank you for your interest in contributing to the AI Tools Collection! This doc
 
 ```
 ├── index.html              # Main page structure
-├── style.css               # All styling and animations
+├── style.css               # Base styling
+├── modern.css              # Additional styling layer
 ├── script.js               # JavaScript functionality
-├── links.json              # AI tools database
-├── contributors.json       # Contributors information
+├── animations.js           # Scroll effects and entrance animations
+├── sw.js                   # Service worker (PWA / offline support)
+├── offline.html            # Offline fallback page
 ├── manifest.json           # PWA manifest
 ├── package.json            # Project configuration
 ├── README.md               # Main documentation
-├── CONTRIBUTING.md         # This file
-├── COMMIT_GUIDELINES.md    # Commit message standards
-├── CONTRIBUTOR_EXAMPLE.md  # Contributor profile template
-├── validate-links.js       # Link validation script
-├── validate-contributors.js # Contributor validation script
-├── check-duplicates.js     # Duplicate detection script
-├── assets/                 # Project assets
-│   ├── favicon.svg         # Site favicon
-│   ├── og-image.svg        # Social media image
-│   └── README.md           # Assets documentation
-├── src/                    # Source files (future modular structure)
-└── tests/                  # Test files
+├── data/                   # Data files
+│   ├── links.json          # AI tools database
+│   └── contributors.json   # Contributors information
+├── docs/                   # Documentation
+│   ├── CONTRIBUTING.md     # This file
+│   ├── COMMIT_GUIDELINES.md # Commit message standards
+│   ├── CONTRIBUTOR_EXAMPLE.md # Contributor profile template
+│   └── BUGS.md             # Known-defect register
+├── scripts/                # Validation scripts
+│   ├── validate-links.js   # Link validation (and duplicate detection)
+│   └── validate-contributors.js # Contributor validation
+└── assets/                 # Project assets
+    ├── favicon.svg         # Site favicon
+    ├── og-image.svg        # Social media image (source)
+    ├── og-image.png        # Social media image (served to crawlers)
+    └── README.md           # Assets documentation
 ```
 
 ## 🏷️ Categories
@@ -219,21 +230,25 @@ When creating a pull request, please include:
 
 ```markdown
 ## Description
+
 Brief description of what you're adding/changing
 
 ## Type of Change
+
 - [ ] New AI tool addition
 - [ ] Bug fix
 - [ ] Feature enhancement
 - [ ] Documentation update
 
 ## Tool Details (if adding a tool)
-- **Tool Name**: 
-- **Category**: 
-- **Why it's valuable**: 
+
+- **Tool Name**:
+- **Category**:
+- **Why it's valuable**:
 - **Free tier confirmed**: Yes/No
 
 ## Checklist
+
 - [ ] I have tested the tool myself
 - [ ] The tool has a free tier or is completely free
 - [ ] I have added myself to contributors.json
@@ -250,8 +265,8 @@ Brief description of what you're adding/changing
 
 ## 📞 Getting Help
 
-- **Questions**: Open a [GitHub Discussion](https://github.com/ArshdeepGrover/ai-tools-collection/discussions)
-- **Issues**: Report bugs via [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-collection/issues)
+- **Questions**: Open a [GitHub Discussion](https://github.com/ArshdeepGrover/ai-tools-manager/discussions)
+- **Issues**: Report bugs via [GitHub Issues](https://github.com/ArshdeepGrover/ai-tools-manager/issues)
 - **Direct Contact**: Reach out to [Arshdeep Singh](https://arshdeepgrover.dev)
 
 ## 🎉 Thank You
