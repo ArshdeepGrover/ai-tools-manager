@@ -1,6 +1,7 @@
 // validate-links.js
 // Script to validate and deduplicate links in links.json
 const fs = require("fs");
+const http = require("http");
 const https = require("https");
 const { URL } = require("url");
 
@@ -17,8 +18,12 @@ function isUnstable(url) {
 function checkReachability(url) {
   return new Promise((resolve) => {
     try {
-      const { hostname } = new URL(url);
-      const req = https.request(
+      // Pick the client that matches the URL's scheme. Calling https.request()
+      // on an http:// URL throws ERR_INVALID_PROTOCOL, which the catch below
+      // would silently report as "unreachable".
+      const { protocol } = new URL(url);
+      const client = protocol === "http:" ? http : https;
+      const req = client.request(
         url,
         { method: "HEAD", timeout: 5000 },
         (res) => {

@@ -115,7 +115,7 @@ function faviconUrl(url) {
 
 // Contributors pagination
 let currentContributorPage = 1;
-const contributorsPerPage = 16; // 12 contributors per page (4x3 grid)
+const contributorsPerPage = 16; // 16 contributors per page (4x4 grid)
 let filteredContributors = [];
 let searchContributorsText = "";
 

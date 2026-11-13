@@ -329,12 +329,18 @@
           "title": "objekto.io",
           "url": "https://objekto.io/en",
           "description": "Describe an object: AI designs it, a workshop 3D prints it"
+        },
+        {
           "title": "MakeImg",
           "url": "https://makeimg.ai",
           "description": "AI photo generator with 11 models and free daily credits"
+        },
+        {
           "title": "Lookslate",
           "url": "https://lookslate.com/",
           "description": "Free AI makeup previews on sample faces, no sign-up. Six looks, three steps to recreate each."
+        },
+        {
           "title": "APPLORE",
           "url": "https://applore.app/ai-app-icon-generator",
           "description": "AI app icon generator that uses 18,000+ real App Store and Google Play icons as style references. Free to start"
@@ -615,6 +621,8 @@
           "title": "AUTOMATER.ai",
           "url": "https://automater.ai",
           "description": "Tray app tracking AI coding agents, sessions and usage"
+        },
+        {
           "title": "Aident Loadout",
           "url": "https://aident.ai",
           "description": "Hosted MCP server and CLI that connects agents to apps"
@@ -759,9 +767,13 @@
           "title": "RefVid",
           "url": "https://refvid.com",
           "description": "Consistent product and character AI videos. First 5s free"
+        },
+        {
           "title": "Seedance Now",
           "url": "https://seedancenow.com",
           "description": "Multi-model AI video generator with free credits on sign-up"
+        },
+        {
           "title": "AI Fruit Video",
           "url": "https://aifruitvideo.com",
           "description": "Free AI generator for funny talking-fruit video clips."

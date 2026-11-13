@@ -749,6 +749,8 @@
       "website": "https://video2text.ttt.so",
       "role": "Contributor",
       "tagline": "Maker of Transcribe Video: To The Text"
+    },
+    {
       "name": "Louis Chi",
       "github": "ocxers",
       "avatar": "https://github.com/ocxers.png",
@@ -757,18 +759,27 @@
         "Added RefVid to AI Video & Audio"
       ],
       "website": "https://refvid.com",
+      "role": "Contributor"
+    },
+    {
       "name": "Zhijun Song",
       "github": "szj2ys",
       "avatar": "https://github.com/szj2ys.png",
       "tagline": "Lookslate maker",
       "contributions": [
         "Added Lookslate to AI Design & Images"
+      ],
+      "role": "Contributor"
+    },
+    {
       "name": "ViggoZ",
       "github": "ViggoZ",
       "avatar": "https://github.com/ViggoZ.png",
       "tagline": "APPLORE maker",
       "contributions": [
-        "Added APPLORE to AI Design & Images"],
+        "Added APPLORE to AI Design & Images"
+      ],
+      "role": "Contributor"
     },
     {
       "name": "Frank-Masciopinto",
@@ -779,6 +790,7 @@
         "Added SummarizAI to AI Productivity"
       ],
       "website": "https://summarizai.ink",
+      "role": "Contributor"
     },
     {
       "name": "ljhskyso",
@@ -789,6 +801,7 @@
         "Added Aident Loadout to AI Coding & Development"
       ],
       "website": "https://aident.ai",
+      "role": "Contributor"
     },
     {
       "name": "grades2018",
@@ -799,6 +812,7 @@
         "Added ImagineYourBook to AI Writing & Content"
       ],
       "website": "https://www.imagineyourbook.com/",
+      "role": "Contributor"
     },
     {
       "name": "Louis Beaumont",

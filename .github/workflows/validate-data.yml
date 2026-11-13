@@ -5,6 +5,15 @@ on:
     paths:
       - "data/links.json"
       - "data/contributors.json"
+  # Also validate the merge result. PR runs only check the branch head, so
+  # damage introduced while resolving a conflict reaches master unchecked.
+  push:
+    branches:
+      - master
+      - production
+    paths:
+      - "data/links.json"
+      - "data/contributors.json"
 
 jobs:
   validate-data:
@@ -36,8 +45,6 @@ jobs:
           fi
 
           echo "✅ All validations completed successfully!"
-
-
 
       - name: Comment on PR if validation fails
         if: failure()
