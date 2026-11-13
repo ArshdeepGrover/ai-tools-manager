@@ -143,6 +143,11 @@
           "title": "Junia AI",
           "url": "https://junia.ai",
           "description": "Writing assistant that helps with rephrasing, summarization, SEO adjustments, and content planning."
+        },
+        {
+          "title": "AI eBook Pro",
+          "url": "https://aiebookpro.com/",
+          "description": "Turn one sentence into a full eBook with chapters, cover and PDF/EPUB/DOCX export"
         }
       ]
     },
