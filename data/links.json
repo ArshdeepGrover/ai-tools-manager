@@ -609,6 +609,9 @@
           "description": "Record, diff and replay AI agent runs from local traces"
         },
         {
+          "title": "AUTOMATER.ai",
+          "url": "https://automater.ai",
+          "description": "Tray app tracking AI coding agents, sessions and usage"
           "title": "Aident Loadout",
           "url": "https://aident.ai",
           "description": "Hosted MCP server and CLI that connects agents to apps"
