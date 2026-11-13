@@ -697,6 +697,27 @@
       "role": "Contributor"
     },
     {
+      "name": "Sawana Huang",
+      "github": "waitlistSawana",
+      "avatar": "https://github.com/waitlistSawana.png",
+      "contributions": [
+        "Added RemoveMate to AI Design & Images"
+      ],
+      "website": "https://removemate.com",
+       "role": "Contributor"
+    },
+    {
+      "name": "Runbo Li",
+      "github": "runshouse",
+      "avatar": "https://github.com/runshouse.png",
+      "tagline": "Magic Hour co-founder",
+      "contributions": [
+        "Added Magic Hour to AI Video & Audio"
+      ],
+      "website": "https://magichour.ai",
+       "role": "Contributor"
+    },
+    {
       "name": "xizhuomengcontin",
       "github": "xizhuomengcontin",
       "avatar": "https://github.com/xizhuomengcontin.png",
@@ -715,6 +736,35 @@
         "Added SummarizAI to AI Productivity"
       ],
       "website": "https://summarizai.ink",
+    },
+    {
+      "name": "ljhskyso",
+      "github": "ljhskyso",
+      "avatar": "https://github.com/ljhskyso.png",
+      "tagline": "Works on Aident Loadout",
+      "contributions": [
+        "Added Aident Loadout to AI Coding & Development"
+      ],
+      "website": "https://aident.ai",
+    },
+    {
+      "name": "grades2018",
+      "github": "grades2018",
+      "avatar": "https://github.com/grades2018.png",
+      "tagline": "ImagineYourBook team",
+      "contributions": [
+        "Added ImagineYourBook to AI Writing & Content"
+      ],
+      "website": "https://www.imagineyourbook.com/",
+    },
+    {
+      "name": "Louis Beaumont",
+      "github": "louis030195",
+      "avatar": "https://github.com/louis030195.png",
+      "tagline": "Hyperconsciousness maintainer",
+      "contributions": [
+        "Added Hyperconsciousness to AI Coding & Development"
+      ],
       "role": "Contributor"
     }
   ]
