@@ -676,6 +676,17 @@
       "role": "Contributor"
     },
     {
+      "name": "Arsène Huot",
+      "github": "arseneHuot",
+      "avatar": "https://github.com/arseneHuot.png",
+      "tagline": "shortshort maker",
+      "contributions": [
+        "Added shortshort to AI Video & Audio"
+      ],
+      "website": "https://www.shortshort.io",
+      "role": "Contributor"
+    },
+    {
       "name": "33hodl",
       "github": "33hodl",
       "avatar": "https://github.com/33hodl.png",
@@ -694,6 +705,16 @@
         "Added Magic Hour to AI Video & Audio"
       ],
       "website": "https://magichour.ai",
+       "role": "Contributor"
+    },
+    {
+      "name": "xizhuomengcontin",
+      "github": "xizhuomengcontin",
+      "avatar": "https://github.com/xizhuomengcontin.png",
+      "tagline": "OrcaReplay maintainer",
+      "contributions": [
+        "Added OrcaReplay to AI Coding & Development"
+      ],
       "role": "Contributor"
     }
   ]
