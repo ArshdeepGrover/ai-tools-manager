@@ -753,6 +753,9 @@
           "description": "AI video generator for avatar clips, stylized scenes, and social-ready videos from prompts, images, and effects."
         },
         {
+          "title": "RefVid",
+          "url": "https://refvid.com",
+          "description": "Consistent product and character AI videos. First 5s free"
           "title": "Seedance Now",
           "url": "https://seedancenow.com",
           "description": "Multi-model AI video generator with free credits on sign-up"

@@ -739,6 +739,14 @@
       "role": "Contributor"
     },
     {
+      "name": "Louis Chi",
+      "github": "ocxers",
+      "avatar": "https://github.com/ocxers.png",
+      "tagline": "RefVid maker",
+      "contributions": [
+        "Added RefVid to AI Video & Audio"
+      ],
+      "website": "https://refvid.com",
       "name": "Zhijun Song",
       "github": "szj2ys",
       "avatar": "https://github.com/szj2ys.png",
