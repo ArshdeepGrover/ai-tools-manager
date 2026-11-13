@@ -5,6 +5,15 @@ on:
     paths:
       - "data/links.json"
       - "data/contributors.json"
+  # Also validate the merge result. PR runs only check the branch head, so
+  # damage introduced while resolving a conflict reaches master unchecked.
+  push:
+    branches:
+      - master
+      - production
+    paths:
+      - "data/links.json"
+      - "data/contributors.json"
 
 jobs:
   validate-data:
@@ -37,14 +46,22 @@ jobs:
 
           echo "✅ All validations completed successfully!"
 
-
-
       - name: Comment on PR if validation fails
-        if: failure()
+        # Only on pull_request: context.issue.number and
+        # context.payload.pull_request do not exist on a push event.
+        if: failure() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
-            const changedFiles = context.payload.pull_request.changed_files || [];
+            // pull_request.changed_files is a COUNT, not a list - calling
+            // .includes() on it throws. Fetch the actual filenames instead.
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100
+            });
+            const changedFiles = files.map((f) => f.filename);
             let message = '❌ **Data Validation Failed**\n\n';
 
             if (changedFiles.includes('data/links.json')) {
@@ -61,7 +78,7 @@ jobs:
             message += '• Links: `node scripts/validate-links.js --duplicates-only`\n';
             message += '• Contributors: `node scripts/validate-contributors.js --quick`';
 
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -69,11 +86,19 @@ jobs:
             })
 
       - name: Comment on PR if validation passes
-        if: success()
+        if: success() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
-            const changedFiles = context.payload.pull_request.changed_files || [];
+            // pull_request.changed_files is a COUNT, not a list - calling
+            // .includes() on it throws. Fetch the actual filenames instead.
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100
+            });
+            const changedFiles = files.map((f) => f.filename);
             let message = '✅ **Data Validation Passed**\n\n';
 
             if (changedFiles.includes('data/links.json')) {
@@ -86,7 +111,7 @@ jobs:
 
             message += '\nReady for review and merge! 🚀';
 
-            github.rest.issues.createComment({
+            await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
