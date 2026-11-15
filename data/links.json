@@ -782,6 +782,11 @@
           "title": "Magic Hour",
           "url": "https://magichour.ai",
           "description": "AI video creation platform with a free plan"
+        },
+        {
+          "title": "GetYouTubeTranscript",
+          "url": "https://getyoutubetranscript.com",
+          "description": "YouTube transcripts, subtitles and AI video summaries"
         }
       ]
     },
