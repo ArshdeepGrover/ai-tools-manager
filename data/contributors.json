@@ -823,6 +823,17 @@
         "Added Hyperconsciousness to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Tover Wu",
+      "github": "toverwu-qaq",
+      "avatar": "https://github.com/toverwu-qaq.png",
+      "tagline": "Songluna AI maker",
+      "contributions": [
+        "Added Songluna AI to AI Video & Audio"
+      ],
+      "website": "https://songluna.com",
+      "role": "Contributor"
     }
   ]
 }
