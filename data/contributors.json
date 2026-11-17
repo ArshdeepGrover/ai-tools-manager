@@ -657,7 +657,7 @@
       "name": "bao",
       "github": "cute-baobao",
       "avatar": "https://github.com/cute-baobao.png",
-      "tagline": "HyNote \u2014 AI note-taking for meetings, audio & PDFs",
+      "tagline": "HyNote — AI note-taking for meetings, audio & PDFs",
       "contributions": [
         "Added HyNote to AI Productivity category"
       ],
@@ -676,7 +676,7 @@
       "role": "Contributor"
     },
     {
-      "name": "Ars\u00e8ne Huot",
+      "name": "Arsène Huot",
       "github": "arseneHuot",
       "avatar": "https://github.com/arseneHuot.png",
       "tagline": "shortshort maker",
@@ -716,7 +716,7 @@
         "Added RemoveMate to AI Design & Images"
       ],
       "website": "https://removemate.com",
-       "role": "Contributor"
+      "role": "Contributor"
     },
     {
       "name": "Runbo Li",
@@ -727,7 +727,7 @@
         "Added Magic Hour to AI Video & Audio"
       ],
       "website": "https://magichour.ai",
-       "role": "Contributor"
+      "role": "Contributor"
     },
     {
       "name": "xizhuomengcontin",
@@ -823,6 +823,16 @@
         "Added Hyperconsciousness to AI Coding & Development"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "Datacircle",
+      "github": "waynehamadi",
+      "avatar": "https://github.com/waynehamadi.png",
+      "contributions": [
+        "Added Datacircle to AI Coding & Development"
+      ],
+      "role": "Contributor",
+      "website": "https://datacircle.dev"
     }
   ]
 }
