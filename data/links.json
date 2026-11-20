@@ -782,6 +782,11 @@
           "title": "Magic Hour",
           "url": "https://magichour.ai",
           "description": "AI video creation platform with a free plan"
+        },
+        {
+          "title": "PawMambo",
+          "url": "https://pawmambo.com/",
+          "description": "AI dog dance videos from a photo and reference clip"
         }
       ]
     },
