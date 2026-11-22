@@ -631,6 +631,11 @@
           "title": "Hyperconsciousness",
           "url": "https://github.com/louis030195/hyperconsciousness",
           "description": "Developer-alpha encrypted agent memory with CLI and MCP"
+        },
+        {
+          "title": "Datacircle",
+          "url": "https://datacircle.dev",
+          "description": "Find the best GTM APIs. A free, open API with no key lists every API and who is best for each, at api.datacircle.dev/v1."
         }
       ]
     },
