@@ -1,9 +1,9 @@
 ---
 name: Bug Report
 about: Report a bug or issue with the website
-title: '[BUG] Brief description'
-labels: 'bug'
-assignees: ''
+title: "[BUG] Brief description"
+labels: "bug"
+assignees: ""
 ---
 
 ## Bug Description

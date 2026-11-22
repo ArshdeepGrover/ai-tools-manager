@@ -1065,47 +1065,90 @@ function showToolsSkeleton(count = 6) {
 }
 
 // GitHub Stars functionality
+// Stats are cached for an hour: unauthenticated GitHub API calls are limited
+// to 60 per hour per IP, which visitors on shared networks exhaust quickly.
+const GITHUB_STATS_CACHE_KEY = "githubStats";
+const GITHUB_STATS_TTL_MS = 60 * 60 * 1000;
+
+function readCachedGitHubStats() {
+  try {
+    const cached = JSON.parse(localStorage.getItem(GITHUB_STATS_CACHE_KEY));
+    return cached && cached.stats ? cached : null;
+  } catch (e) {
+    return null;
+  }
+}
+
+function writeCachedGitHubStats(stats) {
+  try {
+    localStorage.setItem(
+      GITHUB_STATS_CACHE_KEY,
+      JSON.stringify({ savedAt: Date.now(), stats }),
+    );
+  } catch (e) {
+    // Storage unavailable (private mode, quota) — stats still display.
+  }
+}
+
+function showGitHubStats(stats) {
+  if (stats.stars !== "-") {
+    updateGitHubButtons(stats.stars);
+  }
+  updateFooterStats(stats.stars, stats.forks, stats.issues);
+}
+
 async function loadGitHubStars() {
   const owner = "ArshdeepGrover";
   const repo = "ai-tools-manager";
+
+  const cached = readCachedGitHubStats();
+  if (cached && Date.now() - cached.savedAt < GITHUB_STATS_TTL_MS) {
+    showGitHubStats(cached.stats);
+    return;
+  }
 
   // Set initial loading state
   updateFooterStats("-", "-", "-");
 
   try {
     const response = await fetch(
-      "https://api.github.com/repos/ArshdeepGrover/ai-tools-manager",
+      `https://api.github.com/repos/${owner}/${repo}`,
     );
-
+    if (!response.ok) throw new Error(`GitHub API ${response.status}`);
     const data = await response.json();
-    const starCount = data.stargazers_count || "-";
-    const forkCount = data.forks_count || "-";
 
-    // Get open issues
-    let issuesCount = "-";
+    // The repo's open_issues_count includes pull requests, and /issues is
+    // paginated at 30 items, so use the search API's total_count instead.
+    let issues = "-";
     try {
       const issuesRes = await fetch(
-        `https://api.github.com/repos/${owner}/${repo}/issues?state=open`,
+        `https://api.github.com/search/issues?q=repo:${owner}/${repo}+type:issue+state:open&per_page=1`,
       );
-      const issuesData = await issuesRes.json();
-      issuesCount = Array.isArray(issuesData)
-        ? issuesData.filter((item) => !item.pull_request).length
-        : "-";
+      if (issuesRes.ok) {
+        const issuesData = await issuesRes.json();
+        if (typeof issuesData.total_count === "number") {
+          issues = issuesData.total_count;
+        }
+      }
     } catch (e) {
       console.warn("Could not fetch issues count:", e);
     }
 
-    // Update all GitHub star buttons
-    if (starCount !== "-") {
-      updateGitHubButtons(starCount);
-    }
-
-    // Update footer stats
-    updateFooterStats(starCount, forkCount, issuesCount);
+    const stats = {
+      stars: data.stargazers_count ?? "-",
+      forks: data.forks_count ?? "-",
+      issues,
+    };
+    writeCachedGitHubStats(stats);
+    showGitHubStats(stats);
   } catch (error) {
     console.error("Error fetching GitHub stats:", error);
-    // Keep loading state ("-") if API fails
-    updateFooterStats("-", "-", "-");
+    // Fall back to the last known values, even if stale, rather than "-".
+    if (cached) {
+      showGitHubStats(cached.stats);
+    } else {
+      updateFooterStats("-", "-", "-");
+    }
   }
 }
 

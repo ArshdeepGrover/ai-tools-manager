@@ -18,6 +18,19 @@ if git diff --cached --name-only | grep -q -E "data/(links|contributors)\.json";
         echo "Run 'npm run validate-json' to see details."
         exit 1
     fi
+
+    # Structural checks are fast and offline, so run them on every branch:
+    # they catch tools/contributors fused by a bad merge (still valid JSON),
+    # missing fields, non-HTTPS URLs and over-long new descriptions.
+    echo "🧪 Checking data entries..."
+    if ! node scripts/validate-links.js --duplicates-only --base HEAD; then
+        echo "❌ data/links.json has invalid entries - see the errors above."
+        exit 1
+    fi
+    if ! node scripts/validate-contributors.js --quick; then
+        echo "❌ data/contributors.json has invalid entries - see the errors above."
+        exit 1
+    fi
 fi
 
 # Only run the heavier data validation on production branch

@@ -22,6 +22,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          # Full history so the validator can compare against the base branch
+          # and apply the description-length rule only to new or edited tools.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -35,7 +39,11 @@ jobs:
           # Check if links.json exists and validate
           if [ -f "data/links.json" ]; then
             echo "📝 Validating links.json..."
-            node scripts/validate-links.js --duplicates-only
+            if [ -n "${{ github.base_ref }}" ]; then
+              node scripts/validate-links.js --duplicates-only --base "origin/${{ github.base_ref }}"
+            else
+              node scripts/validate-links.js --duplicates-only
+            fi
           fi
 
           # Check if contributors.json exists and validate  
@@ -65,7 +73,7 @@ jobs:
             let message = '❌ **Data Validation Failed**\n\n';
 
             if (changedFiles.includes('data/links.json')) {
-              message += '• **Links**: Duplicate titles or URLs detected\n';
+              message += '• **Links**: duplicate, merged or invalid tool entries (missing field, non-HTTPS URL, or a new/edited description over 60 characters)\n';
             }
 
             if (changedFiles.includes('data/contributors.json')) {
@@ -75,7 +83,7 @@ jobs:
             message += '\nCheck the workflow logs for detailed error messages.\n';
             message += 'Please fix these issues and push your changes again.\n\n';
             message += '**Local Testing:**\n';
-            message += '• Links: `node scripts/validate-links.js --duplicates-only`\n';
+            message += '• Links: `node scripts/validate-links.js --duplicates-only --base origin/master`\n';
             message += '• Contributors: `node scripts/validate-contributors.js --quick`';
 
             await github.rest.issues.createComment({

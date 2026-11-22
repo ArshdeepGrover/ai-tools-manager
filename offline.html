@@ -11,12 +11,11 @@
     <link rel="manifest" href="/manifest.json" />
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
     
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
     
     <style>
@@ -68,6 +67,9 @@
         transform: translateY(-1px);
       }
     </style>
+    <!-- Tailwind CSS: built by `npm run build:css`. Keep it last in <head> so it
+         wins the cascade, as the Play CDN's injected styles did (BUG-021). -->
+    <link rel="stylesheet" href="tailwind.css" />
   </head>
 
   <body>

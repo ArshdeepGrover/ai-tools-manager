@@ -231,8 +231,8 @@ npm run validate
 ### For AI Tools
 
 - **Free or Freemium**: Tools should have a free tier or be completely free
-- **Working Links**: Ensure all URLs are active and correct
-- **Accurate Descriptions**: Provide clear, concise descriptions (max 60 characters)
+- **Working Links**: Ensure all URLs are active, correct and use `https://`
+- **Accurate Descriptions**: Provide clear, concise descriptions (max 60 characters, no pricing). CI enforces this for every tool you add or edit; older entries above the limit are being shortened over time
 - **Appropriate Category**: Place tools in the right category
 - **No Duplicates**: Check if the tool already exists using validation scripts
 

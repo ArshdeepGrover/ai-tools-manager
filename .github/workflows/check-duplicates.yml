@@ -40,7 +40,7 @@ jobs:
             const body = result === 'success' 
               ? `✅ **No Duplicates Found**\n\nAll links are unique. Ready for review!`
               : `❌ **Duplicate Links Detected**\n\nFound duplicate titles or URLs in your changes.\nCheck the workflow logs for details.\n\nPlease remove duplicates and push again.`;
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
