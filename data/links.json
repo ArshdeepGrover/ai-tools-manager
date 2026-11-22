@@ -660,7 +660,7 @@
         },
         {
           "title": "PVID",
-          "url": "http://pvid.app/",
+          "url": "https://pvid.app/",
           "description": "Free AI video generator aggregating Kling 3.0, Sora 2, Veo 3.1 with 100 free credits"
         },
         {
@@ -792,12 +792,18 @@
           "title": "PawMambo",
           "url": "https://pawmambo.com/",
           "description": "AI dog dance videos from a photo and reference clip"
+        },
+        {
           "title": "Twistavo",
           "url": "https://twistavo.com",
           "description": "AI video studio to replace a person or character in an existing clip (Scene Recast) and run video and image models; monthly plans from $3.99."
+        },
+        {
           "title": "Songluna AI",
           "url": "https://songluna.com",
           "description": "Create complete AI songs from ideas or lyrics"
+        },
+        {
           "title": "GetYouTubeTranscript",
           "url": "https://getyoutubetranscript.com",
           "description": "YouTube transcripts, subtitles and AI video summaries"
