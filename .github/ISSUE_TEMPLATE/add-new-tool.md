@@ -1,9 +1,9 @@
 ---
 name: Add New AI Tool
 about: Suggest a new AI tool to be added to the collection
-title: '[NEW TOOL] Tool Name'
-labels: 'new-tool'
-assignees: ''
+title: "[NEW TOOL] Tool Name"
+labels: "new-tool"
+assignees: ""
 ---
 
 ## Tool Information

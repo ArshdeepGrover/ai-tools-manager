@@ -4,6 +4,13 @@ const fs = require("fs");
 const http = require("http");
 const https = require("https");
 const { URL } = require("url");
+const { execFileSync } = require("child_process");
+
+// README "Contribution Guidelines": descriptions are max 60 characters.
+// Enforced only for tools a change adds or edits (see --base); older entries
+// that predate the check are reported as one summary warning (BUG-020).
+const MAX_DESCRIPTION_LENGTH = 60;
+const REQUIRED_FIELDS = ["title", "url", "description"];
 
 const UNSTABLE_DOMAINS = [
   "jules.google.com",
@@ -28,7 +35,7 @@ function checkReachability(url) {
         { method: "HEAD", timeout: 5000 },
         (res) => {
           resolve(res.statusCode < 400);
-        }
+        },
       );
       req.on("error", () => resolve(false));
       req.on("timeout", () => {
@@ -98,7 +105,7 @@ async function validateLinks() {
         console.warn(`   ⚠️  UNSTABLE: "${link.title}"`);
         console.warn(`      URL: ${link.url}`);
         console.warn(
-          `      (Experimental/beta service - may become unavailable)`
+          `      (Experimental/beta service - may become unavailable)`,
         );
         unstableCount++;
         warningCount++;
@@ -155,7 +162,7 @@ async function validateLinks() {
   } else if (warningCount > 0) {
     console.log(`\n✅ VALIDATION PASSED WITH WARNINGS`);
     console.log(
-      `   No critical errors, but ${warningCount} warnings to review.`
+      `   No critical errors, but ${warningCount} warnings to review.`,
     );
   } else {
     console.log(`\n🎉 VALIDATION PASSED PERFECTLY!`);
@@ -163,15 +170,102 @@ async function validateLinks() {
   }
 }
 
+// Load data/links.json as it was at a git ref, to tell new or edited tools
+// apart from existing ones. Returns a Map of url -> description, or null.
+function loadBaseLinks(ref) {
+  try {
+    const raw = execFileSync("git", ["show", `${ref}:data/links.json`], {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    const base = new Map();
+    for (const category of JSON.parse(raw).categories || []) {
+      for (const link of category.links || []) {
+        base.set(link.url, link.description);
+      }
+    }
+    return base;
+  } catch {
+    console.warn(
+      `⚠️  Could not read data/links.json at "${ref}"; treating every tool as existing.`,
+    );
+    return null;
+  }
+}
+
+// Per-entry rules. Returns { errors, longExisting }.
+function checkEntryRules(raw, data, baseRef) {
+  const errors = [];
+  let parsedCount = 0;
+  let longExisting = 0;
+  const base = baseRef ? loadBaseLinks(baseRef) : null;
+
+  for (const category of data.categories) {
+    for (const link of category.links || []) {
+      parsedCount++;
+      const label = `"${link.title || "(untitled)"}" in "${category.name}"`;
+
+      for (const field of REQUIRED_FIELDS) {
+        if (typeof link[field] !== "string" || !link[field].trim()) {
+          errors.push(`MISSING FIELD "${field}": ${label}`);
+        }
+      }
+      if (typeof link.url === "string" && !link.url.startsWith("https://")) {
+        errors.push(`URL MUST USE HTTPS: ${label} -> ${link.url}`);
+      }
+
+      const description = link.description || "";
+      if (description.length > MAX_DESCRIPTION_LENGTH) {
+        const isNewOrEdited =
+          base !== null &&
+          (!base.has(link.url) || base.get(link.url) !== description);
+        if (isNewOrEdited) {
+          errors.push(
+            `DESCRIPTION TOO LONG (${description.length}/${MAX_DESCRIPTION_LENGTH} chars): ${label}`,
+          );
+        } else {
+          longExisting++;
+        }
+      }
+    }
+  }
+
+  // JSON.parse keeps only the last value of a repeated key, so two tools
+  // fused into one object by a bad merge still parse - and one silently
+  // disappears (BUG-001, BUG-017). Every "title" key in the raw text must
+  // belong to its own parsed tool.
+  const rawTitleKeys = (raw.match(/"title"\s*:/g) || []).length;
+  if (rawTitleKeys !== parsedCount) {
+    errors.push(
+      `MERGED OBJECTS: the file contains ${rawTitleKeys} "title" keys but only ${parsedCount} tools parse. ` +
+        `A merge probably dropped the "}, {" between two tools - check the most recent additions.`,
+    );
+  }
+
+  return { errors, longExisting };
+}
+
 // Check for duplicates only mode
-function checkDuplicatesOnly() {
+function checkDuplicatesOnly(baseRef) {
   console.log("🔍 Checking for duplicate links only...\n");
 
-  const data = JSON.parse(fs.readFileSync("data/links.json", "utf8"));
+  const raw = fs.readFileSync("data/links.json", "utf8");
+  const data = JSON.parse(raw);
   const allTitles = new Map();
   const allUrls = new Map();
   let hasError = false;
   let totalLinks = 0;
+
+  const { errors, longExisting } = checkEntryRules(raw, data, baseRef);
+  for (const message of errors) {
+    console.error(`❌ ${message}`);
+    hasError = true;
+  }
+  if (longExisting > 0) {
+    console.warn(
+      `⚠️  ${longExisting} existing descriptions are longer than ${MAX_DESCRIPTION_LENGTH} characters (allowed for older entries; please shorten them when editing).`,
+    );
+  }
 
   for (const category of data.categories) {
     if (!category.name || !category.links || !Array.isArray(category.links)) {
@@ -206,11 +300,11 @@ function checkDuplicatesOnly() {
   }
 
   console.log(
-    `\n📊 Checked ${totalLinks} links across ${data.categories.length} categories`
+    `\n📊 Checked ${totalLinks} links across ${data.categories.length} categories`,
   );
 
   if (hasError) {
-    console.log("❌ DUPLICATES FOUND!");
+    console.log("❌ VALIDATION FAILED - see the errors above.");
     process.exit(1);
   } else {
     console.log("✅ No duplicates found!");
@@ -221,8 +315,10 @@ if (require.main === module) {
   // Check command line arguments
   const args = process.argv.slice(2);
   try {
+    const baseIndex = args.indexOf("--base");
+    const baseRef = baseIndex !== -1 ? args[baseIndex + 1] : null;
     if (args.includes("--duplicates-only")) {
-      checkDuplicatesOnly();
+      checkDuplicatesOnly(baseRef);
     } else {
       validateLinks();
     }

@@ -22,7 +22,8 @@ html {
 
 .card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
@@ -147,7 +148,7 @@ img {
   bottom: 30px;
   right: 20px;
   z-index: 1000;
-  background-color: #0099F7;
+  background-color: #0099f7;
   color: #fff;
   border: none;
   padding: 14px 18px;
@@ -174,10 +175,18 @@ img {
 
 /* Bounce Animation Keyframes */
 @keyframes bounce {
-  0%   { transform: translateY(0); }
-  30%  { transform: translateY(-8px); }
-  60%  { transform: translateY(4px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 /* Show More Buttons - Futuristic AI Hub Design */
@@ -185,9 +194,22 @@ img {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(135deg, #3b82f6 0%, #1d4ed8 25%, #7c3aed 50%, #1e40af 75%, #3b82f6 100%),
-    linear-gradient(45deg, rgba(59, 130, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
-  background-size: 200% 200%, 100% 100%;
+    linear-gradient(
+      135deg,
+      #3b82f6 0%,
+      #1d4ed8 25%,
+      #7c3aed 50%,
+      #1e40af 75%,
+      #3b82f6 100%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(59, 130, 246, 0.1) 0%,
+      rgba(124, 58, 237, 0.1) 100%
+    );
+  background-size:
+    200% 200%,
+    100% 100%;
   animation: gradientShift 4s ease infinite;
   box-shadow:
     0 0 30px rgba(59, 130, 246, 0.3),
@@ -209,18 +231,20 @@ img {
 }
 
 .show-more-btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     transparent 0%,
     rgba(255, 255, 255, 0.3) 20%,
     rgba(255, 255, 255, 0.6) 50%,
     rgba(255, 255, 255, 0.3) 80%,
-    transparent 100%);
+    transparent 100%
+  );
   transition: left 0.8s cubic-bezier(0.23, 1, 0.32, 1);
   z-index: 1;
 }
@@ -230,17 +254,13 @@ img {
 }
 
 .show-more-btn::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg,
-    #3b82f6,
-    #7c3aed,
-    #ec4899,
-    #3b82f6);
+  background: linear-gradient(45deg, #3b82f6, #7c3aed, #ec4899, #3b82f6);
   border-radius: 14px;
   z-index: -1;
   opacity: 0;
@@ -296,7 +316,7 @@ img {
 
 /* Dynamic icons with better positioning */
 .show-more-btn[data-action="show-more"] span::after {
-  content: '▼';
+  content: "▼";
   font-size: 8px;
   margin-left: 6px;
   transition: transform 0.4s ease;
@@ -304,7 +324,7 @@ img {
 }
 
 .show-more-btn[data-action="show-less"] span::after {
-  content: '▲';
+  content: "▲";
   font-size: 8px;
   margin-left: 6px;
   transition: transform 0.4s ease;
@@ -321,7 +341,8 @@ img {
 
 /* Pulse effect for extra coolness */
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow:
       0 0 30px rgba(59, 130, 246, 0.3),
       0 8px 32px rgba(59, 130, 246, 0.2),
@@ -423,7 +444,7 @@ img {
 }
 
 .offline-badge::after {
-  content: 'OFFLINE';
+  content: "OFFLINE";
   position: absolute;
   top: -8px;
   right: -8px;
@@ -500,13 +521,13 @@ img {
     padding: 12px 16px;
     font-size: 14px;
   }
-  
+
   .offline-indicator {
     flex-direction: column;
     text-align: center;
     padding: 8px 12px;
   }
-  
+
   .connection-status {
     font-size: 12px;
   }
@@ -524,13 +545,17 @@ img {
 /* Featured Contributors Highlight */
 .featured-contributor {
   position: relative;
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.1) 0%,
+    rgba(124, 58, 237, 0.1) 100%
+  );
   border: 2px solid rgba(59, 130, 246, 0.3);
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
 }
 
 .featured-contributor::before {
-  content: '⭐';
+  content: "⭐";
   position: absolute;
   top: -1px;
   right: -1px;
@@ -557,7 +582,7 @@ img {
   .notification-exit {
     animation: none;
   }
-  
+
   .connection-status,
   .connection-status i,
   #pwa-install-btn {

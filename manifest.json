@@ -1,7 +1,7 @@
 {
   "name": "AI Tools Hub - Professional AI Tools Directory",
   "short_name": "AI Tools Hub",
-  "description": "Discover 100+ best free AI tools for professionals. Curated collection of AI tools for writing, design, coding, and productivity.",
+  "description": "Discover 200+ best free AI tools for professionals. Curated collection of AI tools for writing, design, coding, and productivity.",
   "start_url": "/?utm_source=pwa",
   "scope": "/",
   "display": "standalone",
@@ -28,7 +28,7 @@
     },
     {
       "src": "/assets/favicon.svg",
-      "sizes": "512x512", 
+      "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any"
     }
@@ -56,7 +56,7 @@
     },
     {
       "name": "Categories",
-      "short_name": "Categories", 
+      "short_name": "Categories",
       "description": "Browse by category",
       "url": "/#categories",
       "icons": [
@@ -73,7 +73,7 @@
       "url": "/#tools?search=true",
       "icons": [
         {
-          "src": "/assets/favicon.svg", 
+          "src": "/assets/favicon.svg",
           "sizes": "any"
         }
       ]

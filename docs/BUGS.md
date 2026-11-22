@@ -2,7 +2,7 @@
 
 Single source of truth for known defects in this repo. Kiro maintains this file: it re-analyses the codebase and updates this register **before** fixing anything, so the list reflects reality rather than history.
 
-- **Audited:** 2026-11-13 against `master` @ `67d7d45`
+- **Audited:** 2026-11-22 against `master` @ `3fd6b38` (previous audit: 2026-11-13 @ `67d7d45`)
 - **Protocol:** `.kiro/steering/bug-workflow.md`
 
 ## Legend
@@ -20,45 +20,110 @@ Status: `open` · `in-progress` · `fixed` · `wontfix`
 
 ## Open
 
-### BUG-013 · Social preview image shows stale counts and clipped text · P3 · open
+### BUG-019 · Red `Validate Data` runs do not block merges · P1 · open
 
-**Symptom.** `assets/og-image.svg` (and the PNG rendered from it, now served to every social crawler) advertises **100+ AI Tools** and **10+ Categories**. Actual counts are 211 tools and exactly 10 categories. The `Open Source` label also overflows its rounded pill, visibly crossing the border.
+**Symptom.** Four PRs (#269 Songluna AI, #270 Datacircle, #271 Twistavo, #272 PawMambo) were merged on 2026-11-17 to 2026-11-22 while both data files on their branches were unparseable, putting `master` back into the BUG-001/BUG-002 state five days after that was fixed (BUG-017, BUG-018).
 
-**Cause.** The badge text is hard-coded in the SVG at the `<text>` nodes around line 58 and has not been updated as the directory grew. The overflow is a layout issue in the same file — the pill width was sized for shorter text.
+**Cause.** BUG-003 added a `push` trigger so the merge result is _validated_, but validation only reports; nothing _prevents_ a merge. The breaking commits are contributor-side conflict resolutions — `9923477` ("Merge branch 'master' into feat/add-songluna-ai") broke `links.json` and `2629bdd` ("Merge branch 'master' into add-datacircle") broke `contributors.json` — step 1 of the BUG-003 chain. Every later merge carried the damage forward.
 
-**Why it is still open.** This is a design asset, and editing the text requires re-sizing the pill to avoid making the overflow worse. Left for a deliberate design pass rather than bundled into a bug sweep.
+**Mitigated 2026-11-22 (uncommitted).** The damage can no longer slip through silently in two places, even when it still parses as JSON:
 
-**Fix direction.** Update both badge labels, widen the `Open Source` pill, then re-render: `rsvg-convert -w 1200 -h 630 -o assets/og-image.png assets/og-image.svg`.
+- `validate-links.js --duplicates-only` and `validate-contributors.js --quick` now fail when a raw `"title"`/`"github"` key has no parsed object of its own (fused entries), so CI fails on exactly this damage.
+- The pre-commit hook now runs both structural checks on every branch, not only `production`, so the contributor's own commit is blocked. Contributors must re-run `./setup-hooks.sh`; the hook in this clone's `.git/hooks` is still the September 2025 copy.
 
-**Verify.** The regenerated PNG is 1200×630, the badges read the current counts, and no text crosses a pill border.
+**Why it is still open.** The root cause is a repository setting, which cannot be changed from the code. Whether `Validate Data` reported failure on these PRs also could not be checked from the audit session (no GitHub API access).
 
----
+**Fix direction.** Settings → Branches → add a rule for `master` (and `production`): require status check `validate-data`, and require branches to be up to date before merging. Longer term, remove the shared-array conflict surface: one file per tool / contributor (`data/tools/<slug>.json`) assembled into `links.json` at build time.
 
-### BUG-014 · One tool URL uses `http://` and redirects · P3 · open
-
-**Symptom.** `data/links.json` lists `http://pvid.app/`, which answers `301` and redirects. Every other entry is HTTPS, and `validate-contributors.js` already treats non-HTTPS as an error for contributor URLs.
-
-**Fix direction.** Follow the redirect to its final HTTPS target and update the entry. Verify the destination is the intended tool before changing the stored URL.
-
-**Verify.** `grep '"url": "http://' data/links.json` returns nothing, and `npm run validate` reports the entry reachable.
-
----
-
-### BUG-015 · No formatter config, so format-on-save restyles whole files · P3 · open
-
-**Symptom.** Editing one line of `sw.js` through an editor with format-on-save rewrote all 166 remaining lines, converting the file's single quotes to double quotes. The same risk applies to any file a contributor touches, which buries one-line changes in whole-file diffs and causes avoidable merge conflicts — the conditions that produced BUG-001 and BUG-002.
-
-**Cause.** The repo has no `.prettierrc`, `.editorconfig`, or `.prettierignore`. Editors fall back to their own defaults, which disagree with the committed style: `sw.js` and `animations.js` use single quotes, while `script.js` and `scripts/*.js` use double.
-
-**Fix direction.** Commit an `.editorconfig` and a `.prettierrc` that encode the dominant style (2-space indent, double quotes, semicolons, trailing commas), then reformat the stragglers in one isolated commit so future diffs stay minimal. Do not mix that reformat with a functional change.
-
-**Verify.** Editing a single line in `sw.js` produces a single-line diff.
+**Verify.** A test PR that fuses two tools in `data/links.json` (valid JSON, missing `}, {`) shows the merge button blocked by the failing required check.
 
 ---
 
 ## Fixed
 
-All entries below were fixed and verified on **2026-11-13**. Everything except BUG-003's event guard landed in commit `14bab45`.
+### Fixed 2026-11-22
+
+BUG-014, BUG-017 and BUG-018 landed in `3fd6b38`. Everything else in this group is in the working tree on top of `3fd6b38`, **commit pending**. Suggested split, one logical change per commit (`docs/COMMIT_GUIDELINES.md`): formatting-only (BUG-015) first, then each fix on its own.
+
+All page-level fixes were verified by rendering `index.html` and `offline.html` in headless Chrome before and after (desktop 1366 px, mobile 390 px) and diffing the screenshots pixel by pixel.
+
+### BUG-017 · `data/links.json` was not valid JSON (recurrence of BUG-001) · P0 · fixed in `3fd6b38`
+
+The live directory showed `Error loading links`: `JSON.parse` failed at line 795. The conflict resolution in `9923477` and each later merge dropped the `},`/`{` separators, fusing PawMambo, Twistavo, Songluna AI and GetYouTubeTranscript into one object. Only adding braces would have parsed but kept just the last tool, so the object was split back into four entries, each field compared against the commit that introduced it (`f2d7444`, `7fd7bc6`, `76fe27c`, `9bd01d6`).
+
+**Verified.** `npm run validate-json` passes; 216 parsed tools match 216 raw `"title":` keys; `check-duplicates` reports 216 links across 10 categories with no duplicates; all tools render in headless Chrome.
+
+### BUG-021 · Tailwind was loaded from the Play CDN in production · P2 · fixed
+
+Every visit downloaded Tailwind's in-browser compiler (a large script) and generated CSS at runtime before the page was fully styled; `offline.html` used the same CDN, so the offline page was only styled if that third-party script happened to be cached.
+
+**Fix.** The inline `tailwind.config` moved to `tailwind.config.js` (unchanged theme); `npm run build:css` compiles `tailwind.input.css` into a committed, minified `tailwind.css` (22 KB). Both pages link it, `sw.js` precaches `/tailwind.css` instead of the CDN, and `CACHE_NAME` is bumped to `ai-tools-hub-v1.0.3`. The `<link>` sits **last in `<head>`**: the Play CDN appended its styles there, so Tailwind won the cascade against Font Awesome's `line-height: 1`. An earlier placement lost that tie and shrank every icon line box by 8–10 px.
+
+**Verified.** Screenshots before vs. after: identical page heights; mobile pixel-identical; desktop differs only in anti-aliasing on one 17 px icon. Rebuilding produces a byte-identical `tailwind.css`.
+
+### BUG-022 · GitHub stats undercounted issues and hit the unauthenticated rate limit · P2 · fixed
+
+**Symptom.** The footer showed **22** open issues when the repo had **31**: `/issues?state=open` returns only the first 30 items and includes pull requests, so the count could never exceed 30. Every page load also spent two of the visitor IP's 60 unauthenticated GitHub API requests per hour, so shared networks saw `-`.
+
+**Fix.** `loadGitHubStars()` (`script.js`) now uses the search API's `total_count` for an exact issue count, caches all three numbers in `localStorage` for an hour (wrapped in `try/catch` for private mode), checks `response.ok`, and falls back to the last cached values on failure instead of `-`. A star count of `0` is no longer shown as `-` (`??` instead of `||`).
+
+**Verified.** Live API: old method 22, search `total_count` 31; the rendered footer shows `Issues: 31`.
+
+### BUG-024 · Mobile pages were wider than the screen · P2 · fixed
+
+**Found during this pass.** At a 390 px phone width the page laid out at **422 px**: the `reveal-right` cards in the "Created by / Community" section start 48 px off-canvas (`modern.css`) until scrolled into view. Phones zoomed the whole page out to fit, shrinking all text, and the fixed back-to-top button sat partly off-screen.
+
+**Fix.** `html, body { overflow-x: clip; }` next to the reveal rules in `modern.css`. `clip` does not create a scroll container (unlike `hidden`), so sticky and fixed elements are unaffected; browsers without support behave as before.
+
+**Verified.** Mobile emulation at 390 px: `innerWidth` and `scrollWidth` 422 → 390; horizontal scrolling no longer possible; footer and cards render at full width.
+
+### BUG-018 · `data/contributors.json` was not valid JSON (recurrence of BUG-002) · P2 · fixed in `3fd6b38`
+
+The contributors section failed to load (parse error at line 848). The conflict resolution in `2629bdd` fused five contributors — `PawMambo Team`, `AZERIA IT`, `Datacircle`, `Tover Wu`, `pushkarsingh32` — into one object and dropped the required `role` from three. Split back into five entries with `role` restored as in `f2d7444`, `7fd7bc6` and `76fe27c`.
+
+`3fd6b38` also collapsed one-item `contributions` arrays onto one line and moved `alvabillwu` to the end of the list. Its message says "Remove alvabillwu", but the entry is still present and unchanged — only its position moved.
+
+**Verified.** `validate-contributors.js --quick` reports 75 valid contributors; 75 parsed objects match 75 raw `"github":` keys.
+
+### BUG-014 · One tool URL used `http://` and redirected · P3 · fixed in `3fd6b38`
+
+`http://pvid.app/` → `https://pvid.app/`. The HTTPS page returns `200` and is the same product ("Photo AI Video Generator", Kling 3.0). Recurrence is now blocked: `validate-links.js` rejects any non-`https://` tool URL (BUG-020).
+
+**Verified.** `grep '"url": "http://' data/links.json` returns nothing; the full `npm run validate` run does not list PVID as unreachable.
+
+### BUG-013 · Social preview image showed stale counts and clipped text · P3 · fixed
+
+Badges now read **200+** AI Tools (216 actual; a rounded figure so the image does not go stale with every addition) and **10** Categories. The `Open Source` pill was widened from 180 to 230 px with the label at 26 px, so no text crosses a border. The ✨ tile rendered blank wherever no emoji font is installed, so the sparkle is now drawn as SVG paths. Re-rendered with `rsvg-convert -w 1200 -h 630`.
+
+**Verified.** `assets/og-image.png` is 1200×630 and was inspected visually.
+
+### BUG-015 · No formatter config, so format-on-save restyled whole files · P3 · fixed
+
+Added `.editorconfig`, `.prettierrc.json` (2 spaces, double quotes, semicolons, trailing commas, LF) and `.prettierignore`, plus `npm run format` / `format:check` with `prettier` as a dev dependency. Every JS, CSS, JSON, YAML and Markdown file was reformatted once — **formatting only**, to be committed on its own. `index.html` and `offline.html` are ignored deliberately: reformatting them would rewrite about 2,000 lines of whitespace-sensitive markup. `.kiro/` is ignored because Kiro maintains it. The data files already matched.
+
+**Verified.** `prettier --check .` passes. Editing one line of `sw.js` (even typed with single quotes) and formatting produces a one-line diff.
+
+### BUG-020 · The 60-character description limit was documented but not enforced · P3 · fixed
+
+101 of 216 descriptions exceed 60 characters (median 58, longest 191), so enforcing the rule on everything would fail the existing data. `validate-links.js --duplicates-only` now takes `--base <git-ref>` and **errors** only for tools that are new or whose description changed relative to that ref; existing long descriptions produce one summary warning. CI passes `--base origin/<base branch>` (checkout now uses `fetch-depth: 0`), the pre-commit hook passes `--base HEAD`. The same check now also errors on missing `title`/`url`/`description` and non-HTTPS URLs, and the README guideline says the rule is enforced for new and edited tools.
+
+**Verified.** In a scratch repo, a change that added a tool with a 75-character description and an `http://` URL, lengthened an existing description, and fused two tools into one valid-JSON object produced four errors and exit code 1; the real data passes. The updated hook blocked the fused-object commit.
+
+### BUG-023 · Offline page loaded a Font Awesome version the service worker does not cache · P3 · fixed
+
+**Found during this pass.** `offline.html` requested Font Awesome **6.0.0** while `sw.js` precaches **6.4.0** (the BUG-005 alignment covered `index.html` only), so the offline page's icons failed exactly when the visitor was offline. Now requests 6.4.0.
+
+**Verified.** Both versions of the offline page render identically online apart from the expected glyph-level icon differences between the two versions.
+
+### BUG-025 · Page text and structured data still said "100+" tools · P3 · fixed
+
+**Found during this pass.** Three meta descriptions, the JSON-LD description, the hero subtitle and `manifest.json` advertised "100+" tools (216 actual). JSON-LD also had `"numberOfItems": "100+"`; schema.org requires an integer there, so the property was invalid. Text updated to "200+"; `numberOfItems` removed, since it is optional and a hard-coded integer would go stale.
+
+**Verified.** No `100+` remains in `index.html` or `manifest.json`; every JSON-LD block parses; the hero renders "200+".
+
+### Fixed 2026-11-13
+
+All entries in this group were fixed and verified on **2026-11-13**. Everything except BUG-003's event guard landed in commit `14bab45`.
 
 ### BUG-001 · `data/links.json` was not valid JSON · fixed
 

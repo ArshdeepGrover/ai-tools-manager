@@ -29,7 +29,7 @@ function validateUrl(url, type = "website") {
     if (
       type === "github" &&
       !VALID_DOMAINS.github.some((domain) =>
-        parsedUrl.hostname.includes(domain)
+        parsedUrl.hostname.includes(domain),
       )
     ) {
       return { valid: false, error: "GitHub URL should be from github.com" };
@@ -38,7 +38,7 @@ function validateUrl(url, type = "website") {
     if (
       type === "linkedin" &&
       !VALID_DOMAINS.linkedin.some((domain) =>
-        parsedUrl.hostname.includes(domain)
+        parsedUrl.hostname.includes(domain),
       )
     ) {
       return {
@@ -61,7 +61,7 @@ function checkUrlReachability(url) {
         { method: "HEAD", timeout: 5000 },
         (res) => {
           resolve(res.statusCode < 400);
-        }
+        },
       );
       req.on("error", () => resolve(false));
       req.on("timeout", () => {
@@ -98,7 +98,7 @@ async function validateContributors() {
     for (let i = 0; i < data.contributors.length; i++) {
       const contributor = data.contributors[i];
       console.log(
-        `🔍 Validating contributor ${i + 1}: ${contributor.name || "unnamed"}`
+        `🔍 Validating contributor ${i + 1}: ${contributor.name || "unnamed"}`,
       );
 
       // Check for required fields
@@ -153,7 +153,7 @@ async function validateContributors() {
           contributor.github.length > 1
         ) {
           console.warn(
-            `⚠️  GitHub username format may be invalid: ${contributor.github}`
+            `⚠️  GitHub username format may be invalid: ${contributor.github}`,
           );
           warningCount++;
         }
@@ -180,37 +180,37 @@ async function validateContributors() {
         // Check for inconsistent LinkedIn format - should be username only
         if (contributor.linkedin.includes("linkedin.com")) {
           console.error(
-            `❌ LinkedIn should be username only, not full URL: ${contributor.linkedin}`
+            `❌ LinkedIn should be username only, not full URL: ${contributor.linkedin}`,
           );
           console.error(
-            `   Expected format: "username" not "https://linkedin.com/in/username"`
+            `   Expected format: "username" not "https://linkedin.com/in/username"`,
           );
           console.error(
-            `   Example: "john-doe" instead of "https://linkedin.com/in/john-doe"`
+            `   Example: "john-doe" instead of "https://linkedin.com/in/john-doe"`,
           );
           hasError = true;
         } else {
           // Validate username format
           if (!/^[a-zA-Z0-9-]+$/.test(contributor.linkedin)) {
             console.error(
-              `❌ LinkedIn username format invalid: ${contributor.linkedin}`
+              `❌ LinkedIn username format invalid: ${contributor.linkedin}`,
             );
             console.error(
-              `   Should contain only letters, numbers, and hyphens`
+              `   Should contain only letters, numbers, and hyphens`,
             );
             hasError = true;
           }
 
           if (contributor.linkedin.length < 3) {
             console.error(
-              `❌ LinkedIn username too short: ${contributor.linkedin}`
+              `❌ LinkedIn username too short: ${contributor.linkedin}`,
             );
             hasError = true;
           }
 
           if (contributor.linkedin.length > 100) {
             console.error(
-              `❌ LinkedIn username too long: ${contributor.linkedin}`
+              `❌ LinkedIn username too long: ${contributor.linkedin}`,
             );
             hasError = true;
           }
@@ -228,7 +228,7 @@ async function validateContributors() {
       if (contributor.tagline) {
         if (contributor.tagline.length > 100) {
           console.warn(
-            `⚠️  Tagline very long (${contributor.tagline.length} chars): ${contributor.tagline}`
+            `⚠️  Tagline very long (${contributor.tagline.length} chars): ${contributor.tagline}`,
           );
           warningCount++;
         }
@@ -256,7 +256,7 @@ async function validateContributors() {
               hasError = true;
             } else if (contribution.length < 10) {
               console.warn(
-                `⚠️  Contribution ${idx + 1} very short: ${contribution}`
+                `⚠️  Contribution ${idx + 1} very short: ${contribution}`,
               );
               warningCount++;
             }
@@ -275,7 +275,7 @@ async function validateContributors() {
         const reachable = await checkUrlReachability(contributor.avatar);
         if (!reachable) {
           console.warn(
-            `⚠️  Avatar URL not reachable: ${contributor.name} - ${contributor.avatar}`
+            `⚠️  Avatar URL not reachable: ${contributor.name} - ${contributor.avatar}`,
           );
           warningCount++;
         }
@@ -285,7 +285,7 @@ async function validateContributors() {
         const reachable = await checkUrlReachability(contributor.website);
         if (!reachable) {
           console.warn(
-            `⚠️  Website URL not reachable: ${contributor.name} - ${contributor.website}`
+            `⚠️  Website URL not reachable: ${contributor.name} - ${contributor.website}`,
           );
           warningCount++;
         }
@@ -307,13 +307,13 @@ async function validateContributors() {
       console.log("   Consider reviewing the warnings above.");
     } else {
       console.log(
-        "\n✅ Contributors validation completed successfully! All data is valid."
+        "\n✅ Contributors validation completed successfully! All data is valid.",
       );
     }
   } catch (error) {
     console.error(
       "❌ Error reading or parsing contributors.json:",
-      error.message
+      error.message,
     );
     process.exit(1);
   }
@@ -324,12 +324,28 @@ function checkContributorsOnly() {
   console.log("🔍 Quick contributors check...\n");
 
   try {
-    const data = JSON.parse(fs.readFileSync("data/contributors.json", "utf8"));
+    const raw = fs.readFileSync("data/contributors.json", "utf8");
+    const data = JSON.parse(raw);
     let hasError = false;
 
     if (!data.contributors || !Array.isArray(data.contributors)) {
       console.error("❌ Invalid contributors structure");
       process.exit(1);
+    }
+
+    // JSON.parse keeps only the last value of a repeated key, so contributors
+    // fused into one object by a bad merge still parse while all but one
+    // silently disappear (BUG-002, BUG-018). Every "github" key in the raw
+    // text must belong to its own parsed contributor.
+    const rawGithubKeys = (raw.match(/"github"\s*:/g) || []).length;
+    if (rawGithubKeys !== data.contributors.length) {
+      console.error(
+        `❌ MERGED OBJECTS: the file contains ${rawGithubKeys} "github" keys but only ${data.contributors.length} contributors parse.`,
+      );
+      console.error(
+        '   A merge probably dropped the "}, {" between two contributors - check the most recent additions.',
+      );
+      hasError = true;
     }
 
     const seenNames = new Set();
@@ -342,7 +358,7 @@ function checkContributorsOnly() {
           console.error(
             `❌ Missing ${field} for: ${
               contributor.name || "unnamed contributor"
-            }`
+            }`,
           );
           hasError = true;
         }
@@ -373,7 +389,7 @@ function checkContributorsOnly() {
         contributor.linkedin.includes("linkedin.com")
       ) {
         console.error(
-          `❌ LinkedIn should be username only: ${contributor.name}`
+          `❌ LinkedIn should be username only: ${contributor.name}`,
         );
         console.error(`   Found: ${contributor.linkedin}`);
         console.error(`   Expected: username only (e.g., "john-doe")`);

@@ -31,16 +31,6 @@
       "featured": true
     },
     {
-      "name": "alvabillwu",
-      "github": "alvabillwu",
-      "avatar": "https://github.com/alvabillwu.png",
-      "tagline": "AI/LLM Developer Tools",
-      "contributions": [
-        "Added agentguard, ctxpack, judgekit, mcp-guard, ragbench, and tokencost to AI Coding & Development category"
-      ],
-      "role": "Contributor"
-    },
-    {
       "name": "Taranpreet Singh",
       "github": "TARANPREETS1999",
       "avatar": "https://github.com/TARANPREETS1999.png",
@@ -214,9 +204,7 @@
       "github": "MRamazan",
       "avatar": "https://avatars.githubusercontent.com/u/124697078?v=4",
       "tagline": "Tools Contributor",
-      "contributions": [
-        "Added Monica under AI Writing & Content category"
-      ],
+      "contributions": ["Added Monica under AI Writing & Content category"],
       "role": "Contributor"
     },
     {
@@ -226,9 +214,7 @@
       "linkedin": "ahammad-abdullah",
       "website": "https://ahammadabdullah.dev",
       "tagline": "Its never too late",
-      "contributions": [
-        "Added 16 tools in different categories"
-      ],
+      "contributions": ["Added 16 tools in different categories"],
       "role": "Contributor"
     },
     {
@@ -236,18 +222,14 @@
       "github": "mathncode-sid",
       "avatar": "https://avatars.githubusercontent.com/u/168301526?v=4",
       "tagline": "Veni, Codavi, Vici",
-      "contributions": [
-        "Added GPTforSlides under AI Presentations"
-      ],
+      "contributions": ["Added GPTforSlides under AI Presentations"],
       "role": "Contributor"
     },
     {
       "name": "T Pavan Teja",
       "github": "itspavant",
       "avatar": "https://github.com/itspavant.png",
-      "contributions": [
-        "Added Tools 15.ai, Murf in AI Video & Audio cateogry"
-      ],
+      "contributions": ["Added Tools 15.ai, Murf in AI Video & Audio cateogry"],
       "linkedin": "itspavant",
       "tagline": "Keep Hustling",
       "role": "Contributor"
@@ -270,9 +252,7 @@
       "github": "Utkarsh-username",
       "avatar": "https://github.com/Utkarsh-username.png",
       "tagline": "Coding...",
-      "contributions": [
-        "Added Zoho Show's Zia AI in presentations category"
-      ],
+      "contributions": ["Added Zoho Show's Zia AI in presentations category"],
       "role": "Contributor"
     },
     {
@@ -329,10 +309,7 @@
       "github": "nothariharan",
       "avatar": "https://github.com/nothariharan.png",
       "tagline": "better than yesterday",
-      "contributions": [
-        "Added ChatSlide AI",
-        "Added Infinite Craft"
-      ],
+      "contributions": ["Added ChatSlide AI", "Added Infinite Craft"],
       "role": "Contributor"
     },
     {
@@ -399,9 +376,7 @@
       "avatar": "https://github.com/dev-prachi.png",
       "linkedin": "prachi-sharma123",
       "tagline": "Aspiring Software Developer",
-      "contributions": [
-        "Added hover effect in the links of navbar"
-      ],
+      "contributions": ["Added hover effect in the links of navbar"],
       "role": "Contributor"
     },
     {
@@ -409,9 +384,7 @@
       "github": "maanuu5",
       "avatar": "https://github.com/maanuu5.png",
       "tagline": "Developer",
-      "contributions": [
-        "Fixed persistent blue outline issues"
-      ],
+      "contributions": ["Fixed persistent blue outline issues"],
       "role": "Contributor"
     },
     {
@@ -431,9 +404,7 @@
       "github": "abhigyaabs2",
       "avatar": "https://avatars.githubusercontent.com/u/142334571?v=4",
       "tagline": "Developer",
-      "contributions": [
-        "Updated script.js functionality"
-      ],
+      "contributions": ["Updated script.js functionality"],
       "role": "Contributor",
       "featured": true
     },
@@ -442,9 +413,7 @@
       "github": "arushi2702",
       "avatar": "https://avatars.githubusercontent.com/u/183184065?v=4",
       "tagline": "UI/UX Developer",
-      "contributions": [
-        "Fixed design inconsistencies across the website"
-      ],
+      "contributions": ["Fixed design inconsistencies across the website"],
       "role": "Contributor",
       "featured": true
     },
@@ -453,9 +422,7 @@
       "github": "bhuwan",
       "avatar": "https://github.com/bhuwan.png",
       "tagline": "AI Tools Contributor",
-      "contributions": [
-        "Added 5 new AI tools to the collection"
-      ],
+      "contributions": ["Added 5 new AI tools to the collection"],
       "role": "Contributor"
     },
     {
@@ -463,9 +430,7 @@
       "github": "khushbu-gupta",
       "avatar": "https://github.com/khushbu-gupta.png",
       "tagline": "Developer",
-      "contributions": [
-        "Contributed to project maintenance and merges"
-      ],
+      "contributions": ["Contributed to project maintenance and merges"],
       "role": "Contributor"
     },
     {
@@ -496,9 +461,7 @@
       "github": "Manju-2004",
       "avatar": "https://github.com/Manju-2004.png",
       "tagline": "AI Tools Contributor",
-      "contributions": [
-        "Added Local LLMs category with multiple tools"
-      ],
+      "contributions": ["Added Local LLMs category with multiple tools"],
       "role": "Contributor"
     },
     {
@@ -529,9 +492,7 @@
       "name": "Manol Trendafilov",
       "github": "man0l",
       "avatar": "https://github.com/man0l.png",
-      "contributions": [
-        "Added ZeroGTM to AI Productivity category"
-      ],
+      "contributions": ["Added ZeroGTM to AI Productivity category"],
       "website": "https://www.gtm-zero.com",
       "role": "Contributor"
     },
@@ -540,9 +501,7 @@
       "github": "georgezouq",
       "avatar": "https://github.com/georgezouq.png",
       "tagline": "AI product builder",
-      "contributions": [
-        "Added Aurcue to AI Design & Images"
-      ],
+      "contributions": ["Added Aurcue to AI Design & Images"],
       "website": "https://www.aurcue.com",
       "role": "Contributor",
       "featured": false
@@ -551,9 +510,7 @@
       "name": "ArtImageHub Team",
       "github": "linxuaning",
       "avatar": "https://github.com/linxuaning.png",
-      "contributions": [
-        "Added ArtImageHub to AI Design & Images"
-      ],
+      "contributions": ["Added ArtImageHub to AI Design & Images"],
       "website": "https://artimagehub.com",
       "role": "Contributor"
     },
@@ -573,9 +530,7 @@
       "name": "outwrit",
       "github": "outwrit",
       "avatar": "https://github.com/outwrit.png",
-      "contributions": [
-        "Added CallURL to AI Productivity category"
-      ],
+      "contributions": ["Added CallURL to AI Productivity category"],
       "website": "https://callurl.com",
       "role": "Contributor"
     },
@@ -584,9 +539,7 @@
       "github": "zuoyouxuan",
       "avatar": "https://github.com/zuoyouxuan.png",
       "tagline": "AI product builder",
-      "contributions": [
-        "Added Catoon to AI Design & Images"
-      ],
+      "contributions": ["Added Catoon to AI Design & Images"],
       "website": "https://catoon.xyz",
       "role": "Contributor"
     },
@@ -595,9 +548,7 @@
       "github": "ejboy",
       "avatar": "https://avatars.githubusercontent.com/u/1303453?v=4",
       "tagline": "Creator of AI Badger",
-      "contributions": [
-        "Added AI Badger to AI Coding & Development"
-      ],
+      "contributions": ["Added AI Badger to AI Coding & Development"],
       "role": "Contributor"
     },
     {
@@ -605,9 +556,7 @@
       "github": "Simon-He95",
       "avatar": "https://github.com/Simon-He95.png",
       "tagline": "Open-source frontend developer",
-      "contributions": [
-        "Added Markstream to AI Coding & Development"
-      ],
+      "contributions": ["Added Markstream to AI Coding & Development"],
       "website": "https://markstream.simonhe.me/",
       "role": "Contributor"
     },
@@ -616,9 +565,7 @@
       "github": "ofekron",
       "avatar": "https://github.com/ofekron.png",
       "tagline": "Better Agent maintainer",
-      "contributions": [
-        "Added Better Agent to AI Coding & Development"
-      ],
+      "contributions": ["Added Better Agent to AI Coding & Development"],
       "website": "https://github.com/ofekron/better-agent",
       "role": "Contributor"
     },
@@ -627,9 +574,7 @@
       "github": "Ducksss",
       "avatar": "https://github.com/Ducksss.png",
       "tagline": "Open-source developer tools builder",
-      "contributions": [
-        "Added codex-profiles to AI Coding & Development"
-      ],
+      "contributions": ["Added codex-profiles to AI Coding & Development"],
       "role": "Contributor"
     },
     {
@@ -637,9 +582,7 @@
       "github": "wavect",
       "avatar": "https://github.com/wavect.png",
       "tagline": "Software engineering company building SEMAPRAX",
-      "contributions": [
-        "Added SEMAPRAX to AI Coding & Development"
-      ],
+      "contributions": ["Added SEMAPRAX to AI Coding & Development"],
       "website": "https://wavect.io/",
       "role": "Contributor"
     },
@@ -657,10 +600,8 @@
       "name": "bao",
       "github": "cute-baobao",
       "avatar": "https://github.com/cute-baobao.png",
-      "tagline": "HyNote \u2014 AI note-taking for meetings, audio & PDFs",
-      "contributions": [
-        "Added HyNote to AI Productivity category"
-      ],
+      "tagline": "HyNote — AI note-taking for meetings, audio & PDFs",
+      "contributions": ["Added HyNote to AI Productivity category"],
       "website": "https://hynote.ai?utm_source=ai-tool-collection&utm_medium=referral&utm_campaign=ai-tools-manager",
       "role": "Contributor"
     },
@@ -669,14 +610,12 @@
       "github": "alanhoff",
       "avatar": "https://github.com/alanhoff.png",
       "tagline": "Open-source developer",
-      "contributions": [
-        "Added Agent Coordinator to AI Coding & Development"
-      ],
+      "contributions": ["Added Agent Coordinator to AI Coding & Development"],
       "website": "https://github.com/alanhoff/agent-coordinator",
       "role": "Contributor"
     },
     {
-      "name": "Ars\u00e8ne Huot",
+      "name": "Arsène Huot",
       "github": "arseneHuot",
       "avatar": "https://github.com/arseneHuot.png",
       "tagline": "shortshort maker",
@@ -692,9 +631,7 @@
       "github": "Aribk7",
       "avatar": "https://github.com/Aribk7.png",
       "tagline": "make.ad maker",
-      "contributions": [
-        "Added make.ad to AI Video & Audio"
-      ],
+      "contributions": ["Added make.ad to AI Video & Audio"],
       "website": "https://www.make.ad",
       "role": "Contributor"
     },
@@ -703,49 +640,39 @@
       "github": "33hodl",
       "avatar": "https://github.com/33hodl.png",
       "tagline": "Hermes Startup maintainer",
-      "contributions": [
-        "Added Hermes Startup to AI Productivity"
-      ],
+      "contributions": ["Added Hermes Startup to AI Productivity"],
       "role": "Contributor"
     },
     {
       "name": "Sawana Huang",
       "github": "waitlistSawana",
       "avatar": "https://github.com/waitlistSawana.png",
-      "contributions": [
-        "Added RemoveMate to AI Design & Images"
-      ],
+      "contributions": ["Added RemoveMate to AI Design & Images"],
       "website": "https://removemate.com",
-       "role": "Contributor"
+      "role": "Contributor"
     },
     {
       "name": "Runbo Li",
       "github": "runshouse",
       "avatar": "https://github.com/runshouse.png",
       "tagline": "Magic Hour co-founder",
-      "contributions": [
-        "Added Magic Hour to AI Video & Audio"
-      ],
+      "contributions": ["Added Magic Hour to AI Video & Audio"],
       "website": "https://magichour.ai",
-       "role": "Contributor"
+      "role": "Contributor"
     },
     {
       "name": "xizhuomengcontin",
       "github": "xizhuomengcontin",
       "avatar": "https://github.com/xizhuomengcontin.png",
       "tagline": "OrcaReplay maintainer",
-      "contributions": [
-        "Added OrcaReplay to AI Coding & Development"
-      ],
+      "contributions": ["Added OrcaReplay to AI Coding & Development"],
       "role": "Contributor"
     },
     {
       "name": "dnzg",
       "github": "dnzg",
       "avatar": "https://github.com/dnzg.png",
-      "contributions": [
-        "Added Transcribe Video: To The Text"
-      ],
+      "contributions": ["Added Transcribe Video: To The Text"],
       "website": "https://video2text.ttt.so",
       "role": "Contributor",
       "tagline": "Maker of Transcribe Video: To The Text"
@@ -755,9 +682,7 @@
       "github": "ocxers",
       "avatar": "https://github.com/ocxers.png",
       "tagline": "RefVid maker",
-      "contributions": [
-        "Added RefVid to AI Video & Audio"
-      ],
+      "contributions": ["Added RefVid to AI Video & Audio"],
       "website": "https://refvid.com",
       "role": "Contributor"
     },
@@ -766,9 +691,7 @@
       "github": "szj2ys",
       "avatar": "https://github.com/szj2ys.png",
       "tagline": "Lookslate maker",
-      "contributions": [
-        "Added Lookslate to AI Design & Images"
-      ],
+      "contributions": ["Added Lookslate to AI Design & Images"],
       "role": "Contributor"
     },
     {
@@ -776,9 +699,7 @@
       "github": "ViggoZ",
       "avatar": "https://github.com/ViggoZ.png",
       "tagline": "APPLORE maker",
-      "contributions": [
-        "Added APPLORE to AI Design & Images"
-      ],
+      "contributions": ["Added APPLORE to AI Design & Images"],
       "role": "Contributor"
     },
     {
@@ -786,9 +707,7 @@
       "github": "Frank-Masciopinto",
       "avatar": "https://github.com/Frank-Masciopinto.png",
       "tagline": "SummarizAI maker",
-      "contributions": [
-        "Added SummarizAI to AI Productivity"
-      ],
+      "contributions": ["Added SummarizAI to AI Productivity"],
       "website": "https://summarizai.ink",
       "role": "Contributor"
     },
@@ -797,9 +716,7 @@
       "github": "ljhskyso",
       "avatar": "https://github.com/ljhskyso.png",
       "tagline": "Works on Aident Loadout",
-      "contributions": [
-        "Added Aident Loadout to AI Coding & Development"
-      ],
+      "contributions": ["Added Aident Loadout to AI Coding & Development"],
       "website": "https://aident.ai",
       "role": "Contributor"
     },
@@ -808,9 +725,7 @@
       "github": "grades2018",
       "avatar": "https://github.com/grades2018.png",
       "tagline": "ImagineYourBook team",
-      "contributions": [
-        "Added ImagineYourBook to AI Writing & Content"
-      ],
+      "contributions": ["Added ImagineYourBook to AI Writing & Content"],
       "website": "https://www.imagineyourbook.com/",
       "role": "Contributor"
     },
@@ -819,8 +734,56 @@
       "github": "louis030195",
       "avatar": "https://github.com/louis030195.png",
       "tagline": "Hyperconsciousness maintainer",
+      "contributions": ["Added Hyperconsciousness to AI Coding & Development"],
+      "role": "Contributor"
+    },
+    {
+      "name": "PawMambo Team",
+      "github": "florianuqub-rgb",
+      "avatar": "https://github.com/florianuqub-rgb.png",
+      "contributions": ["Added PawMambo to AI Video & Audio"],
+      "role": "Contributor"
+    },
+    {
+      "name": "AZERIA IT",
+      "github": "AZERIA-IT",
+      "avatar": "https://github.com/AZERIA-IT.png",
+      "contributions": ["Added Twistavo to AI Video & Audio"],
+      "role": "Contributor"
+    },
+    {
+      "name": "Datacircle",
+      "github": "waynehamadi",
+      "avatar": "https://github.com/waynehamadi.png",
+      "contributions": ["Added Datacircle to AI Coding & Development"],
+      "role": "Contributor",
+      "website": "https://datacircle.dev"
+    },
+    {
+      "name": "Tover Wu",
+      "github": "toverwu-qaq",
+      "avatar": "https://github.com/toverwu-qaq.png",
+      "tagline": "Songluna AI maker",
+      "contributions": ["Added Songluna AI to AI Video & Audio"],
+      "website": "https://songluna.com",
+      "role": "Contributor"
+    },
+    {
+      "name": "pushkarsingh32",
+      "github": "pushkarsingh32",
+      "avatar": "https://github.com/pushkarsingh32.png",
+      "tagline": "GetYouTubeTranscript maker",
+      "contributions": ["Added GetYouTubeTranscript to AI Video & Audio"],
+      "website": "https://getyoutubetranscript.com",
+      "role": "Contributor"
+    },
+    {
+      "name": "alvabillwu",
+      "github": "alvabillwu",
+      "avatar": "https://github.com/alvabillwu.png",
+      "tagline": "AI/LLM Developer Tools",
       "contributions": [
-        "Added Hyperconsciousness to AI Coding & Development"
+        "Added agentguard, ctxpack, judgekit, mcp-guard, ragbench, and tokencost to AI Coding & Development category"
       ],
       "role": "Contributor"
     }
