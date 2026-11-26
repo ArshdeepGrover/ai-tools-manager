@@ -807,6 +807,11 @@
           "title": "GetYouTubeTranscript",
           "url": "https://getyoutubetranscript.com",
           "description": "YouTube transcripts, subtitles and AI video summaries"
+        },
+        {
+          "title": "FastScribe",
+          "url": "https://fastscribe.org/",
+          "description": "Edit timed transcripts and SRT captions. Free signup credits."
         }
       ]
     },
