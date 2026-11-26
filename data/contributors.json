@@ -786,6 +786,15 @@
         "Added agentguard, ctxpack, judgekit, mcp-guard, ragbench, and tokencost to AI Coding & Development category"
       ],
       "role": "Contributor"
+    },
+    {
+      "name": "KevinKaul",
+      "github": "KevinKaul",
+      "avatar": "https://github.com/KevinKaul.png",
+      "contributions": [
+        "Proposed FastScribe for the AI Video & Audio category"
+      ],
+      "role": "Contributor"
     }
   ]
 }
